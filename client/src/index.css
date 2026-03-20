@@ -1,0 +1,169 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Finance dashboard: cool slate, precise, dark-first */
+    --background: 222 18% 9%;
+    --foreground: 210 20% 88%;
+
+    --card: 222 16% 12%;
+    --card-foreground: 210 20% 88%;
+
+    --popover: 222 16% 13%;
+    --popover-foreground: 210 20% 88%;
+
+    --primary: 210 80% 56%;
+    --primary-foreground: 222 18% 9%;
+
+    --secondary: 222 14% 18%;
+    --secondary-foreground: 210 15% 70%;
+
+    --muted: 222 14% 16%;
+    --muted-foreground: 210 10% 52%;
+
+    --accent: 210 80% 56%;
+    --accent-foreground: 222 18% 9%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 222 14% 20%;
+    --input: 222 14% 18%;
+    --ring: 210 80% 56%;
+
+    --radius: 0.5rem;
+
+    /* Chart colors — categorical palette for ETF differentiation */
+    --chart-1: 210 80% 56%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 45 90% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 15 80% 55%;
+    --chart-6: 190 70% 50%;
+    --chart-7: 320 60% 55%;
+    --chart-8: 100 55% 48%;
+    --chart-9: 35 85% 55%;
+    --chart-10: 250 65% 62%;
+  }
+
+  .light {
+    --background: 210 20% 97%;
+    --foreground: 222 18% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 18% 12%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 18% 12%;
+    --primary: 210 80% 42%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 15% 93%;
+    --secondary-foreground: 222 18% 25%;
+    --muted: 210 15% 93%;
+    --muted-foreground: 210 10% 48%;
+    --accent: 210 80% 42%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 210 15% 85%;
+    --input: 210 15% 93%;
+    --ring: 210 80% 42%;
+    --chart-1: 210 80% 42%;
+    --chart-2: 160 60% 38%;
+    --chart-3: 45 90% 42%;
+    --chart-4: 280 65% 48%;
+    --chart-5: 15 80% 45%;
+    --chart-6: 190 70% 40%;
+    --chart-7: 320 60% 45%;
+    --chart-8: 100 55% 38%;
+    --chart-9: 35 85% 45%;
+    --chart-10: 250 65% 52%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Satoshi', 'Inter', 'Helvetica Neue', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    min-height: 100dvh;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Cabinet Grotesk', 'Satoshi', 'Inter', sans-serif;
+    font-weight: 700;
+    line-height: 1.2;
+    text-wrap: balance;
+  }
+
+  .font-mono, .tabular-nums {
+    font-variant-numeric: tabular-nums lining-nums;
+  }
+}
+
+/* ETF chip colors */
+.etf-chip-0 { background: hsl(210 80% 56% / 0.18); color: hsl(210 80% 72%); border-color: hsl(210 80% 56% / 0.3); }
+.etf-chip-1 { background: hsl(160 60% 45% / 0.18); color: hsl(160 60% 65%); border-color: hsl(160 60% 45% / 0.3); }
+.etf-chip-2 { background: hsl(45 90% 55% / 0.18); color: hsl(45 90% 70%); border-color: hsl(45 90% 55% / 0.3); }
+.etf-chip-3 { background: hsl(280 65% 60% / 0.18); color: hsl(280 65% 75%); border-color: hsl(280 65% 60% / 0.3); }
+.etf-chip-4 { background: hsl(15 80% 55% / 0.18); color: hsl(15 80% 72%); border-color: hsl(15 80% 55% / 0.3); }
+.etf-chip-5 { background: hsl(190 70% 50% / 0.18); color: hsl(190 70% 68%); border-color: hsl(190 70% 50% / 0.3); }
+.etf-chip-6 { background: hsl(320 60% 55% / 0.18); color: hsl(320 60% 72%); border-color: hsl(320 60% 55% / 0.3); }
+.etf-chip-7 { background: hsl(100 55% 48% / 0.18); color: hsl(100 55% 65%); border-color: hsl(100 55% 48% / 0.3); }
+.etf-chip-8 { background: hsl(35 85% 55% / 0.18); color: hsl(35 85% 70%); border-color: hsl(35 85% 55% / 0.3); }
+.etf-chip-9 { background: hsl(250 65% 62% / 0.18); color: hsl(250 65% 78%); border-color: hsl(250 65% 62% / 0.3); }
+
+.etf-dot-0 { background: hsl(210 80% 56%); }
+.etf-dot-1 { background: hsl(160 60% 45%); }
+.etf-dot-2 { background: hsl(45 90% 55%); }
+.etf-dot-3 { background: hsl(280 65% 60%); }
+.etf-dot-4 { background: hsl(15 80% 55%); }
+.etf-dot-5 { background: hsl(190 70% 50%); }
+.etf-dot-6 { background: hsl(320 60% 55%); }
+.etf-dot-7 { background: hsl(100 55% 48%); }
+.etf-dot-8 { background: hsl(35 85% 55%); }
+.etf-dot-9 { background: hsl(250 65% 62%); }
+
+/* Skeleton animation */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg, hsl(222 14% 16%) 25%, hsl(222 14% 22%) 50%, hsl(222 14% 16%) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Tooltip */
+.custom-tooltip {
+  @apply bg-card border border-border rounded-lg p-3 shadow-xl text-xs;
+}
+
+/* Heatmap cell hover */
+.heatmap-cell {
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  cursor: pointer;
+}
+.heatmap-cell:hover {
+  opacity: 0.85;
+  transform: scale(1.04);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: hsl(222 14% 28%); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: hsl(222 14% 38%); }
