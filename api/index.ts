@@ -1,12 +1,9 @@
 /**
  * Vercel Serverless Function entry point.
  *
- * Bundled by esbuild (script/build-api.mjs) during `npm run vercel-build`.
- * All @shared/* aliases are resolved at build time.
- * Outputs to api/index.mjs — Vercel runs this as a serverless function.
- *
- * NOTE: No top-level await — Vercel's Node.js runtime may not support it
- * in all configurations. Routes are registered synchronously via .then().
+ * Bundled by esbuild into api/index.cjs (CJS format) during `npm run vercel-build`.
+ * Uses CJS because express/axios use CommonJS require() internally.
+ * All @shared/* aliases resolved at build time.
  *
  * Local dev uses server/index.ts (full HTTP server with Vite HMR).
  */
@@ -28,14 +25,12 @@ app.use(
 
 app.use(express.urlencoded({ extended: false }));
 
-// Register routes — registerRoutes is async but resolves synchronously
-// (all awaits are inside route handlers, not at registration)
-// Using .then() to avoid top-level await which may crash Vercel runtime
+// Register routes (async but resolves synchronously — no awaits at top level)
 registerRoutes(httpServer, app).catch((err) => {
   console.error("Failed to register routes:", err);
 });
 
-// Error handler (must be last)
+// Error handler
 app.use((err: any, _req: Request, res: Response, next: NextFunction) => {
   const status = err.status || err.statusCode || 500;
   const message = err.message || "Internal Server Error";
@@ -44,4 +39,5 @@ app.use((err: any, _req: Request, res: Response, next: NextFunction) => {
   return res.status(status).json({ message });
 });
 
+// Export for Vercel serverless — esbuild bundles this as CJS
 export default app;

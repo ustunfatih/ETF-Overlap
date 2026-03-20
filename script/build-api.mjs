@@ -1,40 +1,32 @@
 /**
- * Bundles api/index.ts into api/index.mjs for Vercel deployment.
- * - Resolves @shared/* path alias to ./shared/*
- * - Bundles all local code; keeps npm deps as externals
- * - Outputs ESM so Vercel can import it as a serverless function
+ * Bundles api/index.ts into api/index.cjs for Vercel deployment.
+ * - CJS format (not ESM) because express/axios use CommonJS require() internally
+ * - Resolves @shared/* path alias
+ * - Bundles ALL dependencies (fully self-contained)
+ * - Wraps with module.exports for Vercel serverless detection
  */
 import { build } from "esbuild";
-import { readFile } from "fs/promises";
 import path from "path";
 import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, "..");
 
-const pkg = JSON.parse(await readFile(path.join(root, "package.json"), "utf-8"));
-const allDeps = [
-  ...Object.keys(pkg.dependencies || {}),
-  ...Object.keys(pkg.devDependencies || {}),
-];
-
-// Bundle everything except npm packages
-const externals = allDeps;
-
 await build({
   entryPoints: [path.join(root, "api/index.ts")],
   platform: "node",
   bundle: true,
-  format: "esm",
-  outfile: path.join(root, "api/index.mjs"),
+  format: "cjs",
+  outfile: path.join(root, "api/index.cjs"),
   define: {
     "process.env.NODE_ENV": '"production"',
   },
   alias: {
     "@shared": path.join(root, "shared"),
   },
-  external: externals,
+  // Bundle all npm deps too — fully self-contained
+  external: [],
   logLevel: "info",
 });
 
-console.log("api/index.mjs built successfully");
+console.log("api/index.cjs built successfully");
