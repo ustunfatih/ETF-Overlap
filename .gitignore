@@ -1,6 +1,7 @@
 node_modules/
 dist/
 public/
+api/index.mjs
 .env
 .env.local
 *.log
