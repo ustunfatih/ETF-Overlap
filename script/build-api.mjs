@@ -13,7 +13,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, "..");
 
 await build({
-  entryPoints: [path.join(root, "api/index.ts")],
+  entryPoints: [path.join(root, "server/vercel-entry.ts")],
   platform: "node",
   bundle: true,
   format: "cjs",

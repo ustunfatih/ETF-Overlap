@@ -33590,12 +33590,12 @@ var require_follow_redirects = __commonJS({
   }
 });
 
-// api/index.ts
-var index_exports = {};
-__export(index_exports, {
-  default: () => index_default
+// server/vercel-entry.ts
+var vercel_entry_exports = {};
+__export(vercel_entry_exports, {
+  default: () => vercel_entry_default
 });
-module.exports = __toCommonJS(index_exports);
+module.exports = __toCommonJS(vercel_entry_exports);
 var import_express = __toESM(require_express2(), 1);
 var import_http4 = require("http");
 
@@ -38425,7 +38425,7 @@ async function registerRoutes(httpServer2, app2) {
   });
 }
 
-// api/index.ts
+// server/vercel-entry.ts
 var app = (0, import_express.default)();
 var httpServer = (0, import_http4.createServer)(app);
 app.use(
@@ -38446,7 +38446,7 @@ app.use((err, _req, res, next) => {
   if (res.headersSent) return next(err);
   return res.status(status).json({ message });
 });
-var index_default = app;
+var vercel_entry_default = app;
 /*! Bundled license information:
 
 depd/index.js:
