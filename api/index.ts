@@ -5,6 +5,9 @@
  * All @shared/* aliases are resolved at build time.
  * Outputs to api/index.mjs — Vercel runs this as a serverless function.
  *
+ * NOTE: No top-level await — Vercel's Node.js runtime may not support it
+ * in all configurations. Routes are registered synchronously via .then().
+ *
  * Local dev uses server/index.ts (full HTTP server with Vite HMR).
  */
 
@@ -25,10 +28,14 @@ app.use(
 
 app.use(express.urlencoded({ extended: false }));
 
-// Register all API routes
-await registerRoutes(httpServer, app);
+// Register routes — registerRoutes is async but resolves synchronously
+// (all awaits are inside route handlers, not at registration)
+// Using .then() to avoid top-level await which may crash Vercel runtime
+registerRoutes(httpServer, app).catch((err) => {
+  console.error("Failed to register routes:", err);
+});
 
-// Error handler
+// Error handler (must be last)
 app.use((err: any, _req: Request, res: Response, next: NextFunction) => {
   const status = err.status || err.statusCode || 500;
   const message = err.message || "Internal Server Error";
