@@ -3,11 +3,6 @@
   "version": 2,
   "buildCommand": "npm run vercel-build",
   "outputDirectory": "public",
-  "functions": {
-    "api/index.cjs": {
-      "runtime": "nodejs20.x"
-    }
-  },
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/index.cjs" },
     { "source": "/api", "destination": "/api/index.cjs" }
