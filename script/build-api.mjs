@@ -17,7 +17,7 @@ await build({
   platform: "node",
   bundle: true,
   format: "cjs",
-  outfile: path.join(root, "api/index.cjs"),
+  outfile: path.join(root, "api/index.js"),
   define: {
     "process.env.NODE_ENV": '"production"',
   },
@@ -29,4 +29,4 @@ await build({
   logLevel: "info",
 });
 
-console.log("api/index.cjs built successfully");
+console.log("api/index.js built successfully");

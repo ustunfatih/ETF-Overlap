@@ -2,6 +2,7 @@ node_modules/
 dist/
 public/
 api/index.mjs
+api/index.cjs
 .env
 .env.local
 *.log
