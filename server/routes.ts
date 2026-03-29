@@ -9,12 +9,36 @@ import {
   buildUpSetData,
 } from "./overlapEngine";
 import type { EtfData, HoldingRow } from "@shared/schema";
+import { config } from "./config";
+import { fetchEtfDataV2, getV2ProviderStatus } from "./holdings-v2/orchestrator";
+
+const normalizeTicker = (ticker: string) => ticker.toUpperCase().trim();
+
+async function loadEtfData(upper: string): Promise<EtfData> {
+  if (config.holdingsV2Enabled) {
+    return fetchEtfDataV2(upper);
+  }
+
+  const holdings = await fetchEtfHoldings(upper);
+  return {
+    etf: upper,
+    holdings,
+    fetchedAt: new Date().toISOString(),
+  };
+}
+
+function isAdminRequest(req: any): boolean {
+  if (!config.adminAuthEnabled) return true;
+  if (!config.adminApiKey) return false;
+  const token = req.header("x-admin-api-key") || "";
+  return token === config.adminApiKey;
+}
 
 export async function registerRoutes(httpServer: Server, app: Express) {
   // GET /api/etf/:ticker/holdings
   app.get("/api/etf/:ticker/holdings", async (req, res) => {
     const { ticker } = req.params;
-    const upper = ticker.toUpperCase();
+    const upper = normalizeTicker(ticker);
 
     try {
       // Check cache
@@ -23,12 +47,7 @@ export async function registerRoutes(httpServer: Server, app: Express) {
         return res.json({ success: true, data: cached, fromCache: true });
       }
 
-      const holdings = await fetchEtfHoldings(upper);
-      const etfData: EtfData = {
-        etf: upper,
-        holdings,
-        fetchedAt: new Date().toISOString(),
-      };
+      const etfData = await loadEtfData(upper);
       storage.setCachedHoldings(upper, etfData);
 
       return res.json({ success: true, data: etfData, fromCache: false });
@@ -53,19 +72,14 @@ export async function registerRoutes(httpServer: Server, app: Express) {
 
     await Promise.all(
       tickers.map(async (ticker) => {
-        const upper = ticker.toUpperCase().trim();
+        const upper = normalizeTicker(ticker);
         try {
           const cached = storage.getCachedHoldings(upper);
           if (cached) {
             results[upper] = { data: cached };
             return;
           }
-          const holdings = await fetchEtfHoldings(upper);
-          const etfData: EtfData = {
-            etf: upper,
-            holdings,
-            fetchedAt: new Date().toISOString(),
-          };
+          const etfData = await loadEtfData(upper);
           storage.setCachedHoldings(upper, etfData);
           results[upper] = { data: etfData };
         } catch (err: any) {
@@ -91,21 +105,17 @@ export async function registerRoutes(httpServer: Server, app: Express) {
 
     await Promise.all(
       tickers.map(async (ticker) => {
-        const upper = ticker.toUpperCase().trim();
+        const upper = normalizeTicker(ticker);
         try {
           const cached = storage.getCachedHoldings(upper);
           if (cached) {
             etfHoldingsMap.set(upper, cached.holdings);
             return;
           }
-          const holdings = await fetchEtfHoldings(upper);
-          const etfData: EtfData = {
-            etf: upper,
-            holdings,
-            fetchedAt: new Date().toISOString(),
-          };
+
+          const etfData = await loadEtfData(upper);
           storage.setCachedHoldings(upper, etfData);
-          etfHoldingsMap.set(upper, holdings);
+          etfHoldingsMap.set(upper, etfData.holdings);
         } catch (err: any) {
           errors.push(`${upper}: ${err.message}`);
         }
@@ -135,18 +145,40 @@ export async function registerRoutes(httpServer: Server, app: Express) {
     });
   });
 
+  // GET /api/admin/holdings/v2/status
+  app.get("/api/admin/holdings/v2/status", (_req, res) => {
+    return res.json({ success: true, status: getV2ProviderStatus() });
+  });
+
   // POST /api/etf/holdings/upload
   // Body: { ticker: string, holdings: HoldingRow[] } — manual upload override
   app.post("/api/etf/holdings/upload", async (req, res) => {
+    if (!isAdminRequest(req)) {
+      return res.status(401).json({ success: false, error: "Unauthorized" });
+    }
+
     const { ticker, holdings } = req.body as { ticker: string; holdings: HoldingRow[] };
     if (!ticker || !Array.isArray(holdings)) {
       return res.status(400).json({ success: false, error: "ticker and holdings required" });
     }
-    const upper = ticker.toUpperCase().trim();
+
+    const invalidHolding = holdings.find((h) =>
+      !h || typeof h.ticker !== "string" || typeof h.name !== "string" || typeof h.weight !== "number" || h.weight < 0 || h.weight > 100
+    );
+
+    if (invalidHolding) {
+      return res.status(400).json({ success: false, error: "Invalid holdings payload: each row must include ticker, name, and weight (0..100)" });
+    }
+
+    const upper = normalizeTicker(ticker);
     const etfData: EtfData = {
       etf: upper,
       holdings,
       fetchedAt: new Date().toISOString(),
+      source: "manual",
+      isFallback: false,
+      holdingsCount: holdings.length,
+      coverageNote: "Manual admin upload",
     };
     storage.setCachedHoldings(upper, etfData);
     return res.json({ success: true, message: `Holdings saved for ${upper}` });

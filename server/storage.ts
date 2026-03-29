@@ -1,8 +1,9 @@
 import type { EtfData, HoldingRow } from "@shared/schema";
+import { config } from "./config";
 
 // In-memory cache: ticker -> EtfData (with TTL of 1 hour)
 const cache = new Map<string, { data: EtfData; ts: number }>();
-const TTL_MS = 60 * 60 * 1000; // 1 hour
+const TTL_MS = config.holdingsTtlHours * 60 * 60 * 1000;
 
 export interface IStorage {
   getCachedHoldings(ticker: string): EtfData | null;
