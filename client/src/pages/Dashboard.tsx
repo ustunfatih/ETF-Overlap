@@ -9,7 +9,7 @@ import NetworkView from "@/components/NetworkView";
 import UpSetView from "@/components/UpSetView";
 import DrilldownModal from "@/components/DrilldownModal";
 import type { OverlapMatrix, TreemapNode, NetworkNode, NetworkEdge, OverlapCell } from "@shared/schema";
-import PerplexityAttribution from "@/components/PerplexityAttribution";
+import { PerplexityAttribution } from "@/components/PerplexityAttribution";
 
 type OverlapResponse = {
   success: boolean;

@@ -1,7 +1,4 @@
 import { pgTable, text, real, integer, timestamp } from "drizzle-orm/pg-core";
-import { createInsertSchema } from "drizzle-zod";
-import { z } from "zod";
-
 // ETF Holdings cache table
 export const etfHoldings = pgTable("etf_holdings", {
   id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
@@ -12,8 +9,6 @@ export const etfHoldings = pgTable("etf_holdings", {
   fetchedAt: timestamp("fetched_at").defaultNow().notNull(),
 });
 
-export const insertEtfHoldingSchema = createInsertSchema(etfHoldings).omit({ id: true, fetchedAt: true });
-export type InsertEtfHolding = z.infer<typeof insertEtfHoldingSchema>;
 export type EtfHolding = typeof etfHoldings.$inferSelect;
 
 // Types for the overlap computation (not stored in DB, computed in memory)
@@ -27,6 +22,11 @@ export type EtfData = {
   etf: string;
   holdings: HoldingRow[];
   fetchedAt: string;
+  source?: "alpha_vantage" | "legacy_live" | "legacy_fallback" | "manual";
+  sourceAsOf?: string;
+  isFallback?: boolean;
+  holdingsCount?: number;
+  coverageNote?: string;
 };
 
 export type OverlapCell = {
