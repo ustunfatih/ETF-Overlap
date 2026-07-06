@@ -32,6 +32,7 @@ type OverlapResponse = {
 
 type ActiveView = "heatmap" | "treemap" | "network" | "upset";
 type ThemeId = "default" | "morning-ledger" | "exchange-floor" | "research-atlas" | "spectrum-dark";
+type ThemeTokens = Record<string, string>;
 
 const THEME_STORAGE_KEY = "etf-overlap-theme";
 const THEME_CLASSES: ThemeId[] = ["default", "morning-ledger", "exchange-floor", "research-atlas", "spectrum-dark"];
@@ -42,6 +43,164 @@ const THEMES: { id: ThemeId; label: string; description: string }[] = [
   { id: "research-atlas", label: "Research Atlas", description: "Minimal analyst light mode" },
   { id: "spectrum-dark", label: "Spectrum Dark", description: "Warm branded dark mode" },
 ];
+
+const THEME_TOKENS: Record<ThemeId, ThemeTokens> = {
+  default: {
+    background: "222 18% 9%",
+    foreground: "210 20% 88%",
+    card: "222 16% 12%",
+    "card-foreground": "210 20% 88%",
+    popover: "222 16% 13%",
+    "popover-foreground": "210 20% 88%",
+    primary: "210 80% 56%",
+    "primary-foreground": "222 18% 9%",
+    secondary: "222 14% 18%",
+    "secondary-foreground": "210 15% 70%",
+    muted: "222 14% 16%",
+    "muted-foreground": "210 10% 52%",
+    accent: "210 80% 56%",
+    "accent-foreground": "222 18% 9%",
+    destructive: "0 72% 51%",
+    "destructive-foreground": "0 0% 98%",
+    border: "222 14% 20%",
+    input: "222 14% 18%",
+    ring: "210 80% 56%",
+    "chart-1": "210 80% 56%",
+    "chart-2": "160 60% 45%",
+    "chart-3": "45 90% 55%",
+    "chart-4": "280 65% 60%",
+    "chart-5": "15 80% 55%",
+    "chart-6": "190 70% 50%",
+    "chart-7": "320 60% 55%",
+    "chart-8": "100 55% 48%",
+    "chart-9": "35 85% 55%",
+    "chart-10": "250 65% 62%",
+  },
+  "morning-ledger": {
+    background: "213 38% 97%",
+    foreground: "218 41% 14%",
+    card: "0 0% 100%",
+    "card-foreground": "218 41% 14%",
+    popover: "0 0% 100%",
+    "popover-foreground": "218 41% 14%",
+    primary: "211 80% 43%",
+    "primary-foreground": "0 0% 100%",
+    secondary: "210 38% 94%",
+    "secondary-foreground": "218 30% 22%",
+    muted: "210 38% 94%",
+    "muted-foreground": "215 14% 45%",
+    accent: "211 80% 43%",
+    "accent-foreground": "0 0% 100%",
+    destructive: "12 72% 51%",
+    "destructive-foreground": "0 0% 100%",
+    border: "215 24% 85%",
+    input: "210 38% 94%",
+    ring: "211 80% 43%",
+    "chart-1": "211 80% 43%",
+    "chart-2": "167 72% 30%",
+    "chart-3": "39 94% 39%",
+    "chart-4": "267 50% 55%",
+    "chart-5": "16 65% 51%",
+    "chart-6": "194 62% 40%",
+    "chart-7": "320 48% 47%",
+    "chart-8": "105 42% 39%",
+    "chart-9": "35 78% 43%",
+    "chart-10": "250 52% 55%",
+  },
+  "exchange-floor": {
+    background: "80 16% 5%",
+    foreground: "84 23% 92%",
+    card: "80 16% 9%",
+    "card-foreground": "84 23% 92%",
+    popover: "80 15% 10%",
+    "popover-foreground": "84 23% 92%",
+    primary: "77 100% 65%",
+    "primary-foreground": "73 31% 7%",
+    secondary: "80 13% 14%",
+    "secondary-foreground": "92 11% 75%",
+    muted: "80 13% 13%",
+    "muted-foreground": "95 8% 60%",
+    accent: "77 100% 65%",
+    "accent-foreground": "73 31% 7%",
+    destructive: "12 100% 62%",
+    "destructive-foreground": "84 23% 92%",
+    border: "82 22% 20%",
+    input: "80 13% 14%",
+    ring: "77 100% 65%",
+    "chart-1": "205 100% 69%",
+    "chart-2": "142 60% 58%",
+    "chart-3": "42 100% 65%",
+    "chart-4": "280 100% 77%",
+    "chart-5": "12 100% 62%",
+    "chart-6": "181 72% 58%",
+    "chart-7": "322 72% 68%",
+    "chart-8": "93 100% 65%",
+    "chart-9": "35 100% 62%",
+    "chart-10": "252 82% 72%",
+  },
+  "research-atlas": {
+    background: "120 8% 97%",
+    foreground: "216 13% 10%",
+    card: "0 0% 100%",
+    "card-foreground": "216 13% 10%",
+    popover: "0 0% 100%",
+    "popover-foreground": "216 13% 10%",
+    primary: "220 11% 16%",
+    "primary-foreground": "0 0% 100%",
+    secondary: "210 9% 95%",
+    "secondary-foreground": "216 13% 18%",
+    muted: "210 9% 95%",
+    "muted-foreground": "216 9% 45%",
+    accent: "170 100% 28%",
+    "accent-foreground": "0 0% 100%",
+    destructive: "8 67% 55%",
+    "destructive-foreground": "0 0% 100%",
+    border: "216 13% 86%",
+    input: "210 9% 95%",
+    ring: "170 100% 28%",
+    "chart-1": "215 72% 50%",
+    "chart-2": "169 100% 28%",
+    "chart-3": "38 83% 45%",
+    "chart-4": "266 48% 56%",
+    "chart-5": "8 67% 55%",
+    "chart-6": "190 60% 40%",
+    "chart-7": "320 45% 46%",
+    "chart-8": "104 42% 38%",
+    "chart-9": "35 78% 45%",
+    "chart-10": "250 48% 52%",
+  },
+  "spectrum-dark": {
+    background: "300 10% 8%",
+    foreground: "290 24% 94%",
+    card: "294 15% 12%",
+    "card-foreground": "290 24% 94%",
+    popover: "294 16% 13%",
+    "popover-foreground": "290 24% 94%",
+    primary: "42 100% 69%",
+    "primary-foreground": "34 68% 7%",
+    secondary: "300 14% 17%",
+    "secondary-foreground": "302 9% 76%",
+    muted: "300 14% 15%",
+    "muted-foreground": "302 9% 65%",
+    accent: "164 62% 49%",
+    "accent-foreground": "300 10% 8%",
+    destructive: "7 100% 66%",
+    "destructive-foreground": "290 24% 94%",
+    border: "298 15% 22%",
+    input: "300 14% 17%",
+    ring: "42 100% 69%",
+    "chart-1": "206 100% 64%",
+    "chart-2": "164 62% 49%",
+    "chart-3": "42 100% 69%",
+    "chart-4": "292 72% 67%",
+    "chart-5": "7 100% 66%",
+    "chart-6": "188 72% 56%",
+    "chart-7": "322 70% 65%",
+    "chart-8": "102 60% 54%",
+    "chart-9": "35 100% 63%",
+    "chart-10": "252 78% 70%",
+  },
+};
 
 function getInitialTheme(): ThemeId {
   if (typeof window === "undefined") return "default";
@@ -57,13 +216,20 @@ export default function Dashboard() {
   const [theme, setTheme] = useState<ThemeId>(getInitialTheme);
   const { toast } = useToast();
   const activeTheme = useMemo(() => THEMES.find((item) => item.id === theme) ?? THEMES[0], [theme]);
+  const selectTheme = useCallback((nextTheme: ThemeId) => {
+    setTheme(nextTheme);
+  }, []);
 
   useEffect(() => {
     const root = document.documentElement;
+    const tokens = THEME_TOKENS[theme];
     root.classList.remove(...THEME_CLASSES.map((item) => `theme-${item}`), "light");
     if (theme !== "default") {
       root.classList.add(`theme-${theme}`);
     }
+    Object.entries(tokens).forEach(([name, value]) => {
+      root.style.setProperty(`--${name}`, value);
+    });
     root.style.colorScheme = theme === "morning-ledger" || theme === "research-atlas" ? "light" : "dark";
     window.localStorage.setItem(THEME_STORAGE_KEY, theme);
   }, [theme]);
@@ -150,7 +316,8 @@ export default function Dashboard() {
                 {THEMES.map((item) => (
                   <DropdownMenuItem
                     key={item.id}
-                    onSelect={() => setTheme(item.id)}
+                    onClick={() => selectTheme(item.id)}
+                    onSelect={() => selectTheme(item.id)}
                     className="items-start gap-3"
                   >
                     <span className="mt-1 flex h-3.5 w-3.5 items-center justify-center">
