@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="ETF Overlap Analyzer icon">
+  <defs>
+    <linearGradient id="tile" x1="8" y1="4" x2="56" y2="60" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#182233"/>
+      <stop offset="1" stop-color="#090D16"/>
+    </linearGradient>
+    <filter id="shadow" x="-16" y="-16" width="96" height="96" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#000817" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#tile)"/>
+  <g filter="url(#shadow)">
+    <rect x="13" y="13" width="18" height="18" rx="5" fill="#358FE9"/>
+    <rect x="33" y="13" width="18" height="18" rx="5" fill="#2EB88A"/>
+    <rect x="13" y="33" width="18" height="18" rx="5" fill="#B65DDB"/>
+    <rect x="33" y="33" width="18" height="18" rx="5" fill="#F4BE1B"/>
+  </g>
+  <rect x="23" y="23" width="18" height="18" rx="5" fill="#F8FAFC" opacity="0.22"/>
+  <path d="M32 18v28M18 32h28" stroke="#F8FAFC" stroke-width="3" stroke-linecap="round" opacity="0.2"/>
+  <circle cx="32" cy="32" r="5.5" fill="#F8FAFC" opacity="0.92"/>
+  <circle cx="32" cy="32" r="2.25" fill="#0D1421"/>
+</svg>
