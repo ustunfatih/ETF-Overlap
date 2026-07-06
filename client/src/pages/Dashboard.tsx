@@ -1,13 +1,23 @@
-import { useState, useCallback } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
+import { Check, Palette } from "lucide-react";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
+import { Button } from "@/components/ui/button";
 import ETFSelector from "@/components/ETFSelector";
 import HeatmapView from "@/components/HeatmapView";
 import TreemapView from "@/components/TreemapView";
 import NetworkView from "@/components/NetworkView";
 import UpSetView from "@/components/UpSetView";
 import DrilldownModal from "@/components/DrilldownModal";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import type { OverlapMatrix, TreemapNode, NetworkNode, NetworkEdge, OverlapCell } from "@shared/schema";
 import { PerplexityAttribution } from "@/components/PerplexityAttribution";
 
@@ -21,13 +31,42 @@ type OverlapResponse = {
 };
 
 type ActiveView = "heatmap" | "treemap" | "network" | "upset";
+type ThemeId = "default" | "morning-ledger" | "exchange-floor" | "research-atlas" | "spectrum-dark";
+
+const THEME_STORAGE_KEY = "etf-overlap-theme";
+const THEME_CLASSES: ThemeId[] = ["default", "morning-ledger", "exchange-floor", "research-atlas", "spectrum-dark"];
+const THEMES: { id: ThemeId; label: string; description: string }[] = [
+  { id: "default", label: "Classic Dark", description: "Original slate dashboard" },
+  { id: "morning-ledger", label: "Morning Ledger", description: "Light analytical workspace" },
+  { id: "exchange-floor", label: "Exchange Floor", description: "High-contrast terminal dark" },
+  { id: "research-atlas", label: "Research Atlas", description: "Minimal analyst light mode" },
+  { id: "spectrum-dark", label: "Spectrum Dark", description: "Warm branded dark mode" },
+];
+
+function getInitialTheme(): ThemeId {
+  if (typeof window === "undefined") return "default";
+  const stored = window.localStorage.getItem(THEME_STORAGE_KEY);
+  return THEMES.some((theme) => theme.id === stored) ? (stored as ThemeId) : "default";
+}
 
 export default function Dashboard() {
   const [selectedEtfs, setSelectedEtfs] = useState<string[]>(["QQQI", "SPYI", "SCHD", "SCHG", "FDVV"]);
   const [activeView, setActiveView] = useState<ActiveView>("heatmap");
   const [overlapData, setOverlapData] = useState<OverlapResponse | null>(null);
   const [drilldown, setDrilldown] = useState<OverlapCell | null>(null);
+  const [theme, setTheme] = useState<ThemeId>(getInitialTheme);
   const { toast } = useToast();
+  const activeTheme = useMemo(() => THEMES.find((item) => item.id === theme) ?? THEMES[0], [theme]);
+
+  useEffect(() => {
+    const root = document.documentElement;
+    root.classList.remove(...THEME_CLASSES.map((item) => `theme-${item}`), "light");
+    if (theme !== "default") {
+      root.classList.add(`theme-${theme}`);
+    }
+    root.style.colorScheme = theme === "morning-ledger" || theme === "research-atlas" ? "light" : "dark";
+    window.localStorage.setItem(THEME_STORAGE_KEY, theme);
+  }, [theme]);
 
   const overlapMutation = useMutation({
     mutationFn: async (tickers: string[]) => {
@@ -91,9 +130,44 @@ export default function Dashboard() {
               <p className="text-xs text-muted-foreground leading-none">US ETF Holdings Comparison</p>
             </div>
           </div>
-          <div className="flex items-center gap-2 text-xs text-muted-foreground">
-            <span className="w-2 h-2 rounded-full bg-green-500 inline-block"></span>
-            Live data
+          <div className="flex items-center gap-3">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  className="h-8 border-border bg-background/40 px-2.5 text-xs text-foreground hover:bg-secondary"
+                  aria-label={`Select visual theme. Current theme: ${activeTheme.label}`}
+                >
+                  <Palette className="h-3.5 w-3.5" />
+                  <span className="hidden sm:inline">{activeTheme.label}</span>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-60">
+                <DropdownMenuLabel>Visual theme</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                {THEMES.map((item) => (
+                  <DropdownMenuItem
+                    key={item.id}
+                    onSelect={() => setTheme(item.id)}
+                    className="items-start gap-3"
+                  >
+                    <span className="mt-1 flex h-3.5 w-3.5 items-center justify-center">
+                      {theme === item.id && <Check className="h-3.5 w-3.5" />}
+                    </span>
+                    <span className="grid gap-0.5">
+                      <span className="text-xs font-semibold">{item.label}</span>
+                      <span className="text-[11px] leading-snug text-muted-foreground">{item.description}</span>
+                    </span>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+            <div className="flex items-center gap-2 text-xs text-muted-foreground">
+              <span className="w-2 h-2 rounded-full bg-green-500 inline-block"></span>
+              Live data
+            </div>
           </div>
         </div>
       </header>
