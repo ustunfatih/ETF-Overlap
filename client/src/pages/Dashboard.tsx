@@ -18,7 +18,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import type { OverlapMatrix, TreemapNode, NetworkNode, NetworkEdge, OverlapCell } from "@shared/schema";
+import type { EtfData, OverlapMatrix, TreemapNode, NetworkNode, NetworkEdge, OverlapCell } from "@shared/schema";
+import PortfolioSources from "@/components/PortfolioSources";
 import { PerplexityAttribution } from "@/components/PerplexityAttribution";
 
 type OverlapResponse = {
@@ -28,6 +29,7 @@ type OverlapResponse = {
   network: { nodes: NetworkNode[]; edges: NetworkEdge[] };
   upset: { sets: string[]; intersections: { set: string[]; size: number; holdings: string[] }[] };
   errors?: string[];
+  portfolios: Record<string, Omit<EtfData, "holdings">>;
 };
 
 type ActiveView = "heatmap" | "treemap" | "network" | "upset";
@@ -250,6 +252,7 @@ export default function Dashboard() {
       }
     },
     onError: (err: any) => {
+      setOverlapData(null);
       toast({
         title: "Error fetching overlap data",
         description: err.message,
@@ -333,7 +336,7 @@ export default function Dashboard() {
             </DropdownMenu>
             <div className="flex items-center gap-2 text-xs text-muted-foreground">
               <span className="w-2 h-2 rounded-full bg-green-500 inline-block"></span>
-              Live data
+              Dated portfolios
             </div>
           </div>
         </div>
@@ -348,6 +351,7 @@ export default function Dashboard() {
           isLoading={isLoading}
         />
 
+        {overlapData && !isLoading ? <PortfolioSources portfolios={overlapData.portfolios || {}} errors={overlapData.errors} /> : null}
         {/* View Tabs — only shown when data is ready */}
         {overlapData && (
           <>
@@ -458,7 +462,7 @@ export default function Dashboard() {
 
       <footer className="border-t border-border py-3 px-6">
         <div className="max-w-[1400px] mx-auto flex items-center justify-between">
-          <p className="text-xs text-muted-foreground">Holdings data from ETF.com · Updated hourly · Top 20–50 holdings per ETF</p>
+          <p className="text-xs text-muted-foreground">Free dated portfolio sources · Report dates shown per ETF · Full reports used for calculations</p>
           <a
             href="https://www.perplexity.ai/computer"
             target="_blank"

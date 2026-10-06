@@ -1,7 +1,6 @@
 import type { Express } from "express";
 import type { Server } from "http";
-import { storage } from "./storage";
-import { fetchEtfHoldings } from "./etfFetcher";
+import { storage, weeklyRefreshBoundary } from "./storage";
 import {
   computeOverlapMatrix,
   buildTreemapData,
@@ -10,21 +9,31 @@ import {
 } from "./overlapEngine";
 import type { EtfData, HoldingRow } from "@shared/schema";
 import { config } from "./config";
-import { fetchEtfDataV2, getV2ProviderStatus } from "./holdings-v2/orchestrator";
+import { fetchIssuerPortfolio, issuerStatus } from "./holdings/issuers";
+import { validatePortfolio } from "./holdings/parsers";
 
 const normalizeTicker = (ticker: string) => ticker.toUpperCase().trim();
 
 async function loadEtfData(upper: string): Promise<EtfData> {
-  if (config.holdingsV2Enabled) {
-    return fetchEtfDataV2(upper);
+  if (!/^[A-Z][A-Z0-9.-]{0,14}$/.test(upper)) throw new Error("Invalid ETF ticker");
+  const cached = storage.getCachedHoldings(upper);
+  if (cached) return cached;
+  const previous = storage.getLastHealthy(upper);
+  if (previous && Date.parse(previous.lastAttemptAt || previous.fetchedAt) >= weeklyRefreshBoundary()) {
+    storage.setCachedHoldings(upper, previous);
+    return previous;
   }
-
-  const holdings = await fetchEtfHoldings(upper);
-  return {
-    etf: upper,
-    holdings,
-    fetchedAt: new Date().toISOString(),
-  };
+  try {
+    const fresh = await fetchIssuerPortfolio(upper);
+    if (previous?.sourceAsOf && fresh.sourceAsOf! < previous.sourceAsOf) throw new Error(`Source returned older portfolio (${fresh.sourceAsOf}) than last healthy data (${previous.sourceAsOf})`);
+    storage.setCachedHoldings(upper, fresh);
+    return fresh;
+  } catch (error: any) {
+    if (!previous) throw error;
+    const fallback = { ...previous, isFallback: true, sourceError: error.message, lastAttemptAt: new Date().toISOString() };
+    storage.setCachedHoldings(upper, fallback);
+    return fallback;
+  }
 }
 
 function isAdminRequest(req: any): boolean {
@@ -48,7 +57,6 @@ export async function registerRoutes(httpServer: Server, app: Express) {
       }
 
       const etfData = await loadEtfData(upper);
-      storage.setCachedHoldings(upper, etfData);
 
       return res.json({ success: true, data: etfData, fromCache: false });
     } catch (err: any) {
@@ -61,7 +69,7 @@ export async function registerRoutes(httpServer: Server, app: Express) {
   app.post("/api/etf/holdings/bulk", async (req, res) => {
     const { tickers } = req.body as { tickers: string[] };
 
-    if (!Array.isArray(tickers) || tickers.length === 0) {
+    if (!Array.isArray(tickers) || tickers.length === 0 || tickers.some(ticker => typeof ticker !== "string")) {
       return res.status(400).json({ success: false, error: "tickers array required" });
     }
     if (tickers.length > 10) {
@@ -80,7 +88,6 @@ export async function registerRoutes(httpServer: Server, app: Express) {
             return;
           }
           const etfData = await loadEtfData(upper);
-          storage.setCachedHoldings(upper, etfData);
           results[upper] = { data: etfData };
         } catch (err: any) {
           results[upper] = { data: null, error: err.message };
@@ -99,8 +106,12 @@ export async function registerRoutes(httpServer: Server, app: Express) {
     if (!Array.isArray(tickers) || tickers.length < 2) {
       return res.status(400).json({ success: false, error: "At least 2 tickers required" });
     }
+    if (tickers.length > 10 || tickers.some(ticker => typeof ticker !== "string")) {
+      return res.status(400).json({ success: false, error: "Provide 2–10 valid ETF tickers" });
+    }
 
     const etfHoldingsMap = new Map<string, HoldingRow[]>();
+    const portfolios: Record<string, EtfData> = {};
     const errors: string[] = [];
 
     await Promise.all(
@@ -110,11 +121,12 @@ export async function registerRoutes(httpServer: Server, app: Express) {
           const cached = storage.getCachedHoldings(upper);
           if (cached) {
             etfHoldingsMap.set(upper, cached.holdings);
+            portfolios[upper] = cached;
             return;
           }
 
           const etfData = await loadEtfData(upper);
-          storage.setCachedHoldings(upper, etfData);
+          portfolios[upper] = etfData;
           etfHoldingsMap.set(upper, etfData.holdings);
         } catch (err: any) {
           errors.push(`${upper}: ${err.message}`);
@@ -137,17 +149,21 @@ export async function registerRoutes(httpServer: Server, app: Express) {
 
     return res.json({
       success: true,
-      matrix,
+      matrix: { ...matrix, cells: matrix.cells.map(row => row.map(cell => ({ ...cell, sharedHoldings: cell.sharedHoldings.slice(0, 100) }))) },
       treemap,
       network,
       upset,
       errors: errors.length > 0 ? errors : undefined,
+      portfolios: Object.fromEntries(Object.entries(portfolios).map(([ticker, data]) => {
+        const { holdings, ...metadata } = data;
+        return [ticker, metadata];
+      })),
     });
   });
 
   // GET /api/admin/holdings/v2/status
   app.get("/api/admin/holdings/v2/status", (_req, res) => {
-    return res.json({ success: true, status: getV2ProviderStatus() });
+    return res.json({ success: true, status: issuerStatus() });
   });
 
   // POST /api/etf/holdings/upload
@@ -157,17 +173,17 @@ export async function registerRoutes(httpServer: Server, app: Express) {
       return res.status(401).json({ success: false, error: "Unauthorized" });
     }
 
-    const { ticker, holdings } = req.body as { ticker: string; holdings: HoldingRow[] };
+    const { ticker, holdings, sourceAsOf } = req.body as { ticker: string; holdings: HoldingRow[]; sourceAsOf: string };
     if (!ticker || !Array.isArray(holdings)) {
       return res.status(400).json({ success: false, error: "ticker and holdings required" });
     }
 
     const invalidHolding = holdings.find((h) =>
-      !h || typeof h.ticker !== "string" || typeof h.name !== "string" || typeof h.weight !== "number" || h.weight < 0 || h.weight > 100
+      !h || typeof h.ticker !== "string" || typeof h.name !== "string" || typeof h.weight !== "number" || !Number.isFinite(h.weight) || Math.abs(h.weight) > 100
     );
 
     if (invalidHolding) {
-      return res.status(400).json({ success: false, error: "Invalid holdings payload: each row must include ticker, name, and weight (0..100)" });
+      return res.status(400).json({ success: false, error: "Invalid holdings payload: each row must include ticker, name, and a finite weight (-100..100)" });
     }
 
     const upper = normalizeTicker(ticker);
@@ -176,11 +192,18 @@ export async function registerRoutes(httpServer: Server, app: Express) {
       holdings,
       fetchedAt: new Date().toISOString(),
       source: "manual",
+      sourceAsOf,
+      sourceName: "Manual upload",
       isFallback: false,
       holdingsCount: holdings.length,
       coverageNote: "Manual admin upload",
     };
-    storage.setCachedHoldings(upper, etfData);
+    try {
+      if (!/^[A-Z][A-Z0-9.-]{0,14}$/.test(upper)) throw new Error("Invalid ETF ticker");
+      storage.setCachedHoldings(upper, validatePortfolio(etfData));
+    } catch (error: any) {
+      return res.status(400).json({ success: false, error: error.message });
+    }
     return res.json({ success: true, message: `Holdings saved for ${upper}` });
   });
 

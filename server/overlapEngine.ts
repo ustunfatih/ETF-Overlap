@@ -3,15 +3,27 @@
  * 
  * Computes:
  * 1. Raw overlap count (shared holdings regardless of weight)
- * 2. Weighted overlap score (cosine similarity of weight vectors)
+ * 2. Shared long security weight as a percentage of the whole portfolio
  */
 
 import type { HoldingRow, OverlapCell, OverlapMatrix, TreemapNode, NetworkNode, NetworkEdge } from "@shared/schema";
 
+function securityKey(holding: HoldingRow): string {
+  if (holding.securityId?.startsWith("SEDOL:")) return holding.securityId;
+  if (holding.category === "bond") {
+    if (!holding.securityId || /^-+$/.test(holding.securityId)) return "";
+    return `BOND:${holding.securityId.startsWith("US") && holding.securityId.length === 12 ? holding.securityId.slice(2, 11) : holding.securityId}`;
+  }
+  if (/^[A-Z]{2}[A-Z0-9]{9}\d$/.test(holding.securityId || "") && !holding.securityId!.startsWith("US")) return holding.securityId!;
+  return holding.ticker.toUpperCase();
+}
+
 function buildWeightMap(holdings: HoldingRow[]): Map<string, { weight: number; name: string }> {
   const map = new Map<string, { weight: number; name: string }>();
   for (const h of holdings) {
-    const key = h.ticker.toUpperCase();
+    if (h.weight < 0 || (h.category && h.category !== "equity" && h.category !== "bond") || (h.category === "bond" && !h.securityId)) continue;
+    const key = securityKey(h);
+    if (!key) continue;
     // Merge duplicates (some ETFs list same stock multiple share classes)
     const existing = map.get(key);
     if (existing) {
@@ -25,7 +37,7 @@ function buildWeightMap(holdings: HoldingRow[]): Map<string, { weight: number; n
 
 /**
  * Weighted overlap score: sum of min(wA, wB) for shared holdings
- * Normalized to [0, 100] where 100 = identical portfolios
+ * Original portfolio percentages are retained; cash and derivatives are displayed separately.
  */
 function computeWeightedScore(
   mapA: Map<string, { weight: number; name: string }>,
@@ -38,12 +50,7 @@ function computeWeightedScore(
       overlap += Math.min(a.weight, b.weight);
     }
   }
-  // Normalize: divide by average total weight (should be ~100 each)
-  const totalA = Array.from(mapA.values()).reduce((s, v) => s + v.weight, 0);
-  const totalB = Array.from(mapB.values()).reduce((s, v) => s + v.weight, 0);
-  const avg = (totalA + totalB) / 2;
-  if (avg === 0) return 0;
-  return Math.min(100, (overlap / avg) * 100);
+  return Math.min(100, overlap);
 }
 
 export function computeOverlapMatrix(
@@ -64,7 +71,7 @@ export function computeOverlapMatrix(
           etfA,
           etfB,
           sharedCount: map.size,
-          weightedScore: 100,
+          weightedScore: parseFloat(computeWeightedScore(map, map).toFixed(1)),
           sharedHoldings: Array.from(map.entries()).map(([ticker, v]) => ({
             ticker,
             name: v.name,
@@ -109,7 +116,8 @@ export function buildTreemapData(
   for (const etf of selectedEtfs) {
     const holdings = etfHoldingsMap.get(etf) || [];
     for (const h of holdings) {
-      const key = h.ticker.toUpperCase();
+      if (h.weight <= 0 || (h.category && h.category !== "equity")) continue;
+      const key = securityKey(h);
       const existing = holdingEtfs.get(key);
       if (existing) {
         existing.totalWeight += h.weight;
@@ -180,7 +188,9 @@ export function buildUpSetData(
   for (const etf of selectedEtfs) {
     const tickers = new Set<string>();
     for (const h of (etfHoldingsMap.get(etf) || [])) {
-      tickers.add(h.ticker.toUpperCase());
+      if (h.weight < 0 || (h.category && h.category !== "equity" && h.category !== "bond") || (h.category === "bond" && !h.securityId)) continue;
+      const key = securityKey(h);
+      if (key) tickers.add(key);
     }
     weightMaps.set(etf, tickers);
   }

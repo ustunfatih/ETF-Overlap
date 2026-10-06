@@ -7,3 +7,4 @@ api/index.cjs
 .env.local
 *.log
 .DS_Store
+.cache/

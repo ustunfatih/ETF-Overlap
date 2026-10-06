@@ -4,10 +4,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
+import type { AssetCategory } from "@shared/schema";
 
 const POPULAR_ETFS = [
   "SPY", "QQQ", "VOO", "VTI", "IVV", "VUG", "SCHG", "SCHD",
-  "QQQI", "SPYI", "JEPQ", "JEPI", "FDVV", "GLDW", "VYMI", "XLK",
+  "QQQI", "SPYI", "JEPQ", "JEPI", "FDVV", "VYMI", "XLK",
   "AGG", "GLD", "VEA", "VWO",
 ];
 
@@ -23,6 +24,7 @@ export default function ETFSelector({ selected, onChange, onAnalyze, isLoading }
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [uploadTicker, setUploadTicker] = useState("");
   const [uploadData, setUploadData] = useState("");
+  const [uploadDate, setUploadDate] = useState("");
   const [showUpload, setShowUpload] = useState(false);
   const { toast } = useToast();
   const inputRef = useRef<HTMLInputElement>(null);
@@ -57,8 +59,8 @@ export default function ETFSelector({ selected, onChange, onAnalyze, isLoading }
   ).slice(0, 8);
 
   const handleUpload = async () => {
-    if (!uploadTicker.trim() || !uploadData.trim()) {
-      toast({ title: "Enter a ticker and paste holdings data", variant: "destructive" });
+    if (!uploadTicker.trim() || !uploadData.trim() || !uploadDate) {
+      toast({ title: "Enter a ticker, portfolio date and full holdings data", variant: "destructive" });
       return;
     }
     try {
@@ -69,8 +71,9 @@ export default function ETFSelector({ selected, onChange, onAnalyze, isLoading }
           ticker: parts[0]?.trim() || "",
           name: parts[1]?.trim() || parts[0]?.trim() || "",
           weight: parseFloat(parts[2]?.trim() || parts[1]?.trim() || "0"),
+          category: (parts[3]?.trim().toLowerCase() || "equity") as AssetCategory,
         };
-      }).filter((h) => h.ticker && h.weight > 0);
+      }).filter((h) => h.ticker && Number.isFinite(h.weight));
 
       if (holdings.length === 0) {
         toast({ title: "No valid holdings found", description: "Format: TICKER,Name,Weight%", variant: "destructive" });
@@ -80,11 +83,13 @@ export default function ETFSelector({ selected, onChange, onAnalyze, isLoading }
       await apiRequest("POST", "/api/etf/holdings/upload", {
         ticker: uploadTicker.toUpperCase(),
         holdings,
+        sourceAsOf: uploadDate,
       });
 
       addEtf(uploadTicker);
       setUploadTicker("");
       setUploadData("");
+      setUploadDate("");
       setShowUpload(false);
       toast({ title: `${uploadTicker.toUpperCase()} holdings saved`, description: `${holdings.length} holdings loaded.` });
     } catch (err: any) {
@@ -175,9 +180,10 @@ export default function ETFSelector({ selected, onChange, onAnalyze, isLoading }
         <div className="bg-muted/40 border border-border rounded-lg p-4 space-y-3">
           <p className="text-xs font-medium text-foreground">Manual Holdings Upload</p>
           <p className="text-xs text-muted-foreground">
-            Format: one holding per line — <code className="bg-muted px-1 rounded">TICKER,Name,Weight%</code>
+            Upload the complete portfolio, including cash and derivatives. Format: <code className="bg-muted px-1 rounded">TICKER,Name,Weight%,Category</code>
             <br />
             Example: <code className="bg-muted px-1 rounded">AAPL,Apple Inc,8.5</code>
+            <br />Categories: equity (default), cash, deposit, repo, bond, option, derivative, other. Negative derivative weights are supported.
           </p>
           <div className="flex gap-2">
             <Input
@@ -186,6 +192,7 @@ export default function ETFSelector({ selected, onChange, onAnalyze, isLoading }
               onChange={(e) => setUploadTicker(e.target.value.toUpperCase())}
               className="h-8 text-xs w-36"
             />
+            <Input type="date" aria-label="Portfolio report date" value={uploadDate} onChange={(e) => setUploadDate(e.target.value)} className="h-8 text-xs w-40" />
           </div>
           <textarea
             placeholder={"AAPL,Apple Inc,8.5\nMSFT,Microsoft,7.2\n..."}

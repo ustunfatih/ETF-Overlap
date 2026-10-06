@@ -143,13 +143,14 @@ export default function TreemapView({ nodes, etfs }: Props) {
       <div className="flex items-start justify-between gap-4 flex-wrap">
         <div>
           <h2 className="text-sm font-bold" style={{ fontFamily: "'Cabinet Grotesk', sans-serif" }}>
-            Holdings Treemap
+            Stock Holdings Treemap
           </h2>
           <p className="text-xs text-muted-foreground mt-0.5">
             {selectedEtf
               ? `Showing ${selectedEtf} holdings · box size = actual weight in ${selectedEtf}`
               : "Box size = average weight across ETFs · Colored = unique · Gray = shared by 2+ ETFs"}
           </p>
+          <p className="text-xs text-muted-foreground mt-1">Largest 60 stock positions shown · Full portfolios used for calculations · Other asset categories shown in the data cards</p>
         </div>
 
         {/* Controls row */}

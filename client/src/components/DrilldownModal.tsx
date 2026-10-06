@@ -101,7 +101,7 @@ export default function DrilldownModal({ cell, onClose }: Props) {
         {/* Holdings table */}
         <div className="flex-1 overflow-y-auto">
           <div className="px-5 py-3 flex items-center justify-between sticky top-0 bg-card/95 backdrop-blur-sm z-10 border-b border-border">
-            <p className="text-xs font-semibold text-foreground">Shared Holdings ({sharedCount})</p>
+            <p className="text-xs font-semibold text-foreground">Shared Holdings ({sharedCount}){sharedCount > sharedHoldings.length ? ` · Largest ${sharedHoldings.length} shown` : ""}</p>
             <div className="flex items-center gap-4 text-xs text-muted-foreground">
               <span>Weight in {etfA}</span>
               <span>Weight in {etfB}</span>

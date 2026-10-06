@@ -17,5 +17,5 @@ export const config = {
   adminAuthEnabled: toBool(process.env.ETF_ADMIN_AUTH_ENABLED, false),
   alphaVantageApiKey: process.env.ALPHA_VANTAGE_API_KEY || "",
   adminApiKey: process.env.ADMIN_API_KEY || "",
-  holdingsTtlHours: toNumber(process.env.HOLDINGS_TTL_HOURS, 1),
+  holdingsTtlHours: toNumber(process.env.HOLDINGS_TTL_HOURS, 168),
 };

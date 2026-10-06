@@ -10,6 +10,7 @@
 
 import axios from "axios";
 import type { HoldingRow } from "@shared/schema";
+import { fetchIssuerPortfolio } from "./holdings/issuers";
 
 // Known popular ETFs with their top holdings (curated fallback data)
 // Updated as of early 2026 for the most common ETFs
@@ -763,17 +764,8 @@ async function fetchFromStockAnalysis(ticker: string): Promise<HoldingRow[] | nu
 export async function fetchEtfHoldings(ticker: string): Promise<HoldingRow[]> {
   const upper = ticker.toUpperCase();
 
-  // 1. Always try live fetch first — works for ANY US ETF
-  const live = await fetchFromStockAnalysis(upper);
-  if (live && live.length >= 3) return live;
-
-  // 2. Curated fallback (offline/cached data for common ETFs)
-  if (FALLBACK_HOLDINGS[upper]) {
-    return FALLBACK_HOLDINGS[upper];
-  }
-
-  // 3. Nothing worked
-  throw new Error(
-    `Could not fetch holdings for ${upper}. Please verify the ticker is a valid US ETF and try again.`
-  );
+  // Compatibility entry point: only dated, validated, complete issuer reports are allowed.
+  // The historical curated arrays above are never returned as portfolio data.
+  const portfolio = await fetchIssuerPortfolio(upper);
+  return portfolio.holdings;
 }

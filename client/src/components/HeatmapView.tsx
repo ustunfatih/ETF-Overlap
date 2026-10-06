@@ -40,7 +40,7 @@ export default function HeatmapView({ matrix, onCellClick }: Props) {
             Pairwise Overlap Matrix
           </h2>
           <p className="text-xs text-muted-foreground mt-0.5">
-            Color = weighted overlap score · Number = shared holdings count · Click any cell to drill down
+            Color = shared portfolio weight · Number = shared securities count · Click any cell to drill down
           </p>
         </div>
         {/* Legend */}
@@ -154,7 +154,7 @@ export default function HeatmapView({ matrix, onCellClick }: Props) {
                           className="text-xs tabular-nums mt-0.5 leading-none"
                           style={{ color: textColor(cell.weightedScore, isDiag), opacity: 0.7 }}
                         >
-                          {cell.sharedCount} stocks
+                          {cell.sharedCount} securities
                         </span>
                       </>
                     )}
