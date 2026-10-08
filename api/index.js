@@ -70347,7 +70347,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-08-31",
-    fetchedAt: "2026-10-08T14:49:26.455Z",
+    fetchedAt: "2026-10-08T15:28:04.274Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "Vanguard",
@@ -73925,7 +73925,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-08",
-    fetchedAt: "2026-10-08T14:49:25.414Z",
+    fetchedAt: "2026-10-08T15:28:03.966Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "NEOS",
@@ -77737,7 +77737,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-08",
-    fetchedAt: "2026-10-08T14:49:25.400Z",
+    fetchedAt: "2026-10-08T15:28:03.897Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "NEOS",
@@ -81293,7 +81293,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-07",
-    fetchedAt: "2026-10-08T14:49:24.494Z",
+    fetchedAt: "2026-10-08T15:28:03.130Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "State Street",
@@ -82041,7 +82041,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-07",
-    fetchedAt: "2026-10-08T14:49:26.399Z",
+    fetchedAt: "2026-10-08T15:28:04.002Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "Invesco",
@@ -106745,7 +106745,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-08-31",
-    fetchedAt: "2026-10-08T14:49:26.670Z",
+    fetchedAt: "2026-10-08T15:28:04.538Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "Vanguard",
@@ -118884,7 +118884,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-08-31",
-    fetchedAt: "2026-10-08T14:49:26.643Z",
+    fetchedAt: "2026-10-08T15:28:04.587Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "Vanguard",
@@ -119452,7 +119452,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-07",
-    fetchedAt: "2026-10-08T14:49:24.412Z",
+    fetchedAt: "2026-10-08T15:28:03.195Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "State Street",
@@ -120907,7 +120907,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-08-31",
-    fetchedAt: "2026-10-08T14:49:26.587Z",
+    fetchedAt: "2026-10-08T15:28:04.653Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "Vanguard",
@@ -149356,7 +149356,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-08-31",
-    fetchedAt: "2026-10-08T14:49:27.048Z",
+    fetchedAt: "2026-10-08T15:28:04.967Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "Vanguard",
@@ -151786,7 +151786,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-08-31",
-    fetchedAt: "2026-10-08T14:49:27.178Z",
+    fetchedAt: "2026-10-08T15:28:05.083Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "Vanguard",
@@ -156147,7 +156147,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-08-31",
-    fetchedAt: "2026-10-08T14:49:27.332Z",
+    fetchedAt: "2026-10-08T15:28:05.433Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "Vanguard",
@@ -156337,7 +156337,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-07",
-    fetchedAt: "2026-10-08T14:49:24.529Z",
+    fetchedAt: "2026-10-08T15:28:03.210Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "State Street",
@@ -156707,7 +156707,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-07",
-    fetchedAt: "2026-10-08T14:49:24.520Z",
+    fetchedAt: "2026-10-08T15:28:03.227Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "State Street",
@@ -157175,7 +157175,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-07",
-    fetchedAt: "2026-10-08T14:49:24.582Z",
+    fetchedAt: "2026-10-08T15:28:03.254Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "State Street",
@@ -157797,7 +157797,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-07",
-    fetchedAt: "2026-10-08T14:49:24.596Z",
+    fetchedAt: "2026-10-08T15:28:03.270Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "State Street",
@@ -158056,7 +158056,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-07",
-    fetchedAt: "2026-10-08T14:49:24.641Z",
+    fetchedAt: "2026-10-08T15:28:03.290Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "State Street",
@@ -158307,7 +158307,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-07",
-    fetchedAt: "2026-10-08T14:49:24.648Z",
+    fetchedAt: "2026-10-08T15:28:03.299Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "State Street",
@@ -158517,7 +158517,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-07",
-    fetchedAt: "2026-10-08T14:49:24.605Z",
+    fetchedAt: "2026-10-08T15:28:03.279Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "State Street",
@@ -158754,7 +158754,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-07",
-    fetchedAt: "2026-10-08T14:49:24.689Z",
+    fetchedAt: "2026-10-08T15:28:03.318Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "State Street",
@@ -158949,7 +158949,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-07",
-    fetchedAt: "2026-10-08T14:49:24.656Z",
+    fetchedAt: "2026-10-08T15:28:03.308Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "State Street",
@@ -161777,7 +161777,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-07",
-    fetchedAt: "2026-10-08T14:49:24.750Z",
+    fetchedAt: "2026-10-08T15:28:03.377Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "State Street",
@@ -161959,7 +161959,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-08",
-    fetchedAt: "2026-10-08T14:49:25.551Z",
+    fetchedAt: "2026-10-08T15:28:03.936Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "NEOS",
@@ -162043,7 +162043,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-08",
-    fetchedAt: "2026-10-08T14:49:25.942Z",
+    fetchedAt: "2026-10-08T15:28:04.437Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "NEOS",
@@ -162092,7 +162092,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-08",
-    fetchedAt: "2026-10-08T14:49:25.944Z",
+    fetchedAt: "2026-10-08T15:28:04.396Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "NEOS",
@@ -267699,7 +267699,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-07",
-    fetchedAt: "2026-10-08T14:49:27.981Z",
+    fetchedAt: "2026-10-08T15:28:05.652Z",
     source: "issuer",
     weightMethod: "market-value",
     sourceName: "iShares",
@@ -268281,7 +268281,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-07",
-    fetchedAt: "2026-10-08T14:49:24.378Z",
+    fetchedAt: "2026-10-08T15:28:03.166Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "State Street",
@@ -268567,7 +268567,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-07",
-    fetchedAt: "2026-10-08T14:49:24.549Z",
+    fetchedAt: "2026-10-08T15:28:03.239Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "State Street",
@@ -314074,7 +314074,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-08-31",
-    fetchedAt: "2026-10-08T14:49:27.000Z",
+    fetchedAt: "2026-10-08T15:28:04.644Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "Vanguard",
@@ -377446,7 +377446,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-08-31",
-    fetchedAt: "2026-10-08T14:49:27.318Z",
+    fetchedAt: "2026-10-08T15:28:05.396Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "Vanguard",
@@ -378129,7 +378129,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-07",
-    fetchedAt: "2026-10-08T14:49:29.978Z",
+    fetchedAt: "2026-10-08T15:28:08.077Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "J.P. Morgan",
@@ -378978,7 +378978,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-07",
-    fetchedAt: "2026-10-08T14:49:29.171Z",
+    fetchedAt: "2026-10-08T15:28:07.479Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "J.P. Morgan",
@@ -493008,7 +493008,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-08-31",
-    fetchedAt: "2026-10-08T14:49:27.651Z",
+    fetchedAt: "2026-10-08T15:28:05.325Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "Vanguard",
@@ -495268,7 +495268,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-08-31",
-    fetchedAt: "2026-10-08T14:49:26.789Z",
+    fetchedAt: "2026-10-08T15:28:04.802Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "Vanguard",
@@ -497056,7 +497056,7 @@ var holdings_default = {
         category: "derivative"
       }
     ],
-    fetchedAt: "2026-10-08T14:38:26.534Z",
+    fetchedAt: "2026-10-08T15:28:08.793Z",
     sourceAsOf: "2026-10-06",
     source: "research",
     sourceName: "Schwab Research",
@@ -497834,7 +497834,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-07",
-    fetchedAt: "2026-10-08T14:49:30.409Z",
+    fetchedAt: "2026-10-08T15:28:09.489Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "Fidelity",
@@ -497851,6 +497851,1840 @@ var holdings_default = {
       other: -1.23
     },
     complete: true
+  },
+  ARKG: {
+    etf: "ARKG",
+    holdings: [
+      {
+        ticker: "PRME",
+        name: "PRIME MEDICINE INC",
+        weight: 1.408875880503,
+        category: "equity",
+        securityId: "US74168J1016"
+      },
+      {
+        ticker: "VCYT",
+        name: "VERACYTE INC",
+        weight: 2.546546744915,
+        category: "equity",
+        securityId: "US92337F1075"
+      },
+      {
+        ticker: "ADPT",
+        name: "ADAPTIVE BIOTECHNOLOGIES CORP",
+        weight: 2.572282548014,
+        category: "equity",
+        securityId: "US00650F1093"
+      },
+      {
+        ticker: "NTRA",
+        name: "NATERA INC",
+        weight: 4.129217004406,
+        category: "equity",
+        securityId: "US6323071042"
+      },
+      {
+        ticker: "NRIX",
+        name: "NURIX THERAPEUTICS INC",
+        weight: 2.507053106284,
+        category: "equity",
+        securityId: "US67080M1036"
+      },
+      {
+        ticker: "ARCT",
+        name: "ARCTURUS THERAPEUTICS HOLDINGS INC",
+        weight: 1.013910139428,
+        category: "equity",
+        securityId: "US03969T1097"
+      },
+      {
+        ticker: "QSI",
+        name: "QUANTUM-SI INC",
+        weight: 0.309293399138,
+        category: "equity",
+        securityId: "US74765K1051"
+      },
+      {
+        ticker: "SDGR",
+        name: "SCHRODINGER INC",
+        weight: 1.985880890589,
+        category: "equity",
+        securityId: "US80810D1037"
+      },
+      {
+        ticker: "CDNA",
+        name: "CAREDX INC",
+        weight: 4.299012109999,
+        category: "equity",
+        securityId: "US14167L1035"
+      },
+      {
+        ticker: "ATAI",
+        name: "ATAIBECKLEY INC",
+        weight: 0.758159468328,
+        category: "equity",
+        securityId: "US04650F1012"
+      },
+      {
+        ticker: "IONS",
+        name: "IONIS PHARMACEUTICALS INC",
+        weight: 1.76741507543,
+        category: "equity",
+        securityId: "US4622221004"
+      },
+      {
+        ticker: "FTOXX",
+        name: "Goldman Sachs Financial Square Treasury Obligations Fund",
+        weight: 0.180637135005,
+        category: "cash"
+      },
+      {
+        ticker: "CMPS",
+        name: "COMPASS PATHWAYS PLC",
+        weight: 3.253541459819,
+        category: "equity",
+        securityId: "US20451W1018"
+      },
+      {
+        ticker: "ALMR",
+        name: "ALAMAR BIOSCIENCES INC",
+        weight: 1.558800069157,
+        category: "equity",
+        securityId: "US0109111056"
+      },
+      {
+        ticker: "BEAM",
+        name: "BEAM THERAPEUTICS INC",
+        weight: 3.777133843116,
+        category: "equity",
+        securityId: "US07373V1052"
+      },
+      {
+        ticker: "GH",
+        name: "GUARDANT HEALTH INC",
+        weight: 4.742332137642,
+        category: "equity",
+        securityId: "US40131M1099"
+      },
+      {
+        ticker: "GENB",
+        name: "GENERATE BIOMEDICINES INC",
+        weight: 1.112907066897,
+        category: "equity",
+        securityId: "US3709201004"
+      },
+      {
+        ticker: "SCTX",
+        name: "SCRIBE THERAPEUTICS INC",
+        weight: 0.440453166261,
+        category: "equity",
+        securityId: "US8110331092"
+      },
+      {
+        ticker: "TWST",
+        name: "TWIST BIOSCIENCE CORP",
+        weight: 7.729392521109,
+        category: "equity",
+        securityId: "US90184D1000"
+      },
+      {
+        ticker: "TXG",
+        name: "10X GENOMICS INC",
+        weight: 9.394745774729,
+        category: "equity",
+        securityId: "US88025U1097"
+      },
+      {
+        ticker: "PACB",
+        name: "PACIFIC BIOSCIENCES OF CALIFORNIA INC",
+        weight: 0.95569761923,
+        category: "equity",
+        securityId: "US69404D1081"
+      },
+      {
+        ticker: "MASS",
+        name: "908 DEVICES INC",
+        weight: 0.980057680774,
+        category: "equity",
+        securityId: "US65443P1021"
+      },
+      {
+        ticker: "CRSP",
+        name: "CRISPR THERAPEUTICS AG",
+        weight: 6.285378508269,
+        category: "equity",
+        securityId: "CH0334081137"
+      },
+      {
+        ticker: "PSNL",
+        name: "PERSONALIS INC",
+        weight: 5.474483510281,
+        category: "equity",
+        securityId: "US71535D1063"
+      },
+      {
+        ticker: "WGS",
+        name: "GENEDX HOLDINGS CORP",
+        weight: 1.868829457342,
+        category: "equity",
+        securityId: "US81663L2007"
+      },
+      {
+        ticker: "CERS",
+        name: "CERUS CORP",
+        weight: 0.997268518826,
+        category: "equity",
+        securityId: "US1570851014"
+      },
+      {
+        ticker: "RXRX",
+        name: "RECURSION PHARMACEUTICALS INC",
+        weight: 2.627539671168,
+        category: "equity",
+        securityId: "US75629V1044"
+      },
+      {
+        ticker: "TEM",
+        name: "TEMPUS AI INC",
+        weight: 6.561584166456,
+        category: "equity",
+        securityId: "US88023B1035"
+      },
+      {
+        ticker: "LLY",
+        name: "ELI LILLY & COMPANY",
+        weight: 4.6848469886,
+        category: "equity",
+        securityId: "US5324571083"
+      },
+      {
+        ticker: "NTLA",
+        name: "INTELLIA THERAPEUTICS INC",
+        weight: 1.82916474973,
+        category: "equity",
+        securityId: "US45826J1051"
+      },
+      {
+        ticker: "BFLY",
+        name: "BUTTERFLY NETWORK INC",
+        weight: 2.178261871661,
+        category: "equity",
+        securityId: "US1241551027"
+      },
+      {
+        ticker: "ILMN",
+        name: "ILLUMINA INC",
+        weight: 4.738888445911,
+        category: "equity",
+        securityId: "US4523271090"
+      },
+      {
+        ticker: "ABSI",
+        name: "ABSCI CORP",
+        weight: 5.139897930336,
+        category: "equity",
+        securityId: "US00091E1091"
+      }
+    ],
+    sourceAsOf: "2026-07-31",
+    fetchedAt: "2026-10-08T15:28:09.237Z",
+    source: "sec",
+    weightMethod: "published",
+    sourceName: "SEC Form N-PORT",
+    isFallback: false,
+    sourceWarning: "No free daily issuer file is mapped for this ETF. Using the SEC's public Form N-PORT filing, which is quarterly and published up to 60 days after the report date.",
+    coverageNote: "Complete SEC N-PORT report (net assets $1,557,225,622). Weights are the filed % of net asset value. Derivatives are weights, not economic exposure.",
+    holdingsCount: 33,
+    coverageWeight: 99.80948865935301,
+    categoryWeights: {
+      equity: 99.62885152434801,
+      cash: 0.180637135005
+    },
+    complete: true,
+    sourceUrl: "https://www.sec.gov/Archives/edgar/data/1579982/000094040026037946/primary_doc.xml"
+  },
+  ARKX: {
+    etf: "ARKX",
+    holdings: [
+      {
+        ticker: "SRTA",
+        name: "STRATA CRITICAL MEDICAL INC",
+        weight: 0.00900016155,
+        category: "equity",
+        securityId: "US0926671043"
+      },
+      {
+        ticker: "ESLT",
+        name: "ELBIT SYSTEMS LTD",
+        weight: 1.673719014232,
+        category: "equity",
+        securityId: "IL0010811243"
+      },
+      {
+        ticker: "TRMB",
+        name: "TRIMBLE INC",
+        weight: 3.341085383608,
+        category: "equity",
+        securityId: "US8962391004"
+      },
+      {
+        ticker: "PLTR",
+        name: "PALANTIR TECHNOLOGIES INC",
+        weight: 2.936368089575,
+        category: "equity",
+        securityId: "US69608A1088"
+      },
+      {
+        ticker: "DE",
+        name: "DEERE & COMPANY",
+        weight: 5.408237532761,
+        category: "equity",
+        securityId: "US2441991054"
+      },
+      {
+        ticker: "TER",
+        name: "TERADYNE INC",
+        weight: 3.957577571873,
+        category: "equity",
+        securityId: "US8807701029"
+      },
+      {
+        ticker: "LUNR",
+        name: "INTUITIVE MACHINES INC",
+        weight: 1.721670569969,
+        category: "equity",
+        securityId: "US46125A1007"
+      },
+      {
+        ticker: "SPCX",
+        name: "SPACE EXPLORATION TECHNOLOGIES CORP",
+        weight: 7.671079651527,
+        category: "equity",
+        securityId: "US84615Q1031"
+      },
+      {
+        ticker: "AVAV",
+        name: "AEROVIRONMENT INC",
+        weight: 4.53206026753,
+        category: "equity",
+        securityId: "US0080731088"
+      },
+      {
+        ticker: "2618",
+        name: "JD LOGISTICS INC",
+        weight: 1.520156167388,
+        category: "equity",
+        securityId: "KYG5074S1012"
+      },
+      {
+        ticker: "HEI",
+        name: "HEICO CORP",
+        weight: 1.917556309823,
+        category: "equity",
+        securityId: "US4228061093"
+      },
+      {
+        ticker: "KTOS",
+        name: "KRATOS DEFENSE & SECURITY SOLUTIONS INC",
+        weight: 6.216286042921,
+        category: "equity",
+        securityId: "US50077B2079"
+      },
+      {
+        ticker: "JOBY",
+        name: "JOBY AVIATION INC",
+        weight: 2.169784220605,
+        category: "equity",
+        securityId: "KYG651631007"
+      },
+      {
+        ticker: "GRMN",
+        name: "GARMIN LTD",
+        weight: 1.740383341955,
+        category: "equity",
+        securityId: "CH0114405324"
+      },
+      {
+        ticker: "XE",
+        name: "X-ENERGY INC",
+        weight: 1.325963897597,
+        category: "equity",
+        securityId: "US98386P1021"
+      },
+      {
+        ticker: "TSM",
+        name: "TAIWAN SEMICONDUCTOR MANUFACTURING COMPANY LTD",
+        weight: 1.806533899693,
+        category: "equity",
+        securityId: "US8740391003"
+      },
+      {
+        ticker: "LMT",
+        name: "LOCKHEED MARTIN CORP",
+        weight: 1.030423010883,
+        category: "equity",
+        securityId: "US5398301094"
+      },
+      {
+        ticker: "SNPS",
+        name: "SYNOPSYS INC",
+        weight: 0.965531304556,
+        category: "equity",
+        securityId: "US8716071076"
+      },
+      {
+        ticker: "LHX",
+        name: "L3HARRIS TECHNOLOGIES INC",
+        weight: 7.524971130677,
+        category: "equity",
+        securityId: "US5024311095"
+      },
+      {
+        ticker: "HONA",
+        name: "HONEYWELL AEROSPACE INC",
+        weight: 0.543080809996,
+        category: "equity",
+        securityId: "US43849R1059"
+      },
+      {
+        ticker: "AIR",
+        name: "AIRBUS SE",
+        weight: 1.016721036157,
+        category: "equity",
+        securityId: "NL0000235190"
+      },
+      {
+        ticker: "NVDA",
+        name: "NVIDIA CORP",
+        weight: 3.390503136379,
+        category: "equity",
+        securityId: "US67066G1040"
+      },
+      {
+        ticker: "FTOXX",
+        name: "Goldman Sachs Financial Square Treasury Obligations Fund",
+        weight: 0.157768307752,
+        category: "cash"
+      },
+      {
+        ticker: "DASH",
+        name: "DOORDASH INC",
+        weight: 1.782123125929,
+        category: "equity",
+        securityId: "US25809K1051"
+      },
+      {
+        ticker: "TSLA",
+        name: "TESLA INC",
+        weight: 3.037902844853,
+        category: "equity",
+        securityId: "US88160R1014"
+      },
+      {
+        ticker: "TDY",
+        name: "TELEDYNE TECHNOLOGIES INC",
+        weight: 1.332449893065,
+        category: "equity",
+        securityId: "US8793601050"
+      },
+      {
+        ticker: "AMD",
+        name: "ADVANCED MICRO DEVICES INC",
+        weight: 4.927666162581,
+        category: "equity",
+        securityId: "US0079031078"
+      },
+      {
+        ticker: "ACHR",
+        name: "ARCHER AVIATION INC (NEW)",
+        weight: 3.117128556764,
+        category: "equity",
+        securityId: "US03945R1023"
+      },
+      {
+        ticker: "RKLB",
+        name: "ROCKET LAB CORP",
+        weight: 4.738379741327,
+        category: "equity",
+        securityId: "US7731211089"
+      },
+      {
+        ticker: "6301",
+        name: "KOMATSU LTD",
+        weight: 3.346388587311,
+        category: "equity",
+        securityId: "JP3304200003"
+      },
+      {
+        ticker: "HO",
+        name: "THALES SA",
+        weight: 2.12175894637,
+        category: "equity",
+        securityId: "FR0000121329"
+      },
+      {
+        ticker: "IRDM",
+        name: "IRIDIUM COMMUNICATIONS INC",
+        weight: 1.812343610292,
+        category: "equity",
+        securityId: "US46269C1027"
+      },
+      {
+        ticker: "GOOGL",
+        name: "ALPHABET INC",
+        weight: 0.297018611728,
+        category: "equity",
+        securityId: "US02079K3059"
+      },
+      {
+        ticker: "GOOG",
+        name: "ALPHABET INC",
+        weight: 4.354712953949,
+        category: "equity",
+        securityId: "US02079K1079"
+      },
+      {
+        ticker: "BWXT",
+        name: "BWX TECHNOLOGIES INC",
+        weight: 1.623566529539,
+        category: "equity",
+        securityId: "US05605H1005"
+      },
+      {
+        ticker: "AMZN",
+        name: "AMAZON.COM INC",
+        weight: 4.895120420891,
+        category: "equity",
+        securityId: "US0231351067"
+      }
+    ],
+    sourceAsOf: "2026-07-31",
+    fetchedAt: "2026-10-08T15:28:09.645Z",
+    source: "sec",
+    weightMethod: "published",
+    sourceName: "SEC Form N-PORT",
+    isFallback: false,
+    sourceWarning: "No free daily issuer file is mapped for this ETF. Using the SEC's public Form N-PORT filing, which is quarterly and published up to 60 days after the report date.",
+    coverageNote: "Complete SEC N-PORT report (net assets $759,456,590). Weights are the filed % of net asset value. Derivatives are weights, not economic exposure.",
+    holdingsCount: 36,
+    coverageWeight: 99.96302084360602,
+    categoryWeights: {
+      equity: 99.80525253585402,
+      cash: 0.157768307752
+    },
+    complete: true,
+    sourceUrl: "https://www.sec.gov/Archives/edgar/data/1579982/000094040026037952/primary_doc.xml"
+  },
+  SMH: {
+    etf: "SMH",
+    holdings: [
+      {
+        ticker: "US0079031078",
+        name: "Advanced Micro Devices Inc",
+        weight: 5.62922823468,
+        category: "equity",
+        securityId: "US0079031078"
+      },
+      {
+        ticker: "US0326541051",
+        name: "Analog Devices Inc",
+        weight: 4.000268520717,
+        category: "equity",
+        securityId: "US0326541051"
+      },
+      {
+        ticker: "US0382221051",
+        name: "Applied Materials Inc",
+        weight: 5.739554454327,
+        category: "equity",
+        securityId: "US0382221051"
+      },
+      {
+        ticker: "US0420682058",
+        name: "ARM Holdings PLC",
+        weight: 1.165573473605,
+        category: "equity",
+        securityId: "US0420682058"
+      },
+      {
+        ticker: "US04626A1034",
+        name: "Astera Labs Inc",
+        weight: 1.274080749631,
+        category: "equity",
+        securityId: "US04626A1034"
+      },
+      {
+        ticker: "US11135F1012",
+        name: "Broadcom Inc",
+        weight: 5.280334656908,
+        category: "equity",
+        securityId: "US11135F1012"
+      },
+      {
+        ticker: "US1273871087",
+        name: "Cadence Design Systems Inc",
+        weight: 2.150587517887,
+        category: "equity",
+        securityId: "US1273871087"
+      },
+      {
+        ticker: "US4581401001",
+        name: "Intel Corp",
+        weight: 5.146818634465,
+        category: "equity",
+        securityId: "US4581401001"
+      },
+      {
+        ticker: "US4824801009",
+        name: "KLA Corp",
+        weight: 5.574026353185,
+        category: "equity",
+        securityId: "US4824801009"
+      },
+      {
+        ticker: "US5128073062",
+        name: "Lam Research Corp",
+        weight: 5.312987261051,
+        category: "equity",
+        securityId: "US5128073062"
+      },
+      {
+        ticker: "US5738741041",
+        name: "Marvell Technology Inc",
+        weight: 4.66424265077,
+        category: "equity",
+        securityId: "US5738741041"
+      },
+      {
+        ticker: "US5950171042",
+        name: "Microchip Technology Inc",
+        weight: 0.8981222716,
+        category: "equity",
+        securityId: "US5950171042"
+      },
+      {
+        ticker: "US5951121038",
+        name: "Micron Technology Inc",
+        weight: 5.673780881653,
+        category: "equity",
+        securityId: "US5951121038"
+      },
+      {
+        ticker: "US6098391054",
+        name: "Monolithic Power Systems Inc",
+        weight: 1.219299264831,
+        category: "equity",
+        securityId: "US6098391054"
+      },
+      {
+        ticker: "US67066G1040",
+        name: "NVIDIA Corp",
+        weight: 17.54859673435,
+        category: "equity",
+        securityId: "US67066G1040"
+      },
+      {
+        ticker: "US6821891057",
+        name: "ON Semiconductor Corp",
+        weight: 0.578283147059,
+        category: "equity",
+        securityId: "US6821891057"
+      },
+      {
+        ticker: "US7475251036",
+        name: "QUALCOMM Inc",
+        weight: 3.737650786664,
+        category: "equity",
+        securityId: "US7475251036"
+      },
+      {
+        ticker: "US83088M1027",
+        name: "Skyworks Solutions Inc",
+        weight: 0.15916248336,
+        category: "equity",
+        securityId: "US83088M1027"
+      },
+      {
+        ticker: "US8610121027",
+        name: "STMicroelectronics NV",
+        weight: 1.260260844224,
+        category: "equity",
+        securityId: "US8610121027"
+      },
+      {
+        ticker: "US8716071076",
+        name: "Synopsys Inc",
+        weight: 1.792083597846,
+        category: "equity",
+        securityId: "US8716071076"
+      },
+      {
+        ticker: "US8740391003",
+        name: "Taiwan Semiconductor Manufacturing Co Ltd",
+        weight: 9.28906390626,
+        category: "equity",
+        securityId: "US8740391003"
+      },
+      {
+        ticker: "US8807701029",
+        name: "Teradyne Inc",
+        weight: 1.495812948364,
+        category: "equity",
+        securityId: "US8807701029"
+      },
+      {
+        ticker: "US8825081040",
+        name: "Texas Instruments Inc",
+        weight: 4.170242879236,
+        category: "equity",
+        securityId: "US8825081040"
+      },
+      {
+        ticker: "US8574927062",
+        name: "State Street Global Advisors",
+        weight: 0.003490686976,
+        category: "cash",
+        securityId: "US8574927062"
+      },
+      {
+        ticker: "USN070592100",
+        name: "ASML Holding NV",
+        weight: 5.041145111818,
+        category: "equity",
+        securityId: "USN070592100"
+      },
+      {
+        ticker: "NL0009538784",
+        name: "NXP Semiconductors NV",
+        weight: 1.146457707753,
+        category: "equity",
+        securityId: "NL0009538784"
+      }
+    ],
+    sourceAsOf: "2026-06-30",
+    fetchedAt: "2026-10-08T15:28:09.938Z",
+    source: "sec",
+    weightMethod: "published",
+    sourceName: "SEC Form N-PORT",
+    isFallback: false,
+    sourceWarning: "No free daily issuer file is mapped for this ETF. Using the SEC's public Form N-PORT filing, which is quarterly and published up to 60 days after the report date.",
+    coverageNote: "Complete SEC N-PORT report (net assets $77,198,271,229). Weights are the filed % of net asset value. Derivatives are weights, not economic exposure.",
+    holdingsCount: 26,
+    coverageWeight: 99.95115575922001,
+    categoryWeights: {
+      equity: 99.94766507224402,
+      cash: 0.003490686976
+    },
+    complete: true,
+    sourceUrl: "https://www.sec.gov/Archives/edgar/data/1137360/000141036826086937/primary_doc.xml"
+  },
+  SOXX: {
+    etf: "SOXX",
+    holdings: [
+      {
+        ticker: "US29362U1043",
+        name: "Entegris, Inc.",
+        weight: 1.219022647962,
+        category: "equity",
+        securityId: "US29362U1043"
+      },
+      {
+        ticker: "US5128073062",
+        name: "Lam Research Corp.",
+        weight: 4.894346805941,
+        category: "equity",
+        securityId: "US5128073062"
+      },
+      {
+        ticker: "US8740391003",
+        name: "Taiwan Semiconductor Manufacturing Co. Ltd.",
+        weight: 4.26352946527,
+        category: "equity",
+        securityId: "US8740391003"
+      },
+      {
+        ticker: "US5950171042",
+        name: "Microchip Technology, Inc.",
+        weight: 2.167268115001,
+        category: "equity",
+        securityId: "US5950171042"
+      },
+      {
+        ticker: "US67066G1040",
+        name: "NVIDIA Corp.",
+        weight: 6.81135644593,
+        category: "equity",
+        securityId: "US67066G1040"
+      },
+      {
+        ticker: "KYG254571055",
+        name: "Credo Technology Group Holding Ltd.",
+        weight: 2.011328320176,
+        category: "equity",
+        securityId: "KYG254571055"
+      },
+      {
+        ticker: "US4824801009",
+        name: "KLA Corp.",
+        weight: 5.642212839483,
+        category: "equity",
+        securityId: "US4824801009"
+      },
+      {
+        ticker: "N.A",
+        name: "N/A",
+        weight: 0.001808291747,
+        category: "derivative",
+        securityId: "N/A"
+      },
+      {
+        ticker: "US4581401001",
+        name: "Intel Corp.",
+        weight: 6.330233033146,
+        category: "equity",
+        securityId: "US4581401001"
+      },
+      {
+        ticker: "US8610121027",
+        name: "STMicroelectronics NV",
+        weight: 0.789298154639,
+        category: "equity",
+        securityId: "US8610121027"
+      },
+      {
+        ticker: "US0669225197",
+        name: "BlackRock Funds III",
+        weight: 1.17363365488,
+        category: "cash",
+        securityId: "US0669225197"
+      },
+      {
+        ticker: "US5738741041",
+        name: "Marvell Technology, Inc.",
+        weight: 5.222199399966,
+        category: "equity",
+        securityId: "US5738741041"
+      },
+      {
+        ticker: "US8807701029",
+        name: "Teradyne, Inc.",
+        weight: 3.364843239759,
+        category: "equity",
+        securityId: "US8807701029"
+      },
+      {
+        ticker: "USN070592100",
+        name: "ASML Holding NV",
+        weight: 2.304106268762,
+        category: "equity",
+        securityId: "USN070592100"
+      },
+      {
+        ticker: "US83088M1027",
+        name: "Skyworks Solutions, Inc.",
+        weight: 0.454151889089,
+        category: "equity",
+        securityId: "US83088M1027"
+      },
+      {
+        ticker: "IL0010845571",
+        name: "Nova Ltd.",
+        weight: 0.770710756451,
+        category: "equity",
+        securityId: "IL0010845571"
+      },
+      {
+        ticker: "US11135F1012",
+        name: "Broadcom, Inc.",
+        weight: 6.077131726246,
+        category: "equity",
+        securityId: "US11135F1012"
+      },
+      {
+        ticker: "US00215W1009",
+        name: "ASE Technology Holding Co. Ltd.",
+        weight: 1.216206877102,
+        category: "equity",
+        securityId: "US00215W1009"
+      },
+      {
+        ticker: "US0079031078",
+        name: "Advanced Micro Devices, Inc.",
+        weight: 8.090106379142,
+        category: "equity",
+        securityId: "US0079031078"
+      },
+      {
+        ticker: "US0326541051",
+        name: "Analog Devices, Inc.",
+        weight: 3.448941053642,
+        category: "equity",
+        securityId: "US0326541051"
+      },
+      {
+        ticker: "US0382221051",
+        name: "Applied Materials, Inc.",
+        weight: 5.77322354929,
+        category: "equity",
+        securityId: "US0382221051"
+      },
+      {
+        ticker: "US5951121038",
+        name: "Micron Technology, Inc.",
+        weight: 8.544235842935,
+        category: "equity",
+        securityId: "US5951121038"
+      },
+      {
+        ticker: "US55405Y1001",
+        name: "MACOM Technology Solutions Holdings, Inc.",
+        weight: 1.173662556081,
+        category: "equity",
+        securityId: "US55405Y1001"
+      },
+      {
+        ticker: "US0420682058",
+        name: "ARM Holdings plc",
+        weight: 0.790614956253,
+        category: "equity",
+        securityId: "US0420682058"
+      },
+      {
+        ticker: "US6821891057",
+        name: "ON Semiconductor Corp.",
+        weight: 1.646910651276,
+        category: "equity",
+        securityId: "US6821891057"
+      },
+      {
+        ticker: "US0669224778",
+        name: "BlackRock Funds III",
+        weight: 0.090906844415,
+        category: "cash",
+        securityId: "US0669224778"
+      },
+      {
+        ticker: "US9108734057",
+        name: "United Microelectronics Corp.",
+        weight: 1.016808860962,
+        category: "equity",
+        securityId: "US9108734057"
+      },
+      {
+        ticker: "NL0009538784",
+        name: "NXP Semiconductors NV",
+        weight: 3.142837988517,
+        category: "equity",
+        securityId: "NL0009538784"
+      },
+      {
+        ticker: "US04626A1034",
+        name: "Astera Labs, Inc.",
+        weight: 3.02243127215,
+        category: "equity",
+        securityId: "US04626A1034"
+      },
+      {
+        ticker: "US7475251036",
+        name: "QUALCOMM, Inc.",
+        weight: 2.645568927669,
+        category: "equity",
+        securityId: "US7475251036"
+      },
+      {
+        ticker: "US7509171069",
+        name: "Rambus, Inc.",
+        weight: 0.636924175331,
+        category: "equity",
+        securityId: "US7509171069"
+      },
+      {
+        ticker: "US8825081040",
+        name: "Texas Instruments, Inc.",
+        weight: 3.504299774361,
+        category: "equity",
+        securityId: "US8825081040"
+      },
+      {
+        ticker: "US6098391054",
+        name: "Monolithic Power Systems, Inc.",
+        weight: 2.928168298611,
+        category: "equity",
+        securityId: "US6098391054"
+      }
+    ],
+    sourceAsOf: "2026-06-30",
+    fetchedAt: "2026-10-08T15:28:10.471Z",
+    source: "sec",
+    weightMethod: "published",
+    sourceName: "SEC Form N-PORT",
+    isFallback: false,
+    sourceWarning: "No free daily issuer file is mapped for this ETF. Using the SEC's public Form N-PORT filing, which is quarterly and published up to 60 days after the report date.",
+    coverageNote: "Complete SEC N-PORT report (net assets $47,824,829,758). Weights are the filed % of net asset value. Derivatives are weights, not economic exposure.",
+    holdingsCount: 33,
+    coverageWeight: 101.16902906218499,
+    categoryWeights: {
+      equity: 99.902680271143,
+      derivative: 0.001808291747,
+      cash: 1.264540499295
+    },
+    complete: true,
+    sourceUrl: "https://www.sec.gov/Archives/edgar/data/1100663/000207169126019781/primary_doc.xml"
+  },
+  EIS: {
+    etf: "EIS",
+    holdings: [
+      {
+        ticker: "US0669224778",
+        name: "BlackRock Funds III: BlackRock Cash Funds: Treasury; SL Agency Shares",
+        weight: 0.056163902226,
+        category: "cash",
+        securityId: "US0669224778"
+      },
+      {
+        ticker: "US0669225197",
+        name: "BlackRock Funds III: BlackRock Cash Funds: Institutional; SL Agency Shares",
+        weight: 2.59143353225,
+        category: "cash",
+        securityId: "US0669225197"
+      },
+      {
+        ticker: "N.A",
+        name: "EURO",
+        weight: 0.12530137367,
+        category: "equity",
+        securityId: "N/A"
+      },
+      {
+        ticker: "IL0003900136",
+        name: "ALONY-HETZ PROPERTIES AND INVESTMENTS LTD",
+        weight: 0.418133418069,
+        category: "equity",
+        securityId: "IL0003900136"
+      },
+      {
+        ticker: "IL0005870147",
+        name: "ARYT INDUSTRIES LTD.",
+        weight: 0.140369047239,
+        category: "equity",
+        securityId: "IL0005870147"
+      },
+      {
+        ticker: "IL0003730194",
+        name: "AURA INVESTMENTS LTD.",
+        weight: 0.223720500127,
+        category: "equity",
+        securityId: "IL0003730194"
+      },
+      {
+        ticker: "IL0007150118",
+        name: "AZORIM-INVESTMENT DEVELOPMENT AND CONSTRUCTION CO LTD.",
+        weight: 0.094080659151,
+        category: "equity",
+        securityId: "IL0007150118"
+      },
+      {
+        ticker: "IL0006625771",
+        name: "BANK HAPOALIM B.M.",
+        weight: 6.984487755749,
+        category: "equity",
+        securityId: "IL0006625771"
+      },
+      {
+        ticker: "IL0006046119",
+        name: "BANK LEUMI LE ISRAEL B.M.",
+        weight: 8.172121700392,
+        category: "equity",
+        securityId: "IL0006046119"
+      },
+      {
+        ticker: "IL0007590198",
+        name: "GAV-YAM LANDS CORP. LTD",
+        weight: 0.162426430156,
+        category: "equity",
+        securityId: "IL0007590198"
+      },
+      {
+        ticker: "IL0002300114",
+        name: "BEZEQ THE ISRAELI TELECOMMUNICATION CORP LTD",
+        weight: 1.713618067066,
+        category: "equity",
+        securityId: "IL0002300114"
+      },
+      {
+        ticker: "IL0010815616",
+        name: "Bet Shemesh Engines Holdings 1997 Ltd",
+        weight: 0.539889140009,
+        category: "equity",
+        securityId: "IL0010815616"
+      },
+      {
+        ticker: "IL0005930388",
+        name: "FIRST INTERNATIONAL BANK OF ISRAEL LTD.",
+        weight: 1.019992423291,
+        category: "equity",
+        securityId: "IL0005930388"
+      },
+      {
+        ticker: "IL0010818438",
+        name: "MEITAV INVESTMENT HOUSE LTD",
+        weight: 0.529812476393,
+        category: "equity",
+        securityId: "IL0010818438"
+      },
+      {
+        ticker: "IL0010819428",
+        name: "SHIKUN & BINUI LTD",
+        weight: 0.631572197747,
+        category: "equity",
+        securityId: "IL0010819428"
+      },
+      {
+        ticker: "IL0002240146",
+        name: "CLAL INSURANCE ENTERPRISES HOLDINGS LIMITED",
+        weight: 1.566758881057,
+        category: "equity",
+        securityId: "IL0002240146"
+      },
+      {
+        ticker: "IL0010841281",
+        name: "DELEK GROUP LTD.",
+        weight: 0.610735361676,
+        category: "equity",
+        securityId: "IL0010841281"
+      },
+      {
+        ticker: "IL0003140139",
+        name: "DANEL (ADIR YEOSHUA) LTD",
+        weight: 0.181962969116,
+        category: "equity",
+        securityId: "IL0003140139"
+      },
+      {
+        ticker: "IL0006270347",
+        name: "DELTA GALIL INDUSTRIES LTD.",
+        weight: 0.143272939217,
+        category: "equity",
+        securityId: "IL0006270347"
+      },
+      {
+        ticker: "IL0008290103",
+        name: "DELEK AUTOMOTIVE SYSTEMS LTD.",
+        weight: 0.073245192938,
+        category: "equity",
+        securityId: "IL0008290103"
+      },
+      {
+        ticker: "IL0010846983",
+        name: "HILAN LTD",
+        weight: 0.269517424011,
+        category: "equity",
+        securityId: "IL0010846983"
+      },
+      {
+        ticker: "IL0007390375",
+        name: "ELECTRA LTD",
+        weight: 0.344549401469,
+        category: "equity",
+        securityId: "IL0007390375"
+      },
+      {
+        ticker: "IL0007460160",
+        name: "STRAUSS GROUP LTD",
+        weight: 0.546035995543,
+        category: "equity",
+        securityId: "IL0007460160"
+      },
+      {
+        ticker: "IL0010816861",
+        name: "SUMMIT REAL ESTATE HOLDINGS LTD",
+        weight: 0.145484653067,
+        category: "equity",
+        securityId: "IL0010816861"
+      },
+      {
+        ticker: "IL0006940345",
+        name: "ELCO LTD",
+        weight: 0.123759287297,
+        category: "equity",
+        securityId: "IL0006940345"
+      },
+      {
+        ticker: "IL0010811243",
+        name: "ELBIT SYSTEMS LTD",
+        weight: 5.523051433715,
+        category: "equity",
+        securityId: "IL0010811243"
+      },
+      {
+        ticker: "IL0010823792",
+        name: "TOWER SEMICONDUCTOR LTD",
+        weight: 6.947411580559,
+        category: "equity",
+        securityId: "IL0010823792"
+      },
+      {
+        ticker: "IL0007630119",
+        name: "FIBI HOLDINGS LTD",
+        weight: 0.424086967997,
+        category: "equity",
+        securityId: "IL0007630119"
+      },
+      {
+        ticker: "IL0002560162",
+        name: "FORMULA SYSTEMS (1985) LTD",
+        weight: 0.281808617999,
+        category: "equity",
+        securityId: "IL0002560162"
+      },
+      {
+        ticker: "IL0010834849",
+        name: "PARTNER COMMUNICATIONS COMPANY LTD.",
+        weight: 0.485399938904,
+        category: "equity",
+        securityId: "IL0010834849"
+      },
+      {
+        ticker: "IL0005850180",
+        name: "HAREL INSURANCE INVESTMENTS & FINANCIAL SERVICES LTD",
+        weight: 1.557001858222,
+        category: "equity",
+        securityId: "IL0005850180"
+      },
+      {
+        ticker: "IL0002260193",
+        name: "MIVNE REAL ESTATE (K.D) LTD",
+        weight: 0.640196154126,
+        category: "equity",
+        securityId: "IL0002260193"
+      },
+      {
+        ticker: "IL0006912120",
+        name: "ISRAEL DISCOUNT BANK LIMITED",
+        weight: 2.949064298844,
+        category: "equity",
+        securityId: "IL0006912120"
+      },
+      {
+        ticker: "IL0002810146",
+        name: "ICL GROUP LTD",
+        weight: 1.110130994244,
+        category: "equity",
+        securityId: "IL0002810146"
+      },
+      {
+        ticker: "IL0007670123",
+        name: "PHOENIX FINANCIAL LTD",
+        weight: 3.278880533746,
+        category: "equity",
+        securityId: "IL0007670123"
+      },
+      {
+        ticker: "IL0006130343",
+        name: "ISRAS INVESTMENT COMPANY LTD.",
+        weight: 0.07838504497,
+        category: "equity",
+        securityId: "IL0006130343"
+      },
+      {
+        ticker: "IL0010809858",
+        name: "ISROTEL LTD.",
+        weight: 0.203593008679,
+        category: "equity",
+        securityId: "IL0010809858"
+      },
+      {
+        ticker: "IL0010811656",
+        name: "MIGDAL INSURANCE AND FINANCIAL HOLDINGS LTD",
+        weight: 0.85260061966,
+        category: "equity",
+        securityId: "IL0010811656"
+      },
+      {
+        ticker: "IL0010845571",
+        name: "NOVA LTD",
+        weight: 3.359122307686,
+        category: "equity",
+        securityId: "IL0010845571"
+      },
+      {
+        ticker: "IL0010870223",
+        name: "FOX - WIZEL LTD",
+        weight: 0.20306107094,
+        category: "equity",
+        securityId: "IL0010870223"
+      },
+      {
+        ticker: "IL0003230146",
+        name: "MELISRON LIMITED",
+        weight: 0.811159571659,
+        category: "equity",
+        securityId: "IL0003230146"
+      },
+      {
+        ticker: "IL0005660183",
+        name: "MENORA MIVTACHIM HOLDINGS LTD.",
+        weight: 0.875833892424,
+        category: "equity",
+        securityId: "IL0005660183"
+      },
+      {
+        ticker: "IL0001260111",
+        name: "G CITY LTD",
+        weight: 0.092213597423,
+        category: "equity",
+        securityId: "IL0001260111"
+      },
+      {
+        ticker: "IL0001270193",
+        name: "MIVTAH SHAMIR HOLDINGS LTD.",
+        weight: 0.203193600133,
+        category: "equity",
+        securityId: "IL0001270193"
+      },
+      {
+        ticker: "IL0010878242",
+        name: "EL AL ISRAEL AIRLINES LTD",
+        weight: 0.315677078456,
+        category: "equity",
+        securityId: "IL0010878242"
+      },
+      {
+        ticker: "IL0002730112",
+        name: "NICE LTD",
+        weight: 1.214442604496,
+        category: "equity",
+        securityId: "IL0002730112"
+      },
+      {
+        ticker: "IL0007550176",
+        name: "EQUITAL LTD",
+        weight: 0.206638211916,
+        category: "equity",
+        securityId: "IL0007550176"
+      },
+      {
+        ticker: "IL0004340191",
+        name: "ISRAEL CANADA (T.R) LTD",
+        weight: 0.294288677461,
+        category: "equity",
+        securityId: "IL0004340191"
+      },
+      {
+        ticker: "IL0004450156",
+        name: "MATRIX I.T. LTD",
+        weight: 0.34979998454,
+        category: "equity",
+        securityId: "IL0004450156"
+      },
+      {
+        ticker: "IL0007200111",
+        name: "ENLIGHT RENEWABLE ENERGY LTD",
+        weight: 3.080162647324,
+        category: "equity",
+        securityId: "IL0007200111"
+      },
+      {
+        ticker: "IL0007770378",
+        name: "SHUFERSAL LTD",
+        weight: 0.7517060393,
+        category: "equity",
+        securityId: "IL0007770378"
+      },
+      {
+        ticker: "IL0005760173",
+        name: "ISRAEL CORPORATION LTD.",
+        weight: 0.272604816751,
+        category: "equity",
+        securityId: "IL0005760173"
+      },
+      {
+        ticker: "IL0006954379",
+        name: "MIZRAHI TEFAHOT BANK LTD",
+        weight: 2.599400736267,
+        category: "equity",
+        securityId: "IL0006954379"
+      },
+      {
+        ticker: "IL0001610182",
+        name: "ONE SOFTWARE TECHNOLOGIES LTD",
+        weight: 0.240261368533,
+        category: "equity",
+        securityId: "IL0001610182"
+      },
+      {
+        ticker: "US8816242098",
+        name: "TEVA PHARMACEUTICAL INDUSTRIES LIMITED",
+        weight: 8.815624184481,
+        category: "equity",
+        securityId: "US8816242098"
+      },
+      {
+        ticker: "IL0010825102",
+        name: "GILAT SATELLITE NETWORKS LTD.",
+        weight: 0.289195799229,
+        category: "equity",
+        securityId: "IL0010825102"
+      },
+      {
+        ticker: "IL0010903156",
+        name: "Y.H. DIMRI, Construction and Development Ltd.",
+        weight: 0.291620257258,
+        category: "equity",
+        securityId: "IL0010903156"
+      },
+      {
+        ticker: "IL0010940448",
+        name: "ELECTRA REAL ESTATE LTD",
+        weight: 0.121553188992,
+        category: "equity",
+        securityId: "IL0010940448"
+      },
+      {
+        ticker: "IL0001750186",
+        name: "I.B.I INVESTMENT HOUSE LTD",
+        weight: 0.146930097818,
+        category: "equity",
+        securityId: "IL0001750186"
+      },
+      {
+        ticker: "IL0010952641",
+        name: "CAMTEK LTD",
+        weight: 1.134912811841,
+        category: "equity",
+        securityId: "IL0010952641"
+      },
+      {
+        ticker: "IL0010958358",
+        name: "AIRPORT CITY LTD",
+        weight: 0.237048690615,
+        category: "equity",
+        securityId: "IL0010958358"
+      },
+      {
+        ticker: "IL0010972789",
+        name: "AMOT INVESTMENTS LTD.",
+        weight: 0.360344966709,
+        category: "equity",
+        securityId: "IL0010972789"
+      },
+      {
+        ticker: "IL0010979487",
+        name: "AFRICA ISRAEL RESIDENCES LTD",
+        weight: 0.113180492275,
+        category: "equity",
+        securityId: "IL0010979487"
+      },
+      {
+        ticker: "IL0010972607",
+        name: "BIG SHOPPING CENTERS LTD",
+        weight: 0.960317553297,
+        category: "equity",
+        securityId: "IL0010972607"
+      },
+      {
+        ticker: "IL0011000077",
+        name: "PAZ RETAIL AND ENERGY LTD",
+        weight: 0.655157417203,
+        category: "equity",
+        securityId: "IL0011000077"
+      },
+      {
+        ticker: "IL0010985658",
+        name: "BLUE SQUARE REAL ESTATE LTD",
+        weight: 0.166607642761,
+        category: "equity",
+        securityId: "IL0010985658"
+      },
+      {
+        ticker: "IL0010989205",
+        name: "REIT 1 LTD",
+        weight: 0.348539201382,
+        category: "equity",
+        securityId: "IL0010989205"
+      },
+      {
+        ticker: "IL0025902482",
+        name: "OIL REFINERIES LTD.",
+        weight: 0.272947076239,
+        category: "equity",
+        securityId: "IL0025902482"
+      },
+      {
+        ticker: "IL0011015349",
+        name: "CELLCOM ISRAEL LTD.",
+        weight: 0.335162241403,
+        category: "equity",
+        securityId: "IL0011015349"
+      },
+      {
+        ticker: "IL0011044885",
+        name: "MEGA OR HOLDINGS LTD",
+        weight: 1.252185496335,
+        category: "equity",
+        securityId: "IL0011044885"
+      },
+      {
+        ticker: "IL0011096448",
+        name: "SELLA CAPITAL REAL ESTATE LTD",
+        weight: 0.186845637748,
+        category: "equity",
+        securityId: "IL0011096448"
+      },
+      {
+        ticker: "IL0011050973",
+        name: "Neto Malinda Trading Ltd",
+        weight: 0.157164354468,
+        category: "equity",
+        securityId: "IL0011050973"
+      },
+      {
+        ticker: "IL0011021289",
+        name: "PRASHKOVSKY INVESTMENTS AND CONSTRUCTION LTD",
+        weight: 0.094887507755,
+        category: "equity",
+        securityId: "IL0011021289"
+      },
+      {
+        ticker: "IL0011042491",
+        name: "RAMI LEVI CHAIN STORES HASHIKMA MARKETING 2006 LTD",
+        weight: 0.271972978508,
+        category: "equity",
+        securityId: "IL0011042491"
+      },
+      {
+        ticker: "IL0011233553",
+        name: "ENERGIX - RENEWABLE ENERGIES LTD",
+        weight: 0.642730549862,
+        category: "equity",
+        securityId: "IL0011233553"
+      },
+      {
+        ticker: "IL0050101299",
+        name: "ELECTRA CONSUMER PRODUCTS (1970) LTD",
+        weight: 0.090063878178,
+        category: "equity",
+        securityId: "IL0050101299"
+      },
+      {
+        ticker: "IL0011194789",
+        name: "AZRIELI GROUP LTD.",
+        weight: 1.527225737761,
+        category: "equity",
+        securityId: "IL0011194789"
+      },
+      {
+        ticker: "IL0011238503",
+        name: "CARASSO MOTORS LTD",
+        weight: 0.102336868312,
+        category: "equity",
+        securityId: "IL0011238503"
+      },
+      {
+        ticker: "IL0011295016",
+        name: "I.D.I. INSURANCE COMPANY LTD",
+        weight: 0.151974477809,
+        category: "equity",
+        securityId: "IL0011295016"
+      },
+      {
+        ticker: "IL0011413577",
+        name: "TAMAR PETROLEUM LTD",
+        weight: 0.054876250785,
+        category: "equity",
+        securityId: "IL0011413577"
+      },
+      {
+        ticker: "IL0011414641",
+        name: "Y.D. MORE INVESTMENTS LTD",
+        weight: 0.143806360564,
+        category: "equity",
+        securityId: "IL0011414641"
+      },
+      {
+        ticker: "IL0011415713",
+        name: "OPC Energy Ltd.",
+        weight: 1.581147857306,
+        category: "equity",
+        securityId: "IL0011415713"
+      },
+      {
+        ticker: "IL0011434292",
+        name: "FATTAL HOLDINGS (1998) LTD",
+        weight: 0.488601924343,
+        category: "equity",
+        securityId: "IL0011434292"
+      },
+      {
+        ticker: "IL0011574030",
+        name: "Isracard Ltd.",
+        weight: 0.191159169545,
+        category: "equity",
+        securityId: "IL0011574030"
+      },
+      {
+        ticker: "IL0011590291",
+        name: "THE TEL-AVIV STOCK EXCHANGE LTD",
+        weight: 1.209066207359,
+        category: "equity",
+        securityId: "IL0011590291"
+      },
+      {
+        ticker: "IL0011612640",
+        name: "M.YOCHANANOF AND SONS (1988) LTD",
+        weight: 0.161513227448,
+        category: "equity",
+        securityId: "IL0011612640"
+      },
+      {
+        ticker: "IL0011756116",
+        name: "Turpaz Industries Ltd",
+        weight: 0.279744674841,
+        category: "equity",
+        securityId: "IL0011756116"
+      },
+      {
+        ticker: "IL0011849028",
+        name: "KVUTZAT ACRO LTD",
+        weight: 0.121749738896,
+        category: "equity",
+        securityId: "IL0011849028"
+      },
+      {
+        ticker: "IL0011754889",
+        name: "Retailors Ltd",
+        weight: 0.048241365902,
+        category: "equity",
+        securityId: "IL0011754889"
+      },
+      {
+        ticker: "IL0011685588",
+        name: "Max Stock Ltd",
+        weight: 0.338102963033,
+        category: "equity",
+        securityId: "IL0011685588"
+      },
+      {
+        ticker: "IL0011882425",
+        name: "SHIKUN & BINUI ENERGY LTD",
+        weight: 0.082358663247,
+        category: "equity",
+        securityId: "IL0011882425"
+      },
+      {
+        ticker: "IL0011669749",
+        name: "MESHEK ENERGY-RENEWABLE ENERGIES LTD",
+        weight: 0.399499235726,
+        category: "equity",
+        securityId: "IL0011669749"
+      },
+      {
+        ticker: "IL0011667685",
+        name: "DORAL GROUP RENEWABLE ENERGY RESOURCES LTD",
+        weight: 0.639244339686,
+        category: "equity",
+        securityId: "IL0011667685"
+      },
+      {
+        ticker: "IL0011708778",
+        name: "O.Y. NOFAR ENERGY LTD",
+        weight: 0.579200554838,
+        category: "equity",
+        securityId: "IL0011708778"
+      },
+      {
+        ticker: "IL0011751166",
+        name: "NAYAX LTD",
+        weight: 0.24580053675,
+        category: "equity",
+        securityId: "IL0011751166"
+      },
+      {
+        ticker: "IL0011323156",
+        name: "ASHTROM GROUP LTD.",
+        weight: 0.279930373793,
+        category: "equity",
+        securityId: "IL0011323156"
+      },
+      {
+        ticker: "IL0011765935",
+        name: "Next Vision Stabilized Systems Ltd",
+        weight: 1.686791141136,
+        category: "equity",
+        securityId: "IL0011765935"
+      },
+      {
+        ticker: "IL0012029778",
+        name: "ISRAS HOLDINGS LTD",
+        weight: 0.101148400849,
+        category: "equity",
+        securityId: "IL0012029778"
+      },
+      {
+        ticker: "IL0011323560",
+        name: "INROM CONSTRUCTION INDUSTRIES LTD",
+        weight: 0.227591514154,
+        category: "equity",
+        securityId: "IL0011323560"
+      },
+      {
+        ticker: "IL0011731374",
+        name: "DANYA CEBUS LTD",
+        weight: 0.13013625767,
+        category: "equity",
+        securityId: "IL0011731374"
+      },
+      {
+        ticker: "IL0011882003",
+        name: "AMRAM AVRAHAM CONSTRUCTION COMPANY LTD",
+        weight: 0.087720043468,
+        category: "equity",
+        securityId: "IL0011882003"
+      },
+      {
+        ticker: "IL0011338758",
+        name: "SHAPIR ENGINEERING AND INDUSTRY LTD",
+        weight: 0.56676866695,
+        category: "equity",
+        securityId: "IL0011338758"
+      },
+      {
+        ticker: "SG9999012629",
+        name: "KENON HOLDINGS LTD.",
+        weight: 0.408957532184,
+        category: "equity",
+        securityId: "SG9999012629"
+      },
+      {
+        ticker: "VGG320891077",
+        name: "eToro Group Ltd.",
+        weight: 0.136685453966,
+        category: "equity",
+        securityId: "VGG320891077"
+      },
+      {
+        ticker: "IL0011794802",
+        name: "Cellebrite DI Ltd",
+        weight: 0.353622232966,
+        category: "equity",
+        securityId: "IL0011794802"
+      },
+      {
+        ticker: "IL0010824113",
+        name: "CHECK POINT SOFTWARE TECHNOLOGIES LTD.",
+        weight: 2.52623299332,
+        category: "equity",
+        securityId: "IL0010824113"
+      },
+      {
+        ticker: "USM26CNT0697",
+        name: "CYBERARK SOFTWARE LTD",
+        weight: 0.434812923156,
+        category: "equity",
+        securityId: "USM26CNT0697"
+      },
+      {
+        ticker: "IL0011582033",
+        name: "FIVERR INTERNATIONAL LTD",
+        weight: 0.075424379211,
+        category: "equity",
+        securityId: "IL0011582033"
+      },
+      {
+        ticker: "IL0011741688",
+        name: "Global-E Online Ltd",
+        weight: 0.736662926934,
+        category: "equity",
+        securityId: "IL0011741688"
+      },
+      {
+        ticker: "IL0011595993",
+        name: "Inmode Ltd",
+        weight: 0.173945320474,
+        category: "equity",
+        securityId: "IL0011595993"
+      },
+      {
+        ticker: "IL0010818685",
+        name: "ITURAN LOCATION AND CONTROL LTD.",
+        weight: 0.228302932524,
+        category: "equity",
+        securityId: "IL0010818685"
+      },
+      {
+        ticker: "IL0011216723",
+        name: "Kornit Digital Ltd",
+        weight: 0.160385213621,
+        category: "equity",
+        securityId: "IL0011216723"
+      },
+      {
+        ticker: "IL0011974909",
+        name: "ODDITY TECH LTD",
+        weight: 0.120533176209,
+        category: "equity",
+        securityId: "IL0011974909"
+      },
+      {
+        ticker: "IL0011762130",
+        name: "monday.com Ltd",
+        weight: 0.783890715181,
+        category: "equity",
+        securityId: "IL0011762130"
+      },
+      {
+        ticker: "IL0010834765",
+        name: "RADWARE LTD.",
+        weight: 0.230732732903,
+        category: "equity",
+        securityId: "IL0010834765"
+      },
+      {
+        ticker: "IL0011786493",
+        name: "Riskified Ltd",
+        weight: 0.085869062266,
+        category: "equity",
+        securityId: "IL0011786493"
+      },
+      {
+        ticker: "IL0011301780",
+        name: "WIX.COM LTD",
+        weight: 0.421905200479,
+        category: "equity",
+        securityId: "IL0011301780"
+      },
+      {
+        ticker: "IL0065100930",
+        name: "ZIM INTEGRATED SHIPPING SERVICES LTD",
+        weight: 0.614619901234,
+        category: "equity",
+        securityId: "IL0065100930"
+      },
+      {
+        ticker: "VGM6",
+        name: "EURO STOXX 50 JUN26",
+        weight: 0.016721649868,
+        category: "derivative",
+        securityId: "N/A"
+      }
+    ],
+    sourceAsOf: "2026-05-31",
+    fetchedAt: "2026-10-08T15:28:10.541Z",
+    source: "sec",
+    weightMethod: "published",
+    sourceName: "SEC Form N-PORT",
+    isFallback: false,
+    sourceWarning: "No free daily issuer file is mapped for this ETF. Using the SEC's public Form N-PORT filing, which is quarterly and published up to 60 days after the report date.",
+    coverageNote: "Complete SEC N-PORT report (net assets $1,028,573,385). Weights are the filed % of net asset value. Derivatives are weights, not economic exposure.",
+    holdingsCount: 119,
+    coverageWeight: 102.48965490892395,
+    categoryWeights: {
+      cash: 2.647597434476,
+      equity: 99.82533582457995,
+      derivative: 0.016721649868
+    },
+    complete: true,
+    sourceUrl: "https://www.sec.gov/Archives/edgar/data/930667/000100472626006433/primary_doc.xml"
   }
 };
 
@@ -497903,6 +499737,9 @@ var MemStorage = class {
       if (error.code !== "ENOENT") console.error("Could not read holdings cache:", error);
     }
     return candidates.filter((data2) => data2.complete && data2.sourceAsOf && data2.holdings?.length).sort((a, b) => (b.sourceAsOf || "").localeCompare(a.sourceAsOf || "") || b.fetchedAt.localeCompare(a.fetchedAt))[0] || null;
+  }
+  listSnapshots() {
+    return Object.values(holdings_default).map(({ holdings, categoryWeights, coverageNote, ...metadata }) => metadata);
   }
   clearCache() {
     cache.clear();
@@ -543301,7 +545138,9 @@ function parseNportXml(xml2, etf, expectedSeriesId) {
     const cusip = item.children("cusip").text().trim() || identifiers.find("cusip").attr("value") || "";
     const ticker = identifiers.find("ticker").attr("value")?.trim() || "";
     const securityId = isin || (cusip && cusip !== "000000000" ? cusip : "") || void 0;
-    const category = categoryFor(item.children("assetCat").text().trim(), name, ticker);
+    if (item.find("isCashCollateral").text().trim() === "Y" || item.find("isNonCashCollateral").text().trim() === "Y") return;
+    let category = categoryFor(item.children("assetCat").text().trim(), name, ticker);
+    if (category === "equity" && !ticker && !securityId) category = "other";
     holdings.push({ ticker: ticker || securityId || "", name, weight: numericWeight(item.children("pctVal").text()), category, securityId });
   });
   const portfolio = validatePortfolio({
@@ -543801,6 +545640,9 @@ async function registerRoutes(httpServer2, app2) {
         return [ticker, metadata];
       }))
     });
+  });
+  app2.get("/api/etf/status", (_req, res) => {
+    return res.json({ success: true, snapshots: storage.listSnapshots() });
   });
   app2.get("/api/admin/holdings/v2/status", (_req, res) => {
     return res.json({ success: true, status: issuerStatus() });

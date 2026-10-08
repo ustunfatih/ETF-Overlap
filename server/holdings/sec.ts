@@ -42,7 +42,10 @@ export function parseNportXml(xml: string, etf: string, expectedSeriesId?: strin
     const cusip = item.children("cusip").text().trim() || identifiers.find("cusip").attr("value") || "";
     const ticker = identifiers.find("ticker").attr("value")?.trim() || "";
     const securityId = isin || (cusip && cusip !== "000000000" ? cusip : "") || undefined;
-    const category = categoryFor(item.children("assetCat").text().trim(), name, ticker);
+    // Securities-lending collateral inflates the total above 100% of net assets and is not a fund exposure.
+    if (item.find("isCashCollateral").text().trim() === "Y" || item.find("isNonCashCollateral").text().trim() === "Y") return;
+    let category = categoryFor(item.children("assetCat").text().trim(), name, ticker);
+    if (category === "equity" && !ticker && !securityId) category = "other"; // unidentifiable line, e.g. a private holding
     holdings.push({ ticker: ticker || securityId || "", name, weight: numericWeight(item.children("pctVal").text()), category, securityId });
   });
   const portfolio = validatePortfolio({ etf, holdings, sourceAsOf: date, fetchedAt: new Date().toISOString(), source: "sec", weightMethod: "published", sourceName: "SEC Form N-PORT", isFallback: false,

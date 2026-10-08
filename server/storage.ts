@@ -23,6 +23,7 @@ export interface IStorage {
   setCachedHoldings(ticker: string, data: EtfData): void;
   clearCache(): void;
   getLastHealthy(ticker: string): EtfData | null;
+  listSnapshots(): Omit<EtfData, "holdings">[];
 }
 
 export class MemStorage implements IStorage {
@@ -65,6 +66,10 @@ export class MemStorage implements IStorage {
     }
     return candidates.filter(data => data.complete && data.sourceAsOf && data.holdings?.length)
       .sort((a, b) => (b.sourceAsOf || "").localeCompare(a.sourceAsOf || "") || b.fetchedAt.localeCompare(a.fetchedAt))[0] || null;
+  }
+
+  listSnapshots(): Omit<EtfData, "holdings">[] {
+    return Object.values(snapshots as Record<string, EtfData>).map(({ holdings, categoryWeights, coverageNote, ...metadata }) => metadata);
   }
 
   clearCache(): void {

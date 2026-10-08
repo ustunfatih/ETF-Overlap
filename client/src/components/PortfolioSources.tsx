@@ -1,16 +1,9 @@
 import type { AssetCategory, EtfData } from "@shared/schema";
-
-const LABELS: Record<AssetCategory, string> = { equity: "Stocks", cash: "Cash", deposit: "Deposits", repo: "Repo", bond: "Bonds", option: "Options", derivative: "Other derivatives", other: "Other assets" };
+import { ageDays, ageLabel, isStale } from "@/lib/freshness";
 
 const DAY_MS = 86_400_000;
-const STALE_DAYS = 60; // Monthly publishers (e.g. Vanguard) are normally 1-2 months behind.
-const SEC_STALE_DAYS = 120;
-const ageDays = (date?: string) => date ? Math.max(0, Math.floor((Date.now() - Date.parse(`${date}T00:00:00Z`)) / DAY_MS)) : null;
-const ageLabel = (age: number | null) => age === null ? "unknown age" : age === 0 ? "today" : `${age} day${age === 1 ? "" : "s"} old`;
-const isStale = (report: Omit<EtfData, "holdings">) => {
-  const age = ageDays(report.sourceAsOf);
-  return age === null || age > (report.source === "sec" ? SEC_STALE_DAYS : STALE_DAYS);
-};
+
+const LABELS: Record<AssetCategory, string> = { equity: "Stocks", cash: "Cash", deposit: "Deposits", repo: "Repo", bond: "Bonds", option: "Options", derivative: "Other derivatives", other: "Other assets" };
 
 export default function PortfolioSources({ portfolios, errors }: { portfolios: Record<string, Omit<EtfData, "holdings">>; errors?: string[] }) {
   const reports = Object.values(portfolios);

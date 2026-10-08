@@ -166,6 +166,11 @@ export async function registerRoutes(httpServer: Server, app: Express) {
     });
   });
 
+  // GET /api/etf/status — report date and source of every stored portfolio
+  app.get("/api/etf/status", (_req, res) => {
+    return res.json({ success: true, snapshots: storage.listSnapshots() });
+  });
+
   // GET /api/admin/holdings/v2/status
   app.get("/api/admin/holdings/v2/status", (_req, res) => {
     return res.json({ success: true, status: issuerStatus() });
