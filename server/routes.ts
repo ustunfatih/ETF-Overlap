@@ -25,7 +25,12 @@ async function loadEtfData(upper: string): Promise<EtfData> {
   }
   try {
     const fresh = await fetchIssuerPortfolio(upper, previous?.sourceAsOf);
-    if (previous?.sourceAsOf && fresh.sourceAsOf! < previous.sourceAsOf) throw new Error(`Source returned older portfolio (${fresh.sourceAsOf}) than last healthy data (${previous.sourceAsOf})`);
+    if (previous?.sourceAsOf && fresh.sourceAsOf! < previous.sourceAsOf) {
+      // The issuer mirror is behind what we already hold; the stored portfolio is still the newest complete one.
+      const { sourceError, lastAttemptAt, ...healthy } = previous;
+      storage.setCachedHoldings(upper, { ...healthy, isFallback: false });
+      return { ...healthy, isFallback: false };
+    }
     storage.setCachedHoldings(upper, fresh);
     return fresh;
   } catch (error: any) {

@@ -70347,7 +70347,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-08-31",
-    fetchedAt: "2026-10-08T14:38:24.566Z",
+    fetchedAt: "2026-10-08T14:44:55.708Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "Vanguard",
@@ -73925,7 +73925,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-08",
-    fetchedAt: "2026-10-08T14:38:23.802Z",
+    fetchedAt: "2026-10-08T14:44:54.802Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "NEOS",
@@ -77001,7 +77001,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-06",
-    fetchedAt: "2026-10-08T14:38:25.137Z",
+    fetchedAt: "2026-10-08T14:44:57.277Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "iShares",
@@ -77743,7 +77743,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-08",
-    fetchedAt: "2026-10-08T14:38:23.784Z",
+    fetchedAt: "2026-10-08T14:44:54.839Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "NEOS",
@@ -81299,7 +81299,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-07",
-    fetchedAt: "2026-10-08T14:38:22.808Z",
+    fetchedAt: "2026-10-08T14:44:54.014Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "State Street",
@@ -82047,7 +82047,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-07",
-    fetchedAt: "2026-10-08T14:38:24.263Z",
+    fetchedAt: "2026-10-08T14:44:55.197Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "Invesco",
@@ -106751,7 +106751,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-08-31",
-    fetchedAt: "2026-10-08T14:38:24.547Z",
+    fetchedAt: "2026-10-08T14:44:56.070Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "Vanguard",
@@ -118890,7 +118890,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-08-31",
-    fetchedAt: "2026-10-08T14:38:24.557Z",
+    fetchedAt: "2026-10-08T14:44:56.207Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "Vanguard",
@@ -119458,7 +119458,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-07",
-    fetchedAt: "2026-10-08T14:38:22.827Z",
+    fetchedAt: "2026-10-08T14:44:54.104Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "State Street",
@@ -119826,7 +119826,7 @@ var holdings_default = {
     weightMethod: "published",
     sourceName: "iShares",
     sourceUrl: "https://www.ishares.com/us/products/239454/ishares-20-year-treasury-bond-etf/latest-holdings.csv",
-    isFallback: false,
+    isFallback: true,
     coverageNote: "Complete issuer holdings file. Weights use the issuer's published precision. Derivatives are published weights, not economic exposure.",
     holdingsCount: 49,
     coverageWeight: 99.99999999999999,
@@ -119835,7 +119835,9 @@ var holdings_default = {
       cash: 0,
       other: 0
     },
-    complete: true
+    complete: true,
+    sourceError: "Source portfolio date regressed",
+    lastAttemptAt: "2026-10-08T14:44:58.124Z"
   },
   VUG: {
     etf: "VUG",
@@ -120913,7 +120915,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-08-31",
-    fetchedAt: "2026-10-08T14:38:24.505Z",
+    fetchedAt: "2026-10-08T14:44:55.721Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "Vanguard",
@@ -149362,7 +149364,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-08-31",
-    fetchedAt: "2026-10-08T14:38:24.588Z",
+    fetchedAt: "2026-10-08T14:44:56.226Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "Vanguard",
@@ -151792,7 +151794,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-08-31",
-    fetchedAt: "2026-10-08T14:38:24.767Z",
+    fetchedAt: "2026-10-08T14:44:56.939Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "Vanguard",
@@ -156153,7 +156155,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-08-31",
-    fetchedAt: "2026-10-08T14:38:24.773Z",
+    fetchedAt: "2026-10-08T14:44:57.117Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "Vanguard",
@@ -156343,7 +156345,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-07",
-    fetchedAt: "2026-10-08T14:38:22.879Z",
+    fetchedAt: "2026-10-08T14:44:54.132Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "State Street",
@@ -156713,7 +156715,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-07",
-    fetchedAt: "2026-10-08T14:38:22.889Z",
+    fetchedAt: "2026-10-08T14:44:54.121Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "State Street",
@@ -157181,7 +157183,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-07",
-    fetchedAt: "2026-10-08T14:38:22.911Z",
+    fetchedAt: "2026-10-08T14:44:54.150Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "State Street",
@@ -157803,7 +157805,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-07",
-    fetchedAt: "2026-10-08T14:38:22.953Z",
+    fetchedAt: "2026-10-08T14:44:54.175Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "State Street",
@@ -158062,7 +158064,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-07",
-    fetchedAt: "2026-10-08T14:38:22.989Z",
+    fetchedAt: "2026-10-08T14:44:54.192Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "State Street",
@@ -158313,7 +158315,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-07",
-    fetchedAt: "2026-10-08T14:38:23.048Z",
+    fetchedAt: "2026-10-08T14:44:54.205Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "State Street",
@@ -158523,7 +158525,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-07",
-    fetchedAt: "2026-10-08T14:38:22.979Z",
+    fetchedAt: "2026-10-08T14:44:54.183Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "State Street",
@@ -158760,7 +158762,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-07",
-    fetchedAt: "2026-10-08T14:38:23.075Z",
+    fetchedAt: "2026-10-08T14:44:54.222Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "State Street",
@@ -158955,7 +158957,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-07",
-    fetchedAt: "2026-10-08T14:38:23.062Z",
+    fetchedAt: "2026-10-08T14:44:54.213Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "State Street",
@@ -161783,7 +161785,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-07",
-    fetchedAt: "2026-10-08T14:38:23.146Z",
+    fetchedAt: "2026-10-08T14:44:54.265Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "State Street",
@@ -161965,7 +161967,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-08",
-    fetchedAt: "2026-10-08T14:38:24.002Z",
+    fetchedAt: "2026-10-08T14:44:54.841Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "NEOS",
@@ -162049,7 +162051,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-08",
-    fetchedAt: "2026-10-08T14:38:24.330Z",
+    fetchedAt: "2026-10-08T14:44:55.391Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "NEOS",
@@ -162098,7 +162100,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-08",
-    fetchedAt: "2026-10-08T14:38:24.366Z",
+    fetchedAt: "2026-10-08T14:44:55.425Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "NEOS",
@@ -174070,7 +174072,7 @@ var holdings_default = {
     weightMethod: "published",
     sourceName: "iShares",
     sourceUrl: "https://www.ishares.com/us/products/239710/ishares-russell-2000-etf/latest-holdings.csv",
-    isFallback: false,
+    isFallback: true,
     coverageNote: "Complete issuer holdings file. Weights use the issuer's published precision. Derivatives are published weights, not economic exposure.",
     holdingsCount: 1991,
     coverageWeight: 99.940000000002,
@@ -174080,7 +174082,9 @@ var holdings_default = {
       cash: 0.43000000000000005,
       derivative: 0
     },
-    complete: true
+    complete: true,
+    sourceError: "Source portfolio date regressed",
+    lastAttemptAt: "2026-10-08T14:44:58.205Z"
   },
   AGG: {
     etf: "AGG",
@@ -267705,7 +267709,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-07",
-    fetchedAt: "2026-10-08T14:38:25.258Z",
+    fetchedAt: "2026-10-08T14:44:57.656Z",
     source: "issuer",
     weightMethod: "market-value",
     sourceName: "iShares",
@@ -268287,7 +268291,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-07",
-    fetchedAt: "2026-10-08T14:38:22.853Z",
+    fetchedAt: "2026-10-08T14:44:54.054Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "State Street",
@@ -268573,7 +268577,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-07",
-    fetchedAt: "2026-10-08T14:38:22.899Z",
+    fetchedAt: "2026-10-08T14:44:54.161Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "State Street",
@@ -314080,7 +314084,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-08-31",
-    fetchedAt: "2026-10-08T14:38:24.652Z",
+    fetchedAt: "2026-10-08T14:44:56.820Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "Vanguard",
@@ -377452,7 +377456,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-08-31",
-    fetchedAt: "2026-10-08T14:38:24.754Z",
+    fetchedAt: "2026-10-08T14:44:57.167Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "Vanguard",
@@ -378135,7 +378139,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-07",
-    fetchedAt: "2026-10-08T14:38:27.793Z",
+    fetchedAt: "2026-10-08T14:45:02.153Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "J.P. Morgan",
@@ -378984,7 +378988,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-07",
-    fetchedAt: "2026-10-08T14:38:27.319Z",
+    fetchedAt: "2026-10-08T14:45:01.636Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "J.P. Morgan",
@@ -493014,7 +493018,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-08-31",
-    fetchedAt: "2026-10-08T14:38:24.707Z",
+    fetchedAt: "2026-10-08T14:44:57.242Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "Vanguard",
@@ -495274,7 +495278,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-08-31",
-    fetchedAt: "2026-10-08T14:38:24.594Z",
+    fetchedAt: "2026-10-08T14:44:56.495Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "Vanguard",
@@ -495906,7 +495910,7 @@ var holdings_default = {
         category: "equity"
       }
     ],
-    fetchedAt: "2026-10-08T14:38:26.089Z",
+    fetchedAt: "2026-10-08T14:44:59.788Z",
     sourceAsOf: "2026-10-06",
     source: "research",
     sourceName: "Schwab Research",
@@ -497067,7 +497071,7 @@ var holdings_default = {
     source: "research",
     sourceName: "Schwab Research",
     sourceUrl: "https://www.schwab.wallst.com/schwab/Prospect/research/etfs/schwabETF/index.asp?symbol=SCHG&type=holdings",
-    isFallback: false,
+    isFallback: true,
     weightMethod: "published",
     sourceWarning: "Direct issuer source failed (Request failed with status code 403). Using Schwab's free dated research feed.",
     coverageNote: "All pages of Schwab's public research holdings table, verified against its total position count. The date is the research feed's reported portfolio date; weights use its published precision. Derivatives are weights, not economic exposure.",
@@ -497078,7 +497082,9 @@ var holdings_default = {
       derivative: 0.03,
       cash: 0.04
     },
-    complete: true
+    complete: true,
+    sourceError: "Source portfolio date regressed",
+    lastAttemptAt: "2026-10-08T14:45:00.550Z"
   },
   FDVV: {
     etf: "FDVV",
@@ -497840,7 +497846,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-07",
-    fetchedAt: "2026-10-08T14:38:28.761Z",
+    fetchedAt: "2026-10-08T14:45:03.156Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "Fidelity",
@@ -543328,7 +543334,8 @@ async function secGet(url2, config2 = {}) {
   try {
     return (await axios_default.get(url2, { headers, timeout: 3e4, ...config2 })).data;
   } catch (error) {
-    throw new Error(`${error.response?.status ?? error.code ?? "request failed"} from ${new URL(url2).host}${new URL(url2).pathname}${error.response?.status === 403 ? " (the SEC rejects requests without a User-Agent that includes contact details; set SEC_USER_AGENT)" : ""}`);
+    const body = typeof error.response?.data === "string" ? ` [${error.response.data.replace(/\s+/g, " ").slice(0, 160)}]` : "";
+    throw new Error(`${error.response?.status ?? error.code ?? "request failed"}${body} from ${new URL(url2).host}${new URL(url2).pathname}${error.response?.status === 403 ? " (the SEC rejects requests without a User-Agent that includes contact details; set SEC_USER_AGENT)" : ""}`);
   }
 }
 async function fetchSecPortfolio(ticker) {
@@ -543376,7 +543383,7 @@ for (const [ticker, path] of Object.entries({ IVV: "239726/ishares-core-sp-500-e
     altUrl: `https://www.ishares.com/us/products/${path}/1467271812596.ajax?fileType=csv&fileName=${ticker}_holdings&dataType=fund`
   };
 }
-for (const ticker of ["SCHD", "SCHG", "SCHB", "SCHX"]) {
+for (const ticker of ["SCHD", "SCHG"]) {
   sources[ticker] = { name: "Schwab", format: "schwab", url: `https://www.schwabassetmanagement.com/allholdings/${ticker.toLowerCase()}?page=0` };
 }
 for (const [ticker, cusip] of Object.entries({ JEPI: "46641Q332", JEPQ: "46654Q203" })) {
@@ -543668,7 +543675,8 @@ async function fetchIssuerPortfolio(ticker, notBefore) {
     try {
       const alternate = await fetchPrimaryPortfolio(upper, true);
       return alternate.sourceAsOf > primary.sourceAsOf ? alternate : primary;
-    } catch {
+    } catch (error) {
+      console.warn(`${upper}: alternate iShares export failed (${error instanceof Error ? error.message : error})`);
       return primary;
     }
   } catch (error) {
@@ -543690,7 +543698,11 @@ async function loadEtfData(upper) {
   }
   try {
     const fresh = await fetchIssuerPortfolio(upper, previous?.sourceAsOf);
-    if (previous?.sourceAsOf && fresh.sourceAsOf < previous.sourceAsOf) throw new Error(`Source returned older portfolio (${fresh.sourceAsOf}) than last healthy data (${previous.sourceAsOf})`);
+    if (previous?.sourceAsOf && fresh.sourceAsOf < previous.sourceAsOf) {
+      const { sourceError, lastAttemptAt, ...healthy } = previous;
+      storage.setCachedHoldings(upper, { ...healthy, isFallback: false });
+      return { ...healthy, isFallback: false };
+    }
     storage.setCachedHoldings(upper, fresh);
     return fresh;
   } catch (error) {

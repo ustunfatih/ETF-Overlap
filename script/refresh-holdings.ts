@@ -13,13 +13,20 @@ await Promise.all(Array.from({ length: 3 }, async () => {
     const ticker = queue.shift()!;
     try {
       const data = await fetchIssuerPortfolio(ticker, previous[ticker]?.sourceAsOf);
-      if (previous[ticker]?.sourceAsOf && data.sourceAsOf! < previous[ticker].sourceAsOf!) throw new Error("Source portfolio date regressed");
+      if (previous[ticker]?.sourceAsOf && data.sourceAsOf! < previous[ticker].sourceAsOf!) {
+        // Some issuer mirrors serve an older copy for a while. The stored portfolio is still the newest complete one, so keep it; check-freshness fails if it really gets too old.
+        const { sourceError, lastAttemptAt, ...healthy } = previous[ticker];
+        previous[ticker] = { ...healthy, isFallback: false };
+        console.log(`${ticker}: source still shows ${data.sourceAsOf}, keeping newer stored ${healthy.sourceAsOf}`);
+        continue;
+      }
       previous[ticker] = data;
       console.log(`${ticker}: ${data.sourceAsOf}, ${data.holdingsCount} positions, ${data.coverageWeight?.toFixed(2)}% net weight`);
     } catch (error: any) {
-      failures++;
+      // SEC-only tickers are optional extras: report them without failing the whole refresh.
+      if (!secTickers.includes(ticker)) failures++;
       if (previous[ticker]) previous[ticker] = { ...previous[ticker], sourceError: error.message, isFallback: true, lastAttemptAt: new Date().toISOString() };
-      console.error(`${ticker}: ${error.message}; ${previous[ticker] ? "last healthy portfolio retained" : "no healthy portfolio available"}`);
+      console.error(`${secTickers.includes(ticker) ? "WARNING " : ""}${ticker}: ${error.message}; ${previous[ticker] ? "last healthy portfolio retained" : "no healthy portfolio available"}`);
     }
   }
 }));
