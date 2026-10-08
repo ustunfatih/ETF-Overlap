@@ -543624,7 +543624,8 @@ async function fetchSchwabResearch(ticker, primaryError) {
   const expected = Number($3("body").text().replace(/\s+/g, " ").match(/([\d,]+) Total Holdings/i)?.[1]?.replace(/,/g, ""));
   if (!issue || !session || !expected || expected > 1e4 || $3("#holdingsTableContainer").attr("fundtype") !== "schwab") throw new Error("Schwab research full-portfolio metadata is missing");
   const holdings = [];
-  for (let page = 1; page <= Math.ceil(expected / 100); page++) {
+  let total = expected;
+  for (let page = 1; page <= Math.ceil(total / 100); page++) {
     const args = { module: "schwabETFHoldingsTable", moduleArgs: { ModuleID: "holdingsTableContainer", symbol: ticker, wsodissue: issue, sortDir: "desc", sortBy: "PctNetAssets", page, numRows: 100 } };
     const body = new URLSearchParams({ inputs: "B64ENC" + Buffer.from(JSON.stringify(args)).toString("base64"), "..contenttype..": "text/javascript", "..requester..": "ContentBuffer" });
     const response = await axios_default.post(`https://www.schwab.wallst.com/schwab/Prospect/research/resources/server/Module/SchwabETF.ModuleAPI.asp?${session}`, body.toString(), { headers: { ...headers2, "Content-Type": "application/x-www-form-urlencoded" }, timeout: 2e4, maxContentLength: 5e6 });
@@ -543633,7 +543634,9 @@ async function fetchSchwabResearch(ticker, primaryError) {
     const root2 = JSON.parse(raw.replace(/^this\.apiReturn\s*=\s*/, "").replace(/;\s*$/, "")).module;
     const range = load(`<div>${researchText(root2)}</div>`).text().replace(/\s+/g, " ").match(/Viewing\s+(\d+)\s*-\s*(\d+)\s+of\s+([\d,]+)\s*matches/i);
     const tbody = researchFind(root2, (node) => node.a?.id === "tthHoldingsTbody");
-    if (!range || Number(range[3].replace(/,/g, "")) !== expected || Number(range[1]) !== (page - 1) * 100 + 1 || !tbody) throw new Error(`Schwab research pagination mismatch: expected ${expected}, reported ${range?.[3] || "missing"} positions`);
+    const reported = Number(range?.[3].replace(/,/g, ""));
+    if (page === 1 && reported >= expected && reported <= expected + Math.max(5, Math.ceil(expected * 5e-3))) total = reported;
+    if (!range || reported !== total || Number(range[1]) !== (page - 1) * 100 + 1 || !tbody) throw new Error(`Schwab research pagination mismatch: expected ${expected}, reported ${range?.[3] || "missing"} positions`);
     const rows = (tbody.c || []).filter((node) => typeof node === "object" && node.t === "tr");
     if (rows.length !== Number(range[2]) - Number(range[1]) + 1) throw new Error("Schwab research holdings count mismatch");
     for (const row of rows) {
@@ -543643,7 +543646,7 @@ async function fetchSchwabResearch(ticker, primaryError) {
       holdings.push({ ticker: ticker2, name, weight: numericWeight(cells[2].a?.tsraw), category: classify(name, "", ticker2) });
     }
   }
-  if (holdings.length !== expected || new Set(holdings.map((row) => `${row.ticker}|${row.name}`)).size !== expected) throw new Error("Schwab research portfolio is incomplete or duplicated");
+  if (holdings.length !== total || new Set(holdings.map((row) => `${row.ticker}|${row.name}`)).size !== total) throw new Error("Schwab research portfolio is incomplete or duplicated");
   return validatePortfolio({
     etf: ticker,
     holdings,

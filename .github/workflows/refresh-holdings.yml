@@ -29,7 +29,12 @@ jobs:
           git add data/holdings.json
           if ! git diff --cached --quiet; then
             git commit -m 'Update dated official ETF portfolios'
-            git push
+            # main may have moved while the job ran; replay this data commit on top, preferring the fresh download.
+            for attempt in 1 2 3; do
+              git pull --rebase -X theirs origin "$GITHUB_REF_NAME" && git push && break
+              [ "$attempt" = 3 ] && exit 1
+              sleep $((attempt * 5))
+            done
           fi
       - name: Check portfolio freshness
         id: freshness
