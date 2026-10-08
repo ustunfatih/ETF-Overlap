@@ -18552,7 +18552,7 @@ var require_finalhandler = __commonJS({
       var env = opts.env || "production";
       var onerror = opts.onerror;
       return function(err) {
-        var headers;
+        var headers2;
         var msg;
         var status;
         if (!err && res.headersSent) {
@@ -18564,7 +18564,7 @@ var require_finalhandler = __commonJS({
           if (status === void 0) {
             status = getResponseStatusCode(res);
           } else {
-            headers = getErrorHeaders(err);
+            headers2 = getErrorHeaders(err);
           }
           msg = getErrorMessage(err, status, env);
         } else {
@@ -18582,7 +18582,7 @@ var require_finalhandler = __commonJS({
           }
           return;
         }
-        send(req, res, status, headers, msg);
+        send(req, res, status, headers2, msg);
       };
     }
     function getErrorHeaders(err) {
@@ -18624,7 +18624,7 @@ var require_finalhandler = __commonJS({
       }
       return status;
     }
-    function send(req, res, status, headers, message) {
+    function send(req, res, status, headers2, message) {
       function write() {
         var body = createHtmlDocument(message);
         res.statusCode = status;
@@ -18634,7 +18634,7 @@ var require_finalhandler = __commonJS({
         res.removeHeader("Content-Encoding");
         res.removeHeader("Content-Language");
         res.removeHeader("Content-Range");
-        for (const [key, value] of Object.entries(headers ?? {})) {
+        for (const [key, value] of Object.entries(headers2 ?? {})) {
           res.setHeader(key, value);
         }
         res.setHeader("Content-Security-Policy", "default-src 'none'");
@@ -22833,11 +22833,11 @@ var require_send = __commonJS({
       }
       return list;
     }
-    function setHeaders(res, headers) {
-      var keys2 = Object.keys(headers);
+    function setHeaders(res, headers2) {
+      var keys2 = Object.keys(headers2);
       for (var i = 0; i < keys2.length; i++) {
         var key = keys2[i];
-        res.setHeader(key, headers[key]);
+        res.setHeader(key, headers2[key]);
       }
     }
   }
@@ -23130,7 +23130,7 @@ var require_response = __commonJS({
         name = null;
         opts = filename;
       }
-      var headers = {
+      var headers2 = {
         "Content-Disposition": contentDisposition(name || path2)
       };
       if (opts && opts.headers) {
@@ -23138,12 +23138,12 @@ var require_response = __commonJS({
         for (var i = 0; i < keys2.length; i++) {
           var key = keys2[i];
           if (key.toLowerCase() !== "content-disposition") {
-            headers[key] = opts.headers[key];
+            headers2[key] = opts.headers[key];
           }
         }
       }
       opts = Object.create(opts);
-      opts.headers = headers;
+      opts.headers = headers2;
       var fullPath = !opts.root ? resolve(path2) : path2;
       return this.sendFile(fullPath, opts, done);
     };
@@ -23353,7 +23353,7 @@ var require_response = __commonJS({
       file.on("stream", onstream);
       onFinished(res2, onfinish);
       if (options.headers) {
-        file.on("headers", function headers(res3) {
+        file.on("headers", function headers2(res3) {
           var obj = options.headers;
           var keys2 = Object.keys(obj);
           for (var i = 0; i < keys2.length; i++) {
@@ -32790,19 +32790,19 @@ var require_form_data = __commonJS({
       var contentDisposition = this._getContentDisposition(value, options);
       var contentType = this._getContentType(value, options);
       var contents2 = "";
-      var headers = {
+      var headers2 = {
         // add custom disposition as third element or keep it two elements if not
         "Content-Disposition": ["form-data", 'name="' + field + '"'].concat(contentDisposition || []),
         // if no content type. allow it to be empty array
         "Content-Type": [].concat(contentType || [])
       };
       if (typeof options.header === "object") {
-        populate(headers, options.header);
+        populate(headers2, options.header);
       }
       var header;
-      for (var prop2 in headers) {
-        if (hasOwn2(headers, prop2)) {
-          header = headers[prop2];
+      for (var prop2 in headers2) {
+        if (hasOwn2(headers2, prop2)) {
+          header = headers2[prop2];
           if (header == null) {
             continue;
           }
@@ -33529,12 +33529,12 @@ var require_follow_redirects = __commonJS({
       spread3.path = spread3.search ? spread3.pathname + spread3.search : spread3.pathname;
       return spread3;
     }
-    function removeMatchingHeaders(regex, headers) {
+    function removeMatchingHeaders(regex, headers2) {
       var lastValue;
-      for (var header in headers) {
+      for (var header in headers2) {
         if (regex.test(header)) {
-          lastValue = headers[header];
-          delete headers[header];
+          lastValue = headers2[header];
+          delete headers2[header];
         }
       }
       return lastValue === null || typeof lastValue === "undefined" ? void 0 : String(lastValue).trim();
@@ -37247,7 +37247,7 @@ var require_dbcs_data2 = __commonJS({
       // == Japanese/ShiftJIS ====================================================
       // All japanese encodings are based on JIS X set of standards:
       // JIS X 0201 - Single-byte encoding of ASCII + ¥ + Kana chars at 0xA1-0xDF.
-      // JIS X 0208 - Main set of 6879 characters, placed in 94x94 plane, to be encoded by 2 bytes.
+      // JIS X 0208 - Main set of 6879 characters, placed in 94x94 plane, to be encoded by 2 bytes. 
       //              Has several variations in 1978, 1983, 1990 and 1997.
       // JIS X 0212 - Supplementary plane of 6067 chars in 94x94 plane. 1990. Effectively dead.
       // JIS X 0213 - Extension and modern replacement of 0208 and 0212. Total chars: 11233.
@@ -37264,7 +37264,7 @@ var require_dbcs_data2 = __commonJS({
       //               0x8F, (0xA1-0xFE)x2 - 0212 plane (94x94).
       //  * JIS X 208: 7-bit, direct encoding of 0208. Byte ranges: 0x21-0x7E (94 values). Uncommon.
       //               Used as-is in ISO2022 family.
-      //  * ISO2022-JP: Stateful encoding, with escape sequences to switch between ASCII,
+      //  * ISO2022-JP: Stateful encoding, with escape sequences to switch between ASCII, 
       //                0201-1976 Roman, 0208-1978, 0208-1983.
       //  * ISO2022-JP-1: Adds esc seq for 0212-1990.
       //  * ISO2022-JP-2: Adds esc seq for GB2313-1980, KSX1001-1992, ISO8859-1, ISO8859-7.
@@ -37375,7 +37375,7 @@ var require_dbcs_data2 = __commonJS({
       //  * Windows CP 951: Microsoft variant of Big5-HKSCS-2001. Seems to be never public. http://me.abelcheung.org/articles/research/what-is-cp951/
       //  * Big5-2003 (Taiwan standard) almost superset of cp950.
       //  * Unicode-at-on (UAO) / Mozilla 1.8. Falling out of use on the Web. Not supported by other browsers.
-      //  * Big5-HKSCS (-2001, -2004, -2008). Hong Kong standard.
+      //  * Big5-HKSCS (-2001, -2004, -2008). Hong Kong standard. 
       //    many unicode code points moved from PUA to Supplementary plane (U+2XXXX) over the years.
       //    Plus, it has 4 combining sequences.
       //    Seems that Mozilla refused to support it for 10 yrs. https://bugzilla.mozilla.org/show_bug.cgi?id=162431 https://bugzilla.mozilla.org/show_bug.cgi?id=310299
@@ -37386,7 +37386,7 @@ var require_dbcs_data2 = __commonJS({
       //    In the encoder, it might make sense to support encoding old PUA mappings to Big5 bytes seq-s.
       //    Official spec: http://www.ogcio.gov.hk/en/business/tech_promotion/ccli/terms/doc/2003cmp_2008.txt
       //                   http://www.ogcio.gov.hk/tc/business/tech_promotion/ccli/terms/doc/hkscs-2008-big5-iso.txt
-      //
+      // 
       // Current understanding of how to deal with Big5(-HKSCS) is in the Encoding Standard, http://encoding.spec.whatwg.org/#big5-encoder
       // Unicode mapping (http://www.unicode.org/Public/MAPPINGS/OBSOLETE/EASTASIA/OTHER/BIG5.TXT) is said to be wrong.
       "windows950": "cp950",
@@ -40815,7 +40815,7 @@ var require_dbcs_data3 = __commonJS({
       // == Japanese/ShiftJIS ====================================================
       // All japanese encodings are based on JIS X set of standards:
       // JIS X 0201 - Single-byte encoding of ASCII + ¥ + Kana chars at 0xA1-0xDF.
-      // JIS X 0208 - Main set of 6879 characters, placed in 94x94 plane, to be encoded by 2 bytes.
+      // JIS X 0208 - Main set of 6879 characters, placed in 94x94 plane, to be encoded by 2 bytes. 
       //              Has several variations in 1978, 1983, 1990 and 1997.
       // JIS X 0212 - Supplementary plane of 6067 chars in 94x94 plane. 1990. Effectively dead.
       // JIS X 0213 - Extension and modern replacement of 0208 and 0212. Total chars: 11233.
@@ -40832,7 +40832,7 @@ var require_dbcs_data3 = __commonJS({
       //               0x8F, (0xA1-0xFE)x2 - 0212 plane (94x94).
       //  * JIS X 208: 7-bit, direct encoding of 0208. Byte ranges: 0x21-0x7E (94 values). Uncommon.
       //               Used as-is in ISO2022 family.
-      //  * ISO2022-JP: Stateful encoding, with escape sequences to switch between ASCII,
+      //  * ISO2022-JP: Stateful encoding, with escape sequences to switch between ASCII, 
       //                0201-1976 Roman, 0208-1978, 0208-1983.
       //  * ISO2022-JP-1: Adds esc seq for 0212-1990.
       //  * ISO2022-JP-2: Adds esc seq for GB2313-1980, KSX1001-1992, ISO8859-1, ISO8859-7.
@@ -40943,7 +40943,7 @@ var require_dbcs_data3 = __commonJS({
       //  * Windows CP 951: Microsoft variant of Big5-HKSCS-2001. Seems to be never public. http://me.abelcheung.org/articles/research/what-is-cp951/
       //  * Big5-2003 (Taiwan standard) almost superset of cp950.
       //  * Unicode-at-on (UAO) / Mozilla 1.8. Falling out of use on the Web. Not supported by other browsers.
-      //  * Big5-HKSCS (-2001, -2004, -2008). Hong Kong standard.
+      //  * Big5-HKSCS (-2001, -2004, -2008). Hong Kong standard. 
       //    many unicode code points moved from PUA to Supplementary plane (U+2XXXX) over the years.
       //    Plus, it has 4 combining sequences.
       //    Seems that Mozilla refused to support it for 10 yrs. https://bugzilla.mozilla.org/show_bug.cgi?id=162431 https://bugzilla.mozilla.org/show_bug.cgi?id=310299
@@ -40954,7 +40954,7 @@ var require_dbcs_data3 = __commonJS({
       //    In the encoder, it might make sense to support encoding old PUA mappings to Big5 bytes seq-s.
       //    Official spec: http://www.ogcio.gov.hk/en/business/tech_promotion/ccli/terms/doc/2003cmp_2008.txt
       //                   http://www.ogcio.gov.hk/tc/business/tech_promotion/ccli/terms/doc/hkscs-2008-big5-iso.txt
-      //
+      // 
       // Current understanding of how to deal with Big5(-HKSCS) is in the Encoding Standard, http://encoding.spec.whatwg.org/#big5-encoder
       // Unicode mapping (http://www.unicode.org/Public/MAPPINGS/OBSOLETE/EASTASIA/OTHER/BIG5.TXT) is said to be wrong.
       "windows950": "cp950",
@@ -42213,14 +42213,14 @@ var require_errors = __commonJS({
     };
     var kRequestRetryError = Symbol.for("undici.error.UND_ERR_REQ_RETRY");
     var RequestRetryError = class extends UndiciError {
-      constructor(message, code, { headers, data: data2 }) {
+      constructor(message, code, { headers: headers2, data: data2 }) {
         super(message);
         this.name = "RequestRetryError";
         this.message = message || "Request retry error";
         this.code = "UND_ERR_REQ_RETRY";
         this.statusCode = code;
         this.data = data2;
-        this.headers = headers;
+        this.headers = headers2;
       }
       static [Symbol.hasInstance](instance) {
         return instance && instance[kRequestRetryError] === true;
@@ -42231,14 +42231,14 @@ var require_errors = __commonJS({
     };
     var kResponseError = Symbol.for("undici.error.UND_ERR_RESPONSE");
     var ResponseError = class extends UndiciError {
-      constructor(message, code, { headers, body }) {
+      constructor(message, code, { headers: headers2, body }) {
         super(message);
         this.name = "ResponseError";
         this.message = message || "Response error";
         this.code = "UND_ERR_RESPONSE";
         this.statusCode = code;
         this.body = body;
-        this.headers = headers;
+        this.headers = headers2;
       }
       static [Symbol.hasInstance](instance) {
         return instance && instance[kResponseError] === true;
@@ -42822,19 +42822,19 @@ var require_util = __commonJS({
     function bufferToLowerCasedHeaderName(value) {
       return tree.lookup(value) ?? value.toString("latin1").toLowerCase();
     }
-    function parseHeaders(headers, obj) {
+    function parseHeaders(headers2, obj) {
       if (obj === void 0) obj = {};
-      for (let i = 0; i < headers.length; i += 2) {
-        const key = headerNameToString(headers[i]);
+      for (let i = 0; i < headers2.length; i += 2) {
+        const key = headerNameToString(headers2[i]);
         let val3 = obj[key];
         if (val3) {
           if (typeof val3 === "string") {
             val3 = [val3];
             obj[key] = val3;
           }
-          val3.push(headers[i + 1].toString("latin1"));
+          val3.push(headers2[i + 1].toString("latin1"));
         } else {
-          const headersValue = headers[i + 1];
+          const headersValue = headers2[i + 1];
           if (typeof headersValue === "string") {
             obj[key] = headersValue;
           } else {
@@ -42844,14 +42844,14 @@ var require_util = __commonJS({
       }
       return obj;
     }
-    function parseRawHeaders(headers) {
-      const headersLength = headers.length;
+    function parseRawHeaders(headers2) {
+      const headersLength = headers2.length;
       const ret = new Array(headersLength);
       let key;
       let val3;
       for (let n = 0; n < headersLength; n += 2) {
-        key = headers[n];
-        val3 = headers[n + 1];
+        key = headers2[n];
+        val3 = headers2[n + 1];
         typeof key !== "string" && (key = key.toString());
         typeof val3 !== "string" && (val3 = val3.toString("latin1"));
         ret[n] = key;
@@ -42859,11 +42859,11 @@ var require_util = __commonJS({
       }
       return ret;
     }
-    function encodeRawHeaders(headers) {
-      if (!Array.isArray(headers)) {
+    function encodeRawHeaders(headers2) {
+      if (!Array.isArray(headers2)) {
         throw new TypeError("expected headers to be an array");
       }
-      return headers.map((x) => Buffer.from(x));
+      return headers2.map((x) => Buffer.from(x));
     }
     function isBuffer2(buffer) {
       return buffer instanceof Uint8Array || Buffer.isBuffer(buffer);
@@ -43695,7 +43695,7 @@ var require_request2 = __commonJS({
         path,
         method,
         body,
-        headers,
+        headers: headers2,
         query,
         idempotent,
         blocking,
@@ -43799,28 +43799,28 @@ var require_request2 = __commonJS({
         this.contentType = null;
         this.headers = [];
         this.expectContinue = expectContinue != null ? expectContinue : false;
-        if (Array.isArray(headers)) {
-          if (headers.length % 2 !== 0) {
+        if (Array.isArray(headers2)) {
+          if (headers2.length % 2 !== 0) {
             throw new InvalidArgumentError("headers array must be even");
           }
-          for (let i = 0; i < headers.length; i += 2) {
-            processHeader(this, headers[i], headers[i + 1]);
+          for (let i = 0; i < headers2.length; i += 2) {
+            processHeader(this, headers2[i], headers2[i + 1]);
           }
-        } else if (headers && typeof headers === "object") {
-          if (hasSafeIterator(headers)) {
-            for (const header of headers) {
+        } else if (headers2 && typeof headers2 === "object") {
+          if (hasSafeIterator(headers2)) {
+            for (const header of headers2) {
               if (!Array.isArray(header) || header.length !== 2) {
                 throw new InvalidArgumentError("headers must be in key-value pair format");
               }
               processHeader(this, header[0], header[1]);
             }
           } else {
-            const keys2 = Object.keys(headers);
+            const keys2 = Object.keys(headers2);
             for (let i = 0; i < keys2.length; ++i) {
-              processHeader(this, keys2[i], headers[keys2[i]]);
+              processHeader(this, keys2[i], headers2[keys2[i]]);
             }
           }
-        } else if (headers != null) {
+        } else if (headers2 != null) {
           throw new InvalidArgumentError("headers must be an object or an array");
         }
         assertRequestHandler(handler, method, upgrade);
@@ -43867,14 +43867,14 @@ var require_request2 = __commonJS({
       onResponseStarted() {
         return this[kHandler].onResponseStarted?.();
       }
-      onHeaders(statusCode, headers, resume, statusText) {
+      onHeaders(statusCode, headers2, resume, statusText) {
         assert(!this.aborted);
         assert(!this.completed);
         if (channels.headers.hasSubscribers) {
-          channels.headers.publish({ request: this, response: { statusCode, headers, statusText } });
+          channels.headers.publish({ request: this, response: { statusCode, headers: headers2, statusText } });
         }
         try {
-          return this[kHandler].onHeaders(statusCode, headers, resume, statusText);
+          return this[kHandler].onHeaders(statusCode, headers2, resume, statusText);
         } catch (err) {
           this.abort(err);
         }
@@ -43892,10 +43892,10 @@ var require_request2 = __commonJS({
           return false;
         }
       }
-      onUpgrade(statusCode, headers, socket) {
+      onUpgrade(statusCode, headers2, socket) {
         assert(!this.aborted);
         assert(!this.completed);
-        return this[kHandler].onUpgrade(statusCode, headers, socket);
+        return this[kHandler].onUpgrade(statusCode, headers2, socket);
       }
       onComplete(trailers) {
         this.onFinally();
@@ -44057,16 +44057,16 @@ var require_wrap_handler = __commonJS({
       onRequestStart(controller, context) {
         this.#handler.onConnect?.((reason) => controller.abort(reason), context);
       }
-      onRequestUpgrade(controller, statusCode, headers, socket) {
+      onRequestUpgrade(controller, statusCode, headers2, socket) {
         const rawHeaders = [];
-        for (const [key, val3] of Object.entries(headers)) {
+        for (const [key, val3] of Object.entries(headers2)) {
           rawHeaders.push(Buffer.from(key, "latin1"), toRawHeaderValue(val3));
         }
         this.#handler.onUpgrade?.(statusCode, rawHeaders, socket);
       }
-      onResponseStart(controller, statusCode, headers, statusMessage) {
+      onResponseStart(controller, statusCode, headers2, statusMessage) {
         const rawHeaders = [];
-        for (const [key, val3] of Object.entries(headers)) {
+        for (const [key, val3] of Object.entries(headers2)) {
           rawHeaders.push(Buffer.from(key, "latin1"), toRawHeaderValue(val3));
         }
         if (this.#handler.onHeaders?.(statusCode, rawHeaders, () => controller.resume(), statusMessage) === false) {
@@ -47141,11 +47141,11 @@ var require_util2 = __commonJS({
     function createInflate(zlibOptions2) {
       return new InflateStream(zlibOptions2);
     }
-    function extractMimeType(headers) {
+    function extractMimeType(headers2) {
       let charset = null;
       let essence = null;
       let mimeType = null;
-      const values = getDecodeSplit("content-type", headers);
+      const values = getDecodeSplit("content-type", headers2);
       if (values === null) {
         return "failure";
       }
@@ -48052,8 +48052,8 @@ Content-Type: ${value.type || "application/octet-stream"}\r
       return body != null && (body.stream.locked || util3.isDisturbed(body.stream));
     }
     function bodyMimeType(requestOrResponse) {
-      const headers = requestOrResponse.headersList;
-      const mimeType = extractMimeType(headers);
+      const headers2 = requestOrResponse.headersList;
+      const mimeType = extractMimeType(headers2);
       if (mimeType === "failure") {
         return null;
       }
@@ -48453,12 +48453,12 @@ var require_client_h1 = __commonJS({
        * @param {Buffer} head
        */
       onUpgrade(head) {
-        const { upgrade, client, socket, headers, statusCode } = this;
+        const { upgrade, client, socket, headers: headers2, statusCode } = this;
         assert(upgrade);
         assert(client[kSocket] === socket);
         assert(!socket.destroyed);
         assert(!this.paused);
-        assert((headers.length & 1) === 0);
+        assert((headers2.length & 1) === 0);
         const request = client[kQueue][client[kRunningIdx]];
         assert(request);
         assert(request.upgrade || request.method === "CONNECT");
@@ -48478,7 +48478,7 @@ var require_client_h1 = __commonJS({
         client[kQueue][client[kRunningIdx]++] = null;
         client.emit("disconnect", client[kUrl], [client], new InformationalError("upgrade"));
         try {
-          request.onUpgrade(statusCode, headers, socket);
+          request.onUpgrade(statusCode, headers2, socket);
         } catch (err) {
           util3.destroy(socket, err);
         }
@@ -48491,7 +48491,7 @@ var require_client_h1 = __commonJS({
        * @returns {number}
        */
       onHeadersComplete(statusCode, upgrade, shouldKeepAlive) {
-        const { client, socket, headers, statusText } = this;
+        const { client, socket, headers: headers2, statusText } = this;
         if (socket.destroyed) {
           return -1;
         }
@@ -48552,7 +48552,7 @@ var require_client_h1 = __commonJS({
         } else {
           socket[kReset] = true;
         }
-        const pause = request.onHeaders(statusCode, headers, this.resume, statusText) === false;
+        const pause = request.onHeaders(statusCode, headers2, this.resume, statusText) === false;
         if (request.aborted) {
           return -1;
         }
@@ -48600,7 +48600,7 @@ var require_client_h1 = __commonJS({
        * @returns {number}
        */
       onMessageComplete() {
-        const { client, socket, statusCode, upgrade, headers, contentLength, bytesRead, shouldKeepAlive } = this;
+        const { client, socket, statusCode, upgrade, headers: headers2, contentLength, bytesRead, shouldKeepAlive } = this;
         if (socket.destroyed && (!statusCode || shouldKeepAlive)) {
           return -1;
         }
@@ -48626,7 +48626,7 @@ var require_client_h1 = __commonJS({
           util3.destroy(socket, new ResponseContentLengthMismatchError());
           return -1;
         }
-        request.onComplete(headers);
+        request.onComplete(headers2);
         client[kQueue][client[kRunningIdx]++] = null;
         if (socket[kWriting]) {
           assert(client[kRunning] === 0);
@@ -48822,7 +48822,7 @@ var require_client_h1 = __commonJS({
     }
     function writeH1(client, request) {
       const { method, path, host, upgrade, blocking, reset } = request;
-      let { body, headers, contentLength } = request;
+      let { body, headers: headers2, contentLength } = request;
       const expectsPayload = method === "PUT" || method === "POST" || method === "PATCH" || method === "QUERY" || method === "PROPFIND" || method === "PROPPATCH";
       if (util3.isFormDataLike(body)) {
         if (!extractBody) {
@@ -48830,12 +48830,12 @@ var require_client_h1 = __commonJS({
         }
         const [bodyStream, contentType] = extractBody(body);
         if (request.contentType == null) {
-          headers.push("content-type", contentType);
+          headers2.push("content-type", contentType);
         }
         body = bodyStream.stream;
         contentLength = bodyStream.length;
       } else if (util3.isBlobLike(body) && request.contentType == null && body.type) {
-        headers.push("content-type", body.type);
+        headers2.push("content-type", body.type);
       }
       if (body && typeof body.read === "function") {
         body.read(0);
@@ -48907,10 +48907,10 @@ upgrade: ${upgrade}\r
       } else {
         header += "connection: close\r\n";
       }
-      if (Array.isArray(headers)) {
-        for (let n = 0; n < headers.length; n += 2) {
-          const key = headers[n + 0];
-          const val3 = headers[n + 1];
+      if (Array.isArray(headers2)) {
+        for (let n = 0; n < headers2.length; n += 2) {
+          const key = headers2[n + 0];
+          const val3 = headers2[n + 1];
           if (Array.isArray(val3)) {
             for (let i = 0; i < val3.length; i++) {
               header += `${key}: ${val3[i]}\r
@@ -49301,9 +49301,9 @@ var require_client_h2 = __commonJS({
         NGHTTP2_CANCEL
       }
     } = http22;
-    function parseH2Headers(headers) {
+    function parseH2Headers(headers2) {
       const result = [];
-      for (const [name, value] of Object.entries(headers)) {
+      for (const [name, value] of Object.entries(headers2)) {
         if (Array.isArray(value)) {
           for (const subvalue of value) {
             result.push(Buffer.from(name), Buffer.from(subvalue));
@@ -49549,36 +49549,36 @@ var require_client_h2 = __commonJS({
         util3.errorRequest(client, request, new InvalidArgumentError(`Custom upgrade "${upgrade}" not supported over HTTP/2`));
         return false;
       }
-      const headers = {};
+      const headers2 = {};
       for (let n = 0; n < reqHeaders.length; n += 2) {
         const key = reqHeaders[n + 0];
         const val3 = reqHeaders[n + 1];
         if (key === "cookie") {
-          if (headers[key] != null) {
-            headers[key] = Array.isArray(headers[key]) ? (headers[key].push(val3), headers[key]) : [headers[key], val3];
+          if (headers2[key] != null) {
+            headers2[key] = Array.isArray(headers2[key]) ? (headers2[key].push(val3), headers2[key]) : [headers2[key], val3];
           } else {
-            headers[key] = val3;
+            headers2[key] = val3;
           }
           continue;
         }
         if (Array.isArray(val3)) {
           for (let i = 0; i < val3.length; i++) {
-            if (headers[key]) {
-              headers[key] += `, ${val3[i]}`;
+            if (headers2[key]) {
+              headers2[key] += `, ${val3[i]}`;
             } else {
-              headers[key] = val3[i];
+              headers2[key] = val3[i];
             }
           }
-        } else if (headers[key]) {
-          headers[key] += `, ${val3}`;
+        } else if (headers2[key]) {
+          headers2[key] += `, ${val3}`;
         } else {
-          headers[key] = val3;
+          headers2[key] = val3;
         }
       }
       let stream4 = null;
       const { hostname, port } = client[kUrl];
-      headers[HTTP2_HEADER_AUTHORITY] = host || `${hostname}${port ? `:${port}` : ""}`;
-      headers[HTTP2_HEADER_METHOD] = method;
+      headers2[HTTP2_HEADER_AUTHORITY] = host || `${hostname}${port ? `:${port}` : ""}`;
+      headers2[HTTP2_HEADER_METHOD] = method;
       const abort = (err) => {
         if (request.aborted || request.completed) {
           return;
@@ -49609,18 +49609,18 @@ var require_client_h2 = __commonJS({
             session.unref();
             return false;
           }
-          headers[HTTP2_HEADER_METHOD] = "CONNECT";
-          headers[HTTP2_HEADER_PROTOCOL] = "websocket";
-          headers[HTTP2_HEADER_PATH] = path;
+          headers2[HTTP2_HEADER_METHOD] = "CONNECT";
+          headers2[HTTP2_HEADER_PROTOCOL] = "websocket";
+          headers2[HTTP2_HEADER_PATH] = path;
           if (protocol === "ws:" || protocol === "wss:") {
-            headers[HTTP2_HEADER_SCHEME] = protocol === "ws:" ? "http" : "https";
+            headers2[HTTP2_HEADER_SCHEME] = protocol === "ws:" ? "http" : "https";
           } else {
-            headers[HTTP2_HEADER_SCHEME] = protocol === "http:" ? "http" : "https";
+            headers2[HTTP2_HEADER_SCHEME] = protocol === "http:" ? "http" : "https";
           }
-          stream4 = session.request(headers, { endStream: false, signal });
+          stream4 = session.request(headers2, { endStream: false, signal });
           stream4[kHTTP2Stream] = true;
-          stream4.once("response", (headers2, _flags) => {
-            const { [HTTP2_HEADER_STATUS]: statusCode, ...realHeaders } = headers2;
+          stream4.once("response", (headers3, _flags) => {
+            const { [HTTP2_HEADER_STATUS]: statusCode, ...realHeaders } = headers3;
             request.onUpgrade(statusCode, parseH2Headers(realHeaders), stream4);
             ++session[kOpenStreams];
             client[kQueue][client[kRunningIdx]++] = null;
@@ -49637,10 +49637,10 @@ var require_client_h2 = __commonJS({
           stream4.setTimeout(requestTimeout);
           return true;
         }
-        stream4 = session.request(headers, { endStream: false, signal });
+        stream4 = session.request(headers2, { endStream: false, signal });
         stream4[kHTTP2Stream] = true;
-        stream4.on("response", (headers2) => {
-          const { [HTTP2_HEADER_STATUS]: statusCode, ...realHeaders } = headers2;
+        stream4.on("response", (headers3) => {
+          const { [HTTP2_HEADER_STATUS]: statusCode, ...realHeaders } = headers3;
           request.onUpgrade(statusCode, parseH2Headers(realHeaders), stream4);
           ++session[kOpenStreams];
           client[kQueue][client[kRunningIdx]++] = null;
@@ -49652,8 +49652,8 @@ var require_client_h2 = __commonJS({
         stream4.setTimeout(requestTimeout);
         return true;
       }
-      headers[HTTP2_HEADER_PATH] = path;
-      headers[HTTP2_HEADER_SCHEME] = protocol === "http:" ? "http" : "https";
+      headers2[HTTP2_HEADER_PATH] = path;
+      headers2[HTTP2_HEADER_SCHEME] = protocol === "http:" ? "http" : "https";
       const expectsPayload = method === "PUT" || method === "POST" || method === "PATCH";
       if (body && typeof body.read === "function") {
         body.read(0);
@@ -49662,7 +49662,7 @@ var require_client_h2 = __commonJS({
       if (util3.isFormDataLike(body)) {
         extractBody ??= require_body().extractBody;
         const [bodyStream, contentType] = extractBody(body);
-        headers["content-type"] = contentType;
+        headers2["content-type"] = contentType;
         body = bodyStream.stream;
         contentLength = bodyStream.length;
       }
@@ -49681,25 +49681,25 @@ var require_client_h2 = __commonJS({
       }
       if (contentLength != null) {
         assert(body || contentLength === 0, "no body must not have content length");
-        headers[HTTP2_HEADER_CONTENT_LENGTH] = `${contentLength}`;
+        headers2[HTTP2_HEADER_CONTENT_LENGTH] = `${contentLength}`;
       }
       session.ref();
       if (channels.sendHeaders.hasSubscribers) {
         let header = "";
-        for (const key in headers) {
-          header += `${key}: ${headers[key]}\r
+        for (const key in headers2) {
+          header += `${key}: ${headers2[key]}\r
 `;
         }
         channels.sendHeaders.publish({ request, headers: header, socket: session[kSocket] });
       }
       const shouldEndStream = method === "GET" || method === "HEAD" || body === null;
       if (expectContinue) {
-        headers[HTTP2_HEADER_EXPECT] = "100-continue";
-        stream4 = session.request(headers, { endStream: shouldEndStream, signal });
+        headers2[HTTP2_HEADER_EXPECT] = "100-continue";
+        stream4 = session.request(headers2, { endStream: shouldEndStream, signal });
         stream4[kHTTP2Stream] = true;
         stream4.once("continue", writeBodyH2);
       } else {
-        stream4 = session.request(headers, {
+        stream4 = session.request(headers2, {
           endStream: shouldEndStream,
           signal
         });
@@ -49709,8 +49709,8 @@ var require_client_h2 = __commonJS({
       ++session[kOpenStreams];
       stream4.setTimeout(requestTimeout);
       let responseReceived = false;
-      stream4.once("response", (headers2) => {
-        const { [HTTP2_HEADER_STATUS]: statusCode, ...realHeaders } = headers2;
+      stream4.once("response", (headers3) => {
+        const { [HTTP2_HEADER_STATUS]: statusCode, ...realHeaders } = headers3;
         request.onResponseStarted();
         responseReceived = true;
         if (request.aborted) {
@@ -51924,12 +51924,12 @@ var require_proxy_agent = __commonJS({
     }
     var Http1ProxyWrapper = class extends DispatcherBase {
       #client;
-      constructor(proxyUrl, { headers = {}, connect, factory: factory2 }) {
+      constructor(proxyUrl, { headers: headers2 = {}, connect, factory: factory2 }) {
         if (!proxyUrl) {
           throw new InvalidArgumentError("Proxy URL is mandatory");
         }
         super();
-        this[kProxyHeaders] = headers;
+        this[kProxyHeaders] = headers2;
         if (factory2) {
           this.#client = factory2(proxyUrl, { connect });
         } else {
@@ -51950,14 +51950,14 @@ var require_proxy_agent = __commonJS({
         const {
           origin: origin2,
           path = "/",
-          headers = {}
+          headers: headers2 = {}
         } = opts;
         opts.path = origin2 + path;
-        if (!("host" in headers) && !("Host" in headers)) {
+        if (!("host" in headers2) && !("Host" in headers2)) {
           const { host } = new URL(origin2);
-          headers.host = host;
+          headers2.host = host;
         }
-        opts.headers = { ...this[kProxyHeaders], ...headers };
+        opts.headers = { ...this[kProxyHeaders], ...headers2 };
         return this.#client[kDispatch](opts, handler);
       }
       [kClose]() {
@@ -52082,16 +52082,16 @@ var require_proxy_agent = __commonJS({
         });
       }
       dispatch(opts, handler) {
-        const headers = buildHeaders(opts.headers);
-        throwIfProxyAuthIsSent(headers);
-        if (headers && !("host" in headers) && !("Host" in headers)) {
+        const headers2 = buildHeaders(opts.headers);
+        throwIfProxyAuthIsSent(headers2);
+        if (headers2 && !("host" in headers2) && !("Host" in headers2)) {
           const { host } = new URL(opts.origin);
-          headers.host = host;
+          headers2.host = host;
         }
         return this[kAgent].dispatch(
           {
             ...opts,
-            headers
+            headers: headers2
           },
           handler
         );
@@ -52124,18 +52124,18 @@ var require_proxy_agent = __commonJS({
         return Promise.all(promises);
       }
     };
-    function buildHeaders(headers) {
-      if (Array.isArray(headers)) {
+    function buildHeaders(headers2) {
+      if (Array.isArray(headers2)) {
         const headersPair = {};
-        for (let i = 0; i < headers.length; i += 2) {
-          headersPair[headers[i]] = headers[i + 1];
+        for (let i = 0; i < headers2.length; i += 2) {
+          headersPair[headers2[i]] = headers2[i + 1];
         }
         return headersPair;
       }
-      return headers;
+      return headers2;
     }
-    function throwIfProxyAuthIsSent(headers) {
-      const existProxyAuth = headers && Object.keys(headers).find((key) => key.toLowerCase() === "proxy-authorization");
+    function throwIfProxyAuthIsSent(headers2) {
+      const existProxyAuth = headers2 && Object.keys(headers2).find((key) => key.toLowerCase() === "proxy-authorization");
       if (existProxyAuth) {
         throw new InvalidArgumentError("Proxy-Authorization should be sent in ProxyAgent constructor");
       }
@@ -52339,11 +52339,11 @@ var require_retry_handler = __commonJS({
         this.end = null;
         this.etag = null;
       }
-      onResponseStartWithRetry(controller, statusCode, headers, statusMessage, err) {
+      onResponseStartWithRetry(controller, statusCode, headers2, statusMessage, err) {
         if (this.retryOpts.throwOnError) {
           if (this.retryOpts.statusCodes.includes(statusCode) === false) {
             this.headersSent = true;
-            this.handler.onResponseStart?.(controller, statusCode, headers, statusMessage);
+            this.handler.onResponseStart?.(controller, statusCode, headers2, statusMessage);
           } else {
             this.error = err;
           }
@@ -52351,13 +52351,13 @@ var require_retry_handler = __commonJS({
         }
         if (isDisturbed(this.opts.body)) {
           this.headersSent = true;
-          this.handler.onResponseStart?.(controller, statusCode, headers, statusMessage);
+          this.handler.onResponseStart?.(controller, statusCode, headers2, statusMessage);
           return;
         }
         function shouldRetry(passedErr) {
           if (passedErr) {
             this.headersSent = true;
-            this.handler.onResponseStart?.(controller, statusCode, headers, statusMessage);
+            this.handler.onResponseStart?.(controller, statusCode, headers2, statusMessage);
             controller.resume();
             return;
           }
@@ -52379,11 +52379,11 @@ var require_retry_handler = __commonJS({
           this.handler.onRequestStart?.(controller, context);
         }
       }
-      onRequestUpgrade(controller, statusCode, headers, socket) {
-        this.handler.onRequestUpgrade?.(controller, statusCode, headers, socket);
+      onRequestUpgrade(controller, statusCode, headers2, socket) {
+        this.handler.onRequestUpgrade?.(controller, statusCode, headers2, socket);
       }
       static [kRetryHandlerDefaultRetry](err, { state, opts }, cb) {
-        const { statusCode, code, headers } = err;
+        const { statusCode, code, headers: headers2 } = err;
         const { method, retryOptions } = opts;
         const {
           maxRetries,
@@ -52411,44 +52411,44 @@ var require_retry_handler = __commonJS({
           cb(err);
           return;
         }
-        let retryAfterHeader = headers?.["retry-after"];
+        let retryAfterHeader = headers2?.["retry-after"];
         if (retryAfterHeader) {
           retryAfterHeader = Number(retryAfterHeader);
-          retryAfterHeader = Number.isNaN(retryAfterHeader) ? calculateRetryAfterHeader(headers["retry-after"]) : retryAfterHeader * 1e3;
+          retryAfterHeader = Number.isNaN(retryAfterHeader) ? calculateRetryAfterHeader(headers2["retry-after"]) : retryAfterHeader * 1e3;
         }
         const retryTimeout = retryAfterHeader > 0 ? Math.min(retryAfterHeader, maxTimeout) : Math.min(minTimeout * timeoutFactor ** (counter - 1), maxTimeout);
         setTimeout(() => cb(null), retryTimeout);
       }
-      onResponseStart(controller, statusCode, headers, statusMessage) {
+      onResponseStart(controller, statusCode, headers2, statusMessage) {
         this.error = null;
         this.retryCount += 1;
         if (statusCode >= 300) {
           const err = new RequestRetryError("Request failed", statusCode, {
-            headers,
+            headers: headers2,
             data: {
               count: this.retryCount
             }
           });
-          this.onResponseStartWithRetry(controller, statusCode, headers, statusMessage, err);
+          this.onResponseStartWithRetry(controller, statusCode, headers2, statusMessage, err);
           return;
         }
         if (this.headersSent) {
           if (statusCode !== 206 && (this.start > 0 || statusCode !== 200)) {
             throw new RequestRetryError("server does not support the range header and the payload was partially consumed", statusCode, {
-              headers,
+              headers: headers2,
               data: { count: this.retryCount }
             });
           }
-          const contentRange = parseRangeHeader(headers["content-range"]);
+          const contentRange = parseRangeHeader(headers2["content-range"]);
           if (!contentRange) {
             throw new RequestRetryError("Content-Range mismatch", statusCode, {
-              headers,
+              headers: headers2,
               data: { count: this.retryCount }
             });
           }
-          if (this.etag != null && this.etag !== headers.etag) {
+          if (this.etag != null && this.etag !== headers2.etag) {
             throw new RequestRetryError("ETag mismatch", statusCode, {
-              headers,
+              headers: headers2,
               data: { count: this.retryCount }
             });
           }
@@ -52459,13 +52459,13 @@ var require_retry_handler = __commonJS({
         }
         if (this.end == null) {
           if (statusCode === 206) {
-            const range = parseRangeHeader(headers["content-range"]);
+            const range = parseRangeHeader(headers2["content-range"]);
             if (range == null) {
               this.headersSent = true;
               this.handler.onResponseStart?.(
                 controller,
                 statusCode,
-                headers,
+                headers2,
                 statusMessage
               );
               return;
@@ -52480,7 +52480,7 @@ var require_retry_handler = __commonJS({
             this.end = end2;
           }
           if (this.end == null) {
-            const contentLength = headers["content-length"];
+            const contentLength = headers2["content-length"];
             this.end = contentLength != null ? Number(contentLength) - 1 : null;
           }
           assert(Number.isFinite(this.start));
@@ -52489,7 +52489,7 @@ var require_retry_handler = __commonJS({
             "invalid content-length"
           );
           this.resume = true;
-          this.etag = headers.etag != null ? headers.etag : null;
+          this.etag = headers2.etag != null ? headers2.etag : null;
           if (this.etag != null && this.etag[0] === "W" && this.etag[1] === "/") {
             this.etag = null;
           }
@@ -52497,12 +52497,12 @@ var require_retry_handler = __commonJS({
           this.handler.onResponseStart?.(
             controller,
             statusCode,
-            headers,
+            headers2,
             statusMessage
           );
         } else {
           throw new RequestRetryError("Request failed", statusCode, {
-            headers,
+            headers: headers2,
             data: { count: this.retryCount }
           });
         }
@@ -52526,15 +52526,15 @@ var require_retry_handler = __commonJS({
       }
       retry(controller) {
         if (this.start !== 0) {
-          const headers = { range: `bytes=${this.start}-${this.end ?? ""}` };
+          const headers2 = { range: `bytes=${this.start}-${this.end ?? ""}` };
           if (this.etag != null) {
-            headers["if-match"] = this.etag;
+            headers2["if-match"] = this.etag;
           }
           this.opts = {
             ...this.opts,
             headers: {
               ...this.opts.headers,
-              ...headers
+              ...headers2
             }
           };
         }
@@ -53133,14 +53133,14 @@ var require_api_request = __commonJS({
       }
       onHeaders(statusCode, rawHeaders, resume, statusMessage) {
         const { callback, opaque, abort, context, responseHeaders, highWaterMark } = this;
-        const headers = responseHeaders === "raw" ? util3.parseRawHeaders(rawHeaders) : util3.parseHeaders(rawHeaders);
+        const headers2 = responseHeaders === "raw" ? util3.parseRawHeaders(rawHeaders) : util3.parseHeaders(rawHeaders);
         if (statusCode < 200) {
           if (this.onInfo) {
-            this.onInfo({ statusCode, headers });
+            this.onInfo({ statusCode, headers: headers2 });
           }
           return;
         }
-        const parsedHeaders = responseHeaders === "raw" ? util3.parseHeaders(rawHeaders) : headers;
+        const parsedHeaders = responseHeaders === "raw" ? util3.parseHeaders(rawHeaders) : headers2;
         const contentType = parsedHeaders["content-type"];
         const contentLength = parsedHeaders["content-length"];
         const res = new Readable2({
@@ -53161,7 +53161,7 @@ var require_api_request = __commonJS({
             this.runInAsyncScope(callback, null, null, {
               statusCode,
               statusText: statusMessage,
-              headers,
+              headers: headers2,
               trailers: this.trailers,
               opaque,
               body: res,
@@ -53355,10 +53355,10 @@ var require_api_stream = __commonJS({
       }
       onHeaders(statusCode, rawHeaders, resume, statusMessage) {
         const { factory: factory2, opaque, context, responseHeaders } = this;
-        const headers = responseHeaders === "raw" ? util3.parseRawHeaders(rawHeaders) : util3.parseHeaders(rawHeaders);
+        const headers2 = responseHeaders === "raw" ? util3.parseRawHeaders(rawHeaders) : util3.parseHeaders(rawHeaders);
         if (statusCode < 200) {
           if (this.onInfo) {
-            this.onInfo({ statusCode, headers });
+            this.onInfo({ statusCode, headers: headers2 });
           }
           return;
         }
@@ -53368,7 +53368,7 @@ var require_api_stream = __commonJS({
         }
         const res = this.runInAsyncScope(factory2, null, {
           statusCode,
-          headers,
+          headers: headers2,
           opaque,
           context
         });
@@ -53578,8 +53578,8 @@ var require_api_pipeline = __commonJS({
         const { opaque, handler, context } = this;
         if (statusCode < 200) {
           if (this.onInfo) {
-            const headers = this.responseHeaders === "raw" ? util3.parseRawHeaders(rawHeaders) : util3.parseHeaders(rawHeaders);
-            this.onInfo({ statusCode, headers });
+            const headers2 = this.responseHeaders === "raw" ? util3.parseRawHeaders(rawHeaders) : util3.parseHeaders(rawHeaders);
+            this.onInfo({ statusCode, headers: headers2 });
           }
           return;
         }
@@ -53587,10 +53587,10 @@ var require_api_pipeline = __commonJS({
         let body;
         try {
           this.handler = null;
-          const headers = this.responseHeaders === "raw" ? util3.parseRawHeaders(rawHeaders) : util3.parseHeaders(rawHeaders);
+          const headers2 = this.responseHeaders === "raw" ? util3.parseRawHeaders(rawHeaders) : util3.parseHeaders(rawHeaders);
           body = this.runInAsyncScope(handler, null, {
             statusCode,
-            headers,
+            headers: headers2,
             opaque,
             body: this.res,
             context
@@ -53695,9 +53695,9 @@ var require_api_upgrade = __commonJS({
         const { callback, opaque, context } = this;
         removeSignal(this);
         this.callback = null;
-        const headers = this.responseHeaders === "raw" ? util3.parseRawHeaders(rawHeaders) : util3.parseHeaders(rawHeaders);
+        const headers2 = this.responseHeaders === "raw" ? util3.parseRawHeaders(rawHeaders) : util3.parseHeaders(rawHeaders);
         this.runInAsyncScope(callback, null, null, {
-          headers,
+          headers: headers2,
           socket,
           opaque,
           context
@@ -53786,13 +53786,13 @@ var require_api_connect = __commonJS({
         const { callback, opaque, context } = this;
         removeSignal(this);
         this.callback = null;
-        let headers = rawHeaders;
-        if (headers != null) {
-          headers = this.responseHeaders === "raw" ? util3.parseRawHeaders(rawHeaders) : util3.parseHeaders(rawHeaders);
+        let headers2 = rawHeaders;
+        if (headers2 != null) {
+          headers2 = this.responseHeaders === "raw" ? util3.parseRawHeaders(rawHeaders) : util3.parseHeaders(rawHeaders);
         }
         this.runInAsyncScope(callback, null, null, {
           statusCode,
-          headers,
+          headers: headers2,
           socket,
           opaque,
           context
@@ -53939,50 +53939,50 @@ var require_mock_utils = __commonJS({
       }
       return false;
     }
-    function lowerCaseEntries(headers) {
+    function lowerCaseEntries(headers2) {
       return Object.fromEntries(
-        Object.entries(headers).map(([headerName, headerValue]) => {
+        Object.entries(headers2).map(([headerName, headerValue]) => {
           return [headerName.toLocaleLowerCase(), headerValue];
         })
       );
     }
-    function getHeaderByName(headers, key) {
-      if (Array.isArray(headers)) {
-        for (let i = 0; i < headers.length; i += 2) {
-          if (headers[i].toLocaleLowerCase() === key.toLocaleLowerCase()) {
-            return headers[i + 1];
+    function getHeaderByName(headers2, key) {
+      if (Array.isArray(headers2)) {
+        for (let i = 0; i < headers2.length; i += 2) {
+          if (headers2[i].toLocaleLowerCase() === key.toLocaleLowerCase()) {
+            return headers2[i + 1];
           }
         }
         return void 0;
-      } else if (typeof headers.get === "function") {
-        return headers.get(key);
+      } else if (typeof headers2.get === "function") {
+        return headers2.get(key);
       } else {
-        return lowerCaseEntries(headers)[key.toLocaleLowerCase()];
+        return lowerCaseEntries(headers2)[key.toLocaleLowerCase()];
       }
     }
-    function buildHeadersFromArray(headers) {
-      const clone2 = headers.slice();
+    function buildHeadersFromArray(headers2) {
+      const clone2 = headers2.slice();
       const entries = [];
       for (let index2 = 0; index2 < clone2.length; index2 += 2) {
         entries.push([clone2[index2], clone2[index2 + 1]]);
       }
       return Object.fromEntries(entries);
     }
-    function matchHeaders(mockDispatch2, headers) {
+    function matchHeaders(mockDispatch2, headers2) {
       if (typeof mockDispatch2.headers === "function") {
-        if (Array.isArray(headers)) {
-          headers = buildHeadersFromArray(headers);
+        if (Array.isArray(headers2)) {
+          headers2 = buildHeadersFromArray(headers2);
         }
-        return mockDispatch2.headers(headers ? lowerCaseEntries(headers) : {});
+        return mockDispatch2.headers(headers2 ? lowerCaseEntries(headers2) : {});
       }
       if (typeof mockDispatch2.headers === "undefined") {
         return true;
       }
-      if (typeof headers !== "object" || typeof mockDispatch2.headers !== "object") {
+      if (typeof headers2 !== "object" || typeof mockDispatch2.headers !== "object") {
         return false;
       }
       for (const [matchHeaderName, matchHeaderValue2] of Object.entries(mockDispatch2.headers)) {
-        const headerValue = getHeaderByName(headers, matchHeaderName);
+        const headerValue = getHeaderByName(headers2, matchHeaderName);
         if (!matchValue(matchHeaderValue2, headerValue)) {
           return false;
         }
@@ -54025,11 +54025,11 @@ var require_mock_utils = __commonJS({
       qp.sort();
       return [...pathSegments, qp.toString()].join("?");
     }
-    function matchKey(mockDispatch2, { path, method, body, headers }) {
+    function matchKey(mockDispatch2, { path, method, body, headers: headers2 }) {
       const pathMatch = matchValue(mockDispatch2.path, path);
       const methodMatch = matchValue(mockDispatch2.method, method);
       const bodyMatch = typeof mockDispatch2.body !== "undefined" ? matchValue(mockDispatch2.body, body) : true;
-      const headersMatch = matchHeaders(mockDispatch2, headers);
+      const headersMatch = matchHeaders(mockDispatch2, headers2);
       return pathMatch && methodMatch && bodyMatch && headersMatch;
     }
     function getResponseData(data2) {
@@ -54067,8 +54067,8 @@ var require_mock_utils = __commonJS({
       }
       matchedMockDispatches = matchedMockDispatches.filter((mockDispatch2) => matchHeaders(mockDispatch2, key.headers));
       if (matchedMockDispatches.length === 0) {
-        const headers = typeof key.headers === "object" ? JSON.stringify(key.headers) : key.headers;
-        throw new MockNotMatchedError(`Mock dispatch not matched for headers '${headers}' on path '${resolvedPath}'`);
+        const headers2 = typeof key.headers === "object" ? JSON.stringify(key.headers) : key.headers;
+        throw new MockNotMatchedError(`Mock dispatch not matched for headers '${headers2}' on path '${resolvedPath}'`);
       }
       return matchedMockDispatches[0];
     }
@@ -54100,12 +54100,12 @@ var require_mock_utils = __commonJS({
       return path;
     }
     function buildKey(opts) {
-      const { path, method, body, headers, query } = opts;
+      const { path, method, body, headers: headers2, query } = opts;
       return {
         path,
         method,
         body,
-        headers,
+        headers: headers2,
         query
       };
     }
@@ -54143,7 +54143,7 @@ var require_mock_utils = __commonJS({
       if (mockDispatch2.data.callback) {
         mockDispatch2.data = { ...mockDispatch2.data, ...mockDispatch2.data.callback(opts) };
       }
-      const { data: { statusCode, data: data2, headers, trailers, error }, delay, persist } = mockDispatch2;
+      const { data: { statusCode, data: data2, headers: headers2, trailers, error }, delay, persist } = mockDispatch2;
       const { timesInvoked, times } = mockDispatch2;
       mockDispatch2.consumed = !persist && timesInvoked >= times;
       mockDispatch2.pending = timesInvoked < times;
@@ -54187,7 +54187,7 @@ var require_mock_utils = __commonJS({
           return;
         }
         const responseData = getResponseData(body);
-        const responseHeaders = generateKeyValues(headers);
+        const responseHeaders = generateKeyValues(headers2);
         const responseTrailers = generateKeyValues(trailers);
         handler.onHeaders?.(statusCode, responseHeaders, resume, getStatusText(statusCode));
         handler.onData?.(Buffer.from(responseData));
@@ -54359,9 +54359,9 @@ var require_mock_interceptor = __commonJS({
       createMockScopeDispatchData({ statusCode, data: data2, responseOptions }) {
         const responseData = getResponseData(data2);
         const contentLength = this[kContentLength] ? { "content-length": responseData.length } : {};
-        const headers = { ...this[kDefaultHeaders], ...contentLength, ...responseOptions.headers };
+        const headers2 = { ...this[kDefaultHeaders], ...contentLength, ...responseOptions.headers };
         const trailers = { ...this[kDefaultTrailers], ...responseOptions.trailers };
-        return { statusCode, data: data2, headers, trailers };
+        return { statusCode, data: data2, headers: headers2, trailers };
       }
       validateReplyParameters(replyParameters) {
         if (typeof replyParameters.statusCode === "undefined") {
@@ -54413,11 +54413,11 @@ var require_mock_interceptor = __commonJS({
       /**
        * Set default reply headers on the interceptor for subsequent replies
        */
-      defaultReplyHeaders(headers) {
-        if (typeof headers === "undefined") {
+      defaultReplyHeaders(headers2) {
+        if (typeof headers2 === "undefined") {
           throw new InvalidArgumentError("headers must be defined");
         }
-        this[kDefaultHeaders] = headers;
+        this[kDefaultHeaders] = headers2;
         return this;
       }
       /**
@@ -55006,8 +55006,8 @@ var require_snapshot_utils = __commonJS({
     }
     var crypto2 = runtimeFeatures.has("crypto") ? require("node:crypto") : null;
     var hashId = crypto2?.hash ? (value) => crypto2.hash("sha256", value, "base64url") : (value) => Buffer.from(value).toString("base64url");
-    function isUndiciHeaders(headers) {
-      return Array.isArray(headers) && (headers.length & 1) === 0;
+    function isUndiciHeaders(headers2) {
+      return Array.isArray(headers2) && (headers2.length & 1) === 0;
     }
     function isUrlExcludedFactory(excludePatterns = []) {
       if (excludePatterns.length === 0) {
@@ -55032,13 +55032,13 @@ var require_snapshot_utils = __commonJS({
         return false;
       };
     }
-    function normalizeHeaders(headers) {
+    function normalizeHeaders(headers2) {
       const normalizedHeaders = {};
-      if (!headers) return normalizedHeaders;
-      if (isUndiciHeaders(headers)) {
-        for (let i = 0; i < headers.length; i += 2) {
-          const key = headers[i];
-          const value = headers[i + 1];
+      if (!headers2) return normalizedHeaders;
+      if (isUndiciHeaders(headers2)) {
+        for (let i = 0; i < headers2.length; i += 2) {
+          const key = headers2[i];
+          const value = headers2[i + 1];
           if (key && value !== void 0) {
             const keyStr = Buffer.isBuffer(key) ? key.toString() : key;
             const valueStr = Buffer.isBuffer(value) ? value.toString() : value;
@@ -55047,8 +55047,8 @@ var require_snapshot_utils = __commonJS({
         }
         return normalizedHeaders;
       }
-      if (headers && typeof headers === "object") {
-        for (const [key, value] of Object.entries(headers)) {
+      if (headers2 && typeof headers2 === "object") {
+        for (const [key, value] of Object.entries(headers2)) {
           if (key && typeof key === "string") {
             normalizedHeaders[key.toLowerCase()] = Array.isArray(value) ? value.join(", ") : String(value);
           }
@@ -55098,14 +55098,14 @@ var require_snapshot_recorder = __commonJS({
         body: matchOptions.matchBody !== false && opts.body ? String(opts.body) : ""
       };
     }
-    function filterHeadersForMatching(headers, headerFilters, matchOptions = {}) {
-      if (!headers || typeof headers !== "object") return {};
+    function filterHeadersForMatching(headers2, headerFilters, matchOptions = {}) {
+      if (!headers2 || typeof headers2 !== "object") return {};
       const {
         caseSensitive = false
       } = matchOptions;
       const filtered = {};
       const { ignore, exclude, match } = headerFilters;
-      for (const [key, value] of Object.entries(headers)) {
+      for (const [key, value] of Object.entries(headers2)) {
         const headerKey = caseSensitive ? key : key.toLowerCase();
         if (exclude.has(headerKey)) continue;
         if (ignore.has(headerKey)) continue;
@@ -55116,14 +55116,14 @@ var require_snapshot_recorder = __commonJS({
       }
       return filtered;
     }
-    function filterHeadersForStorage(headers, headerFilters, matchOptions = {}) {
-      if (!headers || typeof headers !== "object") return {};
+    function filterHeadersForStorage(headers2, headerFilters, matchOptions = {}) {
+      if (!headers2 || typeof headers2 !== "object") return {};
       const {
         caseSensitive = false
       } = matchOptions;
       const filtered = {};
       const { exclude: excludeSet } = headerFilters;
-      for (const [key, value] of Object.entries(headers)) {
+      for (const [key, value] of Object.entries(headers2)) {
         const headerKey = caseSensitive ? key : key.toLowerCase();
         if (excludeSet.has(headerKey)) continue;
         filtered[headerKey] = value;
@@ -55563,13 +55563,13 @@ var require_snapshot_agent = __commonJS({
           onRequestStart(controller, context) {
             return handler.onRequestStart(controller, { ...context, history: this.history });
           },
-          onRequestUpgrade(controller, statusCode, headers, socket) {
-            return handler.onRequestUpgrade(controller, statusCode, headers, socket);
+          onRequestUpgrade(controller, statusCode, headers2, socket) {
+            return handler.onRequestUpgrade(controller, statusCode, headers2, socket);
           },
-          onResponseStart(controller, statusCode, headers, statusMessage) {
+          onResponseStart(controller, statusCode, headers2, statusMessage) {
             responseData.statusCode = statusCode;
-            responseData.headers = headers;
-            return handler.onResponseStart(controller, statusCode, headers, statusMessage);
+            responseData.headers = headers2;
+            return handler.onResponseStart(controller, statusCode, headers2, statusMessage);
           },
           onResponseData(controller, chunk) {
             responseData.body.push(chunk);
@@ -55906,10 +55906,10 @@ var require_redirect_handler = __commonJS({
       onRequestStart(controller, context) {
         this.handler.onRequestStart?.(controller, { ...context, history: this.history });
       }
-      onRequestUpgrade(controller, statusCode, headers, socket) {
-        this.handler.onRequestUpgrade?.(controller, statusCode, headers, socket);
+      onRequestUpgrade(controller, statusCode, headers2, socket) {
+        this.handler.onRequestUpgrade?.(controller, statusCode, headers2, socket);
       }
-      onResponseStart(controller, statusCode, headers, statusMessage) {
+      onResponseStart(controller, statusCode, headers2, statusMessage) {
         if (this.opts.throwOnMaxRedirect && this.history.length >= this.maxRedirections) {
           throw new Error("max redirects");
         }
@@ -55927,12 +55927,12 @@ var require_redirect_handler = __commonJS({
           }
           this.opts.body = null;
         }
-        this.location = this.history.length >= this.maxRedirections || util3.isDisturbed(this.opts.body) || redirectableStatusCodes.indexOf(statusCode) === -1 ? null : headers.location;
+        this.location = this.history.length >= this.maxRedirections || util3.isDisturbed(this.opts.body) || redirectableStatusCodes.indexOf(statusCode) === -1 ? null : headers2.location;
         if (this.opts.origin) {
           this.history.push(new URL(this.opts.path, this.opts.origin));
         }
         if (!this.location) {
-          this.handler.onResponseStart?.(controller, statusCode, headers, statusMessage);
+          this.handler.onResponseStart?.(controller, statusCode, headers2, statusMessage);
           return;
         }
         const { origin: origin2, pathname, search } = util3.parseURL(new URL(this.location, this.opts.origin && new URL(this.opts.path, this.opts.origin)));
@@ -55978,23 +55978,23 @@ var require_redirect_handler = __commonJS({
       }
       return false;
     }
-    function cleanRequestHeaders(headers, removeContent, unknownOrigin) {
+    function cleanRequestHeaders(headers2, removeContent, unknownOrigin) {
       const ret = [];
-      if (Array.isArray(headers)) {
-        for (let i = 0; i < headers.length; i += 2) {
-          if (!shouldRemoveHeader(headers[i], removeContent, unknownOrigin)) {
-            ret.push(headers[i], headers[i + 1]);
+      if (Array.isArray(headers2)) {
+        for (let i = 0; i < headers2.length; i += 2) {
+          if (!shouldRemoveHeader(headers2[i], removeContent, unknownOrigin)) {
+            ret.push(headers2[i], headers2[i + 1]);
           }
         }
-      } else if (headers && typeof headers === "object") {
-        const entries = util3.hasSafeIterator(headers) ? headers : Object.entries(headers);
+      } else if (headers2 && typeof headers2 === "object") {
+        const entries = util3.hasSafeIterator(headers2) ? headers2 : Object.entries(headers2);
         for (const [key, value] of entries) {
           if (!shouldRemoveHeader(key, removeContent, unknownOrigin)) {
             ret.push(key, value);
           }
         }
       } else {
-        assert(headers == null, "headers must be an object or an array");
+        assert(headers2 == null, "headers must be an object or an array");
       }
       return ret;
     }
@@ -56050,12 +56050,12 @@ var require_response_error = __commonJS({
         this.#body = "";
         return super.onRequestStart(controller, context);
       }
-      onResponseStart(controller, statusCode, headers, statusMessage) {
+      onResponseStart(controller, statusCode, headers2, statusMessage) {
         this.#statusCode = statusCode;
-        this.#headers = headers;
-        this.#contentType = headers["content-type"];
+        this.#headers = headers2;
+        this.#contentType = headers2["content-type"];
         if (this.#statusCode < 400) {
-          return super.onResponseStart(controller, statusCode, headers, statusMessage);
+          return super.onResponseStart(controller, statusCode, headers2, statusMessage);
         }
         if (this.#checkContentType("application/json") || this.#checkContentType("text/plain")) {
           this.#decoder = new TextDecoder("utf-8");
@@ -56159,8 +56159,8 @@ var require_dump = __commonJS({
         this.#controller = controller;
         return super.onRequestStart(controller, context);
       }
-      onResponseStart(controller, statusCode, headers, statusMessage) {
-        const contentLength = headers["content-length"];
+      onResponseStart(controller, statusCode, headers2, statusMessage) {
+        const contentLength = headers2["content-length"];
         if (contentLength != null && contentLength > this.#maxSize) {
           throw new RequestAbortedError(
             `Response size (${contentLength}) larger than maxSize (${this.#maxSize})`
@@ -56169,7 +56169,7 @@ var require_dump = __commonJS({
         if (this.aborted === true) {
           return true;
         }
-        return super.onResponseStart(controller, statusCode, headers, statusMessage);
+        return super.onResponseStart(controller, statusCode, headers2, statusMessage);
       }
       onResponseError(controller, err) {
         if (this.#dumped) {
@@ -56225,24 +56225,24 @@ var require_dns = __commonJS({
     var DecoratorHandler = require_decorator_handler();
     var { InvalidArgumentError, InformationalError } = require_errors();
     var maxInt = Math.pow(2, 31) - 1;
-    function hasSafeIterator(headers) {
-      const prototype2 = Object.getPrototypeOf(headers);
-      const ownIterator = Object.prototype.hasOwnProperty.call(headers, Symbol.iterator);
-      return ownIterator || prototype2 != null && prototype2 !== Object.prototype && typeof headers[Symbol.iterator] === "function";
+    function hasSafeIterator(headers2) {
+      const prototype2 = Object.getPrototypeOf(headers2);
+      const ownIterator = Object.prototype.hasOwnProperty.call(headers2, Symbol.iterator);
+      return ownIterator || prototype2 != null && prototype2 !== Object.prototype && typeof headers2[Symbol.iterator] === "function";
     }
     function isHostHeader(key) {
       return typeof key === "string" && key.toLowerCase() === "host";
     }
-    function normalizeHeaders(headers) {
-      if (headers == null) {
+    function normalizeHeaders(headers2) {
+      if (headers2 == null) {
         return null;
       }
-      if (Array.isArray(headers)) {
-        if (headers.length === 0 || !Array.isArray(headers[0])) {
-          return headers;
+      if (Array.isArray(headers2)) {
+        if (headers2.length === 0 || !Array.isArray(headers2[0])) {
+          return headers2;
         }
         const normalized = [];
-        for (const header of headers) {
+        for (const header of headers2) {
           if (Array.isArray(header) && header.length === 2) {
             normalized.push(header[0], header[1]);
           } else {
@@ -56251,9 +56251,9 @@ var require_dns = __commonJS({
         }
         return normalized;
       }
-      if (typeof headers === "object" && hasSafeIterator(headers)) {
+      if (typeof headers2 === "object" && hasSafeIterator(headers2)) {
         const normalized = [];
-        for (const header of headers) {
+        for (const header of headers2) {
           if (Array.isArray(header) && header.length === 2) {
             normalized.push(header[0], header[1]);
           } else {
@@ -56262,25 +56262,25 @@ var require_dns = __commonJS({
         }
         return normalized;
       }
-      return headers;
+      return headers2;
     }
-    function hasHostHeader(headers) {
-      if (headers == null) {
+    function hasHostHeader(headers2) {
+      if (headers2 == null) {
         return false;
       }
-      if (Array.isArray(headers)) {
-        if (headers.length === 0) {
+      if (Array.isArray(headers2)) {
+        if (headers2.length === 0) {
           return false;
         }
-        for (let i = 0; i < headers.length; i += 2) {
-          if (isHostHeader(headers[i])) {
+        for (let i = 0; i < headers2.length; i += 2) {
+          if (isHostHeader(headers2[i])) {
             return true;
           }
         }
         return false;
       }
-      if (typeof headers === "object") {
-        for (const key in headers) {
+      if (typeof headers2 === "object") {
+        for (const key in headers2) {
           if (isHostHeader(key)) {
             return true;
           }
@@ -56288,8 +56288,8 @@ var require_dns = __commonJS({
       }
       return false;
     }
-    function withHostHeader(host, headers) {
-      const normalizedHeaders = normalizeHeaders(headers);
+    function withHostHeader(host, headers2) {
+      const normalizedHeaders = normalizeHeaders(headers2);
       if (hasHostHeader(normalizedHeaders)) {
         return normalizedHeaders;
       }
@@ -56681,11 +56681,11 @@ var require_cache = __commonJS({
       };
     }
     function normalizeHeaders(opts) {
-      let headers;
+      let headers2;
       if (opts.headers == null) {
-        headers = {};
+        headers2 = {};
       } else if (typeof opts.headers === "object") {
-        headers = {};
+        headers2 = {};
         if (hasSafeIterator(opts.headers)) {
           for (const x of opts.headers) {
             if (!Array.isArray(x)) {
@@ -56695,17 +56695,17 @@ var require_cache = __commonJS({
             if (typeof key !== "string" || typeof val3 !== "string") {
               throw new Error("opts.headers is not a valid header map");
             }
-            headers[key.toLowerCase()] = val3;
+            headers2[key.toLowerCase()] = val3;
           }
         } else {
           for (const key of Object.keys(opts.headers)) {
-            headers[key.toLowerCase()] = opts.headers[key];
+            headers2[key.toLowerCase()] = opts.headers[key];
           }
         }
       } else {
         throw new Error("opts.headers is not an object");
       }
-      return headers;
+      return headers2;
     }
     function assertCacheKey(key) {
       if (typeof key !== "object") {
@@ -56791,13 +56791,13 @@ var require_cache = __commonJS({
           case "no-cache": {
             if (value) {
               if (value[0] === '"') {
-                const headers = [value.substring(1)];
+                const headers2 = [value.substring(1)];
                 let foundEndingQuote = value[value.length - 1] === '"';
                 if (!foundEndingQuote) {
                   for (let j = i + 1; j < directives.length; j++) {
                     const nextPart = directives[j];
                     const nextPartLength = nextPart.length;
-                    headers.push(nextPart.trim());
+                    headers2.push(nextPart.trim());
                     if (nextPartLength !== 0 && nextPart[nextPartLength - 1] === '"') {
                       foundEndingQuote = true;
                       break;
@@ -56805,15 +56805,15 @@ var require_cache = __commonJS({
                   }
                 }
                 if (foundEndingQuote) {
-                  let lastHeader = headers[headers.length - 1];
+                  let lastHeader = headers2[headers2.length - 1];
                   if (lastHeader[lastHeader.length - 1] === '"') {
                     lastHeader = lastHeader.substring(0, lastHeader.length - 1);
-                    headers[headers.length - 1] = lastHeader;
+                    headers2[headers2.length - 1] = lastHeader;
                   }
                   if (key in output) {
-                    output[key] = output[key].concat(headers);
+                    output[key] = output[key].concat(headers2);
                   } else {
-                    output[key] = headers;
+                    output[key] = headers2;
                   }
                 }
               } else {
@@ -56846,9 +56846,9 @@ var require_cache = __commonJS({
       }
       return output;
     }
-    function parseVaryHeader(varyHeader, headers) {
+    function parseVaryHeader(varyHeader, headers2) {
       if (typeof varyHeader === "string" && varyHeader.includes("*")) {
-        return headers;
+        return headers2;
       }
       const output = (
         /** @type {Record<string, string | string[] | null>} */
@@ -56857,7 +56857,7 @@ var require_cache = __commonJS({
       const varyingHeaders = typeof varyHeader === "string" ? varyHeader.split(",") : varyHeader;
       for (const header of varyingHeaders) {
         const trimmedHeader = header.trim().toLowerCase();
-        output[trimmedHeader] = headers[trimmedHeader] ?? null;
+        output[trimmedHeader] = headers2[trimmedHeader] ?? null;
       }
       return output;
     }
@@ -57494,8 +57494,8 @@ var require_cache_handler = __commonJS({
         this.#writeStream = void 0;
         this.#handler.onRequestStart?.(controller, context);
       }
-      onRequestUpgrade(controller, statusCode, headers, socket) {
-        this.#handler.onRequestUpgrade?.(controller, statusCode, headers, socket);
+      onRequestUpgrade(controller, statusCode, headers2, socket) {
+        this.#handler.onRequestUpgrade?.(controller, statusCode, headers2, socket);
       }
       /**
        * @param {import('../../types/dispatcher.d.ts').default.DispatchController} controller
@@ -58007,10 +58007,10 @@ var require_cache_revalidation_handler = __commonJS({
         this.#successful = false;
         this.#context = context;
       }
-      onRequestUpgrade(controller, statusCode, headers, socket) {
-        this.#handler.onRequestUpgrade?.(controller, statusCode, headers, socket);
+      onRequestUpgrade(controller, statusCode, headers2, socket) {
+        this.#handler.onRequestUpgrade?.(controller, statusCode, headers2, socket);
       }
-      onResponseStart(controller, statusCode, headers, statusMessage) {
+      onResponseStart(controller, statusCode, headers2, statusMessage) {
         assert(this.#callback != null);
         this.#successful = statusCode === 304 || this.#allowErrorStatusCodes && statusCode >= 500 && statusCode <= 504;
         this.#callback(this.#successful, this.#context);
@@ -58022,7 +58022,7 @@ var require_cache_revalidation_handler = __commonJS({
         this.#handler.onResponseStart?.(
           controller,
           statusCode,
-          headers,
+          headers2,
           statusMessage
         );
       }
@@ -58083,14 +58083,14 @@ var require_cache2 = __commonJS({
     }
     var nop = () => {
     };
-    function needsRevalidation(result, cacheControlDirectives, { headers = {} }) {
+    function needsRevalidation(result, cacheControlDirectives, { headers: headers2 = {} }) {
       if (cacheControlDirectives?.["no-cache"]) {
         return true;
       }
       if (result.cacheControlDirectives?.["no-cache"] && !Array.isArray(result.cacheControlDirectives["no-cache"])) {
         return true;
       }
-      if (headers["if-modified-since"] || headers["if-none-match"]) {
+      if (headers2["if-modified-since"] || headers2["if-none-match"]) {
         return true;
       }
       return false;
@@ -58191,11 +58191,11 @@ var require_cache2 = __commonJS({
       if (stream4.destroyed) {
         return;
       }
-      const headers = { ...result.headers, age: String(age) };
+      const headers2 = { ...result.headers, age: String(age) };
       if (isStale2) {
-        headers.warning = '110 - "response is stale"';
+        headers2.warning = '110 - "response is stale"';
       }
-      handler.onResponseStart?.(controller, result.statusCode, headers, result.statusMessage);
+      handler.onResponseStart?.(controller, result.statusCode, headers2, result.statusMessage);
       if (opts.method === "HEAD") {
         stream4.destroy();
       } else {
@@ -58225,24 +58225,24 @@ var require_cache2 = __commonJS({
         if (!revalidate && withinStaleWhileRevalidateWindow(result)) {
           sendCachedValue(handler, opts, result, age, null, true);
           queueMicrotask(() => {
-            const headers2 = {
+            const headers3 = {
               ...opts.headers,
               "if-modified-since": new Date(result.cachedAt).toUTCString()
             };
             if (result.etag) {
-              headers2["if-none-match"] = result.etag;
+              headers3["if-none-match"] = result.etag;
             }
             if (result.vary) {
               for (const key in result.vary) {
                 if (result.vary[key] != null) {
-                  headers2[key] = result.vary[key];
+                  headers3[key] = result.vary[key];
                 }
               }
             }
             dispatch(
               {
                 ...opts,
-                headers: headers2
+                headers: headers3
               },
               new CacheHandler(globalOpts, cacheKey, {
                 // Silent handler that just updates the cache
@@ -58268,24 +58268,24 @@ var require_cache2 = __commonJS({
         if (staleIfErrorExpiry) {
           withinStaleIfErrorThreshold = now < result.staleAt + staleIfErrorExpiry * 1e3;
         }
-        const headers = {
+        const headers2 = {
           ...opts.headers,
           "if-modified-since": new Date(result.cachedAt).toUTCString()
         };
         if (result.etag) {
-          headers["if-none-match"] = result.etag;
+          headers2["if-none-match"] = result.etag;
         }
         if (result.vary) {
           for (const key in result.vary) {
             if (result.vary[key] != null) {
-              headers[key] = result.vary[key];
+              headers2[key] = result.vary[key];
             }
           }
         }
         return dispatch(
           {
             ...opts,
-            headers
+            headers: headers2
           },
           new CacheRevalidationHandler(
             (success, context) => {
@@ -58529,18 +58529,18 @@ var require_decompress = __commonJS({
        * @param {string} statusMessage
        * @returns {void}
        */
-      onResponseStart(controller, statusCode, headers, statusMessage) {
-        const contentEncoding = headers["content-encoding"];
+      onResponseStart(controller, statusCode, headers2, statusMessage) {
+        const contentEncoding = headers2["content-encoding"];
         if (this.#shouldSkipDecompression(contentEncoding, statusCode)) {
-          return super.onResponseStart(controller, statusCode, headers, statusMessage);
+          return super.onResponseStart(controller, statusCode, headers2, statusMessage);
         }
         const decompressors = this.#createDecompressionChain(contentEncoding.toLowerCase());
         if (decompressors.length === 0) {
           this.#cleanupDecompressors();
-          return super.onResponseStart(controller, statusCode, headers, statusMessage);
+          return super.onResponseStart(controller, statusCode, headers2, statusMessage);
         }
         this.#decompressors = decompressors;
-        const { "content-encoding": _, "content-length": __, ...newHeaders } = headers;
+        const { "content-encoding": _, "content-length": __, ...newHeaders } = headers2;
         if (this.#decompressors.length === 1) {
           this.#setupSingleDecompressor(controller);
         } else {
@@ -58722,8 +58722,8 @@ var require_deduplication_handler = __commonJS({
        * @param {import('../../types/header.d.ts').IncomingHttpHeaders} headers
        * @param {Socket} socket
        */
-      onRequestUpgrade(controller, statusCode, headers, socket) {
-        this.#primaryHandler.onRequestUpgrade?.(controller, statusCode, headers, socket);
+      onRequestUpgrade(controller, statusCode, headers2, socket) {
+        this.#primaryHandler.onRequestUpgrade?.(controller, statusCode, headers2, socket);
       }
       /**
        * @param {import('../../types/dispatcher.d.ts').default.DispatchController} controller
@@ -58731,12 +58731,12 @@ var require_deduplication_handler = __commonJS({
        * @param {Record<string, string | string[]>} headers
        * @param {string} statusMessage
        */
-      onResponseStart(controller, statusCode, headers, statusMessage) {
+      onResponseStart(controller, statusCode, headers2, statusMessage) {
         this.#responseStarted = true;
         this.#statusCode = statusCode;
-        this.#headers = headers;
+        this.#headers = headers2;
         this.#statusMessage = statusMessage;
-        this.#primaryHandler.onResponseStart?.(controller, statusCode, headers, statusMessage);
+        this.#primaryHandler.onResponseStart?.(controller, statusCode, headers2, statusMessage);
         for (const waitingHandler of this.#waitingHandlers) {
           const { handler, controller: waitingController } = waitingHandler;
           if (waitingHandler.done || waitingController.aborted) {
@@ -58747,7 +58747,7 @@ var require_deduplication_handler = __commonJS({
             handler.onResponseStart?.(
               waitingController,
               statusCode,
-              headers,
+              headers2,
               statusMessage
             );
           } catch {
@@ -59365,7 +59365,7 @@ var require_sqlite_cache_store = __commonJS({
        */
       #findValue(key, canBeExpired = false) {
         const url2 = this.#makeValueUrl(key);
-        const { headers, method } = key;
+        const { headers: headers2, method } = key;
         const values = this.#getValuesQuery.all(url2, method);
         if (values.length === 0) {
           return void 0;
@@ -59379,7 +59379,7 @@ var require_sqlite_cache_store = __commonJS({
           if (value.vary) {
             const vary = JSON.parse(value.vary);
             for (const header in vary) {
-              if (!headerValueEquals(headers[header], vary[header])) {
+              if (!headerValueEquals(headers2[header], vary[header])) {
                 matches = false;
                 break;
               }
@@ -59434,7 +59434,7 @@ var require_headers = __commonJS({
       while (j > i && isHTTPWhiteSpaceCharCode(potentialValue.charCodeAt(i))) ++i;
       return i === 0 && j === potentialValue.length ? potentialValue : potentialValue.substring(i, j);
     }
-    function fill2(headers, object) {
+    function fill2(headers2, object) {
       if (Array.isArray(object)) {
         for (let i = 0; i < object.length; ++i) {
           const header = object[i];
@@ -59444,12 +59444,12 @@ var require_headers = __commonJS({
               message: `expected name/value pair to be length 2, found ${header.length}.`
             });
           }
-          appendHeader(headers, header[0], header[1]);
+          appendHeader(headers2, header[0], header[1]);
         }
       } else if (typeof object === "object" && object !== null) {
         const keys2 = Object.keys(object);
         for (let i = 0; i < keys2.length; ++i) {
-          appendHeader(headers, keys2[i], object[keys2[i]]);
+          appendHeader(headers2, keys2[i], object[keys2[i]]);
         }
       } else {
         throw webidl.errors.conversionFailed({
@@ -59459,7 +59459,7 @@ var require_headers = __commonJS({
         });
       }
     }
-    function appendHeader(headers, name, value) {
+    function appendHeader(headers2, name, value) {
       value = headerValueNormalize(value);
       if (!isValidHeaderName2(name)) {
         throw webidl.errors.invalidArgument({
@@ -59474,10 +59474,10 @@ var require_headers = __commonJS({
           type: "header value"
         });
       }
-      if (getHeadersGuard(headers) === "immutable") {
+      if (getHeadersGuard(headers2) === "immutable") {
         throw new TypeError("immutable");
       }
-      return getHeadersList(headers).append(name, value, false);
+      return getHeadersList(headers2).append(name, value, false);
     }
     function headersListSortAndCombine(target) {
       const headersList = getHeadersList(target);
@@ -59487,7 +59487,7 @@ var require_headers = __commonJS({
       if (headersList.sortedMap) {
         return headersList.sortedMap;
       }
-      const headers = [];
+      const headers2 = [];
       const names = headersList.toSortedArray();
       const cookies = headersList.cookies;
       if (cookies === null || cookies.length === 1) {
@@ -59497,13 +59497,13 @@ var require_headers = __commonJS({
         const { 0: name, 1: value } = names[i];
         if (name === "set-cookie") {
           for (let j = 0; j < cookies.length; ++j) {
-            headers.push([name, cookies[j]]);
+            headers2.push([name, cookies[j]]);
           }
         } else {
-          headers.push([name, value]);
+          headers2.push([name, value]);
         }
       }
-      return headersList.sortedMap = headers;
+      return headersList.sortedMap = headers2;
     }
     function compareHeaderName(a, b) {
       return a[0] < b[0] ? -1 : 1;
@@ -59601,31 +59601,31 @@ var require_headers = __commonJS({
         }
       }
       get entries() {
-        const headers = {};
+        const headers2 = {};
         if (this.headersMap.size !== 0) {
           for (const { name, value } of this.headersMap.values()) {
-            headers[name] = value;
+            headers2[name] = value;
           }
         }
-        return headers;
+        return headers2;
       }
       rawValues() {
         return this.headersMap.values();
       }
       get entriesList() {
-        const headers = [];
+        const headers2 = [];
         if (this.headersMap.size !== 0) {
           for (const { 0: lowerName, 1: { name, value } } of this.headersMap) {
             if (lowerName === "set-cookie") {
               for (const cookie of this.cookies) {
-                headers.push([name, cookie]);
+                headers2.push([name, cookie]);
               }
             } else {
-              headers.push([name, value]);
+              headers2.push([name, value]);
             }
           }
         }
-        return headers;
+        return headers2;
       }
       // https://fetch.spec.whatwg.org/#convert-header-names-to-a-sorted-lowercase-set
       toSortedArray() {
@@ -60226,10 +60226,10 @@ var require_response2 = __commonJS({
     function fromInnerResponse(innerResponse, guard) {
       const response = new Response2(kConstruct);
       setResponseState(response, innerResponse);
-      const headers = new Headers(kConstruct);
-      setResponseHeaders(response, headers);
-      setHeadersList(headers, innerResponse.headersList);
-      setHeadersGuard(headers, guard);
+      const headers2 = new Headers(kConstruct);
+      setResponseHeaders(response, headers2);
+      setHeadersList(headers2, innerResponse.headersList);
+      setHeadersGuard(headers2, guard);
       if (innerResponse.urlList.length !== 0 && innerResponse.body?.stream) {
         streamRegistry.register(response, new WeakRef(innerResponse.body.stream));
       }
@@ -60580,15 +60580,15 @@ var require_request3 = __commonJS({
         }
         if (initHasKey) {
           const headersList = getHeadersList(this.#headers);
-          const headers = init.headers !== void 0 ? init.headers : new HeadersList(headersList);
+          const headers2 = init.headers !== void 0 ? init.headers : new HeadersList(headersList);
           headersList.clear();
-          if (headers instanceof HeadersList) {
-            for (const { name, value } of headers.rawValues()) {
+          if (headers2 instanceof HeadersList) {
+            for (const { name, value } of headers2.rawValues()) {
               headersList.append(name, value, false);
             }
-            headersList.cookies = headers.cookies;
+            headersList.cookies = headers2.cookies;
           } else {
-            fillHeaders(this.#headers, headers);
+            fillHeaders(this.#headers, headers2);
           }
         }
         const inputBody = webidl.is.Request(input) ? input.#state.body : null;
@@ -60908,10 +60908,10 @@ var require_request3 = __commonJS({
       setRequestState(request, innerRequest);
       setRequestDispatcher(request, dispatcher);
       setRequestSignal(request, signal);
-      const headers = new Headers(kConstruct);
-      setRequestHeaders(request, headers);
-      setHeadersList(headers, innerRequest.headersList);
-      setHeadersGuard(headers, guard);
+      const headers2 = new Headers(kConstruct);
+      setRequestHeaders(request, headers2);
+      setHeadersList(headers2, innerRequest.headersList);
+      setHeadersGuard(headers2, guard);
       return request;
     }
     Object.defineProperties(Request.prototype, {
@@ -62261,12 +62261,12 @@ var require_fetch = __commonJS({
               fetchParams.controller.terminate(error);
               reject(error);
             },
-            onRequestUpgrade(_controller, status, headers, socket) {
+            onRequestUpgrade(_controller, status, headers2, socket) {
               if (socket.session != null && status !== 200 || socket.session == null && status !== 101) {
                 return false;
               }
               const headersList = new HeadersList();
-              for (const [name, value] of Object.entries(headers)) {
+              for (const [name, value] of Object.entries(headers2)) {
                 if (value == null) {
                   continue;
                 }
@@ -63338,10 +63338,10 @@ var require_cookies = __commonJS({
     var { webidl } = require_webidl();
     var { Headers } = require_headers();
     var brandChecks = webidl.brandCheckMultiple([Headers, globalThis.Headers].filter(Boolean));
-    function getCookies(headers) {
+    function getCookies(headers2) {
       webidl.argumentLengthCheck(arguments, 1, "getCookies");
-      brandChecks(headers);
-      const cookie = headers.get("cookie");
+      brandChecks(headers2);
+      const cookie = headers2.get("cookie");
       const out = {};
       if (!cookie) {
         return out;
@@ -63352,23 +63352,23 @@ var require_cookies = __commonJS({
       }
       return out;
     }
-    function deleteCookie(headers, name, attributes2) {
-      brandChecks(headers);
+    function deleteCookie(headers2, name, attributes2) {
+      brandChecks(headers2);
       const prefix = "deleteCookie";
       webidl.argumentLengthCheck(arguments, 2, prefix);
       name = webidl.converters.DOMString(name, prefix, "name");
       attributes2 = webidl.converters.DeleteCookieAttributes(attributes2);
-      setCookie(headers, {
+      setCookie(headers2, {
         name,
         value: "",
         expires: /* @__PURE__ */ new Date(0),
         ...attributes2
       });
     }
-    function getSetCookies(headers) {
+    function getSetCookies(headers2) {
       webidl.argumentLengthCheck(arguments, 1, "getSetCookies");
-      brandChecks(headers);
-      const cookies = headers.getSetCookie();
+      brandChecks(headers2);
+      const cookies = headers2.getSetCookie();
       if (!cookies) {
         return [];
       }
@@ -63378,13 +63378,13 @@ var require_cookies = __commonJS({
       cookie = webidl.converters.DOMString(cookie);
       return parseSetCookie(cookie);
     }
-    function setCookie(headers, cookie) {
+    function setCookie(headers2, cookie) {
       webidl.argumentLengthCheck(arguments, 2, "setCookie");
-      brandChecks(headers);
+      brandChecks(headers2);
       cookie = webidl.converters.Cookie(cookie);
       const str = stringify2(cookie);
       if (str) {
-        headers.append("set-cookie", str, true);
+        headers2.append("set-cookie", str, true);
       }
     }
     webidl.converters.DeleteCookieAttributes = webidl.dictionaryConverter([
@@ -65021,7 +65021,7 @@ var require_websocket = __commonJS({
         }
         fireEvent("open", this);
         if (channels.open.hasSubscribers) {
-          const headers = response.headersList.entries;
+          const headers2 = response.headersList.entries;
           channels.open.publish({
             address: response.socket.address(),
             protocol: this.#protocol,
@@ -65030,7 +65030,7 @@ var require_websocket = __commonJS({
             handshakeResponse: {
               status: response.status,
               statusText: response.statusText,
-              headers
+              headers: headers2
             }
           });
         }
@@ -66712,12 +66712,7 @@ var toNumber = (value, defaultValue) => {
   return Number.isFinite(parsed) && parsed > 0 ? parsed : defaultValue;
 };
 var config = {
-  holdingsV2Enabled: toBool(process.env.ETF_HOLDINGS_V2_ENABLED, false),
-  providerAlphaEnabled: toBool(process.env.ETF_PROVIDER_ALPHA_ENABLED, false),
-  providerIssuerEnabled: toBool(process.env.ETF_PROVIDER_ISSUER_ENABLED, false),
-  providerSecEnabled: toBool(process.env.ETF_PROVIDER_SEC_ENABLED, false),
   adminAuthEnabled: toBool(process.env.ETF_ADMIN_AUTH_ENABLED, false),
-  alphaVantageApiKey: process.env.ALPHA_VANTAGE_API_KEY || "",
   adminApiKey: process.env.ADMIN_API_KEY || "",
   holdingsTtlHours: toNumber(process.env.HOLDINGS_TTL_HOURS, 168)
 };
@@ -70352,13 +70347,13 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-08-31",
-    fetchedAt: "2026-10-06T18:53:34.149Z",
+    fetchedAt: "2026-10-06T19:11:45.736Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "Vanguard",
     sourceUrl: "https://advisors.vanguard.com/investments/products/api/funds/0968/holdings/latest",
     isFallback: false,
-    coverageNote: "Complete issuer holdings file. Vanguard publishes full monthly portfolios with five-decimal percentage weights. Positions below 0.000005% remain visible at zero weight. Report date is the issuer's portfolio valuation date, not the download date. Derivatives are published weights, not economic exposure.",
+    coverageNote: "Complete issuer holdings file. Vanguard publishes full monthly portfolios with five-decimal percentage weights. Positions with blank weights and blank market values, or values below 0.000005%, remain visible at zero weight. Report date is the issuer's portfolio valuation date, not the download date. Derivatives are published weights, not economic exposure.",
     holdingsCount: 517,
     coverageWeight: 100.00009000000004,
     categoryWeights: {
@@ -70376,7 +70371,7 @@ var holdings_default = {
         ticker: "003654100CVR",
         name: "ABIOMED INC",
         weight: 0,
-        category: "equity",
+        category: "other",
         securityId: "003654100CVR"
       },
       {
@@ -73944,15 +73939,17 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-06",
-    fetchedAt: "2026-10-06T17:44:24.206Z",
+    fetchedAt: "2026-10-06T19:11:45.367Z",
     source: "issuer",
+    weightMethod: "published",
     sourceName: "NEOS",
     sourceUrl: "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=SPYI",
     isFallback: false,
-    coverageNote: "Complete issuer holdings file; weights use the issuer's published precision. Vanguard omits percentages below 0.005%; these positions are retained at 0.00%. Derivatives are published weights, not economic exposure.",
+    coverageNote: "Complete issuer holdings file. Weights use the issuer's published precision. Derivatives are published weights, not economic exposure.",
     holdingsCount: 510,
     coverageWeight: 100.01000000000009,
     categoryWeights: {
+      other: 0,
       equity: 99.1700000000001,
       option: -0.9,
       cash: 1.74
@@ -73965,67 +73962,67 @@ var holdings_default = {
       {
         ticker: "NVDA",
         name: "NVIDIA",
-        weight: 8.49,
+        weight: 8.62,
         category: "equity"
       },
       {
         ticker: "AAPL",
         name: "APPLE",
-        weight: 7.31,
+        weight: 7.24,
         category: "equity"
       },
       {
         ticker: "MSFT",
         name: "MICROSOFT",
-        weight: 5.77,
+        weight: 5.81,
         category: "equity"
       },
       {
         ticker: "AMZN",
         name: "AMAZON.COM INC",
-        weight: 3.7,
+        weight: 3.68,
         category: "equity"
       },
       {
         ticker: "GOOGL",
         name: "ALPHABET CLASS A",
-        weight: 3.02,
+        weight: 3.03,
         category: "equity"
       },
       {
         ticker: "AVGO",
         name: "BROADCOM INC",
-        weight: 2.53,
-        category: "equity"
-      },
-      {
-        ticker: "GOOG",
-        name: "ALPHABET CLASS C",
-        weight: 2.43,
+        weight: 2.57,
         category: "equity"
       },
       {
         ticker: "META",
         name: "META PLATFORMS CLASS A",
-        weight: 2.41,
+        weight: 2.44,
+        category: "equity"
+      },
+      {
+        ticker: "GOOG",
+        name: "ALPHABET CLASS C",
+        weight: 2.44,
         category: "equity"
       },
       {
         ticker: "MU",
         name: "MICRON TECHNOLOGY",
-        weight: 1.82,
+        weight: 1.79,
         category: "equity"
       },
       {
         ticker: "TSLA",
         name: "TESLA INC",
-        weight: 1.57,
+        weight: 1.59,
         category: "equity"
       },
       {
         ticker: "AMD",
         name: "ADVANCED MICRO DEVICES",
-        weight: 1.55,
+        weight: 1.54,
         category: "equity"
       },
       {
@@ -74037,13 +74034,13 @@ var holdings_default = {
       {
         ticker: "LLY",
         name: "ELI LILLY",
-        weight: 1.37,
+        weight: 1.36,
         category: "equity"
       },
       {
         ticker: "JPM",
         name: "JPMORGAN CHASE & CO",
-        weight: 1.33,
+        weight: 1.32,
         category: "equity"
       },
       {
@@ -74053,27 +74050,21 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "JNJ",
-        name: "JOHNSON & JOHNSON",
-        weight: 0.93,
+        ticker: "V",
+        name: "VISA CLASS A",
+        weight: 0.94,
         category: "equity"
       },
       {
-        ticker: "V",
-        name: "VISA CLASS A",
-        weight: 0.92,
+        ticker: "JNJ",
+        name: "JOHNSON & JOHNSON",
+        weight: 0.91,
         category: "equity"
       },
       {
         ticker: "INTC",
         name: "INTEL CORPORATION",
-        weight: 0.89,
-        category: "equity"
-      },
-      {
-        ticker: "WMT",
-        name: "WALMART",
-        weight: 0.7,
+        weight: 0.86,
         category: "equity"
       },
       {
@@ -74083,9 +74074,15 @@ var holdings_default = {
         category: "equity"
       },
       {
+        ticker: "WMT",
+        name: "WALMART",
+        weight: 0.7,
+        category: "equity"
+      },
+      {
         ticker: "MA",
         name: "MASTERCARD CLASS A",
-        weight: 0.67,
+        weight: 0.68,
         category: "equity"
       },
       {
@@ -74095,15 +74092,15 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "LRCX",
-        name: "LAM RESEARCH",
+        ticker: "PLTR",
+        name: "PALANTIR TECHNOLOGIES CLASS A",
         weight: 0.65,
         category: "equity"
       },
       {
-        ticker: "PLTR",
-        name: "PALANTIR TECHNOLOGIES CLASS A",
-        weight: 0.65,
+        ticker: "LRCX",
+        name: "LAM RESEARCH",
+        weight: 0.64,
         category: "equity"
       },
       {
@@ -74113,14 +74110,14 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "CVX",
-        name: "CHEVRON",
+        ticker: "COST",
+        name: "COSTCO WHOLESALE CORP",
         weight: 0.61,
         category: "equity"
       },
       {
-        ticker: "COST",
-        name: "COSTCO WHOLESALE CORP",
+        ticker: "CVX",
+        name: "CHEVRON",
         weight: 0.61,
         category: "equity"
       },
@@ -74131,27 +74128,27 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "MRK",
-        name: "MERCK & CO INC",
-        weight: 0.53,
-        category: "equity"
-      },
-      {
         ticker: "BAC",
         name: "BANK OF AMERICA",
         weight: 0.52,
         category: "equity"
       },
       {
-        ticker: "PG",
-        name: "PROCTER & GAMBLE",
+        ticker: "MRK",
+        name: "MERCK & CO INC",
         weight: 0.51,
         category: "equity"
       },
       {
         ticker: "UNH",
         name: "UNITEDHEALTH GROUP",
-        weight: 0.5,
+        weight: 0.51,
+        category: "equity"
+      },
+      {
+        ticker: "PG",
+        name: "PROCTER & GAMBLE",
+        weight: 0.51,
         category: "equity"
       },
       {
@@ -74169,7 +74166,7 @@ var holdings_default = {
       {
         ticker: "GE",
         name: "GE AEROSPACE",
-        weight: 0.48,
+        weight: 0.47,
         category: "equity"
       },
       {
@@ -74179,14 +74176,14 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "HD",
-        name: "HOME DEPOT",
+        ticker: "NFLX",
+        name: "NETFLIX",
         weight: 0.42,
         category: "equity"
       },
       {
-        ticker: "NFLX",
-        name: "NETFLIX",
+        ticker: "HD",
+        name: "HOME DEPOT",
         weight: 0.42,
         category: "equity"
       },
@@ -74199,7 +74196,7 @@ var holdings_default = {
       {
         ticker: "KLAC",
         name: "KLA",
-        weight: 0.41,
+        weight: 0.4,
         category: "equity"
       },
       {
@@ -74211,7 +74208,7 @@ var holdings_default = {
       {
         ticker: "GEV",
         name: "GE VERNOVA",
-        weight: 0.4,
+        weight: 0.39,
         category: "equity"
       },
       {
@@ -74221,20 +74218,20 @@ var holdings_default = {
         category: "equity"
       },
       {
+        ticker: "TMO",
+        name: "THERMO FISHER SCIENTIFIC INC",
+        weight: 0.37,
+        category: "equity"
+      },
+      {
         ticker: "SNDK",
         name: "SANDISK",
-        weight: 0.38,
+        weight: 0.37,
         category: "equity"
       },
       {
         ticker: "RTX",
         name: "RTX",
-        weight: 0.37,
-        category: "equity"
-      },
-      {
-        ticker: "ORCL",
-        name: "ORACLE",
         weight: 0.37,
         category: "equity"
       },
@@ -74245,15 +74242,15 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "TMO",
-        name: "THERMO FISHER SCIENTIFIC INC",
-        weight: 0.36,
+        ticker: "ORCL",
+        name: "ORACLE",
+        weight: 0.37,
         category: "equity"
       },
       {
         ticker: "MRVL",
         name: "MARVELL TECHNOLOGY",
-        weight: 0.36,
+        weight: 0.35,
         category: "equity"
       },
       {
@@ -74271,13 +74268,13 @@ var holdings_default = {
       {
         ticker: "AMGN",
         name: "AMGEN INC",
-        weight: 0.33,
+        weight: 0.32,
         category: "equity"
       },
       {
         ticker: "ANET",
         name: "ARISTA NETWORKS",
-        weight: 0.33,
+        weight: 0.32,
         category: "equity"
       },
       {
@@ -74305,27 +74302,27 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "QCOM",
-        name: "QUALCOMM",
+        ticker: "STX",
+        name: "SEAGATE TECHNOLOGY HOLDINGS PLC",
         weight: 0.3,
         category: "equity"
       },
       {
-        ticker: "STX",
-        name: "SEAGATE TECHNOLOGY HOLDINGS PLC",
-        weight: 0.29,
-        category: "equity"
-      },
-      {
-        ticker: "CRM",
-        name: "SALESFORCE",
+        ticker: "QCOM",
+        name: "QUALCOMM",
         weight: 0.29,
         category: "equity"
       },
       {
         ticker: "VZ",
         name: "VERIZON COMMUNICATIONS INC",
-        weight: 0.29,
+        weight: 0.28,
+        category: "equity"
+      },
+      {
+        ticker: "CRM",
+        name: "SALESFORCE",
+        weight: 0.28,
         category: "equity"
       },
       {
@@ -74337,12 +74334,12 @@ var holdings_default = {
       {
         ticker: "DIS",
         name: "WALT DISNEY",
-        weight: 0.26,
+        weight: 0.27,
         category: "equity"
       },
       {
-        ticker: "DE",
-        name: "DEERE",
+        ticker: "ABT",
+        name: "ABBOTT LABORATORIES",
         weight: 0.26,
         category: "equity"
       },
@@ -74353,8 +74350,8 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "DELL",
-        name: "DELL TECHNOLOGIES INC CLASS C",
+        ticker: "DE",
+        name: "DEERE",
         weight: 0.26,
         category: "equity"
       },
@@ -74365,14 +74362,20 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "ABT",
-        name: "ABBOTT LABORATORIES",
+        ticker: "DELL",
+        name: "DELL TECHNOLOGIES INC CLASS C",
         weight: 0.25,
         category: "equity"
       },
       {
         ticker: "T",
         name: "AT&T",
+        weight: 0.25,
+        category: "equity"
+      },
+      {
+        ticker: "MCD",
+        name: "MCDONALDS CORP",
         weight: 0.25,
         category: "equity"
       },
@@ -74385,18 +74388,6 @@ var holdings_default = {
       {
         ticker: "WELL",
         name: "WELLTOWER",
-        weight: 0.25,
-        category: "equity"
-      },
-      {
-        ticker: "MCD",
-        name: "MCDONALDS CORP",
-        weight: 0.25,
-        category: "equity"
-      },
-      {
-        ticker: "NEE",
-        name: "NEXTERA ENERGY",
         weight: 0.24,
         category: "equity"
       },
@@ -74407,26 +74398,26 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "PFE",
-        name: "PFIZER",
-        weight: 0.24,
-        category: "equity"
-      },
-      {
         ticker: "SCHW",
         name: "CHARLES SCHWAB",
         weight: 0.24,
         category: "equity"
       },
       {
-        ticker: "BA",
-        name: "BOEING",
-        weight: 0.23,
+        ticker: "WDC",
+        name: "WESTERN DIGITAL CORP",
+        weight: 0.24,
         category: "equity"
       },
       {
-        ticker: "BLK",
-        name: "BLACKROCK",
+        ticker: "NEE",
+        name: "NEXTERA ENERGY",
+        weight: 0.24,
+        category: "equity"
+      },
+      {
+        ticker: "PFE",
+        name: "PFIZER",
         weight: 0.23,
         category: "equity"
       },
@@ -74437,15 +74428,27 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "WDC",
-        name: "WESTERN DIGITAL CORP",
-        weight: 0.22,
+        ticker: "BLK",
+        name: "BLACKROCK",
+        weight: 0.23,
+        category: "equity"
+      },
+      {
+        ticker: "BA",
+        name: "BOEING",
+        weight: 0.23,
         category: "equity"
       },
       {
         ticker: "TJX",
         name: "TJX",
         weight: 0.22,
+        category: "equity"
+      },
+      {
+        ticker: "ISRG",
+        name: "INTUITIVE SURGICAL",
+        weight: 0.21,
         category: "equity"
       },
       {
@@ -74461,21 +74464,9 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "ISRG",
-        name: "INTUITIVE SURGICAL",
-        weight: 0.21,
-        category: "equity"
-      },
-      {
         ticker: "DHR",
         name: "DANAHER",
-        weight: 0.2,
-        category: "equity"
-      },
-      {
-        ticker: "GLW",
-        name: "CORNING",
-        weight: 0.2,
+        weight: 0.21,
         category: "equity"
       },
       {
@@ -74485,14 +74476,32 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "BMY",
-        name: "BRISTOL MYERS SQUIBB",
+        ticker: "GLW",
+        name: "CORNING",
         weight: 0.19,
+        category: "equity"
+      },
+      {
+        ticker: "PGR",
+        name: "PROGRESSIVE",
+        weight: 0.18,
         category: "equity"
       },
       {
         ticker: "PH",
         name: "PARKER-HANNIFIN",
+        weight: 0.18,
+        category: "equity"
+      },
+      {
+        ticker: "NEM",
+        name: "NEWMONT",
+        weight: 0.18,
+        category: "equity"
+      },
+      {
+        ticker: "MPC",
+        name: "MARATHON PETROLEUM",
         weight: 0.18,
         category: "equity"
       },
@@ -74503,14 +74512,20 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "PGR",
-        name: "PROGRESSIVE",
+        ticker: "VLO",
+        name: "VALERO ENERGY CORP",
         weight: 0.18,
         category: "equity"
       },
       {
-        ticker: "NEM",
-        name: "NEWMONT",
+        ticker: "BMY",
+        name: "BRISTOL MYERS SQUIBB",
+        weight: 0.18,
+        category: "equity"
+      },
+      {
+        ticker: "COF",
+        name: "CAPITAL ONE FINANCIAL CORP",
         weight: 0.18,
         category: "equity"
       },
@@ -74527,24 +74542,6 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "COF",
-        name: "CAPITAL ONE FINANCIAL CORP",
-        weight: 0.18,
-        category: "equity"
-      },
-      {
-        ticker: "MPC",
-        name: "MARATHON PETROLEUM",
-        weight: 0.18,
-        category: "equity"
-      },
-      {
-        ticker: "VLO",
-        name: "VALERO ENERGY CORP",
-        weight: 0.18,
-        category: "equity"
-      },
-      {
         ticker: "SPGI",
         name: "S&P GLOBAL",
         weight: 0.18,
@@ -74557,26 +74554,26 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "MO",
-        name: "ALTRIA GROUP INC",
-        weight: 0.17,
-        category: "equity"
-      },
-      {
         ticker: "FTNT",
         name: "FORTINET",
         weight: 0.17,
         category: "equity"
       },
       {
-        ticker: "CVS",
-        name: "CVS HEALTH",
+        ticker: "MO",
+        name: "ALTRIA GROUP INC",
         weight: 0.17,
         category: "equity"
       },
       {
         ticker: "MDT",
         name: "MEDTRONIC PLC",
+        weight: 0.17,
+        category: "equity"
+      },
+      {
+        ticker: "CVS",
+        name: "CVS HEALTH",
         weight: 0.17,
         category: "equity"
       },
@@ -74605,8 +74602,8 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "LMT",
-        name: "LOCKHEED MARTIN CORP",
+        ticker: "TT",
+        name: "TRANE TECHNOLOGIES PLC",
         weight: 0.15,
         category: "equity"
       },
@@ -74617,8 +74614,8 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "TT",
-        name: "TRANE TECHNOLOGIES PLC",
+        ticker: "LMT",
+        name: "LOCKHEED MARTIN CORP",
         weight: 0.15,
         category: "equity"
       },
@@ -74629,20 +74626,20 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "LOW",
-        name: "LOWES COMPANIES INC",
-        weight: 0.15,
-        category: "equity"
-      },
-      {
         ticker: "EQIX",
         name: "EQUINIX REIT",
         weight: 0.15,
         category: "equity"
       },
       {
-        ticker: "BNY",
-        name: "BANK OF NEW YORK MELLON CORP",
+        ticker: "LOW",
+        name: "LOWES COMPANIES INC",
+        weight: 0.15,
+        category: "equity"
+      },
+      {
+        ticker: "SYK",
+        name: "STRYKER",
         weight: 0.15,
         category: "equity"
       },
@@ -74653,14 +74650,20 @@ var holdings_default = {
         category: "equity"
       },
       {
+        ticker: "BNY",
+        name: "BANK OF NEW YORK MELLON CORP",
+        weight: 0.15,
+        category: "equity"
+      },
+      {
         ticker: "CDNS",
         name: "CADENCE DESIGN SYSTEMS",
         weight: 0.15,
         category: "equity"
       },
       {
-        ticker: "SO",
-        name: "SOUTHERN",
+        ticker: "CME",
+        name: "CME GROUP CLASS A",
         weight: 0.14,
         category: "equity"
       },
@@ -74671,20 +74674,14 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "SYK",
-        name: "STRYKER",
+        ticker: "SO",
+        name: "SOUTHERN",
         weight: 0.14,
         category: "equity"
       },
       {
         ticker: "JCI",
         name: "JOHNSON CONTROLS INTERNATIONAL PLC",
-        weight: 0.14,
-        category: "equity"
-      },
-      {
-        ticker: "CME",
-        name: "CME GROUP CLASS A",
         weight: 0.14,
         category: "equity"
       },
@@ -74713,20 +74710,14 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "HPE",
-        name: "HEWLETT PACKARD ENTERPRISE",
-        weight: 0.14,
-        category: "equity"
-      },
-      {
         ticker: "EMR",
         name: "EMERSON ELECTRIC",
-        weight: 0.14,
+        weight: 0.13,
         category: "equity"
       },
       {
-        ticker: "USB",
-        name: "US BANCORP",
+        ticker: "HPE",
+        name: "HEWLETT PACKARD ENTERPRISE",
         weight: 0.13,
         category: "equity"
       },
@@ -74737,8 +74728,20 @@ var holdings_default = {
         category: "equity"
       },
       {
+        ticker: "USB",
+        name: "US BANCORP",
+        weight: 0.13,
+        category: "equity"
+      },
+      {
         ticker: "DUK",
         name: "DUKE ENERGY CORP",
+        weight: 0.13,
+        category: "equity"
+      },
+      {
+        ticker: "CEG",
+        name: "CONSTELLATION ENERGY CORP",
         weight: 0.13,
         category: "equity"
       },
@@ -74761,14 +74764,8 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "BE",
-        name: "BLOOM ENERGY CLASS A",
-        weight: 0.13,
-        category: "equity"
-      },
-      {
-        ticker: "CEG",
-        name: "CONSTELLATION ENERGY CORP",
+        ticker: "ELV",
+        name: "ELEVANCE HEALTH INC",
         weight: 0.13,
         category: "equity"
       },
@@ -74779,8 +74776,8 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "BX",
-        name: "BLACKSTONE",
+        ticker: "BE",
+        name: "BLOOM ENERGY CLASS A",
         weight: 0.13,
         category: "equity"
       },
@@ -74791,15 +74788,15 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "ELV",
-        name: "ELEVANCE HEALTH INC",
+        ticker: "MMM",
+        name: "3M",
         weight: 0.13,
         category: "equity"
       },
       {
-        ticker: "MMM",
-        name: "3M",
-        weight: 0.13,
+        ticker: "BX",
+        name: "BLACKSTONE",
+        weight: 0.12,
         category: "equity"
       },
       {
@@ -74833,9 +74830,15 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "MAR",
-        name: "MARRIOTT INTERNATIONAL CLASS A",
-        weight: 0.12,
+        ticker: "WM",
+        name: "WASTE MANAGEMENT INC",
+        weight: 0.11,
+        category: "equity"
+      },
+      {
+        ticker: "APP",
+        name: "APPLOVIN CLASS A",
+        weight: 0.11,
         category: "equity"
       },
       {
@@ -74845,14 +74848,32 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "WM",
-        name: "WASTE MANAGEMENT INC",
+        ticker: "MAR",
+        name: "MARRIOTT INTERNATIONAL CLASS A",
         weight: 0.11,
         category: "equity"
       },
       {
         ticker: "AMT",
         name: "AMERICAN TOWER REIT",
+        weight: 0.11,
+        category: "equity"
+      },
+      {
+        ticker: "EOG",
+        name: "EOG RESOURCES",
+        weight: 0.11,
+        category: "equity"
+      },
+      {
+        ticker: "MRNA",
+        name: "MODERNA",
+        weight: 0.11,
+        category: "equity"
+      },
+      {
+        ticker: "MSI",
+        name: "MOTOROLA SOLUTIONS INC",
         weight: 0.11,
         category: "equity"
       },
@@ -74869,20 +74890,14 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "EOG",
-        name: "EOG RESOURCES",
+        ticker: "SLB",
+        name: "SLB",
         weight: 0.11,
         category: "equity"
       },
       {
-        ticker: "MSI",
-        name: "MOTOROLA SOLUTIONS INC",
-        weight: 0.11,
-        category: "equity"
-      },
-      {
-        ticker: "ROST",
-        name: "ROSS STORES INC",
+        ticker: "MPWR",
+        name: "MONOLITHIC POWER SYSTEMS INC",
         weight: 0.11,
         category: "equity"
       },
@@ -74893,20 +74908,26 @@ var holdings_default = {
         category: "equity"
       },
       {
+        ticker: "ROST",
+        name: "ROSS STORES INC",
+        weight: 0.11,
+        category: "equity"
+      },
+      {
+        ticker: "DASH",
+        name: "DOORDASH CLASS A",
+        weight: 0.11,
+        category: "equity"
+      },
+      {
         ticker: "CMI",
         name: "CUMMINS INC",
         weight: 0.11,
         category: "equity"
       },
       {
-        ticker: "APP",
-        name: "APPLOVIN CLASS A",
-        weight: 0.11,
-        category: "equity"
-      },
-      {
-        ticker: "SLB",
-        name: "SLB",
+        ticker: "CI",
+        name: "CIGNA",
         weight: 0.11,
         category: "equity"
       },
@@ -74923,56 +74944,14 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "CI",
-        name: "CIGNA",
-        weight: 0.11,
-        category: "equity"
-      },
-      {
         ticker: "NSC",
         name: "NORFOLK SOUTHERN CORP",
         weight: 0.11,
         category: "equity"
       },
       {
-        ticker: "DASH",
-        name: "DOORDASH CLASS A",
-        weight: 0.11,
-        category: "equity"
-      },
-      {
-        ticker: "TGT",
-        name: "TARGET CORP",
-        weight: 0.11,
-        category: "equity"
-      },
-      {
-        ticker: "MPWR",
-        name: "MONOLITHIC POWER SYSTEMS INC",
-        weight: 0.11,
-        category: "equity"
-      },
-      {
-        ticker: "MRNA",
-        name: "MODERNA",
-        weight: 0.11,
-        category: "equity"
-      },
-      {
-        ticker: "TER",
-        name: "TERADYNE",
-        weight: 0.11,
-        category: "equity"
-      },
-      {
-        ticker: "UPS",
-        name: "UNITED PARCEL SERVICE INC CLASS B",
-        weight: 0.1,
-        category: "equity"
-      },
-      {
-        ticker: "RCL",
-        name: "ROYAL CARIBBEAN GROUP",
+        ticker: "GM",
+        name: "GENERAL MOTORS",
         weight: 0.1,
         category: "equity"
       },
@@ -74983,20 +74962,20 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "GM",
-        name: "GENERAL MOTORS",
+        ticker: "UPS",
+        name: "UNITED PARCEL SERVICE INC CLASS B",
         weight: 0.1,
         category: "equity"
       },
       {
-        ticker: "ORLY",
-        name: "OREILLY AUTOMOTIVE INC",
+        ticker: "TER",
+        name: "TERADYNE",
         weight: 0.1,
         category: "equity"
       },
       {
-        ticker: "ITW",
-        name: "ILLINOIS TOOL INC",
+        ticker: "TGT",
+        name: "TARGET CORP",
         weight: 0.1,
         category: "equity"
       },
@@ -75007,20 +74986,32 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "HON",
-        name: "HONEYWELL INTERNATIONAL INC",
-        weight: 0.1,
-        category: "equity"
-      },
-      {
-        ticker: "URI",
-        name: "UNITED RENTALS",
-        weight: 0.1,
-        category: "equity"
-      },
-      {
         ticker: "CL",
         name: "COLGATE-PALMOLIVE",
+        weight: 0.1,
+        category: "equity"
+      },
+      {
+        ticker: "ITW",
+        name: "ILLINOIS TOOL INC",
+        weight: 0.1,
+        category: "equity"
+      },
+      {
+        ticker: "RCL",
+        name: "ROYAL CARIBBEAN GROUP",
+        weight: 0.1,
+        category: "equity"
+      },
+      {
+        ticker: "ORLY",
+        name: "OREILLY AUTOMOTIVE INC",
+        weight: 0.1,
+        category: "equity"
+      },
+      {
+        ticker: "HON",
+        name: "HONEYWELL INTERNATIONAL INC",
         weight: 0.1,
         category: "equity"
       },
@@ -75031,8 +75022,14 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "COHR",
-        name: "COHERENT",
+        ticker: "URI",
+        name: "UNITED RENTALS",
+        weight: 0.1,
+        category: "equity"
+      },
+      {
+        ticker: "MCO",
+        name: "MOODYS CORP",
         weight: 0.1,
         category: "equity"
       },
@@ -75043,8 +75040,8 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "MCO",
-        name: "MOODYS CORP",
+        ticker: "COHR",
+        name: "COHERENT",
         weight: 0.1,
         category: "equity"
       },
@@ -75061,26 +75058,26 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "FDX",
-        name: "FEDEX CORP",
+        ticker: "HCA",
+        name: "HCA HEALTHCARE",
         weight: 0.1,
         category: "equity"
       },
       {
         ticker: "NOC",
         name: "NORTHROP GRUMMAN CORP",
-        weight: 0.1,
+        weight: 0.09,
+        category: "equity"
+      },
+      {
+        ticker: "FDX",
+        name: "FEDEX CORP",
+        weight: 0.09,
         category: "equity"
       },
       {
         ticker: "TEL",
         name: "TE CONNECTIVITY PLC",
-        weight: 0.1,
-        category: "equity"
-      },
-      {
-        ticker: "HCA",
-        name: "HCA HEALTHCARE",
         weight: 0.09,
         category: "equity"
       },
@@ -75091,14 +75088,32 @@ var holdings_default = {
         category: "equity"
       },
       {
+        ticker: "APD",
+        name: "AIR PRODUCTS AND CHEMICALS",
+        weight: 0.09,
+        category: "equity"
+      },
+      {
+        ticker: "MNST",
+        name: "MONSTER BEVERAGE",
+        weight: 0.09,
+        category: "equity"
+      },
+      {
         ticker: "KKR",
         name: "KKR AND CO INC",
         weight: 0.09,
         category: "equity"
       },
       {
-        ticker: "APD",
-        name: "AIR PRODUCTS AND CHEMICALS",
+        ticker: "TRGP",
+        name: "TARGA RESOURCES",
+        weight: 0.09,
+        category: "equity"
+      },
+      {
+        ticker: "KMI",
+        name: "KINDER MORGAN",
         weight: 0.09,
         category: "equity"
       },
@@ -75115,14 +75130,8 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "MNST",
-        name: "MONSTER BEVERAGE",
-        weight: 0.09,
-        category: "equity"
-      },
-      {
-        ticker: "KMI",
-        name: "KINDER MORGAN",
+        ticker: "TDG",
+        name: "TRANSDIGM GROUP",
         weight: 0.09,
         category: "equity"
       },
@@ -75133,26 +75142,8 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "TRGP",
-        name: "TARGA RESOURCES",
-        weight: 0.09,
-        category: "equity"
-      },
-      {
-        ticker: "TDG",
-        name: "TRANSDIGM GROUP",
-        weight: 0.09,
-        category: "equity"
-      },
-      {
         ticker: "COR",
         name: "CENCORA",
-        weight: 0.09,
-        category: "equity"
-      },
-      {
-        ticker: "FAST",
-        name: "FASTENAL",
         weight: 0.09,
         category: "equity"
       },
@@ -75163,14 +75154,14 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "AME",
-        name: "AMETEK INC",
+        ticker: "FAST",
+        name: "FASTENAL",
         weight: 0.09,
         category: "equity"
       },
       {
-        ticker: "PCAR",
-        name: "PACCAR INC",
+        ticker: "AME",
+        name: "AMETEK INC",
         weight: 0.09,
         category: "equity"
       },
@@ -75181,9 +75172,27 @@ var holdings_default = {
         category: "equity"
       },
       {
+        ticker: "PCAR",
+        name: "PACCAR INC",
+        weight: 0.09,
+        category: "equity"
+      },
+      {
+        ticker: "NUE",
+        name: "NUCOR",
+        weight: 0.09,
+        category: "equity"
+      },
+      {
+        ticker: "BKR",
+        name: "BAKER HUGHES CLASS A",
+        weight: 0.08,
+        category: "equity"
+      },
+      {
         ticker: "TFC",
         name: "TRUIST FINANCIAL",
-        weight: 0.09,
+        weight: 0.08,
         category: "equity"
       },
       {
@@ -75193,8 +75202,8 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "BKR",
-        name: "BAKER HUGHES CLASS A",
+        ticker: "OKE",
+        name: "ONEOK",
         weight: 0.08,
         category: "equity"
       },
@@ -75211,26 +75220,8 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "OKE",
-        name: "ONEOK",
-        weight: 0.08,
-        category: "equity"
-      },
-      {
-        ticker: "NUE",
-        name: "NUCOR",
-        weight: 0.08,
-        category: "equity"
-      },
-      {
         ticker: "CRH",
         name: "CRH PUBLIC LIMITED PLC",
-        weight: 0.08,
-        category: "equity"
-      },
-      {
-        ticker: "D",
-        name: "DOMINION ENERGY",
         weight: 0.08,
         category: "equity"
       },
@@ -75247,8 +75238,20 @@ var holdings_default = {
         category: "equity"
       },
       {
+        ticker: "D",
+        name: "DOMINION ENERGY",
+        weight: 0.08,
+        category: "equity"
+      },
+      {
         ticker: "DVN",
         name: "DEVON ENERGY",
+        weight: 0.08,
+        category: "equity"
+      },
+      {
+        ticker: "MET",
+        name: "METLIFE",
         weight: 0.08,
         category: "equity"
       },
@@ -75271,15 +75274,9 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "MET",
-        name: "METLIFE",
-        weight: 0.08,
-        category: "equity"
-      },
-      {
-        ticker: "DAL",
-        name: "DELTA AIR LINES",
-        weight: 0.08,
+        ticker: "EW",
+        name: "EDWARDS LIFESCIENCES",
+        weight: 0.07,
         category: "equity"
       },
       {
@@ -75289,8 +75286,8 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "EW",
-        name: "EDWARDS LIFESCIENCES",
+        ticker: "DAL",
+        name: "DELTA AIR LINES",
         weight: 0.07,
         category: "equity"
       },
@@ -75307,38 +75304,14 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "STT",
-        name: "STATE STREET",
-        weight: 0.07,
-        category: "equity"
-      },
-      {
         ticker: "BDX",
         name: "BECTON DICKINSON",
         weight: 0.07,
         category: "equity"
       },
       {
-        ticker: "PSA",
-        name: "PUBLIC STORAGE REIT",
-        weight: 0.07,
-        category: "equity"
-      },
-      {
-        ticker: "A",
-        name: "AGILENT TECHNOLOGIES INC",
-        weight: 0.07,
-        category: "equity"
-      },
-      {
-        ticker: "F",
-        name: "FORD MOTOR CO",
-        weight: 0.07,
-        category: "equity"
-      },
-      {
-        ticker: "ETR",
-        name: "ENTERGY CORP",
+        ticker: "VYLR",
+        name: "VYLOR INC",
         weight: 0.07,
         category: "equity"
       },
@@ -75349,8 +75322,14 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "GRMN",
-        name: "GARMIN",
+        ticker: "STT",
+        name: "STATE STREET",
+        weight: 0.07,
+        category: "equity"
+      },
+      {
+        ticker: "A",
+        name: "AGILENT TECHNOLOGIES INC",
         weight: 0.07,
         category: "equity"
       },
@@ -75361,8 +75340,56 @@ var holdings_default = {
         category: "equity"
       },
       {
+        ticker: "F",
+        name: "FORD MOTOR CO",
+        weight: 0.07,
+        category: "equity"
+      },
+      {
+        ticker: "GRMN",
+        name: "GARMIN",
+        weight: 0.07,
+        category: "equity"
+      },
+      {
+        ticker: "PSA",
+        name: "PUBLIC STORAGE REIT",
+        weight: 0.07,
+        category: "equity"
+      },
+      {
+        ticker: "ETR",
+        name: "ENTERGY CORP",
+        weight: 0.07,
+        category: "equity"
+      },
+      {
+        ticker: "ADSK",
+        name: "AUTODESK",
+        weight: 0.07,
+        category: "equity"
+      },
+      {
+        ticker: "PYPL",
+        name: "PAYPAL HOLDINGS",
+        weight: 0.07,
+        category: "equity"
+      },
+      {
+        ticker: "TWLO",
+        name: "TWILIO CLASS A",
+        weight: 0.07,
+        category: "equity"
+      },
+      {
         ticker: "FITB",
         name: "FIFTH THIRD BANCORP",
+        weight: 0.07,
+        category: "equity"
+      },
+      {
+        ticker: "CARR",
+        name: "CARRIER GLOBAL",
         weight: 0.07,
         category: "equity"
       },
@@ -75379,26 +75406,8 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "CARR",
-        name: "CARRIER GLOBAL",
-        weight: 0.07,
-        category: "equity"
-      },
-      {
-        ticker: "PYPL",
-        name: "PAYPAL HOLDINGS",
-        weight: 0.07,
-        category: "equity"
-      },
-      {
-        ticker: "VYLR WI",
-        name: "VYLOR WHEN ISSUED",
-        weight: 0.07,
-        category: "equity"
-      },
-      {
-        ticker: "ADSK",
-        name: "AUTODESK",
+        ticker: "VST",
+        name: "VISTRA",
         weight: 0.07,
         category: "equity"
       },
@@ -75409,14 +75418,8 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "NTAP",
-        name: "NETAPP INC",
-        weight: 0.07,
-        category: "equity"
-      },
-      {
-        ticker: "VST",
-        name: "VISTRA",
+        ticker: "ILMN",
+        name: "ILLUMINA INC",
         weight: 0.07,
         category: "equity"
       },
@@ -75433,56 +75436,26 @@ var holdings_default = {
         category: "equity"
       },
       {
+        ticker: "NTAP",
+        name: "NETAPP INC",
+        weight: 0.07,
+        category: "equity"
+      },
+      {
+        ticker: "IQV",
+        name: "IQVIA HOLDINGS INC",
+        weight: 0.07,
+        category: "equity"
+      },
+      {
         ticker: "AMP",
         name: "AMERIPRISE FINANCE INC",
         weight: 0.07,
         category: "equity"
       },
       {
-        ticker: "FERG",
-        name: "FERGUSON ENTERPRISES INC",
-        weight: 0.06,
-        category: "equity"
-      },
-      {
-        ticker: "VTR",
-        name: "VENTAS REIT",
-        weight: 0.06,
-        category: "equity"
-      },
-      {
-        ticker: "FLEX",
-        name: "FLEX LTD",
-        weight: 0.06,
-        category: "equity"
-      },
-      {
         ticker: "VMRK",
         name: "VIVMARK RESIDENTIAL",
-        weight: 0.06,
-        category: "equity"
-      },
-      {
-        ticker: "EBAY",
-        name: "EBAY",
-        weight: 0.06,
-        category: "equity"
-      },
-      {
-        ticker: "IQV",
-        name: "IQVIA HOLDINGS INC",
-        weight: 0.06,
-        category: "equity"
-      },
-      {
-        ticker: "OXY",
-        name: "OCCIDENTAL PETROLEUM CORP",
-        weight: 0.06,
-        category: "equity"
-      },
-      {
-        ticker: "EXC",
-        name: "EXELON CORP",
         weight: 0.06,
         category: "equity"
       },
@@ -75493,26 +75466,26 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "KDP",
-        name: "KEURIG DR PEPPER INC",
+        ticker: "FLEX",
+        name: "FLEX LTD",
         weight: 0.06,
         category: "equity"
       },
       {
-        ticker: "ILMN",
-        name: "ILLUMINA INC",
+        ticker: "FERG",
+        name: "FERGUSON ENTERPRISES INC",
         weight: 0.06,
         category: "equity"
       },
       {
-        ticker: "RSG",
-        name: "REPUBLIC SERVICES INC",
+        ticker: "EBAY",
+        name: "EBAY",
         weight: 0.06,
         category: "equity"
       },
       {
-        ticker: "CMG",
-        name: "CHIPOTLE MEXICAN GRILL",
+        ticker: "OXY",
+        name: "OCCIDENTAL PETROLEUM CORP",
         weight: 0.06,
         category: "equity"
       },
@@ -75523,8 +75496,14 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "IDXX",
-        name: "IDEXX LABORATORIES",
+        ticker: "EXC",
+        name: "EXELON CORP",
+        weight: 0.06,
+        category: "equity"
+      },
+      {
+        ticker: "KDP",
+        name: "KEURIG DR PEPPER INC",
         weight: 0.06,
         category: "equity"
       },
@@ -75535,8 +75514,20 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "NKE",
-        name: "NIKE CLASS B",
+        ticker: "VTR",
+        name: "VENTAS REIT",
+        weight: 0.06,
+        category: "equity"
+      },
+      {
+        ticker: "RSG",
+        name: "REPUBLIC SERVICES INC",
+        weight: 0.06,
+        category: "equity"
+      },
+      {
+        ticker: "IDXX",
+        name: "IDEXX LABORATORIES",
         weight: 0.06,
         category: "equity"
       },
@@ -75547,8 +75538,8 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "IBKR",
-        name: "INTERACTIVE BROKERS GROUP INC CLAS",
+        ticker: "NKE",
+        name: "NIKE CLASS B",
         weight: 0.06,
         category: "equity"
       },
@@ -75559,8 +75550,8 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "AIG",
-        name: "AMERICAN INTERNATIONAL GROUP",
+        ticker: "IBKR",
+        name: "INTERACTIVE BROKERS GROUP INC CLAS",
         weight: 0.06,
         category: "equity"
       },
@@ -75571,14 +75562,26 @@ var holdings_default = {
         category: "equity"
       },
       {
+        ticker: "ADM",
+        name: "ARCHER DANIELS MIDLAND",
+        weight: 0.06,
+        category: "equity"
+      },
+      {
+        ticker: "AIG",
+        name: "AMERICAN INTERNATIONAL GROUP",
+        weight: 0.06,
+        category: "equity"
+      },
+      {
         ticker: "PRU",
         name: "PRUDENTIAL FINANCIAL INC",
         weight: 0.06,
         category: "equity"
       },
       {
-        ticker: "ADM",
-        name: "ARCHER DANIELS MIDLAND",
+        ticker: "CMG",
+        name: "CHIPOTLE MEXICAN GRILL",
         weight: 0.06,
         category: "equity"
       },
@@ -75589,14 +75592,14 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "FANG",
-        name: "DIAMONDBACK ENERGY",
+        ticker: "WDAY",
+        name: "WORKDAY CLASS A",
         weight: 0.06,
         category: "equity"
       },
       {
-        ticker: "WDAY",
-        name: "WORKDAY CLASS A",
+        ticker: "FANG",
+        name: "DIAMONDBACK ENERGY",
         weight: 0.06,
         category: "equity"
       },
@@ -75607,26 +75610,14 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "SYY",
-        name: "SYSCO",
-        weight: 0.06,
-        category: "equity"
-      },
-      {
         ticker: "CBRE",
         name: "CBRE GROUP CLASS A",
-        weight: 0.06,
-        category: "equity"
-      },
-      {
-        ticker: "UAL",
-        name: "UNITED AIRLINES HOLDINGS",
         weight: 0.05,
         category: "equity"
       },
       {
-        ticker: "TTWO",
-        name: "TAKE TWO INTERACTIVE SOFTWARE",
+        ticker: "SYY",
+        name: "SYSCO",
         weight: 0.05,
         category: "equity"
       },
@@ -75637,20 +75628,20 @@ var holdings_default = {
         category: "equity"
       },
       {
+        ticker: "TTWO",
+        name: "TAKE TWO INTERACTIVE SOFTWARE",
+        weight: 0.05,
+        category: "equity"
+      },
+      {
+        ticker: "UAL",
+        name: "UNITED AIRLINES HOLDINGS",
+        weight: 0.05,
+        category: "equity"
+      },
+      {
         ticker: "EME",
         name: "EMCOR GROUP",
-        weight: 0.05,
-        category: "equity"
-      },
-      {
-        ticker: "DHI",
-        name: "D R HORTON",
-        weight: 0.05,
-        category: "equity"
-      },
-      {
-        ticker: "HIG",
-        name: "HARTFORD INSURANCE GROUP",
         weight: 0.05,
         category: "equity"
       },
@@ -75661,14 +75652,14 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "IRM",
-        name: "IRON MOUNTAIN INC",
+        ticker: "HIG",
+        name: "HARTFORD INSURANCE GROUP",
         weight: 0.05,
         category: "equity"
       },
       {
-        ticker: "ODFL",
-        name: "OLD DOMINION FREIGHT LINE",
+        ticker: "DHI",
+        name: "D R HORTON",
         weight: 0.05,
         category: "equity"
       },
@@ -75679,14 +75670,14 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "AXON",
-        name: "AXON ENTERPRISE",
+        ticker: "ODFL",
+        name: "OLD DOMINION FREIGHT LINE",
         weight: 0.05,
         category: "equity"
       },
       {
-        ticker: "WEC",
-        name: "WEC ENERGY GROUP",
+        ticker: "AXON",
+        name: "AXON ENTERPRISE",
         weight: 0.05,
         category: "equity"
       },
@@ -75697,14 +75688,14 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "KVUE",
-        name: "KENVUE",
+        ticker: "IRM",
+        name: "IRON MOUNTAIN INC",
         weight: 0.05,
         category: "equity"
       },
       {
-        ticker: "CCL",
-        name: "CARNIVAL CORP LTD",
+        ticker: "KVUE",
+        name: "KENVUE",
         weight: 0.05,
         category: "equity"
       },
@@ -75715,62 +75706,20 @@ var holdings_default = {
         category: "equity"
       },
       {
+        ticker: "WEC",
+        name: "WEC ENERGY GROUP",
+        weight: 0.05,
+        category: "equity"
+      },
+      {
         ticker: "DXCM",
         name: "DEXCOM INC",
         weight: 0.05,
         category: "equity"
       },
       {
-        ticker: "JBL",
-        name: "JABIL",
-        weight: 0.05,
-        category: "equity"
-      },
-      {
-        ticker: "ACGL",
-        name: "ARCH CAPITAL GROUP",
-        weight: 0.05,
-        category: "equity"
-      },
-      {
-        ticker: "PAYX",
-        name: "PAYCHEX",
-        weight: 0.05,
-        category: "equity"
-      },
-      {
-        ticker: "MTB",
-        name: "M&T BANK",
-        weight: 0.05,
-        category: "equity"
-      },
-      {
-        ticker: "RMD",
-        name: "RESMED",
-        weight: 0.05,
-        category: "equity"
-      },
-      {
-        ticker: "VMC",
-        name: "VULCAN MATERIALS",
-        weight: 0.05,
-        category: "equity"
-      },
-      {
-        ticker: "EQT",
-        name: "EQT",
-        weight: 0.05,
-        category: "equity"
-      },
-      {
-        ticker: "KMB",
-        name: "KIMBERLY CLARK",
-        weight: 0.05,
-        category: "equity"
-      },
-      {
-        ticker: "NTRS",
-        name: "NORTHERN TRUST",
+        ticker: "CCL",
+        name: "CARNIVAL CORP LTD",
         weight: 0.05,
         category: "equity"
       },
@@ -75781,8 +75730,68 @@ var holdings_default = {
         category: "equity"
       },
       {
+        ticker: "RMD",
+        name: "RESMED",
+        weight: 0.05,
+        category: "equity"
+      },
+      {
+        ticker: "ACGL",
+        name: "ARCH CAPITAL GROUP",
+        weight: 0.05,
+        category: "equity"
+      },
+      {
+        ticker: "EQT",
+        name: "EQT",
+        weight: 0.05,
+        category: "equity"
+      },
+      {
+        ticker: "PAYX",
+        name: "PAYCHEX",
+        weight: 0.05,
+        category: "equity"
+      },
+      {
+        ticker: "VMC",
+        name: "VULCAN MATERIALS",
+        weight: 0.05,
+        category: "equity"
+      },
+      {
         ticker: "CNC",
         name: "CENTENE CORP",
+        weight: 0.05,
+        category: "equity"
+      },
+      {
+        ticker: "KMB",
+        name: "KIMBERLY CLARK",
+        weight: 0.05,
+        category: "equity"
+      },
+      {
+        ticker: "JBL",
+        name: "JABIL",
+        weight: 0.05,
+        category: "equity"
+      },
+      {
+        ticker: "MTB",
+        name: "M&T BANK",
+        weight: 0.05,
+        category: "equity"
+      },
+      {
+        ticker: "NTRS",
+        name: "NORTHERN TRUST",
+        weight: 0.05,
+        category: "equity"
+      },
+      {
+        ticker: "MTD",
+        name: "METTLER TOLEDO",
         weight: 0.05,
         category: "equity"
       },
@@ -75795,18 +75804,6 @@ var holdings_default = {
       {
         ticker: "EXPE",
         name: "EXPEDIA GROUP",
-        weight: 0.05,
-        category: "equity"
-      },
-      {
-        ticker: "MTD",
-        name: "METTLER TOLEDO",
-        weight: 0.04,
-        category: "equity"
-      },
-      {
-        ticker: "HPQ",
-        name: "HP INC",
         weight: 0.04,
         category: "equity"
       },
@@ -75817,20 +75814,20 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "MLM",
-        name: "MARTIN MARIETTA MATERIALS",
-        weight: 0.04,
-        category: "equity"
-      },
-      {
         ticker: "ZTS",
         name: "ZOETIS INC CLASS A",
         weight: 0.04,
         category: "equity"
       },
       {
-        ticker: "TDY",
-        name: "TELEDYNE TECHNOLOGIES INC",
+        ticker: "MLM",
+        name: "MARTIN MARIETTA MATERIALS",
+        weight: 0.04,
+        category: "equity"
+      },
+      {
+        ticker: "HPQ",
+        name: "HP INC",
         weight: 0.04,
         category: "equity"
       },
@@ -75841,14 +75838,32 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "EXR",
-        name: "EXTRA SPACE STORAGE REIT",
+        ticker: "TDY",
+        name: "TELEDYNE TECHNOLOGIES INC",
         weight: 0.04,
         category: "equity"
       },
       {
         ticker: "CBOE",
         name: "CBOE GLOBAL MARKETS",
+        weight: 0.04,
+        category: "equity"
+      },
+      {
+        ticker: "WSM",
+        name: "WILLIAMS SONOMA INC",
+        weight: 0.04,
+        category: "equity"
+      },
+      {
+        ticker: "EXR",
+        name: "EXTRA SPACE STORAGE REIT",
+        weight: 0.04,
+        category: "equity"
+      },
+      {
+        ticker: "RJF",
+        name: "RAYMOND JAMES",
         weight: 0.04,
         category: "equity"
       },
@@ -75865,14 +75880,8 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "RJF",
-        name: "RAYMOND JAMES",
-        weight: 0.04,
-        category: "equity"
-      },
-      {
-        ticker: "WSM",
-        name: "WILLIAMS SONOMA INC",
+        ticker: "HAL",
+        name: "HALLIBURTON",
         weight: 0.04,
         category: "equity"
       },
@@ -75883,14 +75892,14 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "CFG",
-        name: "CITIZENS FINANCIAL GROUP INC",
+        ticker: "IR",
+        name: "INGERSOLL RAND INC",
         weight: 0.04,
         category: "equity"
       },
       {
-        ticker: "WTW",
-        name: "WILLIS TOWERS WATSON",
+        ticker: "CFG",
+        name: "CITIZENS FINANCIAL GROUP INC",
         weight: 0.04,
         category: "equity"
       },
@@ -75901,38 +75910,20 @@ var holdings_default = {
         category: "equity"
       },
       {
+        ticker: "WTW",
+        name: "WILLIS TOWERS WATSON",
+        weight: 0.04,
+        category: "equity"
+      },
+      {
         ticker: "ATO",
         name: "ATMOS ENERGY",
         weight: 0.04,
         category: "equity"
       },
       {
-        ticker: "HAL",
-        name: "HALLIBURTON",
-        weight: 0.04,
-        category: "equity"
-      },
-      {
-        ticker: "CTSH",
-        name: "COGNIZANT TECHNOLOGY SOLUTIONS CLA",
-        weight: 0.04,
-        category: "equity"
-      },
-      {
-        ticker: "ARES",
-        name: "ARES MANAGEMENT CLASS A",
-        weight: 0.04,
-        category: "equity"
-      },
-      {
-        ticker: "IR",
-        name: "INGERSOLL RAND INC",
-        weight: 0.04,
-        category: "equity"
-      },
-      {
-        ticker: "DG",
-        name: "DOLLAR GENERAL CORP",
+        ticker: "WST",
+        name: "WEST PHARMACEUTICAL SERVICES",
         weight: 0.04,
         category: "equity"
       },
@@ -75943,26 +75934,26 @@ var holdings_default = {
         category: "equity"
       },
       {
+        ticker: "DG",
+        name: "DOLLAR GENERAL CORP",
+        weight: 0.04,
+        category: "equity"
+      },
+      {
+        ticker: "ARES",
+        name: "ARES MANAGEMENT CLASS A",
+        weight: 0.04,
+        category: "equity"
+      },
+      {
+        ticker: "CTSH",
+        name: "COGNIZANT TECHNOLOGY SOLUTIONS CLA",
+        weight: 0.04,
+        category: "equity"
+      },
+      {
         ticker: "DTE",
         name: "DTE ENERGY",
-        weight: 0.04,
-        category: "equity"
-      },
-      {
-        ticker: "AWK",
-        name: "AMERICAN WATER WORKS",
-        weight: 0.04,
-        category: "equity"
-      },
-      {
-        ticker: "DGX",
-        name: "QUEST DIAGNOSTICS INC",
-        weight: 0.04,
-        category: "equity"
-      },
-      {
-        ticker: "WST",
-        name: "WEST PHARMACEUTICAL SERVICES",
         weight: 0.04,
         category: "equity"
       },
@@ -75979,14 +75970,20 @@ var holdings_default = {
         category: "equity"
       },
       {
+        ticker: "DGX",
+        name: "QUEST DIAGNOSTICS INC",
+        weight: 0.04,
+        category: "equity"
+      },
+      {
         ticker: "HUBB",
         name: "HUBBELL INC",
         weight: 0.04,
         category: "equity"
       },
       {
-        ticker: "LH",
-        name: "LABCORP HOLDINGS",
+        ticker: "AWK",
+        name: "AMERICAN WATER WORKS",
         weight: 0.04,
         category: "equity"
       },
@@ -75997,20 +75994,14 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "USD",
-        name: "USD CASH",
-        weight: 0.04,
-        category: "cash"
-      },
-      {
-        ticker: "VICI",
-        name: "VICI PPTYS INC",
+        ticker: "OTIS",
+        name: "OTIS WORLDWIDE",
         weight: 0.04,
         category: "equity"
       },
       {
-        ticker: "CNP",
-        name: "CENTERPOINT ENERGY",
+        ticker: "LH",
+        name: "LABCORP HOLDINGS",
         weight: 0.04,
         category: "equity"
       },
@@ -76021,32 +76012,20 @@ var holdings_default = {
         category: "equity"
       },
       {
+        ticker: "CNP",
+        name: "CENTERPOINT ENERGY",
+        weight: 0.04,
+        category: "equity"
+      },
+      {
+        ticker: "VICI",
+        name: "VICI PPTYS INC",
+        weight: 0.04,
+        category: "equity"
+      },
+      {
         ticker: "PPL",
         name: "PPL CORP",
-        weight: 0.04,
-        category: "equity"
-      },
-      {
-        ticker: "SMCI",
-        name: "SUPER MICRO COMPUTER INC",
-        weight: 0.04,
-        category: "equity"
-      },
-      {
-        ticker: "OTIS",
-        name: "OTIS WORLDWIDE",
-        weight: 0.04,
-        category: "equity"
-      },
-      {
-        ticker: "ES",
-        name: "EVERSOURCE ENERGY",
-        weight: 0.04,
-        category: "equity"
-      },
-      {
-        ticker: "XYL",
-        name: "XYLEM INC",
         weight: 0.04,
         category: "equity"
       },
@@ -76057,14 +76036,20 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "TPR",
-        name: "TAPESTRY",
+        ticker: "ES",
+        name: "EVERSOURCE ENERGY",
         weight: 0.04,
         category: "equity"
       },
       {
-        ticker: "HSY",
-        name: "HERSHEY FOODS",
+        ticker: "SMCI",
+        name: "SUPER MICRO COMPUTER INC",
+        weight: 0.04,
+        category: "equity"
+      },
+      {
+        ticker: "XYL",
+        name: "XYLEM INC",
         weight: 0.04,
         category: "equity"
       },
@@ -76075,32 +76060,38 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "ULTA",
-        name: "ULTA BEAUTY INC",
+        ticker: "HSY",
+        name: "HERSHEY FOODS",
+        weight: 0.04,
+        category: "equity"
+      },
+      {
+        ticker: "VLTO",
+        name: "VERALTO CORP",
         weight: 0.04,
         category: "equity"
       },
       {
         ticker: "PPG",
         name: "PPG INDUSTRIES",
-        weight: 0.04,
+        weight: 0.03,
         category: "equity"
       },
       {
         ticker: "SYF",
         name: "SYNCHRONY FINANCIAL",
-        weight: 0.04,
-        category: "equity"
-      },
-      {
-        ticker: "RF",
-        name: "REGIONS FINANCIAL",
         weight: 0.03,
         category: "equity"
       },
       {
-        ticker: "VLTO",
-        name: "VERALTO CORP",
+        ticker: "ULTA",
+        name: "ULTA BEAUTY INC",
+        weight: 0.03,
+        category: "equity"
+      },
+      {
+        ticker: "TPR",
+        name: "TAPESTRY",
         weight: 0.03,
         category: "equity"
       },
@@ -76111,20 +76102,20 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "CASY",
-        name: "CASEYS GENERAL STORES INC",
-        weight: 0.03,
-        category: "equity"
-      },
-      {
-        ticker: "DRI",
-        name: "DARDEN RESTAURANTS INC",
-        weight: 0.03,
-        category: "equity"
-      },
-      {
         ticker: "EL",
         name: "ESTEE LAUDER INC CLASS A",
+        weight: 0.03,
+        category: "equity"
+      },
+      {
+        ticker: "RF",
+        name: "REGIONS FINANCIAL",
+        weight: 0.03,
+        category: "equity"
+      },
+      {
+        ticker: "CASY",
+        name: "CASEYS GENERAL STORES INC",
         weight: 0.03,
         category: "equity"
       },
@@ -76141,8 +76132,8 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "TROW",
-        name: "T ROWE PRICE GROUP",
+        ticker: "DRI",
+        name: "DARDEN RESTAURANTS INC",
         weight: 0.03,
         category: "equity"
       },
@@ -76153,14 +76144,8 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "PFG",
-        name: "PRINCIPAL FINANCIAL GROUP INC",
-        weight: 0.03,
-        category: "equity"
-      },
-      {
-        ticker: "PHM",
-        name: "PULTEGROUP",
+        ticker: "TROW",
+        name: "T ROWE PRICE GROUP",
         weight: 0.03,
         category: "equity"
       },
@@ -76177,6 +76162,18 @@ var holdings_default = {
         category: "equity"
       },
       {
+        ticker: "PFG",
+        name: "PRINCIPAL FINANCIAL GROUP INC",
+        weight: 0.03,
+        category: "equity"
+      },
+      {
+        ticker: "PHM",
+        name: "PULTEGROUP",
+        weight: 0.03,
+        category: "equity"
+      },
+      {
         ticker: "VRSK",
         name: "VERISK ANALYTICS",
         weight: 0.03,
@@ -76189,14 +76186,20 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "LUV",
-        name: "SOUTHWEST AIRLINES",
+        ticker: "EIX",
+        name: "EDISON INTERNATIONAL",
         weight: 0.03,
         category: "equity"
       },
       {
-        ticker: "EIX",
-        name: "EDISON INTERNATIONAL",
+        ticker: "PTC",
+        name: "PTC",
+        weight: 0.03,
+        category: "equity"
+      },
+      {
+        ticker: "OMC",
+        name: "OMNICOM GROUP INC",
         weight: 0.03,
         category: "equity"
       },
@@ -76207,8 +76210,20 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "OMC",
-        name: "OMNICOM GROUP INC",
+        ticker: "DOW",
+        name: "DOW",
+        weight: 0.03,
+        category: "equity"
+      },
+      {
+        ticker: "LUV",
+        name: "SOUTHWEST AIRLINES",
+        weight: 0.03,
+        category: "equity"
+      },
+      {
+        ticker: "NRG",
+        name: "NRG ENERGY INC",
         weight: 0.03,
         category: "equity"
       },
@@ -76225,26 +76240,14 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "DOW",
-        name: "DOW",
-        weight: 0.03,
-        category: "equity"
-      },
-      {
-        ticker: "NRG",
-        name: "NRG ENERGY INC",
+        ticker: "TPL",
+        name: "TEXAS PACIFIC LAND",
         weight: 0.03,
         category: "equity"
       },
       {
         ticker: "CMS",
         name: "CMS ENERGY",
-        weight: 0.03,
-        category: "equity"
-      },
-      {
-        ticker: "TPL",
-        name: "TEXAS PACIFIC LAND",
         weight: 0.03,
         category: "equity"
       },
@@ -76267,8 +76270,8 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "KHC",
-        name: "KRAFT HEINZ",
+        ticker: "SWKS",
+        name: "SKYWORKS SOLUTIONS",
         weight: 0.03,
         category: "equity"
       },
@@ -76291,20 +76294,26 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "CHRW",
-        name: "CH ROBINSON WORLDWIDE",
-        weight: 0.03,
-        category: "equity"
-      },
-      {
-        ticker: "EVRG",
-        name: "EVERGY",
+        ticker: "KHC",
+        name: "KRAFT HEINZ",
         weight: 0.03,
         category: "equity"
       },
       {
         ticker: "KEY",
         name: "KEYCORP",
+        weight: 0.03,
+        category: "equity"
+      },
+      {
+        ticker: "GPN",
+        name: "GLOBAL PAYMENTS INC",
+        weight: 0.03,
+        category: "equity"
+      },
+      {
+        ticker: "EVRG",
+        name: "EVERGY",
         weight: 0.03,
         category: "equity"
       },
@@ -76327,32 +76336,14 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "L",
-        name: "LOEWS",
-        weight: 0.03,
-        category: "equity"
-      },
-      {
         ticker: "DD",
         name: "DUPONT DE NEMOURS",
         weight: 0.03,
         category: "equity"
       },
       {
-        ticker: "GPC",
-        name: "GENUINE PARTS",
-        weight: 0.03,
-        category: "equity"
-      },
-      {
-        ticker: "BBY",
-        name: "BEST BUY",
-        weight: 0.03,
-        category: "equity"
-      },
-      {
-        ticker: "GPN",
-        name: "GLOBAL PAYMENTS INC",
+        ticker: "RVTY",
+        name: "REVVITY",
         weight: 0.03,
         category: "equity"
       },
@@ -76363,14 +76354,14 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "JBHT",
-        name: "JB HUNT TRANSPORT SERVICES",
+        ticker: "BRO",
+        name: "BROWN & BROWN INC",
         weight: 0.03,
         category: "equity"
       },
       {
-        ticker: "FTV",
-        name: "FORTIVE",
+        ticker: "L",
+        name: "LOEWS",
         weight: 0.03,
         category: "equity"
       },
@@ -76381,8 +76372,14 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "BRO",
-        name: "BROWN & BROWN INC",
+        ticker: "ZBH",
+        name: "ZIMMER BIOMET HOLDINGS",
+        weight: 0.03,
+        category: "equity"
+      },
+      {
+        ticker: "GPC",
+        name: "GENUINE PARTS",
         weight: 0.03,
         category: "equity"
       },
@@ -76393,8 +76390,32 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "GIS",
-        name: "GENERAL MILLS INC",
+        ticker: "FTV",
+        name: "FORTIVE",
+        weight: 0.03,
+        category: "equity"
+      },
+      {
+        ticker: "BBY",
+        name: "BEST BUY",
+        weight: 0.03,
+        category: "equity"
+      },
+      {
+        ticker: "FIS",
+        name: "FIDELITY NATIONAL INFORMATION SERV",
+        weight: 0.03,
+        category: "equity"
+      },
+      {
+        ticker: "SBAC",
+        name: "SBA COMMUNICATIONS REIT CORP CLASS",
+        weight: 0.03,
+        category: "equity"
+      },
+      {
+        ticker: "JBHT",
+        name: "JB HUNT TRANSPORT SERVICES",
         weight: 0.03,
         category: "equity"
       },
@@ -76411,20 +76432,8 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "RVTY",
-        name: "REVVITY",
-        weight: 0.03,
-        category: "equity"
-      },
-      {
-        ticker: "SBAC",
-        name: "SBA COMMUNICATIONS REIT CORP CLASS",
-        weight: 0.03,
-        category: "equity"
-      },
-      {
-        ticker: "ZBH",
-        name: "ZIMMER BIOMET HOLDINGS",
+        ticker: "GIS",
+        name: "GENERAL MILLS INC",
         weight: 0.03,
         category: "equity"
       },
@@ -76435,9 +76444,9 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "FIS",
-        name: "FIDELITY NATIONAL INFORMATION SERV",
-        weight: 0.03,
+        ticker: "EFX",
+        name: "EQUIFAX",
+        weight: 0.02,
         category: "equity"
       },
       {
@@ -76453,8 +76462,8 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "EFX",
-        name: "EQUIFAX",
+        ticker: "CHRW",
+        name: "CH ROBINSON WORLDWIDE",
         weight: 0.02,
         category: "equity"
       },
@@ -76471,26 +76480,14 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "AKAM",
-        name: "AKAMAI TECHNOLOGIES INC",
-        weight: 0.02,
-        category: "equity"
-      },
-      {
-        ticker: "PTC",
-        name: "PTC",
-        weight: 0.02,
-        category: "equity"
-      },
-      {
         ticker: "WRB",
         name: "WR BERKLEY",
         weight: 0.02,
         category: "equity"
       },
       {
-        ticker: "LEN",
-        name: "LENNAR A CLASS A",
+        ticker: "AKAM",
+        name: "AKAMAI TECHNOLOGIES INC",
         weight: 0.02,
         category: "equity"
       },
@@ -76513,18 +76510,6 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "NVR",
-        name: "NVR",
-        weight: 0.02,
-        category: "equity"
-      },
-      {
-        ticker: "KIM",
-        name: "KIMCO REALTY REIT CORP",
-        weight: 0.02,
-        category: "equity"
-      },
-      {
         ticker: "BALL",
         name: "BALL CORP",
         weight: 0.02,
@@ -76537,8 +76522,8 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "TSN",
-        name: "TYSON FOODS INC CLASS A",
+        ticker: "NVR",
+        name: "NVR",
         weight: 0.02,
         category: "equity"
       },
@@ -76549,14 +76534,50 @@ var holdings_default = {
         category: "equity"
       },
       {
+        ticker: "CRL",
+        name: "CHARLES RIVER LABORATORIES INTERNA",
+        weight: 0.02,
+        category: "equity"
+      },
+      {
+        ticker: "KIM",
+        name: "KIMCO REALTY REIT CORP",
+        weight: 0.02,
+        category: "equity"
+      },
+      {
+        ticker: "TSN",
+        name: "TYSON FOODS INC CLASS A",
+        weight: 0.02,
+        category: "equity"
+      },
+      {
+        ticker: "LEN",
+        name: "LENNAR A CLASS A",
+        weight: 0.02,
+        category: "equity"
+      },
+      {
         ticker: "INVH",
         name: "INVITATION HOMES",
         weight: 0.02,
         category: "equity"
       },
       {
-        ticker: "CRL",
-        name: "CHARLES RIVER LABORATORIES INTERNA",
+        ticker: "RL",
+        name: "RALPH LAUREN CLASS A",
+        weight: 0.02,
+        category: "equity"
+      },
+      {
+        ticker: "TRMB",
+        name: "TRIMBLE INC",
+        weight: 0.02,
+        category: "equity"
+      },
+      {
+        ticker: "ECHO",
+        name: "ECHOSTAR CLASS A",
         weight: 0.02,
         category: "equity"
       },
@@ -76567,8 +76588,14 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "RL",
-        name: "RALPH LAUREN CLASS A",
+        ticker: "MAA",
+        name: "MID AMERICA APARTMENT COMMUNITIES",
+        weight: 0.02,
+        category: "equity"
+      },
+      {
+        ticker: "MAS",
+        name: "MASCO",
         weight: 0.02,
         category: "equity"
       },
@@ -76585,38 +76612,8 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "MAS",
-        name: "MASCO",
-        weight: 0.02,
-        category: "equity"
-      },
-      {
-        ticker: "DOC",
-        name: "HEALTHPEAK PROPERTIES INC",
-        weight: 0.02,
-        category: "equity"
-      },
-      {
-        ticker: "TRMB",
-        name: "TRIMBLE INC",
-        weight: 0.02,
-        category: "equity"
-      },
-      {
-        ticker: "MAA",
-        name: "MID AMERICA APARTMENT COMMUNITIES",
-        weight: 0.02,
-        category: "equity"
-      },
-      {
         ticker: "WY",
         name: "WEYERHAEUSER REIT",
-        weight: 0.02,
-        category: "equity"
-      },
-      {
-        ticker: "TXT",
-        name: "TEXTRON INC",
         weight: 0.02,
         category: "equity"
       },
@@ -76627,32 +76624,32 @@ var holdings_default = {
         category: "equity"
       },
       {
+        ticker: "HAS",
+        name: "HASBRO",
+        weight: 0.02,
+        category: "equity"
+      },
+      {
         ticker: "ALLE",
         name: "ALLEGION PLC",
         weight: 0.02,
         category: "equity"
       },
       {
-        ticker: "ECHO",
-        name: "ECHOSTAR CLASS A",
+        ticker: "TXT",
+        name: "TEXTRON INC",
+        weight: 0.02,
+        category: "equity"
+      },
+      {
+        ticker: "DOC",
+        name: "HEALTHPEAK PROPERTIES INC",
         weight: 0.02,
         category: "equity"
       },
       {
         ticker: "AVY",
         name: "AVERY DENNISON CORP",
-        weight: 0.02,
-        category: "equity"
-      },
-      {
-        ticker: "SWKS",
-        name: "SKYWORKS SOLUTIONS",
-        weight: 0.02,
-        category: "equity"
-      },
-      {
-        ticker: "GNRC",
-        name: "GENERAC HOLDINGS",
         weight: 0.02,
         category: "equity"
       },
@@ -76669,32 +76666,14 @@ var holdings_default = {
         category: "equity"
       },
       {
+        ticker: "GNRC",
+        name: "GENERAC HOLDINGS",
+        weight: 0.02,
+        category: "equity"
+      },
+      {
         ticker: "AIZ",
         name: "ASSURANT INC",
-        weight: 0.02,
-        category: "equity"
-      },
-      {
-        ticker: "HAS",
-        name: "HASBRO",
-        weight: 0.02,
-        category: "equity"
-      },
-      {
-        ticker: "SJM",
-        name: "JM SMUCKER",
-        weight: 0.02,
-        category: "equity"
-      },
-      {
-        ticker: "FOXA",
-        name: "FOX CLASS A",
-        weight: 0.02,
-        category: "equity"
-      },
-      {
-        ticker: "ALB",
-        name: "ALBEMARLE CORP",
         weight: 0.02,
         category: "equity"
       },
@@ -76705,14 +76684,8 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "TYL",
-        name: "TYLER TECHNOLOGIES",
-        weight: 0.02,
-        category: "equity"
-      },
-      {
-        ticker: "CHTR",
-        name: "CHARTER COMMUNICATIONS CLASS A",
+        ticker: "FOXA",
+        name: "FOX CLASS A",
         weight: 0.02,
         category: "equity"
       },
@@ -76723,14 +76696,38 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "REG",
-        name: "REGENCY CENTERS REIT CORP",
+        ticker: "TYL",
+        name: "TYLER TECHNOLOGIES",
+        weight: 0.02,
+        category: "equity"
+      },
+      {
+        ticker: "SJM",
+        name: "JM SMUCKER",
+        weight: 0.02,
+        category: "equity"
+      },
+      {
+        ticker: "ALB",
+        name: "ALBEMARLE CORP",
+        weight: 0.02,
+        category: "equity"
+      },
+      {
+        ticker: "CHTR",
+        name: "CHARTER COMMUNICATIONS CLASS A",
         weight: 0.02,
         category: "equity"
       },
       {
         ticker: "GEN",
         name: "GEN DIGITAL",
+        weight: 0.02,
+        category: "equity"
+      },
+      {
+        ticker: "REG",
+        name: "REGENCY CENTERS REIT CORP",
         weight: 0.02,
         category: "equity"
       },
@@ -76765,14 +76762,14 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "COO",
-        name: "COOPER",
+        ticker: "CSGP",
+        name: "COSTAR GROUP",
         weight: 0.02,
         category: "equity"
       },
       {
-        ticker: "CSGP",
-        name: "COSTAR GROUP",
+        ticker: "COO",
+        name: "COOPER",
         weight: 0.02,
         category: "equity"
       },
@@ -76789,14 +76786,14 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "HII",
-        name: "HUNTINGTON INGALLS INDUSTRIES",
+        ticker: "TKO",
+        name: "TKO GROUP HOLDINGS INC CLASS A",
         weight: 0.02,
         category: "equity"
       },
       {
-        ticker: "TKO",
-        name: "TKO GROUP HOLDINGS INC CLASS A",
+        ticker: "HII",
+        name: "HUNTINGTON INGALLS INDUSTRIES",
         weight: 0.02,
         category: "equity"
       },
@@ -76813,18 +76810,6 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "LULU",
-        name: "LULULEMON ATHLETICA",
-        weight: 0.01,
-        category: "equity"
-      },
-      {
-        ticker: "DPZ",
-        name: "DOMINOS PIZZA",
-        weight: 0.01,
-        category: "equity"
-      },
-      {
         ticker: "CLX",
         name: "CLOROX",
         weight: 0.01,
@@ -76837,14 +76822,14 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "BEN",
-        name: "FRANKLIN TEMPLETON",
+        ticker: "FDS",
+        name: "FACTSET RESEARCH SYSTEMS",
         weight: 0.01,
         category: "equity"
       },
       {
-        ticker: "BXP",
-        name: "BXP",
+        ticker: "DPZ",
+        name: "DOMINOS PIZZA",
         weight: 0.01,
         category: "equity"
       },
@@ -76855,14 +76840,14 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "ALGN",
-        name: "ALIGN TECHNOLOGY",
+        ticker: "LULU",
+        name: "LULULEMON ATHLETICA",
         weight: 0.01,
         category: "equity"
       },
       {
-        ticker: "FDS",
-        name: "FACTSET RESEARCH SYSTEMS",
+        ticker: "BEN",
+        name: "FRANKLIN TEMPLETON",
         weight: 0.01,
         category: "equity"
       },
@@ -76873,20 +76858,32 @@ var holdings_default = {
         category: "equity"
       },
       {
+        ticker: "BXP",
+        name: "BXP",
+        weight: 0.01,
+        category: "equity"
+      },
+      {
         ticker: "PODD",
         name: "INSULET",
         weight: 0.01,
         category: "equity"
       },
       {
-        ticker: "UHS",
-        name: "UNIVERSAL HEALTH SERVICES CLASS B",
+        ticker: "ALGN",
+        name: "ALIGN TECHNOLOGY",
         weight: 0.01,
         category: "equity"
       },
       {
         ticker: "APTV",
         name: "APTIV PLC",
+        weight: 0.01,
+        category: "equity"
+      },
+      {
+        ticker: "UHS",
+        name: "UNIVERSAL HEALTH SERVICES CLASS B",
         weight: 0.01,
         category: "equity"
       },
@@ -76909,22 +76906,16 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "HSIC",
-        name: "HENRY SCHEIN",
-        weight: 0.01,
-        category: "equity"
-      },
-      {
-        ticker: "CTVA",
-        name: "CORTEVA",
-        weight: 0.01,
-        category: "equity"
-      },
-      {
         ticker: "SGAFT",
         name: "CASH COLLATERAL USD SGAFT",
         weight: 0.01,
         category: "cash"
+      },
+      {
+        ticker: "HSIC",
+        name: "HENRY SCHEIN",
+        weight: 0.01,
+        category: "equity"
       },
       {
         ticker: "FOX",
@@ -76981,14 +76972,14 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "MGM",
-        name: "MGM RESORTS INTERNATIONAL",
+        ticker: "PSKY",
+        name: "PARAMOUNT SKYDANCE CORP CLASS B",
         weight: 0.01,
         category: "equity"
       },
       {
-        ticker: "PSKY",
-        name: "PARAMOUNT SKYDANCE CORP CLASS B",
+        ticker: "MGM",
+        name: "MGM RESORTS INTERNATIONAL",
         weight: 0.01,
         category: "equity"
       },
@@ -77014,22 +77005,29 @@ var holdings_default = {
         ticker: "ESZ6",
         name: "S&P500 EMINI DEC 26",
         weight: 0,
-        category: "option"
+        category: "derivative"
+      },
+      {
+        ticker: "USD",
+        name: "USD CASH",
+        weight: -0.03,
+        category: "cash"
       }
     ],
-    sourceAsOf: "2026-10-02",
-    fetchedAt: "2026-10-06T17:44:24.001Z",
+    sourceAsOf: "2026-10-05",
+    fetchedAt: "2026-10-06T19:11:47.047Z",
     source: "issuer",
+    weightMethod: "published",
     sourceName: "iShares",
     sourceUrl: "https://www.ishares.com/us/products/239726/ishares-core-sp-500-etf/latest-holdings.csv",
     isFallback: false,
-    coverageNote: "Complete issuer holdings file; weights use the issuer's published precision. Vanguard omits percentages below 0.005%; these positions are retained at 0.00%. Derivatives are published weights, not economic exposure.",
+    coverageNote: "Complete issuer holdings file. Weights use the issuer's published precision. Derivatives are published weights, not economic exposure.",
     holdingsCount: 509,
-    coverageWeight: 100.09000000000005,
+    coverageWeight: 99.98999999999995,
     categoryWeights: {
-      equity: 99.92000000000004,
-      cash: 0.17,
-      option: 0
+      equity: 99.88999999999996,
+      cash: 0.1,
+      derivative: 0
     },
     complete: true
   },
@@ -77766,12 +77764,13 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-06",
-    fetchedAt: "2026-10-06T17:44:24.620Z",
+    fetchedAt: "2026-10-06T19:11:45.305Z",
     source: "issuer",
+    weightMethod: "published",
     sourceName: "NEOS",
     sourceUrl: "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=QQQI",
     isFallback: false,
-    coverageNote: "Complete issuer holdings file; weights use the issuer's published precision. Vanguard omits percentages below 0.005%; these positions are retained at 0.00%. Derivatives are published weights, not economic exposure.",
+    coverageNote: "Complete issuer holdings file. Weights use the issuer's published precision. Derivatives are published weights, not economic exposure.",
     holdingsCount: 104,
     coverageWeight: 100.04000000000002,
     categoryWeights: {
@@ -81321,12 +81320,13 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-05",
-    fetchedAt: "2026-10-06T17:44:23.082Z",
+    fetchedAt: "2026-10-06T19:11:44.382Z",
     source: "issuer",
+    weightMethod: "published",
     sourceName: "State Street",
     sourceUrl: "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-spy.xlsx",
     isFallback: false,
-    coverageNote: "Complete issuer holdings file; weights use the issuer's published precision. Vanguard omits percentages below 0.005%; these positions are retained at 0.00%. Derivatives are published weights, not economic exposure.",
+    coverageNote: "Complete issuer holdings file. Weights use the issuer's published precision. Derivatives are published weights, not economic exposure.",
     holdingsCount: 505,
     coverageWeight: 100.22166100000021,
     categoryWeights: {
@@ -82075,12 +82075,13 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-05",
-    fetchedAt: "2026-10-06T17:44:23.087Z",
+    fetchedAt: "2026-10-06T19:11:45.473Z",
     source: "issuer",
+    weightMethod: "published",
     sourceName: "Invesco",
     sourceUrl: "https://dng-api.invesco.com/cache/v1/accounts/en_US/shareclasses/QQQ/holdings/fund?idType=ticker&interval=monthly&productType=ETF",
     isFallback: false,
-    coverageNote: "Complete issuer holdings file; weights use the issuer's published precision. Vanguard omits percentages below 0.005%; these positions are retained at 0.00%. Derivatives are published weights, not economic exposure.",
+    coverageNote: "Complete issuer holdings file. Weights use the issuer's published precision. Derivatives are published weights, not economic exposure.",
     holdingsCount: 105,
     coverageWeight: 100.00000000000006,
     categoryWeights: {
@@ -106778,7 +106779,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-08-31",
-    fetchedAt: "2026-10-06T18:56:36.469Z",
+    fetchedAt: "2026-10-06T19:11:45.996Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "Vanguard",
@@ -118917,7 +118918,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-08-31",
-    fetchedAt: "2026-10-06T18:56:36.290Z",
+    fetchedAt: "2026-10-06T19:11:46.026Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "Vanguard",
@@ -119485,12 +119486,13 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-05",
-    fetchedAt: "2026-10-06T17:44:24.286Z",
+    fetchedAt: "2026-10-06T19:11:44.402Z",
     source: "issuer",
+    weightMethod: "published",
     sourceName: "State Street",
     sourceUrl: "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-xlk.xlsx",
     isFallback: false,
-    coverageNote: "Complete issuer holdings file; weights use the issuer's published precision. Vanguard omits percentages below 0.005%; these positions are retained at 0.00%. Derivatives are published weights, not economic exposure.",
+    coverageNote: "Complete issuer holdings file. Weights use the issuer's published precision. Derivatives are published weights, not economic exposure.",
     holdingsCount: 78,
     coverageWeight: 99.98836799999998,
     categoryWeights: {
@@ -119847,12 +119849,13 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-05",
-    fetchedAt: "2026-10-06T17:46:42.894Z",
+    fetchedAt: "2026-10-06T19:11:47.128Z",
     source: "issuer",
+    weightMethod: "published",
     sourceName: "iShares",
     sourceUrl: "https://www.ishares.com/us/products/239454/ishares-20-year-treasury-bond-etf/latest-holdings.csv",
     isFallback: false,
-    coverageNote: "Complete issuer holdings file; weights use the issuer's published precision. Vanguard omits percentages below 0.005%; these positions are retained at 0.00%. Derivatives are published weights, not economic exposure.",
+    coverageNote: "Complete issuer holdings file. Weights use the issuer's published precision. Derivatives are published weights, not economic exposure.",
     holdingsCount: 49,
     coverageWeight: 99.99999999999999,
     categoryWeights: {
@@ -120937,13 +120940,13 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-08-31",
-    fetchedAt: "2026-10-06T18:53:33.811Z",
+    fetchedAt: "2026-10-06T19:11:45.966Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "Vanguard",
     sourceUrl: "https://advisors.vanguard.com/investments/products/api/funds/0967/holdings/latest",
     isFallback: false,
-    coverageNote: "Complete issuer holdings file. Vanguard publishes full monthly portfolios with five-decimal percentage weights. Positions below 0.000005% remain visible at zero weight. Report date is the issuer's portfolio valuation date, not the download date. Derivatives are published weights, not economic exposure.",
+    coverageNote: "Complete issuer holdings file. Vanguard publishes full monthly portfolios with five-decimal percentage weights. Positions with blank weights and blank market values, or values below 0.000005%, remain visible at zero weight. Report date is the issuer's portfolio valuation date, not the download date. Derivatives are published weights, not economic exposure.",
     holdingsCount: 153,
     coverageWeight: 99.99997999999995,
     categoryWeights: {
@@ -149386,13 +149389,13 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-08-31",
-    fetchedAt: "2026-10-06T18:53:35.349Z",
+    fetchedAt: "2026-10-06T19:11:46.229Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "Vanguard",
     sourceUrl: "https://advisors.vanguard.com/investments/products/api/funds/0936/holdings/latest",
     isFallback: false,
-    coverageNote: "Complete issuer holdings file. Vanguard publishes full monthly portfolios with five-decimal percentage weights. Positions below 0.000005% remain visible at zero weight. Report date is the issuer's portfolio valuation date, not the download date. Derivatives are published weights, not economic exposure.",
+    coverageNote: "Complete issuer holdings file. Vanguard publishes full monthly portfolios with five-decimal percentage weights. Positions with blank weights and blank market values, or values below 0.000005%, remain visible at zero weight. Report date is the issuer's portfolio valuation date, not the download date. Derivatives are published weights, not economic exposure.",
     holdingsCount: 4061,
     coverageWeight: 99.9998999999997,
     categoryWeights: {
@@ -151816,13 +151819,13 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-08-31",
-    fetchedAt: "2026-10-06T18:53:35.828Z",
+    fetchedAt: "2026-10-06T19:11:46.642Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "Vanguard",
     sourceUrl: "https://advisors.vanguard.com/investments/products/api/funds/0920/holdings/latest",
     isFallback: false,
-    coverageNote: "Complete issuer holdings file. Vanguard publishes full monthly portfolios with five-decimal percentage weights. Positions below 0.000005% remain visible at zero weight. Report date is the issuer's portfolio valuation date, not the download date. Derivatives are published weights, not economic exposure.",
+    coverageNote: "Complete issuer holdings file. Vanguard publishes full monthly portfolios with five-decimal percentage weights. Positions with blank weights and blank market values, or values below 0.000005%, remain visible at zero weight. Report date is the issuer's portfolio valuation date, not the download date. Derivatives are published weights, not economic exposure.",
     holdingsCount: 344,
     coverageWeight: 100.00004999999989,
     categoryWeights: {
@@ -156177,13 +156180,13 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-08-31",
-    fetchedAt: "2026-10-06T18:53:36.311Z",
+    fetchedAt: "2026-10-06T19:11:46.733Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "Vanguard",
     sourceUrl: "https://advisors.vanguard.com/investments/products/api/funds/0923/holdings/latest",
     isFallback: false,
-    coverageNote: "Complete issuer holdings file. Vanguard publishes full monthly portfolios with five-decimal percentage weights. Positions below 0.000005% remain visible at zero weight. Report date is the issuer's portfolio valuation date, not the download date. Derivatives are published weights, not economic exposure.",
+    coverageNote: "Complete issuer holdings file. Vanguard publishes full monthly portfolios with five-decimal percentage weights. Positions with blank weights and blank market values, or values below 0.000005%, remain visible at zero weight. Report date is the issuer's portfolio valuation date, not the download date. Derivatives are published weights, not economic exposure.",
     holdingsCount: 620,
     coverageWeight: 99.99998999999998,
     categoryWeights: {
@@ -156367,12 +156370,13 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-05",
-    fetchedAt: "2026-10-06T17:46:45.844Z",
+    fetchedAt: "2026-10-06T19:11:44.422Z",
     source: "issuer",
+    weightMethod: "published",
     sourceName: "State Street",
     sourceUrl: "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-xle.xlsx",
     isFallback: false,
-    coverageNote: "Complete issuer holdings file; weights use the issuer's published precision. Vanguard omits percentages below 0.005%; these positions are retained at 0.00%. Derivatives are published weights, not economic exposure.",
+    coverageNote: "Complete issuer holdings file. Weights use the issuer's published precision. Derivatives are published weights, not economic exposure.",
     holdingsCount: 24,
     coverageWeight: 99.97580400000002,
     categoryWeights: {
@@ -156736,12 +156740,13 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-05",
-    fetchedAt: "2026-10-06T17:46:45.900Z",
+    fetchedAt: "2026-10-06T19:11:44.439Z",
     source: "issuer",
+    weightMethod: "published",
     sourceName: "State Street",
     sourceUrl: "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-xly.xlsx",
     isFallback: false,
-    coverageNote: "Complete issuer holdings file; weights use the issuer's published precision. Vanguard omits percentages below 0.005%; these positions are retained at 0.00%. Derivatives are published weights, not economic exposure.",
+    coverageNote: "Complete issuer holdings file. Weights use the issuer's published precision. Derivatives are published weights, not economic exposure.",
     holdingsCount: 50,
     coverageWeight: 99.99732799999995,
     categoryWeights: {
@@ -157203,12 +157208,13 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-05",
-    fetchedAt: "2026-10-06T17:46:46.006Z",
+    fetchedAt: "2026-10-06T19:11:44.467Z",
     source: "issuer",
+    weightMethod: "published",
     sourceName: "State Street",
     sourceUrl: "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-xlv.xlsx",
     isFallback: false,
-    coverageNote: "Complete issuer holdings file; weights use the issuer's published precision. Vanguard omits percentages below 0.005%; these positions are retained at 0.00%. Derivatives are published weights, not economic exposure.",
+    coverageNote: "Complete issuer holdings file. Weights use the issuer's published precision. Derivatives are published weights, not economic exposure.",
     holdingsCount: 64,
     coverageWeight: 99.92388599999998,
     categoryWeights: {
@@ -157819,22 +157825,24 @@ var holdings_default = {
         ticker: "IXIZ6",
         name: "XAI EMINI INDUSTR DEC26",
         weight: -2e-5,
-        category: "equity",
+        category: "derivative",
         securityId: "ADI394XX1"
       }
     ],
     sourceAsOf: "2026-10-05",
-    fetchedAt: "2026-10-06T17:46:46.120Z",
+    fetchedAt: "2026-10-06T19:11:44.477Z",
     source: "issuer",
+    weightMethod: "published",
     sourceName: "State Street",
     sourceUrl: "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-xli.xlsx",
     isFallback: false,
-    coverageNote: "Complete issuer holdings file; weights use the issuer's published precision. Vanguard omits percentages below 0.005%; these positions are retained at 0.00%. Derivatives are published weights, not economic exposure.",
+    coverageNote: "Complete issuer holdings file. Weights use the issuer's published precision. Derivatives are published weights, not economic exposure.",
     holdingsCount: 86,
     coverageWeight: 99.975782,
     categoryWeights: {
-      equity: 99.867637,
-      cash: 0.108145
+      equity: 99.86765700000001,
+      cash: 0.108145,
+      derivative: -2e-5
     },
     complete: true
   },
@@ -158081,12 +158089,13 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-05",
-    fetchedAt: "2026-10-06T17:46:46.136Z",
+    fetchedAt: "2026-10-06T19:11:44.497Z",
     source: "issuer",
+    weightMethod: "published",
     sourceName: "State Street",
     sourceUrl: "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-xlu.xlsx",
     isFallback: false,
-    coverageNote: "Complete issuer holdings file; weights use the issuer's published precision. Vanguard omits percentages below 0.005%; these positions are retained at 0.00%. Derivatives are published weights, not economic exposure.",
+    coverageNote: "Complete issuer holdings file. Weights use the issuer's published precision. Derivatives are published weights, not economic exposure.",
     holdingsCount: 34,
     coverageWeight: 99.927584,
     categoryWeights: {
@@ -158326,22 +158335,24 @@ var holdings_default = {
         ticker: "XARZ6",
         name: "EMINI S+P REESTATEDEC26",
         weight: -0.022548,
-        category: "equity",
+        category: "derivative",
         securityId: "ADI391856"
       }
     ],
     sourceAsOf: "2026-10-05",
-    fetchedAt: "2026-10-06T17:46:46.251Z",
+    fetchedAt: "2026-10-06T19:11:44.512Z",
     source: "issuer",
+    weightMethod: "published",
     sourceName: "State Street",
     sourceUrl: "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-xlre.xlsx",
     isFallback: false,
-    coverageNote: "Complete issuer holdings file; weights use the issuer's published precision. Vanguard omits percentages below 0.005%; these positions are retained at 0.00%. Derivatives are published weights, not economic exposure.",
+    coverageNote: "Complete issuer holdings file. Weights use the issuer's published precision. Derivatives are published weights, not economic exposure.",
     holdingsCount: 33,
     coverageWeight: 99.69198300000001,
     categoryWeights: {
-      equity: 99.541109,
-      cash: 0.150874
+      equity: 99.563657,
+      cash: 0.150874,
+      derivative: -0.022548
     },
     complete: true
   },
@@ -158539,12 +158550,13 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-05",
-    fetchedAt: "2026-10-06T17:46:46.296Z",
+    fetchedAt: "2026-10-06T19:11:44.504Z",
     source: "issuer",
+    weightMethod: "published",
     sourceName: "State Street",
     sourceUrl: "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-xlb.xlsx",
     isFallback: false,
-    coverageNote: "Complete issuer holdings file; weights use the issuer's published precision. Vanguard omits percentages below 0.005%; these positions are retained at 0.00%. Derivatives are published weights, not economic exposure.",
+    coverageNote: "Complete issuer holdings file. Weights use the issuer's published precision. Derivatives are published weights, not economic exposure.",
     holdingsCount: 27,
     coverageWeight: 99.91569800000002,
     categoryWeights: {
@@ -158775,12 +158787,13 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-05",
-    fetchedAt: "2026-10-06T17:46:46.380Z",
+    fetchedAt: "2026-10-06T19:11:44.584Z",
     source: "issuer",
+    weightMethod: "published",
     sourceName: "State Street",
     sourceUrl: "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-dia.xlsx",
     isFallback: false,
-    coverageNote: "Complete issuer holdings file; weights use the issuer's published precision. Vanguard omits percentages below 0.005%; these positions are retained at 0.00%. Derivatives are published weights, not economic exposure.",
+    coverageNote: "Complete issuer holdings file. Weights use the issuer's published precision. Derivatives are published weights, not economic exposure.",
     holdingsCount: 31,
     coverageWeight: 100.26042899999999,
     categoryWeights: {
@@ -158964,22 +158977,24 @@ var holdings_default = {
         ticker: "XASZ6",
         name: "S+P EMINI COM SER DEC26",
         weight: -539e-5,
-        category: "equity",
+        category: "derivative",
         securityId: "ADI394XT0"
       }
     ],
     sourceAsOf: "2026-10-05",
-    fetchedAt: "2026-10-06T17:46:46.525Z",
+    fetchedAt: "2026-10-06T19:11:44.591Z",
     source: "issuer",
+    weightMethod: "published",
     sourceName: "State Street",
     sourceUrl: "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-xlc.xlsx",
     isFallback: false,
-    coverageNote: "Complete issuer holdings file; weights use the issuer's published precision. Vanguard omits percentages below 0.005%; these positions are retained at 0.00%. Derivatives are published weights, not economic exposure.",
+    coverageNote: "Complete issuer holdings file. Weights use the issuer's published precision. Derivatives are published weights, not economic exposure.",
     holdingsCount: 25,
     coverageWeight: 99.96246800000002,
     categoryWeights: {
-      equity: 99.72978700000002,
-      cash: 0.23268100000000003
+      equity: 99.73517700000002,
+      cash: 0.23268100000000003,
+      derivative: -539e-5
     },
     complete: true
   },
@@ -159795,7 +159810,7 @@ var holdings_default = {
         ticker: "BTSG",
         name: "BrightSpring Health Services Inc.",
         weight: 0.301696,
-        category: "equity",
+        category: "other",
         securityId: "10950A106"
       },
       {
@@ -161496,7 +161511,7 @@ var holdings_default = {
         ticker: "OPCH",
         name: "Option Care Health Inc",
         weight: 0.100101,
-        category: "option",
+        category: "equity",
         securityId: "68404L201"
       },
       {
@@ -161795,18 +161810,19 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-05",
-    fetchedAt: "2026-10-06T17:46:46.563Z",
+    fetchedAt: "2026-10-06T19:11:44.577Z",
     source: "issuer",
+    weightMethod: "published",
     sourceName: "State Street",
     sourceUrl: "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-mdy.xlsx",
     isFallback: false,
-    coverageNote: "Complete issuer holdings file; weights use the issuer's published precision. Vanguard omits percentages below 0.005%; these positions are retained at 0.00%. Derivatives are published weights, not economic exposure.",
+    coverageNote: "Complete issuer holdings file. Weights use the issuer's published precision. Derivatives are published weights, not economic exposure.",
     holdingsCount: 401,
     coverageWeight: 100.00000600000004,
     categoryWeights: {
-      equity: 98.77027700000005,
+      equity: 98.56868200000004,
       cash: 1.1296279999999999,
-      option: 0.100101
+      other: 0.301696
     },
     complete: true
   },
@@ -161976,12 +161992,13 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-06",
-    fetchedAt: "2026-10-06T17:46:47.562Z",
+    fetchedAt: "2026-10-06T19:11:45.360Z",
     source: "issuer",
+    weightMethod: "published",
     sourceName: "NEOS",
     sourceUrl: "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=CSHI",
     isFallback: false,
-    coverageNote: "Complete issuer holdings file; weights use the issuer's published precision. Vanguard omits percentages below 0.005%; these positions are retained at 0.00%. Derivatives are published weights, not economic exposure.",
+    coverageNote: "Complete issuer holdings file. Weights use the issuer's published precision. Derivatives are published weights, not economic exposure.",
     holdingsCount: 23,
     coverageWeight: 99.99999999999999,
     categoryWeights: {
@@ -162059,12 +162076,13 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-06",
-    fetchedAt: "2026-10-06T17:46:47.993Z",
+    fetchedAt: "2026-10-06T19:11:45.807Z",
     source: "issuer",
+    weightMethod: "published",
     sourceName: "NEOS",
     sourceUrl: "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=BNDI",
     isFallback: false,
-    coverageNote: "Complete issuer holdings file; weights use the issuer's published precision. Vanguard omits percentages below 0.005%; these positions are retained at 0.00%. Derivatives are published weights, not economic exposure.",
+    coverageNote: "Complete issuer holdings file. Weights use the issuer's published precision. Derivatives are published weights, not economic exposure.",
     holdingsCount: 9,
     coverageWeight: 99.99,
     categoryWeights: {
@@ -162107,12 +162125,13 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-06",
-    fetchedAt: "2026-10-06T17:46:48.085Z",
+    fetchedAt: "2026-10-06T19:11:46.077Z",
     source: "issuer",
+    weightMethod: "published",
     sourceName: "NEOS",
     sourceUrl: "https://neosfunds.com/wp-admin/admin-ajax.php?action=download_holdings_csv&ticker=IWMI",
     isFallback: false,
-    coverageNote: "Complete issuer holdings file; weights use the issuer's published precision. Vanguard omits percentages below 0.005%; these positions are retained at 0.00%. Derivatives are published weights, not economic exposure.",
+    coverageNote: "Complete issuer holdings file. Weights use the issuer's published precision. Derivatives are published weights, not economic exposure.",
     holdingsCount: 4,
     coverageWeight: 100.00000000000001,
     categoryWeights: {
@@ -162225,7 +162244,7 @@ var holdings_default = {
         ticker: "FCFS",
         name: "FIRSTCASH HOLDINGS INC",
         weight: 0.29,
-        category: "cash"
+        category: "equity"
       },
       {
         ticker: "PTGX",
@@ -163587,7 +163606,7 @@ var holdings_default = {
         ticker: "OPCH",
         name: "OPTION CARE HEALTH INC",
         weight: 0.12,
-        category: "option"
+        category: "equity"
       },
       {
         ticker: "RNST",
@@ -166143,7 +166162,7 @@ var holdings_default = {
         ticker: "CASH",
         name: "PATHWARD FINANCIAL INC",
         weight: 0.05,
-        category: "cash"
+        category: "equity"
       },
       {
         ticker: "KOS",
@@ -167145,7 +167164,7 @@ var holdings_default = {
         ticker: "DEA",
         name: "EASTERLY GOVERNMENT PROPERTIES INC",
         weight: 0.03,
-        category: "bond"
+        category: "equity"
       },
       {
         ticker: "CCNE",
@@ -172863,7 +172882,7 @@ var holdings_default = {
         ticker: "FF",
         name: "FUTUREFUEL CORP",
         weight: 0,
-        category: "derivative"
+        category: "equity"
       },
       {
         ticker: "TARA",
@@ -173379,7 +173398,7 @@ var holdings_default = {
         ticker: "TRAK",
         name: "REPOSITRAK INC",
         weight: 0,
-        category: "repo"
+        category: "equity"
       },
       {
         ticker: "FINW",
@@ -174079,7 +174098,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-02",
-    fetchedAt: "2026-10-06T17:51:58.536Z",
+    fetchedAt: "2026-10-06T19:11:47.101Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "iShares",
@@ -174089,13 +174108,10 @@ var holdings_default = {
     holdingsCount: 1992,
     coverageWeight: 99.94000000000203,
     categoryWeights: {
-      equity: 98.65000000000202,
+      equity: 99.14000000000202,
       other: 0.43000000000000005,
-      cash: 0.7100000000000001,
-      option: 0.12,
-      bond: 0.03,
-      derivative: 0,
-      repo: 0
+      cash: 0.37,
+      derivative: 0
     },
     complete: true
   },
@@ -267685,7 +267701,7 @@ var holdings_default = {
     weightMethod: "market-value",
     sourceName: "iShares",
     sourceUrl: "https://www.ishares.com/us/products/239458/ishares-core-total-us-bond-market-etf/latest-holdings.csv",
-    isFallback: false,
+    isFallback: true,
     coverageNote: "Complete issuer holdings file. Issuer percentages lose precision across thousands of positions. Weights are calculated from each position's market value divided by the net market value of the complete issuer file. Derivatives are published weights, not economic exposure.",
     holdingsCount: 13368,
     coverageWeight: 100.00000000000033,
@@ -267695,7 +267711,9 @@ var holdings_default = {
       other: 0.036019435078818,
       derivative: 840763340657251e-18
     },
-    complete: true
+    complete: true,
+    sourceError: "Source portfolio date regressed",
+    lastAttemptAt: "2026-10-06T19:11:47.218Z"
   },
   XLF: {
     etf: "XLF",
@@ -268262,7 +268280,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-05",
-    fetchedAt: "2026-10-06T17:51:58.956Z",
+    fetchedAt: "2026-10-06T19:11:44.282Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "State Street",
@@ -268548,7 +268566,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-05",
-    fetchedAt: "2026-10-06T17:51:58.962Z",
+    fetchedAt: "2026-10-06T19:11:44.454Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "State Street",
@@ -314055,7 +314073,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-08-31",
-    fetchedAt: "2026-10-06T18:56:36.644Z",
+    fetchedAt: "2026-10-06T19:11:46.196Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "Vanguard",
@@ -377427,7 +377445,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-08-31",
-    fetchedAt: "2026-10-06T18:56:37.007Z",
+    fetchedAt: "2026-10-06T19:11:46.573Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "Vanguard",
@@ -378110,7 +378128,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-05",
-    fetchedAt: "2026-10-06T17:54:33.976Z",
+    fetchedAt: "2026-10-06T19:11:50.898Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "J.P. Morgan",
@@ -378971,7 +378989,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-05",
-    fetchedAt: "2026-10-06T17:54:34.264Z",
+    fetchedAt: "2026-10-06T19:11:50.504Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "J.P. Morgan",
@@ -493001,7 +493019,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-08-31",
-    fetchedAt: "2026-10-06T18:56:37.171Z",
+    fetchedAt: "2026-10-06T19:11:46.721Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "Vanguard",
@@ -495261,13 +495279,13 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-08-31",
-    fetchedAt: "2026-10-06T18:53:35.234Z",
+    fetchedAt: "2026-10-06T19:11:48.159Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "Vanguard",
     sourceUrl: "https://advisors.vanguard.com/investments/products/api/funds/0966/holdings/latest",
     isFallback: false,
-    coverageNote: "Complete issuer holdings file. Vanguard publishes full monthly portfolios with five-decimal percentage weights. Positions below 0.000005% remain visible at zero weight. Report date is the issuer's portfolio valuation date, not the download date. Derivatives are published weights, not economic exposure.",
+    coverageNote: "Complete issuer holdings file. Vanguard publishes full monthly portfolios with five-decimal percentage weights. Positions with blank weights and blank market values, or values below 0.000005%, remain visible at zero weight. Report date is the issuer's portfolio valuation date, not the download date. Derivatives are published weights, not economic exposure.",
     holdingsCount: 320,
     coverageWeight: 99.99999999999996,
     categoryWeights: {
@@ -495893,7 +495911,7 @@ var holdings_default = {
         category: "equity"
       }
     ],
-    fetchedAt: "2026-10-06T18:56:40.172Z",
+    fetchedAt: "2026-10-06T19:11:49.693Z",
     sourceAsOf: "2026-10-03",
     source: "research",
     sourceName: "Schwab Research",
@@ -497049,7 +497067,7 @@ var holdings_default = {
         category: "derivative"
       }
     ],
-    fetchedAt: "2026-10-06T18:56:40.624Z",
+    fetchedAt: "2026-10-06T19:11:49.472Z",
     sourceAsOf: "2026-10-03",
     source: "research",
     sourceName: "Schwab Research",
@@ -497833,7 +497851,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-05",
-    fetchedAt: "2026-10-06T19:00:46.381Z",
+    fetchedAt: "2026-10-06T19:11:51.780Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "Fidelity",
@@ -498996,8 +499014,8 @@ var defaults = {
   transitional: transitional_default,
   adapter: ["xhr", "http", "fetch"],
   transformRequest: [
-    function transformRequest(data2, headers) {
-      const contentType = headers.getContentType() || "";
+    function transformRequest(data2, headers2) {
+      const contentType = headers2.getContentType() || "";
       const hasJSONContentType = contentType.indexOf("application/json") > -1;
       const isObjectPayload = utils_default.isObject(data2);
       if (isObjectPayload && utils_default.isHTMLForm(data2)) {
@@ -499014,7 +499032,7 @@ var defaults = {
         return data2.buffer;
       }
       if (utils_default.isURLSearchParams(data2)) {
-        headers.setContentType("application/x-www-form-urlencoded;charset=utf-8", false);
+        headers2.setContentType("application/x-www-form-urlencoded;charset=utf-8", false);
         return data2.toString();
       }
       let isFileList2;
@@ -499032,7 +499050,7 @@ var defaults = {
         }
       }
       if (isObjectPayload || hasJSONContentType) {
-        headers.setContentType("application/json", false);
+        headers2.setContentType("application/json", false);
         return stringifySafely(data2);
       }
       return data2;
@@ -499189,8 +499207,8 @@ function buildAccessors(obj, header) {
   });
 }
 var AxiosHeaders = class {
-  constructor(headers) {
-    headers && this.set(headers);
+  constructor(headers2) {
+    headers2 && this.set(headers2);
   }
   set(header, valueOrRewrite, rewrite) {
     const self2 = this;
@@ -499204,7 +499222,7 @@ var AxiosHeaders = class {
         self2[key || _header] = normalizeValue(_value);
       }
     }
-    const setHeaders = (headers, _rewrite) => utils_default.forEach(headers, (_value, _header) => setHeader(_value, _header, _rewrite));
+    const setHeaders = (headers2, _rewrite) => utils_default.forEach(headers2, (_value, _header) => setHeader(_value, _header, _rewrite));
     if (utils_default.isPlainObject(header) || header instanceof this.constructor) {
       setHeaders(header, valueOrRewrite);
     } else if (utils_default.isString(header) && (header = header.trim()) && !isValidHeaderName(header)) {
@@ -499288,9 +499306,9 @@ var AxiosHeaders = class {
   }
   normalize(format) {
     const self2 = this;
-    const headers = {};
+    const headers2 = {};
     utils_default.forEach(this, (value, header) => {
-      const key = utils_default.findKey(headers, header);
+      const key = utils_default.findKey(headers2, header);
       if (key) {
         self2[key] = normalizeValue(value);
         delete self2[header];
@@ -499301,7 +499319,7 @@ var AxiosHeaders = class {
         delete self2[header];
       }
       self2[normalized] = normalizeValue(value);
-      headers[normalized] = true;
+      headers2[normalized] = true;
     });
     return this;
   }
@@ -499376,12 +499394,12 @@ var AxiosHeaders_default = AxiosHeaders;
 function transformData(fns, response) {
   const config2 = this || defaults_default;
   const context = response || config2;
-  const headers = AxiosHeaders_default.from(context.headers);
+  const headers2 = AxiosHeaders_default.from(context.headers);
   let data2 = context.data;
   utils_default.forEach(fns, function transform(fn) {
-    data2 = fn.call(config2, data2, headers.normalize(), response ? response.status : void 0);
+    data2 = fn.call(config2, data2, headers2.normalize(), response ? response.status : void 0);
   });
-  headers.normalize();
+  headers2.normalize();
   return data2;
 }
 
@@ -499654,13 +499672,13 @@ var FormDataPart = class {
   constructor(name, value) {
     const { escapeName } = this.constructor;
     const isStringValue = utils_default.isString(value);
-    let headers = `Content-Disposition: form-data; name="${escapeName(name)}"${!isStringValue && value.name ? `; filename="${escapeName(value.name)}"` : ""}${CRLF}`;
+    let headers2 = `Content-Disposition: form-data; name="${escapeName(name)}"${!isStringValue && value.name ? `; filename="${escapeName(value.name)}"` : ""}${CRLF}`;
     if (isStringValue) {
       value = textEncoder.encode(String(value).replace(/\r?\n|\r\n?/g, CRLF));
     } else {
-      headers += `Content-Type: ${value.type || "application/octet-stream"}${CRLF}`;
+      headers2 += `Content-Type: ${value.type || "application/octet-stream"}${CRLF}`;
     }
-    this.headers = textEncoder.encode(headers + CRLF);
+    this.headers = textEncoder.encode(headers2 + CRLF);
     this.contentLength = isStringValue ? value.byteLength : value.size;
     this.size = this.headers.byteLength + this.contentLength + CRLF_BYTES_COUNT;
     this.name = name;
@@ -500092,7 +500110,7 @@ var buildAddressEntry = (address, family) => resolveFamily(utils_default.isObjec
 var http2Transport = {
   request(options, cb) {
     const authority = options.protocol + "//" + options.hostname + ":" + (options.port || (options.protocol === "https:" ? 443 : 80));
-    const { http2Options, headers } = options;
+    const { http2Options, headers: headers2 } = options;
     const session = http2Sessions.getSession(authority, http2Options);
     const { HTTP2_HEADER_SCHEME, HTTP2_HEADER_METHOD, HTTP2_HEADER_PATH, HTTP2_HEADER_STATUS } = import_http2.default.constants;
     const http2Headers = {
@@ -500100,7 +500118,7 @@ var http2Transport = {
       [HTTP2_HEADER_METHOD]: options.method,
       [HTTP2_HEADER_PATH]: options.path
     };
-    utils_default.forEach(headers, (header, name) => {
+    utils_default.forEach(headers2, (header, name) => {
       name.charAt(0) !== ":" && (http2Headers[name] = header);
     });
     const req = session.request(http2Headers);
@@ -500242,18 +500260,18 @@ var http_default = isHttpAdapterSupported && function httpAdapter(config2) {
         new AxiosError_default("Unsupported protocol " + protocol, AxiosError_default.ERR_BAD_REQUEST, config2)
       );
     }
-    const headers = AxiosHeaders_default.from(config2.headers).normalize();
-    headers.set("User-Agent", "axios/" + VERSION, false);
+    const headers2 = AxiosHeaders_default.from(config2.headers).normalize();
+    headers2.set("User-Agent", "axios/" + VERSION, false);
     const { onUploadProgress, onDownloadProgress } = config2;
     const maxRate = config2.maxRate;
     let maxUploadRate = void 0;
     let maxDownloadRate = void 0;
     if (utils_default.isSpecCompliantForm(data2)) {
-      const userBoundary = headers.getContentType(/boundary=([-_\w\d]{10,70})/i);
+      const userBoundary = headers2.getContentType(/boundary=([-_\w\d]{10,70})/i);
       data2 = formDataToStream_default(
         data2,
         (formHeaders) => {
-          headers.set(formHeaders);
+          headers2.set(formHeaders);
         },
         {
           tag: `axios-${VERSION}-boundary`,
@@ -500261,17 +500279,17 @@ var http_default = isHttpAdapterSupported && function httpAdapter(config2) {
         }
       );
     } else if (utils_default.isFormData(data2) && utils_default.isFunction(data2.getHeaders)) {
-      headers.set(data2.getHeaders());
-      if (!headers.hasContentLength()) {
+      headers2.set(data2.getHeaders());
+      if (!headers2.hasContentLength()) {
         try {
           const knownLength = await import_util2.default.promisify(data2.getLength).call(data2);
-          Number.isFinite(knownLength) && knownLength >= 0 && headers.setContentLength(knownLength);
+          Number.isFinite(knownLength) && knownLength >= 0 && headers2.setContentLength(knownLength);
         } catch (e) {
         }
       }
     } else if (utils_default.isBlob(data2) || utils_default.isFile(data2)) {
-      data2.size && headers.setContentType(data2.type || "application/octet-stream");
-      headers.setContentLength(data2.size || 0);
+      data2.size && headers2.setContentType(data2.type || "application/octet-stream");
+      headers2.setContentLength(data2.size || 0);
       data2 = import_stream4.default.Readable.from(readBlob_default(data2));
     } else if (data2 && !utils_default.isStream(data2)) {
       if (Buffer.isBuffer(data2)) {
@@ -500288,7 +500306,7 @@ var http_default = isHttpAdapterSupported && function httpAdapter(config2) {
           )
         );
       }
-      headers.setContentLength(data2.length, false);
+      headers2.setContentLength(data2.length, false);
       if (config2.maxBodyLength > -1 && data2.length > config2.maxBodyLength) {
         return reject(
           new AxiosError_default(
@@ -500299,7 +500317,7 @@ var http_default = isHttpAdapterSupported && function httpAdapter(config2) {
         );
       }
     }
-    const contentLength = utils_default.toFiniteNumber(headers.getContentLength());
+    const contentLength = utils_default.toFiniteNumber(headers2.getContentLength());
     if (utils_default.isArray(maxRate)) {
       maxUploadRate = maxRate[0];
       maxDownloadRate = maxRate[1];
@@ -500341,7 +500359,7 @@ var http_default = isHttpAdapterSupported && function httpAdapter(config2) {
       const urlPassword = parsed.password;
       auth = urlUsername + ":" + urlPassword;
     }
-    auth && headers.delete("authorization");
+    auth && headers2.delete("authorization");
     let path;
     try {
       path = buildURL(
@@ -500356,7 +500374,7 @@ var http_default = isHttpAdapterSupported && function httpAdapter(config2) {
       customErr.exists = true;
       return reject(customErr);
     }
-    headers.set(
+    headers2.set(
       "Accept-Encoding",
       "gzip, compress, deflate" + (isBrotliSupported ? ", br" : ""),
       false
@@ -500364,7 +500382,7 @@ var http_default = isHttpAdapterSupported && function httpAdapter(config2) {
     const options = {
       path,
       method,
-      headers: headers.toJSON(),
+      headers: headers2.toJSON(),
       agents: { http: config2.httpAgent, https: config2.httpsAgent },
       auth,
       protocol,
@@ -500737,15 +500755,15 @@ function mergeConfig(config1, config2) {
 // node_modules/axios/lib/helpers/resolveConfig.js
 var resolveConfig_default = (config2) => {
   const newConfig = mergeConfig({}, config2);
-  let { data: data2, withXSRFToken, xsrfHeaderName, xsrfCookieName, headers, auth } = newConfig;
-  newConfig.headers = headers = AxiosHeaders_default.from(headers);
+  let { data: data2, withXSRFToken, xsrfHeaderName, xsrfCookieName, headers: headers2, auth } = newConfig;
+  newConfig.headers = headers2 = AxiosHeaders_default.from(headers2);
   newConfig.url = buildURL(
     buildFullPath(newConfig.baseURL, newConfig.url, newConfig.allowAbsoluteUrls),
     config2.params,
     config2.paramsSerializer
   );
   if (auth) {
-    headers.set(
+    headers2.set(
       "Authorization",
       "Basic " + btoa(
         (auth.username || "") + ":" + (auth.password ? unescape(encodeURIComponent(auth.password)) : "")
@@ -500754,13 +500772,13 @@ var resolveConfig_default = (config2) => {
   }
   if (utils_default.isFormData(data2)) {
     if (platform_default.hasStandardBrowserEnv || platform_default.hasStandardBrowserWebWorkerEnv) {
-      headers.setContentType(void 0);
+      headers2.setContentType(void 0);
     } else if (utils_default.isFunction(data2.getHeaders)) {
       const formHeaders = data2.getHeaders();
       const allowedHeaders = ["content-type", "content-length"];
       Object.entries(formHeaders).forEach(([key, val3]) => {
         if (allowedHeaders.includes(key.toLowerCase())) {
-          headers.set(key, val3);
+          headers2.set(key, val3);
         }
       });
     }
@@ -500770,7 +500788,7 @@ var resolveConfig_default = (config2) => {
     if (withXSRFToken || withXSRFToken !== false && isURLSameOrigin_default(newConfig.url)) {
       const xsrfValue = xsrfHeaderName && xsrfCookieName && cookies_default.read(xsrfCookieName);
       if (xsrfValue) {
-        headers.set(xsrfHeaderName, xsrfValue);
+        headers2.set(xsrfHeaderName, xsrfValue);
       }
     }
   }
@@ -501124,8 +501142,8 @@ var factory = (env) => {
       return (await encodeText(body)).byteLength;
     }
   };
-  const resolveBodyLength = async (headers, body) => {
-    const length = utils_default.toFiniteNumber(headers.getContentLength());
+  const resolveBodyLength = async (headers2, body) => {
+    const length = utils_default.toFiniteNumber(headers2.getContentLength());
     return length == null ? getBodyLength(body) : length;
   };
   return async (config2) => {
@@ -501139,7 +501157,7 @@ var factory = (env) => {
       onDownloadProgress,
       onUploadProgress,
       responseType,
-      headers,
+      headers: headers2,
       withCredentials = "same-origin",
       fetchOptions
     } = resolveConfig_default(config2);
@@ -501155,7 +501173,7 @@ var factory = (env) => {
     });
     let requestContentLength;
     try {
-      if (onUploadProgress && supportsRequestStream && method !== "get" && method !== "head" && (requestContentLength = await resolveBodyLength(headers, data2)) !== 0) {
+      if (onUploadProgress && supportsRequestStream && method !== "get" && method !== "head" && (requestContentLength = await resolveBodyLength(headers2, data2)) !== 0) {
         let _request = new Request(url2, {
           method: "POST",
           body: data2,
@@ -501163,7 +501181,7 @@ var factory = (env) => {
         });
         let contentTypeHeader;
         if (utils_default.isFormData(data2) && (contentTypeHeader = _request.headers.get("content-type"))) {
-          headers.setContentType(contentTypeHeader);
+          headers2.setContentType(contentTypeHeader);
         }
         if (_request.body) {
           const [onProgress, flush] = progressEventDecorator(
@@ -501181,7 +501199,7 @@ var factory = (env) => {
         ...fetchOptions,
         signal: composedSignal,
         method: method.toUpperCase(),
-        headers: headers.normalize().toJSON(),
+        headers: headers2.normalize().toJSON(),
         body: data2,
         duplex: "half",
         credentials: isCredentialsSupported ? withCredentials : void 0
@@ -501478,7 +501496,7 @@ var Axios = class {
       config2 = configOrUrl || {};
     }
     config2 = mergeConfig(this.defaults, config2);
-    const { transitional: transitional2, paramsSerializer, headers } = config2;
+    const { transitional: transitional2, paramsSerializer, headers: headers2 } = config2;
     if (transitional2 !== void 0) {
       validator_default.assertOptions(
         transitional2,
@@ -501522,11 +501540,11 @@ var Axios = class {
       true
     );
     config2.method = (config2.method || this.defaults.method || "get").toLowerCase();
-    let contextHeaders = headers && utils_default.merge(headers.common, headers[config2.method]);
-    headers && utils_default.forEach(["delete", "get", "head", "post", "put", "patch", "common"], (method) => {
-      delete headers[method];
+    let contextHeaders = headers2 && utils_default.merge(headers2.common, headers2[config2.method]);
+    headers2 && utils_default.forEach(["delete", "get", "head", "post", "put", "patch", "common"], (method) => {
+      delete headers2[method];
     });
-    config2.headers = AxiosHeaders_default.concat(contextHeaders, headers);
+    config2.headers = AxiosHeaders_default.concat(contextHeaders, headers2);
     const requestInterceptorChain = [];
     let synchronousRequestInterceptors = true;
     this.interceptors.request.forEach(function unshiftRequestInterceptors(interceptor) {
@@ -523951,22 +523969,22 @@ var DBF = /* @__PURE__ */ (function() {
     if (o.type == "string") throw new Error("Cannot write DBF to JS string");
     var ba = buf_array();
     var aoa = sheet_to_json(ws, { header: 1, raw: true, cellDates: true });
-    var headers = aoa[0], data2 = aoa.slice(1), cols = ws["!cols"] || [];
+    var headers2 = aoa[0], data2 = aoa.slice(1), cols = ws["!cols"] || [];
     var i = 0, j = 0, hcnt = 0, rlen = 1;
-    for (i = 0; i < headers.length; ++i) {
+    for (i = 0; i < headers2.length; ++i) {
       if (((cols[i] || {}).DBF || {}).name) {
-        headers[i] = cols[i].DBF.name;
+        headers2[i] = cols[i].DBF.name;
         ++hcnt;
         continue;
       }
-      if (headers[i] == null) continue;
+      if (headers2[i] == null) continue;
       ++hcnt;
-      if (typeof headers[i] === "number") headers[i] = headers[i].toString(10);
-      if (typeof headers[i] !== "string") throw new Error("DBF Invalid column name " + headers[i] + " |" + typeof headers[i] + "|");
-      if (headers.indexOf(headers[i]) !== i) {
+      if (typeof headers2[i] === "number") headers2[i] = headers2[i].toString(10);
+      if (typeof headers2[i] !== "string") throw new Error("DBF Invalid column name " + headers2[i] + " |" + typeof headers2[i] + "|");
+      if (headers2.indexOf(headers2[i]) !== i) {
         for (j = 0; j < 1024; ++j)
-          if (headers.indexOf(headers[i] + "_" + j) == -1) {
-            headers[i] += "_" + j;
+          if (headers2.indexOf(headers2[i] + "_" + j) == -1) {
+            headers2[i] += "_" + j;
             break;
           }
       }
@@ -523981,7 +523999,7 @@ var DBF = /* @__PURE__ */ (function() {
       for (j = 0; j < data2.length; ++j) {
         if (data2[j][i] != null) col.push(data2[j][i]);
       }
-      if (col.length == 0 || headers[i] == null) {
+      if (col.length == 0 || headers2[i] == null) {
         coltypes[i] = "?";
         continue;
       }
@@ -524036,10 +524054,10 @@ var DBF = /* @__PURE__ */ (function() {
       if (o.codepage) console.error("DBF Unsupported codepage " + current_codepage + ", using 1252");
       current_codepage = 1252;
     }
-    for (i = 0, j = 0; i < headers.length; ++i) {
-      if (headers[i] == null) continue;
+    for (i = 0, j = 0; i < headers2.length; ++i) {
+      if (headers2[i] == null) continue;
       var hf = ba.next(32);
-      var _f = (headers[i].slice(-10) + "\0\0\0\0\0\0\0\0\0\0\0").slice(0, 11);
+      var _f = (headers2[i].slice(-10) + "\0\0\0\0\0\0\0\0\0\0\0").slice(0, 11);
       hf.write_shift(1, _f, "sbcs");
       hf.write_shift(1, coltypes[i] == "?" ? "C" : coltypes[i], "sbcs");
       hf.write_shift(4, j);
@@ -524058,8 +524076,8 @@ var DBF = /* @__PURE__ */ (function() {
     for (i = 0; i < data2.length; ++i) {
       var rout = ba.next(rlen);
       rout.write_shift(1, 0);
-      for (j = 0; j < headers.length; ++j) {
-        if (headers[j] == null) continue;
+      for (j = 0; j < headers2.length; ++j) {
+        if (headers2[j] == null) continue;
         switch (coltypes[j]) {
           case "L":
             rout.write_shift(1, data2[i][j] == null ? 63 : data2[i][j] ? 84 : 70);
@@ -543268,6 +543286,84 @@ function validatePortfolio(data2) {
   return { ...data2, holdings: Array.from(positions.values()), holdingsCount: positions.size, coverageWeight: total, categoryWeights: categories, complete: true };
 }
 
+// server/holdings/sec.ts
+var headers = { "User-Agent": process.env.SEC_USER_AGENT || "ETF-Overlap/1.0 (https://github.com/ustunfatih/etf-overlap)", "Accept-Encoding": "gzip, deflate" };
+var seriesIndex;
+async function loadSeriesIndex() {
+  const { data: data2 } = await axios_default.get("https://www.sec.gov/files/company_tickers_mf.json", { headers, timeout: 3e4, maxContentLength: 2e7 });
+  const fields = data2?.fields || [];
+  const [cik, seriesId, symbol] = ["cik", "seriesId", "symbol"].map((field) => fields.indexOf(field));
+  if (!Array.isArray(data2?.data) || [cik, seriesId, symbol].some((index3) => index3 < 0)) throw new Error("SEC fund ticker list format changed");
+  const index2 = /* @__PURE__ */ new Map();
+  for (const row of data2.data) index2.set(String(row[symbol]).toUpperCase(), { cik: Number(row[cik]), seriesId: String(row[seriesId]) });
+  return index2;
+}
+var CATEGORY = { EC: "equity", EP: "equity", DBT: "bond", LON: "bond", "ABS-MBS": "bond", "ABS-CBDO": "bond", "ABS-O": "bond", "ABS-APCP": "bond", "ABS-EE": "bond", STIV: "cash", RA: "repo", SN: "derivative", COMM: "other", RE: "other", OTHER: "other" };
+function categoryFor(assetCat, name, ticker) {
+  if (/^D/.test(assetCat) && assetCat !== "DBT") return "derivative";
+  return CATEGORY[assetCat] ?? classify(name, "", ticker);
+}
+function parseNportXml(xml2, etf, expectedSeriesId) {
+  const $3 = load(xml2.replace(/<(\/?)[A-Za-z0-9_-]+:/g, "<$1"), { xmlMode: true });
+  const series = $3("genInfo > seriesId").first().text().trim();
+  if (expectedSeriesId && series !== expectedSeriesId) throw new Error("SEC filing belongs to a different fund series");
+  const date = portfolioDate($3("genInfo > repPdDate").first().text().trim());
+  const netAssets = Number($3("fundInfo > netAssets").first().text());
+  const holdings = [];
+  $3("invstOrSec").each((_, element) => {
+    const item = $3(element);
+    const name = item.children("name").text().trim() || item.children("title").text().trim();
+    const identifiers = item.children("identifiers");
+    const isin = identifiers.find("isin").attr("value") || "";
+    const cusip = item.children("cusip").text().trim() || identifiers.find("cusip").attr("value") || "";
+    const ticker = identifiers.find("ticker").attr("value")?.trim() || "";
+    const securityId = isin || (cusip && cusip !== "000000000" ? cusip : "") || void 0;
+    const category = categoryFor(item.children("assetCat").text().trim(), name, ticker);
+    holdings.push({ ticker: ticker || securityId || "", name, weight: numericWeight(item.children("pctVal").text()), category, securityId });
+  });
+  const portfolio = validatePortfolio({
+    etf,
+    holdings,
+    sourceAsOf: date,
+    fetchedAt: (/* @__PURE__ */ new Date()).toISOString(),
+    source: "sec",
+    weightMethod: "published",
+    sourceName: "SEC Form N-PORT",
+    isFallback: false,
+    sourceWarning: "No free daily issuer file is mapped for this ETF. Using the SEC's public Form N-PORT filing, which is quarterly and published up to 60 days after the report date.",
+    coverageNote: `Complete SEC N-PORT report${Number.isFinite(netAssets) && netAssets > 0 ? ` (net assets $${Math.round(netAssets).toLocaleString("en-US")})` : ""}. Weights are the filed % of net asset value. Derivatives are weights, not economic exposure.`
+  });
+  return portfolio;
+}
+async function fetchSecPortfolio(ticker) {
+  const upper = ticker.trim().toUpperCase();
+  seriesIndex ??= loadSeriesIndex().catch((error) => {
+    seriesIndex = void 0;
+    throw error;
+  });
+  const fund = (await seriesIndex).get(upper);
+  if (!fund) throw new Error(`${upper} is not a registered fund in the SEC ticker list (commodity trusts and foreign funds do not file Form N-PORT).`);
+  const feed = String((await axios_default.get("https://www.sec.gov/cgi-bin/browse-edgar", {
+    headers,
+    timeout: 3e4,
+    maxContentLength: 5e6,
+    params: { action: "getcompany", CIK: fund.seriesId, type: "NPORT-P", dateb: "", owner: "include", count: 10, output: "atom" }
+  })).data);
+  const feedDocument = load(feed, { xmlMode: true });
+  let filingUrl = "";
+  feedDocument("entry").each((_, entry) => {
+    const type = feedDocument(entry).find("filing-type").first().text();
+    const href = feedDocument(entry).find("filing-href").first().text();
+    if (!filingUrl && /^NPORT-P/.test(type) && href) filingUrl = href;
+  });
+  if (!filingUrl) throw new Error(`No public SEC N-PORT filing found for ${upper}`);
+  const folder = filingUrl.replace(/\/[^/]*$/, "");
+  if (new URL(folder).hostname !== "www.sec.gov") throw new Error("Unexpected SEC filing location");
+  const xml2 = String((await axios_default.get(`${folder}/primary_doc.xml`, { headers, timeout: 3e4, maxContentLength: 5e7 })).data);
+  const portfolio = parseNportXml(xml2, upper, fund.seriesId);
+  return { ...portfolio, sourceUrl: `${folder}/primary_doc.xml` };
+}
+
 // server/holdings/issuers.ts
 var sources = {};
 for (const ticker of ["SPY", "XLK", "XLF", "XLE", "XLY", "XLP", "XLV", "XLI", "XLB", "XLU", "XLRE", "XLC", "DIA", "MDY"]) {
@@ -543281,7 +543377,13 @@ for (const [ticker, id] of Object.entries({ VOO: "0968", VTI: "0970", VUG: "0967
   sources[ticker] = { name: "Vanguard", format: "vanguard", url: `https://advisors.vanguard.com/investments/products/api/funds/${id}/holdings/latest` };
 }
 for (const [ticker, path] of Object.entries({ IVV: "239726/ishares-core-sp-500-etf", AGG: "239458/ishares-core-total-us-bond-market-etf", IWM: "239710/ishares-russell-2000-etf", TLT: "239454/ishares-20-year-treasury-bond-etf" })) {
-  sources[ticker] = { name: "iShares", format: "ishares", url: `https://www.ishares.com/us/products/${path}/latest-holdings.csv` };
+  sources[ticker] = {
+    name: "iShares",
+    format: "ishares",
+    url: `https://www.ishares.com/us/products/${path}/latest-holdings.csv`,
+    // The static CSV can be served from a stale CDN copy; the ajax export is generated on request.
+    altUrl: `https://www.ishares.com/us/products/${path}/1467271812596.ajax?fileType=csv&fileName=${ticker}_holdings&dataType=fund`
+  };
 }
 for (const ticker of ["SCHD", "SCHG", "SCHB", "SCHX"]) {
   sources[ticker] = { name: "Schwab", format: "schwab", url: `https://www.schwabassetmanagement.com/allholdings/${ticker.toLowerCase()}?page=0` };
@@ -543342,16 +543444,17 @@ function tableHoldings(rows, format) {
   }
   return { holdings, date: portfolioDate(rawDate), note };
 }
-async function fetchPrimaryPortfolio(ticker) {
+async function fetchPrimaryPortfolio(ticker, useAlt = false) {
   const upper = ticker.toUpperCase().trim();
   const source = sources[upper];
   if (upper === "GLDW") throw new Error("GLDW was liquidated in September 2019; no current portfolio exists.");
   if (!source) throw new Error(`No verified free automatic full-portfolio source for ${upper}.`);
-  const response = await axios_default.get(source.url, {
+  const sourceUrl = useAlt && source.altUrl ? source.altUrl : source.url;
+  const response = await axios_default.get(sourceUrl, {
     responseType: source.format === "ssga" || source.format === "jpmorgan" ? "arraybuffer" : "text",
     timeout: 2e4,
     maxContentLength: 2e7,
-    headers: { "User-Agent": "ETF-Overlap/1.0 (public ETF holdings reader)", Accept: "*/*" }
+    headers: { "User-Agent": "ETF-Overlap/1.0 (public ETF holdings reader)", Accept: "*/*", "Cache-Control": "no-cache" }
   });
   let holdings, date;
   let precisionNote = "Weights use the issuer's published precision.";
@@ -543492,7 +543595,7 @@ async function fetchPrimaryPortfolio(ticker) {
     source: "issuer",
     weightMethod,
     sourceName: source.name,
-    sourceUrl: source.url,
+    sourceUrl,
     isFallback: false,
     coverageNote: `Complete issuer holdings file. ${precisionNote} Derivatives are published weights, not economic exposure.`
   });
@@ -543512,8 +543615,8 @@ function researchFind(node, predicate) {
 }
 async function fetchSchwabResearch(ticker, primaryError) {
   const url2 = `https://www.schwab.wallst.com/schwab/Prospect/research/etfs/schwabETF/index.asp?symbol=${ticker}&type=holdings`;
-  const headers = { "User-Agent": "Mozilla/5.0", Referer: url2 };
-  const html3 = String((await axios_default.get(url2, { headers, timeout: 2e4, maxContentLength: 5e6 })).data);
+  const headers2 = { "User-Agent": "Mozilla/5.0", Referer: url2 };
+  const html3 = String((await axios_default.get(url2, { headers: headers2, timeout: 2e4, maxContentLength: 5e6 })).data);
   const issue = html3.match(/gSymbolWSODIssue\s*=\s*['"](\d+)['"]/)?.[1];
   const session = html3.match(/WSOD_DATA\.sessionID\s*=\s*['"]([^'"]+)['"]/)?.[1];
   const date = portfolioDate(html3.match(/gHoldingsAsOfDate\s*=\s*['"]([^'"]+)['"]/)?.[1]);
@@ -543524,7 +543627,7 @@ async function fetchSchwabResearch(ticker, primaryError) {
   for (let page = 1; page <= Math.ceil(expected / 100); page++) {
     const args = { module: "schwabETFHoldingsTable", moduleArgs: { ModuleID: "holdingsTableContainer", symbol: ticker, wsodissue: issue, sortDir: "desc", sortBy: "PctNetAssets", page, numRows: 100 } };
     const body = new URLSearchParams({ inputs: "B64ENC" + Buffer.from(JSON.stringify(args)).toString("base64"), "..contenttype..": "text/javascript", "..requester..": "ContentBuffer" });
-    const response = await axios_default.post(`https://www.schwab.wallst.com/schwab/Prospect/research/resources/server/Module/SchwabETF.ModuleAPI.asp?${session}`, body.toString(), { headers: { ...headers, "Content-Type": "application/x-www-form-urlencoded" }, timeout: 2e4, maxContentLength: 5e6 });
+    const response = await axios_default.post(`https://www.schwab.wallst.com/schwab/Prospect/research/resources/server/Module/SchwabETF.ModuleAPI.asp?${session}`, body.toString(), { headers: { ...headers2, "Content-Type": "application/x-www-form-urlencoded" }, timeout: 2e4, maxContentLength: 5e6 });
     const raw = String(response.data);
     if (!/^this\.apiReturn\s*=/.test(raw)) throw new Error("Schwab research response format changed");
     const root2 = JSON.parse(raw.replace(/^this\.apiReturn\s*=\s*/, "").replace(/;\s*$/, "")).module;
@@ -543555,10 +543658,24 @@ async function fetchSchwabResearch(ticker, primaryError) {
     coverageNote: "All pages of Schwab's public research holdings table, verified against its total position count. The date is the research feed's reported portfolio date; weights use its published precision. Derivatives are weights, not economic exposure."
   });
 }
-async function fetchIssuerPortfolio(ticker) {
+async function fetchIssuerPortfolio(ticker, notBefore) {
   const upper = ticker.trim().toUpperCase();
+  if (!sources[upper] && upper !== "GLDW") {
+    try {
+      return await fetchSecPortfolio(upper);
+    } catch (error) {
+      throw new Error(`No free daily issuer source is mapped for ${upper}, and the SEC N-PORT fallback failed: ${error instanceof Error ? error.message : error}`);
+    }
+  }
   try {
-    return await fetchPrimaryPortfolio(upper);
+    const primary = await fetchPrimaryPortfolio(upper);
+    if (!notBefore || primary.sourceAsOf >= notBefore || !sources[upper]?.altUrl) return primary;
+    try {
+      const alternate = await fetchPrimaryPortfolio(upper, true);
+      return alternate.sourceAsOf > primary.sourceAsOf ? alternate : primary;
+    } catch {
+      return primary;
+    }
   } catch (error) {
     if (sources[upper]?.format !== "schwab") throw error;
     return fetchSchwabResearch(upper, error instanceof Error ? error.message : String(error));
@@ -543577,7 +543694,7 @@ async function loadEtfData(upper) {
     return previous;
   }
   try {
-    const fresh = await fetchIssuerPortfolio(upper);
+    const fresh = await fetchIssuerPortfolio(upper, previous?.sourceAsOf);
     if (previous?.sourceAsOf && fresh.sourceAsOf < previous.sourceAsOf) throw new Error(`Source returned older portfolio (${fresh.sourceAsOf}) than last healthy data (${previous.sourceAsOf})`);
     storage.setCachedHoldings(upper, fresh);
     return fresh;

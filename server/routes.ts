@@ -24,7 +24,7 @@ async function loadEtfData(upper: string): Promise<EtfData> {
     return previous;
   }
   try {
-    const fresh = await fetchIssuerPortfolio(upper);
+    const fresh = await fetchIssuerPortfolio(upper, previous?.sourceAsOf);
     if (previous?.sourceAsOf && fresh.sourceAsOf! < previous.sourceAsOf) throw new Error(`Source returned older portfolio (${fresh.sourceAsOf}) than last healthy data (${previous.sourceAsOf})`);
     storage.setCachedHoldings(upper, fresh);
     return fresh;

@@ -31,8 +31,12 @@ jobs:
             git commit -m 'Update dated official ETF portfolios'
             git push
           fi
+      - name: Check portfolio freshness
+        id: freshness
+        continue-on-error: true
+        run: npx tsx script/check-freshness.ts
       - name: Report source failures
-        if: steps.refresh.outcome == 'failure'
+        if: steps.refresh.outcome == 'failure' || steps.freshness.outcome == 'failure'
         run: |
           echo 'One or more issuer sources failed. Last healthy portfolios were preserved.'
           exit 1

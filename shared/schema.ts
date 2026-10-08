@@ -26,7 +26,7 @@ export type EtfData = {
   etf: string;
   holdings: HoldingRow[];
   fetchedAt: string;
-  source?: "alpha_vantage" | "legacy_live" | "legacy_fallback" | "manual" | "issuer" | "research";
+  source?: "alpha_vantage" | "legacy_live" | "legacy_fallback" | "manual" | "issuer" | "research" | "sec";
   sourceAsOf?: string;
   isFallback?: boolean;
   holdingsCount?: number;

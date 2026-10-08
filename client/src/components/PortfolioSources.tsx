@@ -2,9 +2,22 @@ import type { AssetCategory, EtfData } from "@shared/schema";
 
 const LABELS: Record<AssetCategory, string> = { equity: "Stocks", cash: "Cash", deposit: "Deposits", repo: "Repo", bond: "Bonds", option: "Options", derivative: "Other derivatives", other: "Other assets" };
 
+const DAY_MS = 86_400_000;
+const STALE_DAYS = 7;
+const SEC_STALE_DAYS = 120;
+const ageDays = (date?: string) => date ? Math.max(0, Math.floor((Date.now() - Date.parse(`${date}T00:00:00Z`)) / DAY_MS)) : null;
+const ageLabel = (age: number | null) => age === null ? "unknown age" : age === 0 ? "today" : `${age} day${age === 1 ? "" : "s"} old`;
+const isStale = (report: Omit<EtfData, "holdings">) => {
+  const age = ageDays(report.sourceAsOf);
+  return age === null || age > (report.source === "sec" ? SEC_STALE_DAYS : STALE_DAYS);
+};
+
 export default function PortfolioSources({ portfolios, errors }: { portfolios: Record<string, Omit<EtfData, "holdings">>; errors?: string[] }) {
   const reports = Object.values(portfolios);
-  const differentDates = new Set(reports.map(report => report.sourceAsOf)).size > 1;
+  const dates = reports.map(report => Date.parse(`${report.sourceAsOf}T00:00:00Z`)).filter(Number.isFinite);
+  const spreadDays = dates.length ? Math.round((Math.max(...dates) - Math.min(...dates)) / DAY_MS) : 0;
+  const differentDates = spreadDays > 0;
+  const stale = reports.filter(isStale);
   return (
     <section aria-label="Portfolio data sources" className="space-y-3">
       <p className="text-xs text-muted-foreground">Automatic refresh: Sundays at 20:30 (UTC+3). Portfolio dates reflect each source's latest available report.</p>
@@ -13,7 +26,10 @@ export default function PortfolioSources({ portfolios, errors }: { portfolios: R
         {errors.map(error => <p key={error}>{error}</p>)}
       </div> : null}
       {differentDates ? <p className="rounded-lg border border-amber-500/40 bg-amber-500/10 p-3 text-xs">
-        These portfolios have different report dates. Comparisons reflect each issuer's latest available report, not a single common date.
+        These portfolios have different report dates (spread: {spreadDays} day{spreadDays === 1 ? "" : "s"}). Comparisons reflect each issuer's latest available report, not a single common date.
+      </p> : null}
+      {stale.length ? <p role="status" className="rounded-lg border border-amber-500/40 bg-amber-500/10 p-3 text-xs">
+        Older reports: {stale.map(report => `${report.etf} (${report.sourceAsOf || "undated"}, ${ageLabel(ageDays(report.sourceAsOf))})`).join(", ")}. Some issuers, such as Vanguard, only publish monthly, and SEC filings are quarterly.
       </p> : null}
       <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
         {reports.map(report => (
@@ -21,11 +37,11 @@ export default function PortfolioSources({ portfolios, errors }: { portfolios: R
             <div className="flex items-center justify-between gap-2">
               <span className="font-semibold">{report.etf}</span>
               <span className={`rounded-full px-2 py-1 text-xs ${report.sourceError ? "bg-amber-500/15 text-amber-600" : "bg-primary/10 text-primary"}`}>
-                {report.sourceError ? "Last healthy report" : report.source === "manual" ? "Manual report" : report.source === "research" ? "Dated research report" : "Dated issuer report"}
+                {report.sourceError ? "Last healthy report" : report.source === "manual" ? "Manual report" : report.source === "research" ? "Dated research report" : report.source === "sec" ? "SEC N-PORT filing" : "Dated issuer report"}
               </span>
             </div>
             <dl className="grid grid-cols-2 gap-1 text-xs">
-              <dt className="text-muted-foreground">Portfolio date</dt><dd className="font-semibold">{report.sourceAsOf || "Unknown"}</dd>
+              <dt className="text-muted-foreground">Portfolio date</dt><dd className={`font-semibold ${isStale(report) ? "text-amber-600" : ""}`}>{report.sourceAsOf || "Unknown"} <span className="font-normal text-muted-foreground">({ageLabel(ageDays(report.sourceAsOf))})</span></dd>
               <dt className="text-muted-foreground">Positions</dt><dd>{report.holdingsCount}</dd>
               <dt className="text-muted-foreground">Net weight represented</dt><dd>{report.coverageWeight?.toFixed(2)}%</dd>
               <dt className="text-muted-foreground">Source</dt><dd>{report.sourceUrl ? <a className="text-primary underline" href={report.sourceUrl} target="_blank" rel="noreferrer">{report.sourceName}</a> : report.sourceName}</dd>
