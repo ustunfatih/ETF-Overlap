@@ -22,7 +22,8 @@ for (const [ticker, path] of Object.entries({ IVV: "239726/ishares-core-sp-500-e
     // The static CSV can be served from a stale CDN copy; the ajax export is generated on request.
     altUrl: `https://www.ishares.com/us/products/${path}/1467271812596.ajax?fileType=csv&fileName=${ticker}_holdings&dataType=fund` };
 }
-for (const ticker of ["SCHD", "SCHG", "SCHB", "SCHX"]) {
+// SCHB and SCHX are not supported: the Schwab research table repeats and drops rows across pages for funds with thousands of tied tail weights, so completeness cannot be verified.
+for (const ticker of ["SCHD", "SCHG"]) {
   sources[ticker] = { name: "Schwab", format: "schwab", url: `https://www.schwabassetmanagement.com/allholdings/${ticker.toLowerCase()}?page=0` };
 }
 for (const [ticker, cusip] of Object.entries({ JEPI: "46641Q332", JEPQ: "46654Q203" })) {
@@ -280,7 +281,7 @@ export async function fetchIssuerPortfolio(ticker: string, notBefore?: string): 
     try {
       const alternate = await fetchPrimaryPortfolio(upper, true);
       return alternate.sourceAsOf! > primary.sourceAsOf! ? alternate : primary;
-    } catch { return primary; }
+    } catch (error) { console.warn(`${upper}: alternate iShares export failed (${error instanceof Error ? error.message : error})`); return primary; }
   }
   catch (error) {
     if (sources[upper]?.format !== "schwab") throw error;
