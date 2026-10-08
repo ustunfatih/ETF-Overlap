@@ -20,6 +20,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import type { EtfData, OverlapMatrix, TreemapNode, NetworkNode, NetworkEdge, OverlapCell } from "@shared/schema";
 import PortfolioSources from "@/components/PortfolioSources";
+import DataFreshness from "@/components/DataFreshness";
 import { PerplexityAttribution } from "@/components/PerplexityAttribution";
 
 type OverlapResponse = {
@@ -350,6 +351,8 @@ export default function Dashboard() {
           onAnalyze={handleAnalyze}
           isLoading={isLoading}
         />
+
+        <DataFreshness />
 
         {overlapData && !isLoading ? <PortfolioSources portfolios={overlapData.portfolios || {}} errors={overlapData.errors} /> : null}
         {/* View Tabs — only shown when data is ready */}
