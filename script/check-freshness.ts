@@ -1,9 +1,9 @@
 import { readFile } from "node:fs/promises";
 import type { EtfData } from "../shared/schema";
 
-// Maximum acceptable age (days) of a portfolio's report date, by publishing cadence.
-const limits: Record<string, number> = { Vanguard: 50, "SEC Form N-PORT": 130 };
-const defaultLimit = Number(process.env.MAX_PORTFOLIO_AGE_DAYS) || 10;
+// Maximum acceptable age (days) of a portfolio's report date.
+const limits: Record<string, number> = { "SEC Form N-PORT": 130 }; // quarterly filings, published up to 60 days late
+const defaultLimit = Number(process.env.MAX_PORTFOLIO_AGE_DAYS) || 60; // 1-2 month old reports are normal
 const data: Record<string, EtfData> = JSON.parse(await readFile(new URL("../data/holdings.json", import.meta.url), "utf8"));
 const now = Date.now();
 const problems: string[] = [];

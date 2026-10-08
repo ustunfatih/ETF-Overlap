@@ -70347,7 +70347,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-08-31",
-    fetchedAt: "2026-10-08T14:44:55.708Z",
+    fetchedAt: "2026-10-08T14:49:26.455Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "Vanguard",
@@ -73925,7 +73925,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-08",
-    fetchedAt: "2026-10-08T14:44:54.802Z",
+    fetchedAt: "2026-10-08T14:49:25.414Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "NEOS",
@@ -73948,61 +73948,61 @@ var holdings_default = {
       {
         ticker: "NVDA",
         name: "NVIDIA",
-        weight: 8.58,
+        weight: 8.53,
         category: "equity"
       },
       {
         ticker: "AAPL",
         name: "APPLE",
-        weight: 7.21,
+        weight: 7.3,
         category: "equity"
       },
       {
         ticker: "MSFT",
         name: "MICROSOFT",
-        weight: 5.82,
+        weight: 5.84,
         category: "equity"
       },
       {
         ticker: "AMZN",
         name: "AMAZON.COM INC",
-        weight: 3.73,
+        weight: 3.79,
         category: "equity"
       },
       {
         ticker: "GOOGL",
         name: "ALPHABET CLASS A",
-        weight: 3.02,
+        weight: 3.05,
         category: "equity"
       },
       {
         ticker: "AVGO",
         name: "BROADCOM INC",
-        weight: 2.65,
+        weight: 2.66,
         category: "equity"
       },
       {
         ticker: "GOOG",
         name: "ALPHABET CLASS C",
-        weight: 2.43,
+        weight: 2.45,
         category: "equity"
       },
       {
         ticker: "META",
         name: "META PLATFORMS CLASS A",
-        weight: 2.41,
+        weight: 2.36,
         category: "equity"
       },
       {
         ticker: "MU",
         name: "MICRON TECHNOLOGY",
-        weight: 1.75,
+        weight: 1.82,
         category: "equity"
       },
       {
         ticker: "TSLA",
         name: "TESLA INC",
-        weight: 1.59,
+        weight: 1.58,
         category: "equity"
       },
       {
@@ -74012,15 +74012,15 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "BRK B",
-        name: "BERKSHIRE HATHAWAY INC CLASS B",
-        weight: 1.4,
+        ticker: "LLY",
+        name: "ELI LILLY",
+        weight: 1.41,
         category: "equity"
       },
       {
-        ticker: "LLY",
-        name: "ELI LILLY",
-        weight: 1.37,
+        ticker: "BRK B",
+        name: "BERKSHIRE HATHAWAY INC CLASS B",
+        weight: 1.4,
         category: "equity"
       },
       {
@@ -74044,7 +74044,7 @@ var holdings_default = {
       {
         ticker: "JNJ",
         name: "JOHNSON & JOHNSON",
-        weight: 0.91,
+        weight: 0.92,
         category: "equity"
       },
       {
@@ -74056,13 +74056,13 @@ var holdings_default = {
       {
         ticker: "WMT",
         name: "WALMART",
-        weight: 0.71,
+        weight: 0.72,
         category: "equity"
       },
       {
         ticker: "ABBV",
         name: "ABBVIE",
-        weight: 0.7,
+        weight: 0.71,
         category: "equity"
       },
       {
@@ -74080,43 +74080,37 @@ var holdings_default = {
       {
         ticker: "PLTR",
         name: "PALANTIR TECHNOLOGIES CLASS A",
-        weight: 0.65,
-        category: "equity"
-      },
-      {
-        ticker: "AMAT",
-        name: "APPLIED MATERIAL INC",
-        weight: 0.62,
-        category: "equity"
-      },
-      {
-        ticker: "LRCX",
-        name: "LAM RESEARCH",
-        weight: 0.62,
+        weight: 0.66,
         category: "equity"
       },
       {
         ticker: "COST",
         name: "COSTCO WHOLESALE CORP",
+        weight: 0.62,
+        category: "equity"
+      },
+      {
+        ticker: "AMAT",
+        name: "APPLIED MATERIAL INC",
+        weight: 0.61,
+        category: "equity"
+      },
+      {
+        ticker: "LRCX",
+        name: "LAM RESEARCH",
         weight: 0.61,
         category: "equity"
       },
       {
         ticker: "CVX",
         name: "CHEVRON",
-        weight: 0.61,
+        weight: 0.6,
         category: "equity"
       },
       {
         ticker: "CAT",
         name: "CATERPILLAR INC",
-        weight: 0.59,
-        category: "equity"
-      },
-      {
-        ticker: "BAC",
-        name: "BANK OF AMERICA",
-        weight: 0.52,
+        weight: 0.56,
         category: "equity"
       },
       {
@@ -74126,14 +74120,14 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "PG",
-        name: "PROCTER & GAMBLE",
-        weight: 0.51,
+        ticker: "BAC",
+        name: "BANK OF AMERICA",
+        weight: 0.52,
         category: "equity"
       },
       {
-        ticker: "PANW",
-        name: "PALO ALTO NETWORKS",
+        ticker: "PG",
+        name: "PROCTER & GAMBLE",
         weight: 0.51,
         category: "equity"
       },
@@ -74150,21 +74144,27 @@ var holdings_default = {
         category: "equity"
       },
       {
+        ticker: "PANW",
+        name: "PALO ALTO NETWORKS",
+        weight: 0.49,
+        category: "equity"
+      },
+      {
         ticker: "GE",
         name: "GE AEROSPACE",
-        weight: 0.48,
+        weight: 0.47,
         category: "equity"
       },
       {
         ticker: "PM",
         name: "PHILIP MORRIS INTERNATIONAL",
-        weight: 0.44,
+        weight: 0.45,
         category: "equity"
       },
       {
         ticker: "NFLX",
         name: "NETFLIX",
-        weight: 0.42,
+        weight: 0.43,
         category: "equity"
       },
       {
@@ -74176,25 +74176,25 @@ var holdings_default = {
       {
         ticker: "CRWD",
         name: "CROWDSTRIKE HOLDINGS CLASS A",
-        weight: 0.42,
+        weight: 0.4,
         category: "equity"
       },
       {
         ticker: "GEV",
         name: "GE VERNOVA",
-        weight: 0.41,
+        weight: 0.39,
         category: "equity"
       },
       {
         ticker: "TXN",
         name: "TEXAS INSTRUMENT INC",
-        weight: 0.4,
+        weight: 0.39,
         category: "equity"
       },
       {
         ticker: "GS",
         name: "GOLDMAN SACHS GROUP",
-        weight: 0.39,
+        weight: 0.38,
         category: "equity"
       },
       {
@@ -74216,14 +74216,8 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "RTX",
-        name: "RTX",
-        weight: 0.37,
-        category: "equity"
-      },
-      {
-        ticker: "WFC",
-        name: "WELLS FARGO",
+        ticker: "SNDK",
+        name: "SANDISK",
         weight: 0.37,
         category: "equity"
       },
@@ -74234,8 +74228,14 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "SNDK",
-        name: "SANDISK",
+        ticker: "RTX",
+        name: "RTX",
+        weight: 0.36,
+        category: "equity"
+      },
+      {
+        ticker: "WFC",
+        name: "WELLS FARGO",
         weight: 0.36,
         category: "equity"
       },
@@ -74246,26 +74246,26 @@ var holdings_default = {
         category: "equity"
       },
       {
+        ticker: "ANET",
+        name: "ARISTA NETWORKS",
+        weight: 0.34,
+        category: "equity"
+      },
+      {
+        ticker: "AMGN",
+        name: "AMGEN INC",
+        weight: 0.33,
+        category: "equity"
+      },
+      {
         ticker: "LIN",
         name: "LINDE PLC",
         weight: 0.33,
         category: "equity"
       },
       {
-        ticker: "ANET",
-        name: "ARISTA NETWORKS",
-        weight: 0.33,
-        category: "equity"
-      },
-      {
         ticker: "APH",
         name: "AMPHENOL CORP CLASS A",
-        weight: 0.32,
-        category: "equity"
-      },
-      {
-        ticker: "AMGN",
-        name: "AMGEN INC",
         weight: 0.32,
         category: "equity"
       },
@@ -74288,14 +74288,14 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "QCOM",
-        name: "QUALCOMM",
-        weight: 0.29,
+        ticker: "VZ",
+        name: "VERIZON COMMUNICATIONS INC",
+        weight: 0.28,
         category: "equity"
       },
       {
-        ticker: "VZ",
-        name: "VERIZON COMMUNICATIONS INC",
+        ticker: "QCOM",
+        name: "QUALCOMM",
         weight: 0.28,
         category: "equity"
       },
@@ -74312,14 +74312,14 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "DIS",
-        name: "WALT DISNEY",
+        ticker: "GILD",
+        name: "GILEAD SCIENCES",
         weight: 0.27,
         category: "equity"
       },
       {
-        ticker: "GILD",
-        name: "GILEAD SCIENCES",
+        ticker: "DIS",
+        name: "WALT DISNEY",
         weight: 0.27,
         category: "equity"
       },
@@ -74330,9 +74330,9 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "ETN",
-        name: "EATON PLC",
-        weight: 0.26,
+        ticker: "ABT",
+        name: "ABBOTT LABORATORIES",
+        weight: 0.25,
         category: "equity"
       },
       {
@@ -74342,21 +74342,21 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "DE",
-        name: "DEERE",
-        weight: 0.25,
-        category: "equity"
-      },
-      {
-        ticker: "ABT",
-        name: "ABBOTT LABORATORIES",
-        weight: 0.25,
-        category: "equity"
-      },
-      {
         ticker: "T",
         name: "AT&T",
         weight: 0.25,
+        category: "equity"
+      },
+      {
+        ticker: "ETN",
+        name: "EATON PLC",
+        weight: 0.25,
+        category: "equity"
+      },
+      {
+        ticker: "DE",
+        name: "DEERE",
+        weight: 0.24,
         category: "equity"
       },
       {
@@ -74368,12 +74368,6 @@ var holdings_default = {
       {
         ticker: "UNP",
         name: "UNION PACIFIC",
-        weight: 0.24,
-        category: "equity"
-      },
-      {
-        ticker: "WELL",
-        name: "WELLTOWER",
         weight: 0.24,
         category: "equity"
       },
@@ -74390,14 +74384,26 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "SCHW",
-        name: "CHARLES SCHWAB",
+        ticker: "PFE",
+        name: "PFIZER",
+        weight: 0.24,
+        category: "equity"
+      },
+      {
+        ticker: "WELL",
+        name: "WELLTOWER",
+        weight: 0.24,
+        category: "equity"
+      },
+      {
+        ticker: "COP",
+        name: "CONOCOPHILLIPS",
         weight: 0.23,
         category: "equity"
       },
       {
-        ticker: "PFE",
-        name: "PFIZER",
+        ticker: "SCHW",
+        name: "CHARLES SCHWAB",
         weight: 0.23,
         category: "equity"
       },
@@ -74408,15 +74414,9 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "COP",
-        name: "CONOCOPHILLIPS",
-        weight: 0.23,
-        category: "equity"
-      },
-      {
         ticker: "TJX",
         name: "TJX",
-        weight: 0.22,
+        weight: 0.23,
         category: "equity"
       },
       {
@@ -74426,15 +74426,15 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "WDC",
-        name: "WESTERN DIGITAL CORP",
+        ticker: "ISRG",
+        name: "INTUITIVE SURGICAL",
         weight: 0.22,
         category: "equity"
       },
       {
-        ticker: "ISRG",
-        name: "INTUITIVE SURGICAL",
-        weight: 0.21,
+        ticker: "WDC",
+        name: "WESTERN DIGITAL CORP",
+        weight: 0.22,
         category: "equity"
       },
       {
@@ -74458,7 +74458,7 @@ var holdings_default = {
       {
         ticker: "GLW",
         name: "CORNING",
-        weight: 0.2,
+        weight: 0.19,
         category: "equity"
       },
       {
@@ -74468,32 +74468,8 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "PH",
-        name: "PARKER-HANNIFIN",
-        weight: 0.18,
-        category: "equity"
-      },
-      {
         ticker: "PGR",
         name: "PROGRESSIVE",
-        weight: 0.18,
-        category: "equity"
-      },
-      {
-        ticker: "NEM",
-        name: "NEWMONT",
-        weight: 0.18,
-        category: "equity"
-      },
-      {
-        ticker: "PLD",
-        name: "PROLOGIS REIT",
-        weight: 0.18,
-        category: "equity"
-      },
-      {
-        ticker: "BMY",
-        name: "BRISTOL MYERS SQUIBB",
         weight: 0.18,
         category: "equity"
       },
@@ -74510,20 +74486,14 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "COF",
-        name: "CAPITAL ONE FINANCIAL CORP",
+        ticker: "BMY",
+        name: "BRISTOL MYERS SQUIBB",
         weight: 0.18,
         category: "equity"
       },
       {
-        ticker: "SPGI",
-        name: "S&P GLOBAL",
-        weight: 0.18,
-        category: "equity"
-      },
-      {
-        ticker: "BKNG",
-        name: "BOOKING HOLDINGS",
+        ticker: "PLD",
+        name: "PROLOGIS REIT",
         weight: 0.18,
         category: "equity"
       },
@@ -74534,14 +74504,44 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "FTNT",
-        name: "FORTINET",
-        weight: 0.17,
+        ticker: "COF",
+        name: "CAPITAL ONE FINANCIAL CORP",
+        weight: 0.18,
+        category: "equity"
+      },
+      {
+        ticker: "PH",
+        name: "PARKER-HANNIFIN",
+        weight: 0.18,
+        category: "equity"
+      },
+      {
+        ticker: "NEM",
+        name: "NEWMONT",
+        weight: 0.18,
+        category: "equity"
+      },
+      {
+        ticker: "SPGI",
+        name: "S&P GLOBAL",
+        weight: 0.18,
         category: "equity"
       },
       {
         ticker: "CB",
         name: "CHUBB",
+        weight: 0.17,
+        category: "equity"
+      },
+      {
+        ticker: "BKNG",
+        name: "BOOKING HOLDINGS",
+        weight: 0.17,
+        category: "equity"
+      },
+      {
+        ticker: "FTNT",
+        name: "FORTINET",
         weight: 0.17,
         category: "equity"
       },
@@ -74552,26 +74552,20 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "MDT",
-        name: "MEDTRONIC PLC",
+        ticker: "CVS",
+        name: "CVS HEALTH",
         weight: 0.17,
         category: "equity"
       },
       {
-        ticker: "CVS",
-        name: "CVS HEALTH",
+        ticker: "USD",
+        name: "USD CASH",
         weight: 0.16,
-        category: "equity"
+        category: "cash"
       },
       {
-        ticker: "SBUX",
-        name: "STARBUCKS CORP",
-        weight: 0.16,
-        category: "equity"
-      },
-      {
-        ticker: "PWR",
-        name: "QUANTA SERVICES INC",
+        ticker: "MDT",
+        name: "MEDTRONIC PLC",
         weight: 0.16,
         category: "equity"
       },
@@ -74582,21 +74576,27 @@ var holdings_default = {
         category: "equity"
       },
       {
+        ticker: "SBUX",
+        name: "STARBUCKS CORP",
+        weight: 0.16,
+        category: "equity"
+      },
+      {
         ticker: "MCK",
         name: "MCKESSON CORP",
         weight: 0.16,
         category: "equity"
       },
       {
-        ticker: "TT",
-        name: "TRANE TECHNOLOGIES PLC",
+        ticker: "PWR",
+        name: "QUANTA SERVICES INC",
         weight: 0.16,
         category: "equity"
       },
       {
         ticker: "ADP",
         name: "AUTOMATIC DATA PROCESSING INC",
-        weight: 0.15,
+        weight: 0.16,
         category: "equity"
       },
       {
@@ -74606,14 +74606,8 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "LMT",
-        name: "LOCKHEED MARTIN CORP",
-        weight: 0.15,
-        category: "equity"
-      },
-      {
-        ticker: "EQIX",
-        name: "EQUINIX REIT",
+        ticker: "TT",
+        name: "TRANE TECHNOLOGIES PLC",
         weight: 0.15,
         category: "equity"
       },
@@ -74624,14 +74618,14 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "LITE",
-        name: "LUMENTUM HOLDINGS",
+        ticker: "EQIX",
+        name: "EQUINIX REIT",
         weight: 0.15,
         category: "equity"
       },
       {
-        ticker: "CDNS",
-        name: "CADENCE DESIGN SYSTEMS",
+        ticker: "LMT",
+        name: "LOCKHEED MARTIN CORP",
         weight: 0.15,
         category: "equity"
       },
@@ -74642,9 +74636,27 @@ var holdings_default = {
         category: "equity"
       },
       {
+        ticker: "LITE",
+        name: "LUMENTUM HOLDINGS",
+        weight: 0.15,
+        category: "equity"
+      },
+      {
         ticker: "SO",
         name: "SOUTHERN",
         weight: 0.15,
+        category: "equity"
+      },
+      {
+        ticker: "CDNS",
+        name: "CADENCE DESIGN SYSTEMS",
+        weight: 0.15,
+        category: "equity"
+      },
+      {
+        ticker: "CME",
+        name: "CME GROUP CLASS A",
+        weight: 0.14,
         category: "equity"
       },
       {
@@ -74654,14 +74666,8 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "VRT",
-        name: "VERTIV HOLDINGS CLASS A",
-        weight: 0.14,
-        category: "equity"
-      },
-      {
-        ticker: "CME",
-        name: "CME GROUP CLASS A",
+        ticker: "SNPS",
+        name: "SYNOPSYS",
         weight: 0.14,
         category: "equity"
       },
@@ -74672,8 +74678,14 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "SNPS",
-        name: "SYNOPSYS",
+        ticker: "HPE",
+        name: "HEWLETT PACKARD ENTERPRISE",
+        weight: 0.14,
+        category: "equity"
+      },
+      {
+        ticker: "VRT",
+        name: "VERTIV HOLDINGS CLASS A",
         weight: 0.14,
         category: "equity"
       },
@@ -74690,26 +74702,20 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "HPE",
-        name: "HEWLETT PACKARD ENTERPRISE",
-        weight: 0.14,
-        category: "equity"
-      },
-      {
         ticker: "DDOG",
         name: "DATADOG INC CLASS A",
-        weight: 0.14,
-        category: "equity"
-      },
-      {
-        ticker: "HWM",
-        name: "HOWMET AEROSPACE",
-        weight: 0.14,
+        weight: 0.13,
         category: "equity"
       },
       {
         ticker: "DUK",
         name: "DUKE ENERGY CORP",
+        weight: 0.13,
+        category: "equity"
+      },
+      {
+        ticker: "HWM",
+        name: "HOWMET AEROSPACE",
         weight: 0.13,
         category: "equity"
       },
@@ -74720,14 +74726,14 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "USB",
-        name: "US BANCORP",
+        ticker: "ELV",
+        name: "ELEVANCE HEALTH INC",
         weight: 0.13,
         category: "equity"
       },
       {
-        ticker: "HOOD",
-        name: "ROBINHOOD MARKETS CLASS A",
+        ticker: "USB",
+        name: "US BANCORP",
         weight: 0.13,
         category: "equity"
       },
@@ -74738,26 +74744,26 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "CSX",
-        name: "CSX",
-        weight: 0.13,
-        category: "equity"
-      },
-      {
         ticker: "PNC",
         name: "PNC FINANCIAL SERVICES GROUP",
         weight: 0.13,
         category: "equity"
       },
       {
-        ticker: "BE",
-        name: "BLOOM ENERGY CLASS A",
+        ticker: "CSX",
+        name: "CSX",
         weight: 0.13,
         category: "equity"
       },
       {
-        ticker: "ELV",
-        name: "ELEVANCE HEALTH INC",
+        ticker: "HOOD",
+        name: "ROBINHOOD MARKETS CLASS A",
+        weight: 0.13,
+        category: "equity"
+      },
+      {
+        ticker: "BE",
+        name: "BLOOM ENERGY CLASS A",
         weight: 0.13,
         category: "equity"
       },
@@ -74770,13 +74776,13 @@ var holdings_default = {
       {
         ticker: "BX",
         name: "BLACKSTONE",
-        weight: 0.13,
+        weight: 0.12,
         category: "equity"
       },
       {
         ticker: "MMM",
         name: "3M",
-        weight: 0.13,
+        weight: 0.12,
         category: "equity"
       },
       {
@@ -74792,32 +74798,26 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "TMUS",
-        name: "T MOBILE US INC",
-        weight: 0.12,
-        category: "equity"
-      },
-      {
         ticker: "INTU",
         name: "INTUIT",
         weight: 0.12,
         category: "equity"
       },
       {
-        ticker: "XTSLA",
-        name: "BLK CSH FND TREASURY SL AGENCY",
-        weight: 0.12,
-        category: "cash"
-      },
-      {
-        ticker: "WBD",
-        name: "WARNER BROS. DISCOVERY SERIES A",
+        ticker: "TMUS",
+        name: "T MOBILE US INC",
         weight: 0.12,
         category: "equity"
       },
       {
         ticker: "WM",
         name: "WASTE MANAGEMENT INC",
+        weight: 0.12,
+        category: "equity"
+      },
+      {
+        ticker: "AMT",
+        name: "AMERICAN TOWER REIT",
         weight: 0.11,
         category: "equity"
       },
@@ -74828,14 +74828,8 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "AMT",
-        name: "AMERICAN TOWER REIT",
-        weight: 0.11,
-        category: "equity"
-      },
-      {
-        ticker: "CMCSA",
-        name: "COMCAST CLASS A",
+        ticker: "APP",
+        name: "APPLOVIN CLASS A",
         weight: 0.11,
         category: "equity"
       },
@@ -74852,8 +74846,8 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "APP",
-        name: "APPLOVIN CLASS A",
+        ticker: "TRV",
+        name: "TRAVELERS COMPANIES",
         weight: 0.11,
         category: "equity"
       },
@@ -74864,38 +74858,8 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "TRV",
-        name: "TRAVELERS COMPANIES",
-        weight: 0.11,
-        category: "equity"
-      },
-      {
-        ticker: "SLB",
-        name: "SLB",
-        weight: 0.11,
-        category: "equity"
-      },
-      {
-        ticker: "CMI",
-        name: "CUMMINS INC",
-        weight: 0.11,
-        category: "equity"
-      },
-      {
-        ticker: "SHW",
-        name: "SHERWIN WILLIAMS",
-        weight: 0.11,
-        category: "equity"
-      },
-      {
-        ticker: "DASH",
-        name: "DOORDASH CLASS A",
-        weight: 0.11,
-        category: "equity"
-      },
-      {
-        ticker: "HLT",
-        name: "HILTON WORLDWIDE HOLDINGS",
+        ticker: "CMCSA",
+        name: "COMCAST CLASS A",
         weight: 0.11,
         category: "equity"
       },
@@ -74906,20 +74870,14 @@ var holdings_default = {
         category: "equity"
       },
       {
+        ticker: "MRNA",
+        name: "MODERNA",
+        weight: 0.11,
+        category: "equity"
+      },
+      {
         ticker: "REGN",
         name: "REGENERON PHARMACEUTICALS",
-        weight: 0.11,
-        category: "equity"
-      },
-      {
-        ticker: "MPWR",
-        name: "MONOLITHIC POWER SYSTEMS INC",
-        weight: 0.11,
-        category: "equity"
-      },
-      {
-        ticker: "GM",
-        name: "GENERAL MOTORS",
         weight: 0.11,
         category: "equity"
       },
@@ -74930,15 +74888,51 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "RCL",
-        name: "ROYAL CARIBBEAN GROUP",
+        ticker: "HLT",
+        name: "HILTON WORLDWIDE HOLDINGS",
+        weight: 0.11,
+        category: "equity"
+      },
+      {
+        ticker: "DASH",
+        name: "DOORDASH CLASS A",
+        weight: 0.11,
+        category: "equity"
+      },
+      {
+        ticker: "SHW",
+        name: "SHERWIN WILLIAMS",
+        weight: 0.11,
+        category: "equity"
+      },
+      {
+        ticker: "CMI",
+        name: "CUMMINS INC",
+        weight: 0.11,
+        category: "equity"
+      },
+      {
+        ticker: "SLB",
+        name: "SLB",
+        weight: 0.11,
+        category: "equity"
+      },
+      {
+        ticker: "GM",
+        name: "GENERAL MOTORS",
         weight: 0.11,
         category: "equity"
       },
       {
         ticker: "NSC",
         name: "NORFOLK SOUTHERN CORP",
-        weight: 0.11,
+        weight: 0.1,
+        category: "equity"
+      },
+      {
+        ticker: "RCL",
+        name: "ROYAL CARIBBEAN GROUP",
+        weight: 0.1,
         category: "equity"
       },
       {
@@ -74948,20 +74942,8 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "TGT",
-        name: "TARGET CORP",
-        weight: 0.1,
-        category: "equity"
-      },
-      {
-        ticker: "UPS",
-        name: "UNITED PARCEL SERVICE INC CLASS B",
-        weight: 0.1,
-        category: "equity"
-      },
-      {
-        ticker: "MRNA",
-        name: "MODERNA",
+        ticker: "MPWR",
+        name: "MONOLITHIC POWER SYSTEMS INC",
         weight: 0.1,
         category: "equity"
       },
@@ -74972,8 +74954,14 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "ITW",
-        name: "ILLINOIS TOOL INC",
+        ticker: "UPS",
+        name: "UNITED PARCEL SERVICE INC CLASS B",
+        weight: 0.1,
+        category: "equity"
+      },
+      {
+        ticker: "TGT",
+        name: "TARGET CORP",
         weight: 0.1,
         category: "equity"
       },
@@ -74984,20 +74972,14 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "HON",
-        name: "HONEYWELL INTERNATIONAL INC",
-        weight: 0.1,
-        category: "equity"
-      },
-      {
         ticker: "CTAS",
         name: "CINTAS",
         weight: 0.1,
         category: "equity"
       },
       {
-        ticker: "MCO",
-        name: "MOODYS CORP",
+        ticker: "ITW",
+        name: "ILLINOIS TOOL INC",
         weight: 0.1,
         category: "equity"
       },
@@ -75008,26 +74990,8 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "TER",
-        name: "TERADYNE",
-        weight: 0.1,
-        category: "equity"
-      },
-      {
-        ticker: "URI",
-        name: "UNITED RENTALS",
-        weight: 0.1,
-        category: "equity"
-      },
-      {
-        ticker: "KEYS",
-        name: "KEYSIGHT TECHNOLOGIES",
-        weight: 0.1,
-        category: "equity"
-      },
-      {
-        ticker: "COHR",
-        name: "COHERENT",
+        ticker: "MCO",
+        name: "MOODYS CORP",
         weight: 0.1,
         category: "equity"
       },
@@ -75038,38 +75002,44 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "SPG",
-        name: "SIMON PROPERTY GROUP REIT INC",
+        ticker: "HON",
+        name: "HONEYWELL INTERNATIONAL INC",
         weight: 0.1,
         category: "equity"
       },
       {
-        ticker: "DLR",
-        name: "DIGITAL REALTY TRUST REIT",
+        ticker: "COHR",
+        name: "COHERENT",
         weight: 0.1,
         category: "equity"
       },
       {
-        ticker: "NOC",
-        name: "NORTHROP GRUMMAN CORP",
+        ticker: "KEYS",
+        name: "KEYSIGHT TECHNOLOGIES",
         weight: 0.1,
-        category: "equity"
-      },
-      {
-        ticker: "FIX",
-        name: "COMFORT SYSTEMS USA",
-        weight: 0.09,
         category: "equity"
       },
       {
         ticker: "HCA",
         name: "HCA HEALTHCARE",
-        weight: 0.09,
+        weight: 0.1,
         category: "equity"
       },
       {
-        ticker: "TEL",
-        name: "TE CONNECTIVITY PLC",
+        ticker: "URI",
+        name: "UNITED RENTALS",
+        weight: 0.1,
+        category: "equity"
+      },
+      {
+        ticker: "TER",
+        name: "TERADYNE",
+        weight: 0.1,
+        category: "equity"
+      },
+      {
+        ticker: "SPG",
+        name: "SIMON PROPERTY GROUP REIT INC",
         weight: 0.09,
         category: "equity"
       },
@@ -75080,14 +75050,32 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "KMI",
-        name: "KINDER MORGAN",
+        ticker: "DLR",
+        name: "DIGITAL REALTY TRUST REIT",
+        weight: 0.09,
+        category: "equity"
+      },
+      {
+        ticker: "NOC",
+        name: "NORTHROP GRUMMAN CORP",
         weight: 0.09,
         category: "equity"
       },
       {
         ticker: "CIEN",
         name: "CIENA",
+        weight: 0.09,
+        category: "equity"
+      },
+      {
+        ticker: "TEL",
+        name: "TE CONNECTIVITY PLC",
+        weight: 0.09,
+        category: "equity"
+      },
+      {
+        ticker: "KMI",
+        name: "KINDER MORGAN",
         weight: 0.09,
         category: "equity"
       },
@@ -75110,20 +75098,14 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "NXPI",
-        name: "NXP SEMICONDUCTORS NV",
+        ticker: "FIX",
+        name: "COMFORT SYSTEMS USA",
         weight: 0.09,
         category: "equity"
       },
       {
         ticker: "TRGP",
         name: "TARGA RESOURCES",
-        weight: 0.09,
-        category: "equity"
-      },
-      {
-        ticker: "BSX",
-        name: "BOSTON SCIENTIFIC CORP",
         weight: 0.09,
         category: "equity"
       },
@@ -75140,20 +75122,20 @@ var holdings_default = {
         category: "equity"
       },
       {
+        ticker: "BSX",
+        name: "BOSTON SCIENTIFIC CORP",
+        weight: 0.09,
+        category: "equity"
+      },
+      {
+        ticker: "NXPI",
+        name: "NXP SEMICONDUCTORS NV",
+        weight: 0.09,
+        category: "equity"
+      },
+      {
         ticker: "AJG",
         name: "ARTHUR J GALLAGHER",
-        weight: 0.09,
-        category: "equity"
-      },
-      {
-        ticker: "FAST",
-        name: "FASTENAL",
-        weight: 0.09,
-        category: "equity"
-      },
-      {
-        ticker: "AME",
-        name: "AMETEK INC",
         weight: 0.09,
         category: "equity"
       },
@@ -75164,20 +75146,32 @@ var holdings_default = {
         category: "equity"
       },
       {
+        ticker: "FAST",
+        name: "FASTENAL",
+        weight: 0.08,
+        category: "equity"
+      },
+      {
+        ticker: "AME",
+        name: "AMETEK INC",
+        weight: 0.08,
+        category: "equity"
+      },
+      {
         ticker: "PCAR",
         name: "PACCAR INC",
-        weight: 0.09,
+        weight: 0.08,
+        category: "equity"
+      },
+      {
+        ticker: "ALL",
+        name: "ALLSTATE CORP",
+        weight: 0.08,
         category: "equity"
       },
       {
         ticker: "NUE",
         name: "NUCOR",
-        weight: 0.08,
-        category: "equity"
-      },
-      {
-        ticker: "BKR",
-        name: "BAKER HUGHES CLASS A",
         weight: 0.08,
         category: "equity"
       },
@@ -75194,14 +75188,8 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "ALL",
-        name: "ALLSTATE CORP",
-        weight: 0.08,
-        category: "equity"
-      },
-      {
-        ticker: "CRH",
-        name: "CRH PUBLIC LIMITED PLC",
+        ticker: "BKR",
+        name: "BAKER HUGHES CLASS A",
         weight: 0.08,
         category: "equity"
       },
@@ -75214,6 +75202,12 @@ var holdings_default = {
       {
         ticker: "APO",
         name: "APOLLO GLOBAL MANAGEMENT",
+        weight: 0.08,
+        category: "equity"
+      },
+      {
+        ticker: "CRH",
+        name: "CRH PUBLIC LIMITED PLC",
         weight: 0.08,
         category: "equity"
       },
@@ -75236,6 +75230,12 @@ var holdings_default = {
         category: "equity"
       },
       {
+        ticker: "VST",
+        name: "VISTRA",
+        weight: 0.08,
+        category: "equity"
+      },
+      {
         ticker: "SRE",
         name: "SEMPRA",
         weight: 0.08,
@@ -75248,32 +75248,26 @@ var holdings_default = {
         category: "equity"
       },
       {
+        ticker: "P",
+        name: "EVERPURE INC CLASS A",
+        weight: 0.08,
+        category: "equity"
+      },
+      {
         ticker: "O",
         name: "REALTY INCOME REIT",
-        weight: 0.08,
+        weight: 0.07,
         category: "equity"
       },
       {
         ticker: "AFL",
         name: "AFLAC",
-        weight: 0.08,
-        category: "equity"
-      },
-      {
-        ticker: "VST",
-        name: "VISTRA",
-        weight: 0.08,
-        category: "equity"
-      },
-      {
-        ticker: "ROK",
-        name: "ROCKWELL AUTOMATION INC",
         weight: 0.07,
         category: "equity"
       },
       {
-        ticker: "HONA",
-        name: "HONEYWELL AEROSPACE INC",
+        ticker: "ADSK",
+        name: "AUTODESK",
         weight: 0.07,
         category: "equity"
       },
@@ -75290,26 +75284,14 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "WAB",
-        name: "WESTINGHOUSE AIR BRAKE TECHNOLOGIE",
-        weight: 0.07,
-        category: "equity"
-      },
-      {
         ticker: "BDX",
         name: "BECTON DICKINSON",
         weight: 0.07,
         category: "equity"
       },
       {
-        ticker: "P",
-        name: "EVERPURE INC CLASS A",
-        weight: 0.07,
-        category: "equity"
-      },
-      {
-        ticker: "ADSK",
-        name: "AUTODESK",
+        ticker: "ROK",
+        name: "ROCKWELL AUTOMATION INC",
         weight: 0.07,
         category: "equity"
       },
@@ -75320,8 +75302,14 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "HUM",
-        name: "HUMANA",
+        ticker: "HONA",
+        name: "HONEYWELL AEROSPACE INC",
+        weight: 0.07,
+        category: "equity"
+      },
+      {
+        ticker: "ETR",
+        name: "ENTERGY CORP",
         weight: 0.07,
         category: "equity"
       },
@@ -75332,8 +75320,20 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "ETR",
-        name: "ENTERGY CORP",
+        ticker: "A",
+        name: "AGILENT TECHNOLOGIES INC",
+        weight: 0.07,
+        category: "equity"
+      },
+      {
+        ticker: "WAB",
+        name: "WESTINGHOUSE AIR BRAKE TECHNOLOGIE",
+        weight: 0.07,
+        category: "equity"
+      },
+      {
+        ticker: "HUM",
+        name: "HUMANA",
         weight: 0.07,
         category: "equity"
       },
@@ -75350,8 +75350,8 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "A",
-        name: "AGILENT TECHNOLOGIES INC",
+        ticker: "PYPL",
+        name: "PAYPAL HOLDINGS",
         weight: 0.07,
         category: "equity"
       },
@@ -75362,8 +75362,8 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "PYPL",
-        name: "PAYPAL HOLDINGS",
+        ticker: "NTAP",
+        name: "NETAPP INC",
         weight: 0.07,
         category: "equity"
       },
@@ -75386,14 +75386,14 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "CVNA",
-        name: "CARVANA CLASS A",
+        ticker: "XEL",
+        name: "XCEL ENERGY INC",
         weight: 0.07,
         category: "equity"
       },
       {
-        ticker: "XEL",
-        name: "XCEL ENERGY INC",
+        ticker: "CVNA",
+        name: "CARVANA CLASS A",
         weight: 0.07,
         category: "equity"
       },
@@ -75404,56 +75404,14 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "NTAP",
-        name: "NETAPP INC",
-        weight: 0.07,
-        category: "equity"
-      },
-      {
         ticker: "LHX",
         name: "L3HARRIS TECHNOLOGIES",
-        weight: 0.07,
-        category: "equity"
-      },
-      {
-        ticker: "MCHP",
-        name: "MICROCHIP TECHNOLOGY INC",
-        weight: 0.07,
+        weight: 0.06,
         category: "equity"
       },
       {
         ticker: "AMP",
         name: "AMERIPRISE FINANCE INC",
-        weight: 0.06,
-        category: "equity"
-      },
-      {
-        ticker: "VMRK",
-        name: "VIVMARK RESIDENTIAL",
-        weight: 0.06,
-        category: "equity"
-      },
-      {
-        ticker: "FERG",
-        name: "FERGUSON ENTERPRISES INC",
-        weight: 0.06,
-        category: "equity"
-      },
-      {
-        ticker: "EXC",
-        name: "EXELON CORP",
-        weight: 0.06,
-        category: "equity"
-      },
-      {
-        ticker: "TWLO",
-        name: "TWILIO CLASS A",
-        weight: 0.06,
-        category: "equity"
-      },
-      {
-        ticker: "WAT",
-        name: "WATERS CORP",
         weight: 0.06,
         category: "equity"
       },
@@ -75464,8 +75422,20 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "IQV",
-        name: "IQVIA HOLDINGS INC",
+        ticker: "WAT",
+        name: "WATERS CORP",
+        weight: 0.06,
+        category: "equity"
+      },
+      {
+        ticker: "EXC",
+        name: "EXELON CORP",
+        weight: 0.06,
+        category: "equity"
+      },
+      {
+        ticker: "VMRK",
+        name: "VIVMARK RESIDENTIAL",
         weight: 0.06,
         category: "equity"
       },
@@ -75476,14 +75446,8 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "VEEV",
-        name: "VEEVA SYSTEMS CLASS A",
-        weight: 0.06,
-        category: "equity"
-      },
-      {
-        ticker: "KDP",
-        name: "KEURIG DR PEPPER INC",
+        ticker: "IQV",
+        name: "IQVIA HOLDINGS INC",
         weight: 0.06,
         category: "equity"
       },
@@ -75494,8 +75458,32 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "VTR",
-        name: "VENTAS REIT",
+        ticker: "MCHP",
+        name: "MICROCHIP TECHNOLOGY INC",
+        weight: 0.06,
+        category: "equity"
+      },
+      {
+        ticker: "VEEV",
+        name: "VEEVA SYSTEMS CLASS A",
+        weight: 0.06,
+        category: "equity"
+      },
+      {
+        ticker: "TWLO",
+        name: "TWILIO CLASS A",
+        weight: 0.06,
+        category: "equity"
+      },
+      {
+        ticker: "FERG",
+        name: "FERGUSON ENTERPRISES INC",
+        weight: 0.06,
+        category: "equity"
+      },
+      {
+        ticker: "KDP",
+        name: "KEURIG DR PEPPER INC",
         weight: 0.06,
         category: "equity"
       },
@@ -75512,20 +75500,8 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "COIN",
-        name: "COINBASE GLOBAL INC CLASS A",
-        weight: 0.06,
-        category: "equity"
-      },
-      {
-        ticker: "ILMN",
-        name: "ILLUMINA INC",
-        weight: 0.06,
-        category: "equity"
-      },
-      {
-        ticker: "IBKR",
-        name: "INTERACTIVE BROKERS GROUP INC CLAS",
+        ticker: "VTR",
+        name: "VENTAS REIT",
         weight: 0.06,
         category: "equity"
       },
@@ -75536,8 +75512,8 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "IDXX",
-        name: "IDEXX LABORATORIES",
+        ticker: "ILMN",
+        name: "ILLUMINA INC",
         weight: 0.06,
         category: "equity"
       },
@@ -75548,8 +75524,20 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "ADM",
-        name: "ARCHER DANIELS MIDLAND",
+        ticker: "IDXX",
+        name: "IDEXX LABORATORIES",
+        weight: 0.06,
+        category: "equity"
+      },
+      {
+        ticker: "IBKR",
+        name: "INTERACTIVE BROKERS GROUP INC CLAS",
+        weight: 0.06,
+        category: "equity"
+      },
+      {
+        ticker: "COIN",
+        name: "COINBASE GLOBAL INC CLASS A",
         weight: 0.06,
         category: "equity"
       },
@@ -75560,14 +75548,20 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "PRU",
-        name: "PRUDENTIAL FINANCIAL INC",
+        ticker: "ADM",
+        name: "ARCHER DANIELS MIDLAND",
         weight: 0.06,
         category: "equity"
       },
       {
         ticker: "CMG",
         name: "CHIPOTLE MEXICAN GRILL",
+        weight: 0.06,
+        category: "equity"
+      },
+      {
+        ticker: "PRU",
+        name: "PRUDENTIAL FINANCIAL INC",
         weight: 0.06,
         category: "equity"
       },
@@ -75596,20 +75590,26 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "CBRE",
-        name: "CBRE GROUP CLASS A",
-        weight: 0.06,
-        category: "equity"
-      },
-      {
         ticker: "SYY",
         name: "SYSCO",
         weight: 0.05,
         category: "equity"
       },
       {
-        ticker: "EME",
-        name: "EMCOR GROUP",
+        ticker: "CBRE",
+        name: "CBRE GROUP CLASS A",
+        weight: 0.05,
+        category: "equity"
+      },
+      {
+        ticker: "TTWO",
+        name: "TAKE TWO INTERACTIVE SOFTWARE",
+        weight: 0.05,
+        category: "equity"
+      },
+      {
+        ticker: "PEG",
+        name: "PUBLIC SERVICE ENTERPRISE GROUP",
         weight: 0.05,
         category: "equity"
       },
@@ -75626,20 +75626,8 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "PEG",
-        name: "PUBLIC SERVICE ENTERPRISE GROUP",
-        weight: 0.05,
-        category: "equity"
-      },
-      {
-        ticker: "TTWO",
-        name: "TAKE TWO INTERACTIVE SOFTWARE",
-        weight: 0.05,
-        category: "equity"
-      },
-      {
-        ticker: "DHI",
-        name: "D R HORTON",
+        ticker: "EME",
+        name: "EMCOR GROUP",
         weight: 0.05,
         category: "equity"
       },
@@ -75656,14 +75644,14 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "AXON",
-        name: "AXON ENTERPRISE",
+        ticker: "DHI",
+        name: "D R HORTON",
         weight: 0.05,
         category: "equity"
       },
       {
-        ticker: "CCL",
-        name: "CARNIVAL CORP LTD",
+        ticker: "KR",
+        name: "KROGER",
         weight: 0.05,
         category: "equity"
       },
@@ -75680,20 +75668,14 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "ON",
-        name: "ON SEMICONDUCTOR CORP",
+        ticker: "CCL",
+        name: "CARNIVAL CORP LTD",
         weight: 0.05,
         category: "equity"
       },
       {
-        ticker: "KR",
-        name: "KROGER",
-        weight: 0.05,
-        category: "equity"
-      },
-      {
-        ticker: "ODFL",
-        name: "OLD DOMINION FREIGHT LINE",
+        ticker: "AXON",
+        name: "AXON ENTERPRISE",
         weight: 0.05,
         category: "equity"
       },
@@ -75704,50 +75686,14 @@ var holdings_default = {
         category: "equity"
       },
       {
+        ticker: "ODFL",
+        name: "OLD DOMINION FREIGHT LINE",
+        weight: 0.05,
+        category: "equity"
+      },
+      {
         ticker: "EQT",
         name: "EQT",
-        weight: 0.05,
-        category: "equity"
-      },
-      {
-        ticker: "JBL",
-        name: "JABIL",
-        weight: 0.05,
-        category: "equity"
-      },
-      {
-        ticker: "PAYX",
-        name: "PAYCHEX",
-        weight: 0.05,
-        category: "equity"
-      },
-      {
-        ticker: "VMC",
-        name: "VULCAN MATERIALS",
-        weight: 0.05,
-        category: "equity"
-      },
-      {
-        ticker: "ACGL",
-        name: "ARCH CAPITAL GROUP",
-        weight: 0.05,
-        category: "equity"
-      },
-      {
-        ticker: "KMB",
-        name: "KIMBERLY CLARK",
-        weight: 0.05,
-        category: "equity"
-      },
-      {
-        ticker: "STLD",
-        name: "STEEL DYNAMICS INC",
-        weight: 0.05,
-        category: "equity"
-      },
-      {
-        ticker: "CNC",
-        name: "CENTENE CORP",
         weight: 0.05,
         category: "equity"
       },
@@ -75758,8 +75704,32 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "MTB",
-        name: "M&T BANK",
+        ticker: "PAYX",
+        name: "PAYCHEX",
+        weight: 0.05,
+        category: "equity"
+      },
+      {
+        ticker: "ON",
+        name: "ON SEMICONDUCTOR CORP",
+        weight: 0.05,
+        category: "equity"
+      },
+      {
+        ticker: "CNC",
+        name: "CENTENE CORP",
+        weight: 0.05,
+        category: "equity"
+      },
+      {
+        ticker: "KMB",
+        name: "KIMBERLY CLARK",
+        weight: 0.05,
+        category: "equity"
+      },
+      {
+        ticker: "ACGL",
+        name: "ARCH CAPITAL GROUP",
         weight: 0.05,
         category: "equity"
       },
@@ -75770,8 +75740,38 @@ var holdings_default = {
         category: "equity"
       },
       {
+        ticker: "VMC",
+        name: "VULCAN MATERIALS",
+        weight: 0.05,
+        category: "equity"
+      },
+      {
+        ticker: "STLD",
+        name: "STEEL DYNAMICS INC",
+        weight: 0.05,
+        category: "equity"
+      },
+      {
+        ticker: "JBL",
+        name: "JABIL",
+        weight: 0.05,
+        category: "equity"
+      },
+      {
+        ticker: "MTB",
+        name: "M&T BANK",
+        weight: 0.05,
+        category: "equity"
+      },
+      {
         ticker: "NTRS",
         name: "NORTHERN TRUST",
+        weight: 0.05,
+        category: "equity"
+      },
+      {
+        ticker: "MTD",
+        name: "METTLER TOLEDO",
         weight: 0.05,
         category: "equity"
       },
@@ -75782,10 +75782,10 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "MTD",
-        name: "METTLER TOLEDO",
+        ticker: "XTSLA",
+        name: "BLK CSH FND TREASURY SL AGENCY",
         weight: 0.05,
-        category: "equity"
+        category: "cash"
       },
       {
         ticker: "EXPE",
@@ -75800,14 +75800,8 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "MLM",
-        name: "MARTIN MARIETTA MATERIALS",
-        weight: 0.04,
-        category: "equity"
-      },
-      {
-        ticker: "GEHC",
-        name: "GE HEALTHCARE TECHNOLOGIES",
+        ticker: "HPQ",
+        name: "HP INC",
         weight: 0.04,
         category: "equity"
       },
@@ -75818,14 +75812,8 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "HPQ",
-        name: "HP INC",
-        weight: 0.04,
-        category: "equity"
-      },
-      {
-        ticker: "TDY",
-        name: "TELEDYNE TECHNOLOGIES INC",
+        ticker: "GEHC",
+        name: "GE HEALTHCARE TECHNOLOGIES",
         weight: 0.04,
         category: "equity"
       },
@@ -75836,32 +75824,14 @@ var holdings_default = {
         category: "equity"
       },
       {
+        ticker: "MLM",
+        name: "MARTIN MARIETTA MATERIALS",
+        weight: 0.04,
+        category: "equity"
+      },
+      {
         ticker: "WSM",
         name: "WILLIAMS SONOMA INC",
-        weight: 0.04,
-        category: "equity"
-      },
-      {
-        ticker: "EXR",
-        name: "EXTRA SPACE STORAGE REIT",
-        weight: 0.04,
-        category: "equity"
-      },
-      {
-        ticker: "AEE",
-        name: "AMEREN",
-        weight: 0.04,
-        category: "equity"
-      },
-      {
-        ticker: "Q",
-        name: "QNITY ELECTRONICS",
-        weight: 0.04,
-        category: "equity"
-      },
-      {
-        ticker: "RJF",
-        name: "RAYMOND JAMES",
         weight: 0.04,
         category: "equity"
       },
@@ -75872,14 +75842,32 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "IR",
-        name: "INGERSOLL RAND INC",
+        ticker: "AEE",
+        name: "AMEREN",
         weight: 0.04,
         category: "equity"
       },
       {
-        ticker: "HAL",
-        name: "HALLIBURTON",
+        ticker: "TDY",
+        name: "TELEDYNE TECHNOLOGIES INC",
+        weight: 0.04,
+        category: "equity"
+      },
+      {
+        ticker: "EXR",
+        name: "EXTRA SPACE STORAGE REIT",
+        weight: 0.04,
+        category: "equity"
+      },
+      {
+        ticker: "RJF",
+        name: "RAYMOND JAMES",
+        weight: 0.04,
+        category: "equity"
+      },
+      {
+        ticker: "Q",
+        name: "QNITY ELECTRONICS",
         weight: 0.04,
         category: "equity"
       },
@@ -75890,20 +75878,14 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "DG",
-        name: "DOLLAR GENERAL CORP",
-        weight: 0.04,
-        category: "equity"
-      },
-      {
         ticker: "WTW",
         name: "WILLIS TOWERS WATSON",
         weight: 0.04,
         category: "equity"
       },
       {
-        ticker: "CFG",
-        name: "CITIZENS FINANCIAL GROUP INC",
+        ticker: "DG",
+        name: "DOLLAR GENERAL CORP",
         weight: 0.04,
         category: "equity"
       },
@@ -75914,14 +75896,32 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "CPAY",
-        name: "CORPAY",
+        ticker: "IR",
+        name: "INGERSOLL RAND INC",
+        weight: 0.04,
+        category: "equity"
+      },
+      {
+        ticker: "CFG",
+        name: "CITIZENS FINANCIAL GROUP INC",
         weight: 0.04,
         category: "equity"
       },
       {
         ticker: "DTE",
         name: "DTE ENERGY",
+        weight: 0.04,
+        category: "equity"
+      },
+      {
+        ticker: "HAL",
+        name: "HALLIBURTON",
+        weight: 0.04,
+        category: "equity"
+      },
+      {
+        ticker: "CPAY",
+        name: "CORPAY",
         weight: 0.04,
         category: "equity"
       },
@@ -75944,32 +75944,8 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "DOV",
-        name: "DOVER CORP",
-        weight: 0.04,
-        category: "equity"
-      },
-      {
         ticker: "CTSH",
         name: "COGNIZANT TECHNOLOGY SOLUTIONS CLA",
-        weight: 0.04,
-        category: "equity"
-      },
-      {
-        ticker: "HUBB",
-        name: "HUBBELL INC",
-        weight: 0.04,
-        category: "equity"
-      },
-      {
-        ticker: "AWK",
-        name: "AMERICAN WATER WORKS",
-        weight: 0.04,
-        category: "equity"
-      },
-      {
-        ticker: "CNP",
-        name: "CENTERPOINT ENERGY",
         weight: 0.04,
         category: "equity"
       },
@@ -75980,8 +75956,20 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "OTIS",
-        name: "OTIS WORLDWIDE",
+        ticker: "CNP",
+        name: "CENTERPOINT ENERGY",
+        weight: 0.04,
+        category: "equity"
+      },
+      {
+        ticker: "DOV",
+        name: "DOVER CORP",
+        weight: 0.04,
+        category: "equity"
+      },
+      {
+        ticker: "AWK",
+        name: "AMERICAN WATER WORKS",
         weight: 0.04,
         category: "equity"
       },
@@ -75992,20 +75980,38 @@ var holdings_default = {
         category: "equity"
       },
       {
+        ticker: "SMCI",
+        name: "SUPER MICRO COMPUTER INC",
+        weight: 0.04,
+        category: "equity"
+      },
+      {
+        ticker: "HUBB",
+        name: "HUBBELL INC",
+        weight: 0.04,
+        category: "equity"
+      },
+      {
         ticker: "DGX",
         name: "QUEST DIAGNOSTICS INC",
         weight: 0.04,
         category: "equity"
       },
       {
-        ticker: "CINF",
-        name: "CINCINNATI FINANCIAL",
+        ticker: "OTIS",
+        name: "OTIS WORLDWIDE",
         weight: 0.04,
         category: "equity"
       },
       {
         ticker: "VICI",
         name: "VICI PPTYS INC",
+        weight: 0.04,
+        category: "equity"
+      },
+      {
+        ticker: "CINF",
+        name: "CINCINNATI FINANCIAL",
         weight: 0.04,
         category: "equity"
       },
@@ -76022,18 +76028,6 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "SMCI",
-        name: "SUPER MICRO COMPUTER INC",
-        weight: 0.04,
-        category: "equity"
-      },
-      {
-        ticker: "XYL",
-        name: "XYLEM INC",
-        weight: 0.04,
-        category: "equity"
-      },
-      {
         ticker: "FISV",
         name: "FISERV INC",
         weight: 0.04,
@@ -76046,15 +76040,9 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "PPG",
-        name: "PPG INDUSTRIES",
+        ticker: "XYL",
+        name: "XYLEM INC",
         weight: 0.04,
-        category: "equity"
-      },
-      {
-        ticker: "ULTA",
-        name: "ULTA BEAUTY INC",
-        weight: 0.03,
         category: "equity"
       },
       {
@@ -76064,44 +76052,8 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "VLTO",
-        name: "VERALTO CORP",
-        weight: 0.03,
-        category: "equity"
-      },
-      {
-        ticker: "SYF",
-        name: "SYNCHRONY FINANCIAL",
-        weight: 0.03,
-        category: "equity"
-      },
-      {
-        ticker: "TPR",
-        name: "TAPESTRY",
-        weight: 0.03,
-        category: "equity"
-      },
-      {
-        ticker: "EL",
-        name: "ESTEE LAUDER INC CLASS A",
-        weight: 0.03,
-        category: "equity"
-      },
-      {
-        ticker: "DRI",
-        name: "DARDEN RESTAURANTS INC",
-        weight: 0.03,
-        category: "equity"
-      },
-      {
-        ticker: "RF",
-        name: "REGIONS FINANCIAL",
-        weight: 0.03,
-        category: "equity"
-      },
-      {
-        ticker: "FE",
-        name: "FIRSTENERGY CORP",
+        ticker: "ULTA",
+        name: "ULTA BEAUTY INC",
         weight: 0.03,
         category: "equity"
       },
@@ -76112,8 +76064,62 @@ var holdings_default = {
         category: "equity"
       },
       {
+        ticker: "SYF",
+        name: "SYNCHRONY FINANCIAL",
+        weight: 0.03,
+        category: "equity"
+      },
+      {
+        ticker: "PPG",
+        name: "PPG INDUSTRIES",
+        weight: 0.03,
+        category: "equity"
+      },
+      {
+        ticker: "EL",
+        name: "ESTEE LAUDER INC CLASS A",
+        weight: 0.03,
+        category: "equity"
+      },
+      {
+        ticker: "VLTO",
+        name: "VERALTO CORP",
+        weight: 0.03,
+        category: "equity"
+      },
+      {
+        ticker: "FE",
+        name: "FIRSTENERGY CORP",
+        weight: 0.03,
+        category: "equity"
+      },
+      {
         ticker: "CHD",
         name: "CHURCH AND DWIGHT INC",
+        weight: 0.03,
+        category: "equity"
+      },
+      {
+        ticker: "DRI",
+        name: "DARDEN RESTAURANTS INC",
+        weight: 0.03,
+        category: "equity"
+      },
+      {
+        ticker: "NRG",
+        name: "NRG ENERGY INC",
+        weight: 0.03,
+        category: "equity"
+      },
+      {
+        ticker: "RF",
+        name: "REGIONS FINANCIAL",
+        weight: 0.03,
+        category: "equity"
+      },
+      {
+        ticker: "TPR",
+        name: "TAPESTRY",
         weight: 0.03,
         category: "equity"
       },
@@ -76130,8 +76136,8 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "SW",
-        name: "SMURFIT WESTROCK PLC",
+        ticker: "RDDT",
+        name: "REDDIT CLASS A",
         weight: 0.03,
         category: "equity"
       },
@@ -76142,26 +76148,14 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "NRG",
-        name: "NRG ENERGY INC",
-        weight: 0.03,
-        category: "equity"
-      },
-      {
-        ticker: "RDDT",
-        name: "REDDIT CLASS A",
-        weight: 0.03,
-        category: "equity"
-      },
-      {
-        ticker: "PHM",
-        name: "PULTEGROUP",
-        weight: 0.03,
-        category: "equity"
-      },
-      {
         ticker: "VRSK",
         name: "VERISK ANALYTICS",
+        weight: 0.03,
+        category: "equity"
+      },
+      {
+        ticker: "SW",
+        name: "SMURFIT WESTROCK PLC",
         weight: 0.03,
         category: "equity"
       },
@@ -76178,6 +76172,12 @@ var holdings_default = {
         category: "equity"
       },
       {
+        ticker: "PHM",
+        name: "PULTEGROUP",
+        weight: 0.03,
+        category: "equity"
+      },
+      {
         ticker: "PTC",
         name: "PTC",
         weight: 0.03,
@@ -76190,32 +76190,8 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "TPL",
-        name: "TEXAS PACIFIC LAND",
-        weight: 0.03,
-        category: "equity"
-      },
-      {
-        ticker: "LUV",
-        name: "SOUTHWEST AIRLINES",
-        weight: 0.03,
-        category: "equity"
-      },
-      {
         ticker: "OMC",
         name: "OMNICOM GROUP INC",
-        weight: 0.03,
-        category: "equity"
-      },
-      {
-        ticker: "EXE",
-        name: "EXPAND ENERGY",
-        weight: 0.03,
-        category: "equity"
-      },
-      {
-        ticker: "CMS",
-        name: "CMS ENERGY",
         weight: 0.03,
         category: "equity"
       },
@@ -76226,20 +76202,44 @@ var holdings_default = {
         category: "equity"
       },
       {
+        ticker: "LUV",
+        name: "SOUTHWEST AIRLINES",
+        weight: 0.03,
+        category: "equity"
+      },
+      {
+        ticker: "CMS",
+        name: "CMS ENERGY",
+        weight: 0.03,
+        category: "equity"
+      },
+      {
+        ticker: "EXE",
+        name: "EXPAND ENERGY",
+        weight: 0.03,
+        category: "equity"
+      },
+      {
+        ticker: "TPL",
+        name: "TEXAS PACIFIC LAND",
+        weight: 0.03,
+        category: "equity"
+      },
+      {
         ticker: "PKG",
         name: "PACKAGING CORP OF AMERICA",
         weight: 0.03,
         category: "equity"
       },
       {
-        ticker: "DOW",
-        name: "DOW",
+        ticker: "VTRS",
+        name: "VIATRIS",
         weight: 0.03,
         category: "equity"
       },
       {
-        ticker: "VTRS",
-        name: "VIATRIS",
+        ticker: "DOW",
+        name: "DOW",
         weight: 0.03,
         category: "equity"
       },
@@ -76256,14 +76256,20 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "AMCR",
-        name: "AMCOR PLC",
+        ticker: "INCY",
+        name: "INCYTE CORP",
         weight: 0.03,
         category: "equity"
       },
       {
-        ticker: "INCY",
-        name: "INCYTE CORP",
+        ticker: "SWKS",
+        name: "SKYWORKS SOLUTIONS",
+        weight: 0.03,
+        category: "equity"
+      },
+      {
+        ticker: "AMCR",
+        name: "AMCOR PLC",
         weight: 0.03,
         category: "equity"
       },
@@ -76280,32 +76286,14 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "SWKS",
-        name: "SKYWORKS SOLUTIONS",
-        weight: 0.03,
-        category: "equity"
-      },
-      {
         ticker: "EVRG",
         name: "EVERGY",
         weight: 0.03,
         category: "equity"
       },
       {
-        ticker: "KEY",
-        name: "KEYCORP",
-        weight: 0.03,
-        category: "equity"
-      },
-      {
         ticker: "ZBRA",
         name: "ZEBRA TECHNOLOGIES CORP CLASS A",
-        weight: 0.03,
-        category: "equity"
-      },
-      {
-        ticker: "GPN",
-        name: "GLOBAL PAYMENTS INC",
         weight: 0.03,
         category: "equity"
       },
@@ -76322,56 +76310,14 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "DD",
-        name: "DUPONT DE NEMOURS",
+        ticker: "GPN",
+        name: "GLOBAL PAYMENTS INC",
         weight: 0.03,
         category: "equity"
       },
       {
-        ticker: "NDSN",
-        name: "NORDSON",
-        weight: 0.03,
-        category: "equity"
-      },
-      {
-        ticker: "L",
-        name: "LOEWS",
-        weight: 0.03,
-        category: "equity"
-      },
-      {
-        ticker: "GPC",
-        name: "GENUINE PARTS",
-        weight: 0.03,
-        category: "equity"
-      },
-      {
-        ticker: "CF",
-        name: "CF INDUSTRIES HOLDINGS INC",
-        weight: 0.03,
-        category: "equity"
-      },
-      {
-        ticker: "BRO",
-        name: "BROWN & BROWN INC",
-        weight: 0.03,
-        category: "equity"
-      },
-      {
-        ticker: "ESS",
-        name: "ESSEX PROPERTY TRUST REIT",
-        weight: 0.03,
-        category: "equity"
-      },
-      {
-        ticker: "FTV",
-        name: "FORTIVE",
-        weight: 0.03,
-        category: "equity"
-      },
-      {
-        ticker: "IEX",
-        name: "IDEX",
+        ticker: "KEY",
+        name: "KEYCORP",
         weight: 0.03,
         category: "equity"
       },
@@ -76382,20 +76328,56 @@ var holdings_default = {
         category: "equity"
       },
       {
+        ticker: "BRO",
+        name: "BROWN & BROWN INC",
+        weight: 0.03,
+        category: "equity"
+      },
+      {
+        ticker: "DD",
+        name: "DUPONT DE NEMOURS",
+        weight: 0.03,
+        category: "equity"
+      },
+      {
+        ticker: "L",
+        name: "LOEWS",
+        weight: 0.03,
+        category: "equity"
+      },
+      {
         ticker: "FIS",
         name: "FIDELITY NATIONAL INFORMATION SERV",
         weight: 0.03,
         category: "equity"
       },
       {
-        ticker: "GIS",
-        name: "GENERAL MILLS INC",
+        ticker: "NDSN",
+        name: "NORDSON",
         weight: 0.03,
         category: "equity"
       },
       {
-        ticker: "ZBH",
-        name: "ZIMMER BIOMET HOLDINGS",
+        ticker: "CF",
+        name: "CF INDUSTRIES HOLDINGS INC",
+        weight: 0.03,
+        category: "equity"
+      },
+      {
+        ticker: "GPC",
+        name: "GENUINE PARTS",
+        weight: 0.03,
+        category: "equity"
+      },
+      {
+        ticker: "ESS",
+        name: "ESSEX PROPERTY TRUST REIT",
+        weight: 0.03,
+        category: "equity"
+      },
+      {
+        ticker: "IEX",
+        name: "IDEX",
         weight: 0.03,
         category: "equity"
       },
@@ -76406,14 +76388,32 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "IP",
-        name: "INTERNATIONAL PAPER",
+        ticker: "CDW",
+        name: "CDW",
         weight: 0.03,
         category: "equity"
       },
       {
-        ticker: "CDW",
-        name: "CDW",
+        ticker: "FTV",
+        name: "FORTIVE",
+        weight: 0.03,
+        category: "equity"
+      },
+      {
+        ticker: "GIS",
+        name: "GENERAL MILLS INC",
+        weight: 0.03,
+        category: "equity"
+      },
+      {
+        ticker: "TSCO",
+        name: "TRACTOR SUPPLY",
+        weight: 0.03,
+        category: "equity"
+      },
+      {
+        ticker: "ZBH",
+        name: "ZIMMER BIOMET HOLDINGS",
         weight: 0.03,
         category: "equity"
       },
@@ -76424,15 +76424,9 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "BG",
-        name: "BUNGE GLOBAL SA",
+        ticker: "IP",
+        name: "INTERNATIONAL PAPER",
         weight: 0.03,
-        category: "equity"
-      },
-      {
-        ticker: "TSCO",
-        name: "TRACTOR SUPPLY",
-        weight: 0.02,
         category: "equity"
       },
       {
@@ -76442,14 +76436,20 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "JBHT",
-        name: "JB HUNT TRANSPORT SERVICES",
+        ticker: "EFX",
+        name: "EQUIFAX",
         weight: 0.02,
         category: "equity"
       },
       {
-        ticker: "EFX",
-        name: "EQUIFAX",
+        ticker: "BG",
+        name: "BUNGE GLOBAL SA",
+        weight: 0.02,
+        category: "equity"
+      },
+      {
+        ticker: "JBHT",
+        name: "JB HUNT TRANSPORT SERVICES",
         weight: 0.02,
         category: "equity"
       },
@@ -76472,12 +76472,6 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "AKAM",
-        name: "AKAMAI TECHNOLOGIES INC",
-        weight: 0.02,
-        category: "equity"
-      },
-      {
         ticker: "APA",
         name: "APA",
         weight: 0.02,
@@ -76490,14 +76484,20 @@ var holdings_default = {
         category: "equity"
       },
       {
+        ticker: "BALL",
+        name: "BALL CORP",
+        weight: 0.02,
+        category: "equity"
+      },
+      {
         ticker: "LYB",
         name: "LYONDELLBASELL INDUSTRIES CLASS A",
         weight: 0.02,
         category: "equity"
       },
       {
-        ticker: "BALL",
-        name: "BALL CORP",
+        ticker: "AKAM",
+        name: "AKAMAI TECHNOLOGIES INC",
         weight: 0.02,
         category: "equity"
       },
@@ -76532,14 +76532,14 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "LDOS",
-        name: "LEIDOS HOLDINGS",
+        ticker: "CRL",
+        name: "CHARLES RIVER LABORATORIES INTERNA",
         weight: 0.02,
         category: "equity"
       },
       {
-        ticker: "CRL",
-        name: "CHARLES RIVER LABORATORIES INTERNA",
+        ticker: "LDOS",
+        name: "LEIDOS HOLDINGS",
         weight: 0.02,
         category: "equity"
       },
@@ -76562,26 +76562,20 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "ECHO",
-        name: "ECHOSTAR CLASS A",
-        weight: 0.02,
-        category: "equity"
-      },
-      {
         ticker: "MAS",
         name: "MASCO",
         weight: 0.02,
         category: "equity"
       },
       {
-        ticker: "SWK",
-        name: "STANLEY BLACK & DECKER",
+        ticker: "FDXF",
+        name: "FEDEX FREIGHT HOLDING COMPANY INC",
         weight: 0.02,
         category: "equity"
       },
       {
-        ticker: "MAA",
-        name: "MID AMERICA APARTMENT COMMUNITIES",
+        ticker: "ECHO",
+        name: "ECHOSTAR CLASS A",
         weight: 0.02,
         category: "equity"
       },
@@ -76598,14 +76592,14 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "FDXF",
-        name: "FEDEX FREIGHT HOLDING COMPANY INC",
+        ticker: "SWK",
+        name: "STANLEY BLACK & DECKER",
         weight: 0.02,
         category: "equity"
       },
       {
-        ticker: "ALLE",
-        name: "ALLEGION PLC",
+        ticker: "MAA",
+        name: "MID AMERICA APARTMENT COMMUNITIES",
         weight: 0.02,
         category: "equity"
       },
@@ -76616,20 +76610,14 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "DOC",
-        name: "HEALTHPEAK PROPERTIES INC",
-        weight: 0.02,
-        category: "equity"
-      },
-      {
         ticker: "EG",
         name: "EVEREST GROUP",
         weight: 0.02,
         category: "equity"
       },
       {
-        ticker: "TXT",
-        name: "TEXTRON INC",
+        ticker: "DOC",
+        name: "HEALTHPEAK PROPERTIES INC",
         weight: 0.02,
         category: "equity"
       },
@@ -76646,12 +76634,6 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "GL",
-        name: "GLOBE LIFE",
-        weight: 0.02,
-        category: "equity"
-      },
-      {
         ticker: "AVY",
         name: "AVERY DENNISON CORP",
         weight: 0.02,
@@ -76664,8 +76646,26 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "BAX",
-        name: "BAXTER INTERNATIONAL",
+        ticker: "ALLE",
+        name: "ALLEGION PLC",
+        weight: 0.02,
+        category: "equity"
+      },
+      {
+        ticker: "TXT",
+        name: "TEXTRON INC",
+        weight: 0.02,
+        category: "equity"
+      },
+      {
+        ticker: "GL",
+        name: "GLOBE LIFE",
+        weight: 0.02,
+        category: "equity"
+      },
+      {
+        ticker: "FOXA",
+        name: "FOX CLASS A",
         weight: 0.02,
         category: "equity"
       },
@@ -76676,14 +76676,14 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "ALB",
-        name: "ALBEMARLE CORP",
+        ticker: "SJM",
+        name: "JM SMUCKER",
         weight: 0.02,
         category: "equity"
       },
       {
-        ticker: "SJM",
-        name: "JM SMUCKER",
+        ticker: "BAX",
+        name: "BAXTER INTERNATIONAL",
         weight: 0.02,
         category: "equity"
       },
@@ -76694,8 +76694,8 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "FOXA",
-        name: "FOX CLASS A",
+        ticker: "ALB",
+        name: "ALBEMARLE CORP",
         weight: 0.02,
         category: "equity"
       },
@@ -76712,14 +76712,14 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "REG",
-        name: "REGENCY CENTERS REIT CORP",
+        ticker: "PNW",
+        name: "PINNACLE WEST",
         weight: 0.02,
         category: "equity"
       },
       {
-        ticker: "PNW",
-        name: "PINNACLE WEST",
+        ticker: "REG",
+        name: "REGENCY CENTERS REIT CORP",
         weight: 0.02,
         category: "equity"
       },
@@ -76736,14 +76736,14 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "LII",
-        name: "LENNOX INTERNATIONAL",
+        ticker: "TECH",
+        name: "BIO TECHNE",
         weight: 0.02,
         category: "equity"
       },
       {
-        ticker: "TECH",
-        name: "BIO TECHNE",
+        ticker: "LII",
+        name: "LENNOX INTERNATIONAL",
         weight: 0.02,
         category: "equity"
       },
@@ -76754,26 +76754,14 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "DECK",
-        name: "DECKERS OUTDOOR",
-        weight: 0.02,
-        category: "equity"
-      },
-      {
-        ticker: "COO",
-        name: "COOPER",
-        weight: 0.02,
-        category: "equity"
-      },
-      {
         ticker: "SGAFT",
         name: "CASH COLLATERAL USD SGAFT",
         weight: 0.02,
         category: "cash"
       },
       {
-        ticker: "AES",
-        name: "AES",
+        ticker: "DECK",
+        name: "DECKERS OUTDOOR",
         weight: 0.02,
         category: "equity"
       },
@@ -76784,14 +76772,14 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "HII",
-        name: "HUNTINGTON INGALLS INDUSTRIES",
+        ticker: "COO",
+        name: "COOPER",
         weight: 0.02,
         category: "equity"
       },
       {
-        ticker: "NWSA",
-        name: "NEWS CLASS A",
+        ticker: "AES",
+        name: "AES",
         weight: 0.02,
         category: "equity"
       },
@@ -76802,9 +76790,15 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "CLX",
-        name: "CLOROX",
-        weight: 0.01,
+        ticker: "NWSA",
+        name: "NEWS CLASS A",
+        weight: 0.02,
+        category: "equity"
+      },
+      {
+        ticker: "HII",
+        name: "HUNTINGTON INGALLS INDUSTRIES",
+        weight: 0.02,
         category: "equity"
       },
       {
@@ -76814,8 +76808,20 @@ var holdings_default = {
         category: "equity"
       },
       {
+        ticker: "CLX",
+        name: "CLOROX",
+        weight: 0.01,
+        category: "equity"
+      },
+      {
         ticker: "UDR",
         name: "UDR REIT",
+        weight: 0.01,
+        category: "equity"
+      },
+      {
+        ticker: "FDS",
+        name: "FACTSET RESEARCH SYSTEMS",
         weight: 0.01,
         category: "equity"
       },
@@ -76832,12 +76838,6 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "FDS",
-        name: "FACTSET RESEARCH SYSTEMS",
-        weight: 0.01,
-        category: "equity"
-      },
-      {
         ticker: "BEN",
         name: "FRANKLIN TEMPLETON",
         weight: 0.01,
@@ -76850,20 +76850,26 @@ var holdings_default = {
         category: "equity"
       },
       {
-        ticker: "LVS",
-        name: "LAS VEGAS SANDS",
-        weight: 0.01,
-        category: "equity"
-      },
-      {
         ticker: "PODD",
         name: "INSULET",
         weight: 0.01,
         category: "equity"
       },
       {
+        ticker: "LVS",
+        name: "LAS VEGAS SANDS",
+        weight: 0.01,
+        category: "equity"
+      },
+      {
         ticker: "ALGN",
         name: "ALIGN TECHNOLOGY",
+        weight: 0.01,
+        category: "equity"
+      },
+      {
+        ticker: "ROL",
+        name: "ROLLINS INC",
         weight: 0.01,
         category: "equity"
       },
@@ -76876,12 +76882,6 @@ var holdings_default = {
       {
         ticker: "UHS",
         name: "UNIVERSAL HEALTH SERVICES CLASS B",
-        weight: 0.01,
-        category: "equity"
-      },
-      {
-        ticker: "ROL",
-        name: "ROLLINS INC",
         weight: 0.01,
         category: "equity"
       },
@@ -76992,27 +76992,21 @@ var holdings_default = {
         name: "S&P500 EMINI DEC 26",
         weight: 0,
         category: "derivative"
-      },
-      {
-        ticker: "USD",
-        name: "USD CASH",
-        weight: -0.03,
-        category: "cash"
       }
     ],
-    sourceAsOf: "2026-10-06",
-    fetchedAt: "2026-10-08T14:44:57.277Z",
+    sourceAsOf: "2026-10-07",
+    fetchedAt: "2026-10-08T14:49:27.723Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "iShares",
     sourceUrl: "https://www.ishares.com/us/products/239726/ishares-core-sp-500-etf/latest-holdings.csv",
     isFallback: false,
     coverageNote: "Complete issuer holdings file. Weights use the issuer's published precision. Derivatives are published weights, not economic exposure.",
-    holdingsCount: 509,
-    coverageWeight: 99.91999999999999,
+    holdingsCount: 508,
+    coverageWeight: 99.91,
     categoryWeights: {
-      equity: 99.80999999999999,
-      cash: 0.10999999999999999,
+      equity: 99.67999999999999,
+      cash: 0.23,
       derivative: 0
     },
     complete: true
@@ -77743,7 +77737,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-08",
-    fetchedAt: "2026-10-08T14:44:54.839Z",
+    fetchedAt: "2026-10-08T14:49:25.400Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "NEOS",
@@ -81299,7 +81293,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-07",
-    fetchedAt: "2026-10-08T14:44:54.014Z",
+    fetchedAt: "2026-10-08T14:49:24.494Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "State Street",
@@ -82047,7 +82041,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-07",
-    fetchedAt: "2026-10-08T14:44:55.197Z",
+    fetchedAt: "2026-10-08T14:49:26.399Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "Invesco",
@@ -106751,7 +106745,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-08-31",
-    fetchedAt: "2026-10-08T14:44:56.070Z",
+    fetchedAt: "2026-10-08T14:49:26.670Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "Vanguard",
@@ -118890,7 +118884,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-08-31",
-    fetchedAt: "2026-10-08T14:44:56.207Z",
+    fetchedAt: "2026-10-08T14:49:26.643Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "Vanguard",
@@ -119458,7 +119452,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-07",
-    fetchedAt: "2026-10-08T14:44:54.104Z",
+    fetchedAt: "2026-10-08T14:49:24.412Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "State Street",
@@ -119821,12 +119815,12 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-07",
-    fetchedAt: "2026-10-08T14:38:25.161Z",
+    fetchedAt: "2026-10-08T14:49:27.804Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "iShares",
     sourceUrl: "https://www.ishares.com/us/products/239454/ishares-20-year-treasury-bond-etf/latest-holdings.csv",
-    isFallback: true,
+    isFallback: false,
     coverageNote: "Complete issuer holdings file. Weights use the issuer's published precision. Derivatives are published weights, not economic exposure.",
     holdingsCount: 49,
     coverageWeight: 99.99999999999999,
@@ -119835,9 +119829,7 @@ var holdings_default = {
       cash: 0,
       other: 0
     },
-    complete: true,
-    sourceError: "Source portfolio date regressed",
-    lastAttemptAt: "2026-10-08T14:44:58.124Z"
+    complete: true
   },
   VUG: {
     etf: "VUG",
@@ -120915,7 +120907,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-08-31",
-    fetchedAt: "2026-10-08T14:44:55.721Z",
+    fetchedAt: "2026-10-08T14:49:26.587Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "Vanguard",
@@ -149364,7 +149356,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-08-31",
-    fetchedAt: "2026-10-08T14:44:56.226Z",
+    fetchedAt: "2026-10-08T14:49:27.048Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "Vanguard",
@@ -151794,7 +151786,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-08-31",
-    fetchedAt: "2026-10-08T14:44:56.939Z",
+    fetchedAt: "2026-10-08T14:49:27.178Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "Vanguard",
@@ -156155,7 +156147,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-08-31",
-    fetchedAt: "2026-10-08T14:44:57.117Z",
+    fetchedAt: "2026-10-08T14:49:27.332Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "Vanguard",
@@ -156345,7 +156337,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-07",
-    fetchedAt: "2026-10-08T14:44:54.132Z",
+    fetchedAt: "2026-10-08T14:49:24.529Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "State Street",
@@ -156715,7 +156707,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-07",
-    fetchedAt: "2026-10-08T14:44:54.121Z",
+    fetchedAt: "2026-10-08T14:49:24.520Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "State Street",
@@ -157183,7 +157175,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-07",
-    fetchedAt: "2026-10-08T14:44:54.150Z",
+    fetchedAt: "2026-10-08T14:49:24.582Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "State Street",
@@ -157805,7 +157797,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-07",
-    fetchedAt: "2026-10-08T14:44:54.175Z",
+    fetchedAt: "2026-10-08T14:49:24.596Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "State Street",
@@ -158064,7 +158056,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-07",
-    fetchedAt: "2026-10-08T14:44:54.192Z",
+    fetchedAt: "2026-10-08T14:49:24.641Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "State Street",
@@ -158315,7 +158307,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-07",
-    fetchedAt: "2026-10-08T14:44:54.205Z",
+    fetchedAt: "2026-10-08T14:49:24.648Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "State Street",
@@ -158525,7 +158517,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-07",
-    fetchedAt: "2026-10-08T14:44:54.183Z",
+    fetchedAt: "2026-10-08T14:49:24.605Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "State Street",
@@ -158762,7 +158754,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-07",
-    fetchedAt: "2026-10-08T14:44:54.222Z",
+    fetchedAt: "2026-10-08T14:49:24.689Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "State Street",
@@ -158957,7 +158949,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-07",
-    fetchedAt: "2026-10-08T14:44:54.213Z",
+    fetchedAt: "2026-10-08T14:49:24.656Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "State Street",
@@ -161785,7 +161777,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-07",
-    fetchedAt: "2026-10-08T14:44:54.265Z",
+    fetchedAt: "2026-10-08T14:49:24.750Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "State Street",
@@ -161967,7 +161959,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-08",
-    fetchedAt: "2026-10-08T14:44:54.841Z",
+    fetchedAt: "2026-10-08T14:49:25.551Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "NEOS",
@@ -162051,7 +162043,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-08",
-    fetchedAt: "2026-10-08T14:44:55.391Z",
+    fetchedAt: "2026-10-08T14:49:25.942Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "NEOS",
@@ -162100,7 +162092,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-08",
-    fetchedAt: "2026-10-08T14:44:55.425Z",
+    fetchedAt: "2026-10-08T14:49:25.944Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "NEOS",
@@ -174067,12 +174059,12 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-07",
-    fetchedAt: "2026-10-08T14:38:25.084Z",
+    fetchedAt: "2026-10-08T14:49:27.867Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "iShares",
     sourceUrl: "https://www.ishares.com/us/products/239710/ishares-russell-2000-etf/latest-holdings.csv",
-    isFallback: true,
+    isFallback: false,
     coverageNote: "Complete issuer holdings file. Weights use the issuer's published precision. Derivatives are published weights, not economic exposure.",
     holdingsCount: 1991,
     coverageWeight: 99.940000000002,
@@ -174082,9 +174074,7 @@ var holdings_default = {
       cash: 0.43000000000000005,
       derivative: 0
     },
-    complete: true,
-    sourceError: "Source portfolio date regressed",
-    lastAttemptAt: "2026-10-08T14:44:58.205Z"
+    complete: true
   },
   AGG: {
     etf: "AGG",
@@ -267709,7 +267699,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-07",
-    fetchedAt: "2026-10-08T14:44:57.656Z",
+    fetchedAt: "2026-10-08T14:49:27.981Z",
     source: "issuer",
     weightMethod: "market-value",
     sourceName: "iShares",
@@ -268291,7 +268281,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-07",
-    fetchedAt: "2026-10-08T14:44:54.054Z",
+    fetchedAt: "2026-10-08T14:49:24.378Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "State Street",
@@ -268577,7 +268567,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-07",
-    fetchedAt: "2026-10-08T14:44:54.161Z",
+    fetchedAt: "2026-10-08T14:49:24.549Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "State Street",
@@ -314084,7 +314074,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-08-31",
-    fetchedAt: "2026-10-08T14:44:56.820Z",
+    fetchedAt: "2026-10-08T14:49:27.000Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "Vanguard",
@@ -377456,7 +377446,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-08-31",
-    fetchedAt: "2026-10-08T14:44:57.167Z",
+    fetchedAt: "2026-10-08T14:49:27.318Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "Vanguard",
@@ -378139,7 +378129,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-07",
-    fetchedAt: "2026-10-08T14:45:02.153Z",
+    fetchedAt: "2026-10-08T14:49:29.978Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "J.P. Morgan",
@@ -378988,7 +378978,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-07",
-    fetchedAt: "2026-10-08T14:45:01.636Z",
+    fetchedAt: "2026-10-08T14:49:29.171Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "J.P. Morgan",
@@ -493018,7 +493008,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-08-31",
-    fetchedAt: "2026-10-08T14:44:57.242Z",
+    fetchedAt: "2026-10-08T14:49:27.651Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "Vanguard",
@@ -495278,7 +495268,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-08-31",
-    fetchedAt: "2026-10-08T14:44:56.495Z",
+    fetchedAt: "2026-10-08T14:49:26.789Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "Vanguard",
@@ -495910,7 +495900,7 @@ var holdings_default = {
         category: "equity"
       }
     ],
-    fetchedAt: "2026-10-08T14:44:59.788Z",
+    fetchedAt: "2026-10-08T14:49:29.125Z",
     sourceAsOf: "2026-10-06",
     source: "research",
     sourceName: "Schwab Research",
@@ -497071,7 +497061,7 @@ var holdings_default = {
     source: "research",
     sourceName: "Schwab Research",
     sourceUrl: "https://www.schwab.wallst.com/schwab/Prospect/research/etfs/schwabETF/index.asp?symbol=SCHG&type=holdings",
-    isFallback: true,
+    isFallback: false,
     weightMethod: "published",
     sourceWarning: "Direct issuer source failed (Request failed with status code 403). Using Schwab's free dated research feed.",
     coverageNote: "All pages of Schwab's public research holdings table, verified against its total position count. The date is the research feed's reported portfolio date; weights use its published precision. Derivatives are weights, not economic exposure.",
@@ -497082,9 +497072,7 @@ var holdings_default = {
       derivative: 0.03,
       cash: 0.04
     },
-    complete: true,
-    sourceError: "Source portfolio date regressed",
-    lastAttemptAt: "2026-10-08T14:45:00.550Z"
+    complete: true
   },
   FDVV: {
     etf: "FDVV",
@@ -497846,7 +497834,7 @@ var holdings_default = {
       }
     ],
     sourceAsOf: "2026-10-07",
-    fetchedAt: "2026-10-08T14:45:03.156Z",
+    fetchedAt: "2026-10-08T14:49:30.409Z",
     source: "issuer",
     weightMethod: "published",
     sourceName: "Fidelity",
@@ -543334,7 +543322,8 @@ async function secGet(url2, config2 = {}) {
   try {
     return (await axios_default.get(url2, { headers, timeout: 3e4, ...config2 })).data;
   } catch (error) {
-    const body = typeof error.response?.data === "string" ? ` [${error.response.data.replace(/\s+/g, " ").slice(0, 160)}]` : "";
+    const text3 = typeof error.response?.data === "string" ? error.response.data.replace(/<(script|style)[\s\S]*?<\/\1>/gi, " ").replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim().slice(0, 200) : "";
+    const body = text3 ? ` [${text3}]` : "";
     throw new Error(`${error.response?.status ?? error.code ?? "request failed"}${body} from ${new URL(url2).host}${new URL(url2).pathname}${error.response?.status === 403 ? " (the SEC rejects requests without a User-Agent that includes contact details; set SEC_USER_AGENT)" : ""}`);
   }
 }
