@@ -3623,7 +3623,7 @@
       }
     ],
     "sourceAsOf": "2026-08-31",
-    "fetchedAt": "2026-10-08T14:38:24.566Z",
+    "fetchedAt": "2026-10-08T14:44:55.708Z",
     "source": "issuer",
     "weightMethod": "published",
     "sourceName": "Vanguard",
@@ -7201,7 +7201,7 @@
       }
     ],
     "sourceAsOf": "2026-10-08",
-    "fetchedAt": "2026-10-08T14:38:23.802Z",
+    "fetchedAt": "2026-10-08T14:44:54.802Z",
     "source": "issuer",
     "weightMethod": "published",
     "sourceName": "NEOS",
@@ -10277,7 +10277,7 @@
       }
     ],
     "sourceAsOf": "2026-10-06",
-    "fetchedAt": "2026-10-08T14:38:25.137Z",
+    "fetchedAt": "2026-10-08T14:44:57.277Z",
     "source": "issuer",
     "weightMethod": "published",
     "sourceName": "iShares",
@@ -11019,7 +11019,7 @@
       }
     ],
     "sourceAsOf": "2026-10-08",
-    "fetchedAt": "2026-10-08T14:38:23.784Z",
+    "fetchedAt": "2026-10-08T14:44:54.839Z",
     "source": "issuer",
     "weightMethod": "published",
     "sourceName": "NEOS",
@@ -14575,7 +14575,7 @@
       }
     ],
     "sourceAsOf": "2026-10-07",
-    "fetchedAt": "2026-10-08T14:38:22.808Z",
+    "fetchedAt": "2026-10-08T14:44:54.014Z",
     "source": "issuer",
     "weightMethod": "published",
     "sourceName": "State Street",
@@ -15323,7 +15323,7 @@
       }
     ],
     "sourceAsOf": "2026-10-07",
-    "fetchedAt": "2026-10-08T14:38:24.263Z",
+    "fetchedAt": "2026-10-08T14:44:55.197Z",
     "source": "issuer",
     "weightMethod": "published",
     "sourceName": "Invesco",
@@ -40027,7 +40027,7 @@
       }
     ],
     "sourceAsOf": "2026-08-31",
-    "fetchedAt": "2026-10-08T14:38:24.547Z",
+    "fetchedAt": "2026-10-08T14:44:56.070Z",
     "source": "issuer",
     "weightMethod": "published",
     "sourceName": "Vanguard",
@@ -52166,7 +52166,7 @@
       }
     ],
     "sourceAsOf": "2026-08-31",
-    "fetchedAt": "2026-10-08T14:38:24.557Z",
+    "fetchedAt": "2026-10-08T14:44:56.207Z",
     "source": "issuer",
     "weightMethod": "published",
     "sourceName": "Vanguard",
@@ -52734,7 +52734,7 @@
       }
     ],
     "sourceAsOf": "2026-10-07",
-    "fetchedAt": "2026-10-08T14:38:22.827Z",
+    "fetchedAt": "2026-10-08T14:44:54.104Z",
     "source": "issuer",
     "weightMethod": "published",
     "sourceName": "State Street",
@@ -53102,7 +53102,7 @@
     "weightMethod": "published",
     "sourceName": "iShares",
     "sourceUrl": "https://www.ishares.com/us/products/239454/ishares-20-year-treasury-bond-etf/latest-holdings.csv",
-    "isFallback": false,
+    "isFallback": true,
     "coverageNote": "Complete issuer holdings file. Weights use the issuer's published precision. Derivatives are published weights, not economic exposure.",
     "holdingsCount": 49,
     "coverageWeight": 99.99999999999999,
@@ -53111,7 +53111,9 @@
       "cash": 0,
       "other": 0
     },
-    "complete": true
+    "complete": true,
+    "sourceError": "Source portfolio date regressed",
+    "lastAttemptAt": "2026-10-08T14:44:58.124Z"
   },
   "VUG": {
     "etf": "VUG",
@@ -54189,7 +54191,7 @@
       }
     ],
     "sourceAsOf": "2026-08-31",
-    "fetchedAt": "2026-10-08T14:38:24.505Z",
+    "fetchedAt": "2026-10-08T14:44:55.721Z",
     "source": "issuer",
     "weightMethod": "published",
     "sourceName": "Vanguard",
@@ -82638,7 +82640,7 @@
       }
     ],
     "sourceAsOf": "2026-08-31",
-    "fetchedAt": "2026-10-08T14:38:24.588Z",
+    "fetchedAt": "2026-10-08T14:44:56.226Z",
     "source": "issuer",
     "weightMethod": "published",
     "sourceName": "Vanguard",
@@ -85068,7 +85070,7 @@
       }
     ],
     "sourceAsOf": "2026-08-31",
-    "fetchedAt": "2026-10-08T14:38:24.767Z",
+    "fetchedAt": "2026-10-08T14:44:56.939Z",
     "source": "issuer",
     "weightMethod": "published",
     "sourceName": "Vanguard",
@@ -89429,7 +89431,7 @@
       }
     ],
     "sourceAsOf": "2026-08-31",
-    "fetchedAt": "2026-10-08T14:38:24.773Z",
+    "fetchedAt": "2026-10-08T14:44:57.117Z",
     "source": "issuer",
     "weightMethod": "published",
     "sourceName": "Vanguard",
@@ -89619,7 +89621,7 @@
       }
     ],
     "sourceAsOf": "2026-10-07",
-    "fetchedAt": "2026-10-08T14:38:22.879Z",
+    "fetchedAt": "2026-10-08T14:44:54.132Z",
     "source": "issuer",
     "weightMethod": "published",
     "sourceName": "State Street",
@@ -89989,7 +89991,7 @@
       }
     ],
     "sourceAsOf": "2026-10-07",
-    "fetchedAt": "2026-10-08T14:38:22.889Z",
+    "fetchedAt": "2026-10-08T14:44:54.121Z",
     "source": "issuer",
     "weightMethod": "published",
     "sourceName": "State Street",
@@ -90457,7 +90459,7 @@
       }
     ],
     "sourceAsOf": "2026-10-07",
-    "fetchedAt": "2026-10-08T14:38:22.911Z",
+    "fetchedAt": "2026-10-08T14:44:54.150Z",
     "source": "issuer",
     "weightMethod": "published",
     "sourceName": "State Street",
@@ -91079,7 +91081,7 @@
       }
     ],
     "sourceAsOf": "2026-10-07",
-    "fetchedAt": "2026-10-08T14:38:22.953Z",
+    "fetchedAt": "2026-10-08T14:44:54.175Z",
     "source": "issuer",
     "weightMethod": "published",
     "sourceName": "State Street",
@@ -91338,7 +91340,7 @@
       }
     ],
     "sourceAsOf": "2026-10-07",
-    "fetchedAt": "2026-10-08T14:38:22.989Z",
+    "fetchedAt": "2026-10-08T14:44:54.192Z",
     "source": "issuer",
     "weightMethod": "published",
     "sourceName": "State Street",
@@ -91589,7 +91591,7 @@
       }
     ],
     "sourceAsOf": "2026-10-07",
-    "fetchedAt": "2026-10-08T14:38:23.048Z",
+    "fetchedAt": "2026-10-08T14:44:54.205Z",
     "source": "issuer",
     "weightMethod": "published",
     "sourceName": "State Street",
@@ -91799,7 +91801,7 @@
       }
     ],
     "sourceAsOf": "2026-10-07",
-    "fetchedAt": "2026-10-08T14:38:22.979Z",
+    "fetchedAt": "2026-10-08T14:44:54.183Z",
     "source": "issuer",
     "weightMethod": "published",
     "sourceName": "State Street",
@@ -92036,7 +92038,7 @@
       }
     ],
     "sourceAsOf": "2026-10-07",
-    "fetchedAt": "2026-10-08T14:38:23.075Z",
+    "fetchedAt": "2026-10-08T14:44:54.222Z",
     "source": "issuer",
     "weightMethod": "published",
     "sourceName": "State Street",
@@ -92231,7 +92233,7 @@
       }
     ],
     "sourceAsOf": "2026-10-07",
-    "fetchedAt": "2026-10-08T14:38:23.062Z",
+    "fetchedAt": "2026-10-08T14:44:54.213Z",
     "source": "issuer",
     "weightMethod": "published",
     "sourceName": "State Street",
@@ -95059,7 +95061,7 @@
       }
     ],
     "sourceAsOf": "2026-10-07",
-    "fetchedAt": "2026-10-08T14:38:23.146Z",
+    "fetchedAt": "2026-10-08T14:44:54.265Z",
     "source": "issuer",
     "weightMethod": "published",
     "sourceName": "State Street",
@@ -95241,7 +95243,7 @@
       }
     ],
     "sourceAsOf": "2026-10-08",
-    "fetchedAt": "2026-10-08T14:38:24.002Z",
+    "fetchedAt": "2026-10-08T14:44:54.841Z",
     "source": "issuer",
     "weightMethod": "published",
     "sourceName": "NEOS",
@@ -95325,7 +95327,7 @@
       }
     ],
     "sourceAsOf": "2026-10-08",
-    "fetchedAt": "2026-10-08T14:38:24.330Z",
+    "fetchedAt": "2026-10-08T14:44:55.391Z",
     "source": "issuer",
     "weightMethod": "published",
     "sourceName": "NEOS",
@@ -95374,7 +95376,7 @@
       }
     ],
     "sourceAsOf": "2026-10-08",
-    "fetchedAt": "2026-10-08T14:38:24.366Z",
+    "fetchedAt": "2026-10-08T14:44:55.425Z",
     "source": "issuer",
     "weightMethod": "published",
     "sourceName": "NEOS",
@@ -107346,7 +107348,7 @@
     "weightMethod": "published",
     "sourceName": "iShares",
     "sourceUrl": "https://www.ishares.com/us/products/239710/ishares-russell-2000-etf/latest-holdings.csv",
-    "isFallback": false,
+    "isFallback": true,
     "coverageNote": "Complete issuer holdings file. Weights use the issuer's published precision. Derivatives are published weights, not economic exposure.",
     "holdingsCount": 1991,
     "coverageWeight": 99.940000000002,
@@ -107356,7 +107358,9 @@
       "cash": 0.43000000000000005,
       "derivative": 0
     },
-    "complete": true
+    "complete": true,
+    "sourceError": "Source portfolio date regressed",
+    "lastAttemptAt": "2026-10-08T14:44:58.205Z"
   },
   "AGG": {
     "etf": "AGG",
@@ -200981,7 +200985,7 @@
       }
     ],
     "sourceAsOf": "2026-10-07",
-    "fetchedAt": "2026-10-08T14:38:25.258Z",
+    "fetchedAt": "2026-10-08T14:44:57.656Z",
     "source": "issuer",
     "weightMethod": "market-value",
     "sourceName": "iShares",
@@ -201563,7 +201567,7 @@
       }
     ],
     "sourceAsOf": "2026-10-07",
-    "fetchedAt": "2026-10-08T14:38:22.853Z",
+    "fetchedAt": "2026-10-08T14:44:54.054Z",
     "source": "issuer",
     "weightMethod": "published",
     "sourceName": "State Street",
@@ -201849,7 +201853,7 @@
       }
     ],
     "sourceAsOf": "2026-10-07",
-    "fetchedAt": "2026-10-08T14:38:22.899Z",
+    "fetchedAt": "2026-10-08T14:44:54.161Z",
     "source": "issuer",
     "weightMethod": "published",
     "sourceName": "State Street",
@@ -247356,7 +247360,7 @@
       }
     ],
     "sourceAsOf": "2026-08-31",
-    "fetchedAt": "2026-10-08T14:38:24.652Z",
+    "fetchedAt": "2026-10-08T14:44:56.820Z",
     "source": "issuer",
     "weightMethod": "published",
     "sourceName": "Vanguard",
@@ -310728,7 +310732,7 @@
       }
     ],
     "sourceAsOf": "2026-08-31",
-    "fetchedAt": "2026-10-08T14:38:24.754Z",
+    "fetchedAt": "2026-10-08T14:44:57.167Z",
     "source": "issuer",
     "weightMethod": "published",
     "sourceName": "Vanguard",
@@ -311411,7 +311415,7 @@
       }
     ],
     "sourceAsOf": "2026-10-07",
-    "fetchedAt": "2026-10-08T14:38:27.793Z",
+    "fetchedAt": "2026-10-08T14:45:02.153Z",
     "source": "issuer",
     "weightMethod": "published",
     "sourceName": "J.P. Morgan",
@@ -312260,7 +312264,7 @@
       }
     ],
     "sourceAsOf": "2026-10-07",
-    "fetchedAt": "2026-10-08T14:38:27.319Z",
+    "fetchedAt": "2026-10-08T14:45:01.636Z",
     "source": "issuer",
     "weightMethod": "published",
     "sourceName": "J.P. Morgan",
@@ -426290,7 +426294,7 @@
       }
     ],
     "sourceAsOf": "2026-08-31",
-    "fetchedAt": "2026-10-08T14:38:24.707Z",
+    "fetchedAt": "2026-10-08T14:44:57.242Z",
     "source": "issuer",
     "weightMethod": "published",
     "sourceName": "Vanguard",
@@ -428550,7 +428554,7 @@
       }
     ],
     "sourceAsOf": "2026-08-31",
-    "fetchedAt": "2026-10-08T14:38:24.594Z",
+    "fetchedAt": "2026-10-08T14:44:56.495Z",
     "source": "issuer",
     "weightMethod": "published",
     "sourceName": "Vanguard",
@@ -429182,7 +429186,7 @@
         "category": "equity"
       }
     ],
-    "fetchedAt": "2026-10-08T14:38:26.089Z",
+    "fetchedAt": "2026-10-08T14:44:59.788Z",
     "sourceAsOf": "2026-10-06",
     "source": "research",
     "sourceName": "Schwab Research",
@@ -430343,7 +430347,7 @@
     "source": "research",
     "sourceName": "Schwab Research",
     "sourceUrl": "https://www.schwab.wallst.com/schwab/Prospect/research/etfs/schwabETF/index.asp?symbol=SCHG&type=holdings",
-    "isFallback": false,
+    "isFallback": true,
     "weightMethod": "published",
     "sourceWarning": "Direct issuer source failed (Request failed with status code 403). Using Schwab's free dated research feed.",
     "coverageNote": "All pages of Schwab's public research holdings table, verified against its total position count. The date is the research feed's reported portfolio date; weights use its published precision. Derivatives are weights, not economic exposure.",
@@ -430354,7 +430358,9 @@
       "derivative": 0.03,
       "cash": 0.04
     },
-    "complete": true
+    "complete": true,
+    "sourceError": "Source portfolio date regressed",
+    "lastAttemptAt": "2026-10-08T14:45:00.550Z"
   },
   "FDVV": {
     "etf": "FDVV",
@@ -431116,7 +431122,7 @@
       }
     ],
     "sourceAsOf": "2026-10-07",
-    "fetchedAt": "2026-10-08T14:38:28.761Z",
+    "fetchedAt": "2026-10-08T14:45:03.156Z",
     "source": "issuer",
     "weightMethod": "published",
     "sourceName": "Fidelity",
