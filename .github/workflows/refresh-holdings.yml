@@ -21,6 +21,9 @@ jobs:
       - name: Download and validate complete issuer portfolios
         id: refresh
         continue-on-error: true
+        env:
+          # The SEC blocks anonymous clients. Set the repository variable SEC_USER_AGENT to "ETF-Overlap you@example.com".
+          SEC_USER_AGENT: ${{ vars.SEC_USER_AGENT || format('ETF-Overlap {0}@users.noreply.github.com', github.repository_owner) }}
         run: npx tsx script/refresh-holdings.ts
       - name: Preserve successful portfolios and source errors
         run: |
