@@ -53,7 +53,8 @@ export function parseNportXml(xml: string, etf: string, expectedSeriesId?: strin
 
 async function secGet(url: string, config: Record<string, unknown> = {}): Promise<unknown> {
   try { return (await axios.get(url, { headers, timeout: 30000, ...config })).data; }
-  catch (error: any) { const body = typeof error.response?.data === "string" ? ` [${error.response.data.replace(/\s+/g, " ").slice(0, 160)}]` : ""; throw new Error(`${error.response?.status ?? error.code ?? "request failed"}${body} from ${new URL(url).host}${new URL(url).pathname}${error.response?.status === 403 ? " (the SEC rejects requests without a User-Agent that includes contact details; set SEC_USER_AGENT)" : ""}`); }
+  catch (error: any) { const text = typeof error.response?.data === "string" ? error.response.data.replace(/<(script|style)[\s\S]*?<\/\1>/gi, " ").replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim().slice(0, 200) : "";
+    const body = text ? ` [${text}]` : ""; throw new Error(`${error.response?.status ?? error.code ?? "request failed"}${body} from ${new URL(url).host}${new URL(url).pathname}${error.response?.status === 403 ? " (the SEC rejects requests without a User-Agent that includes contact details; set SEC_USER_AGENT)" : ""}`); }
 }
 
 export async function fetchSecPortfolio(ticker: string): Promise<EtfData> {

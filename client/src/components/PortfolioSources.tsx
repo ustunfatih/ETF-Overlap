@@ -3,7 +3,7 @@ import type { AssetCategory, EtfData } from "@shared/schema";
 const LABELS: Record<AssetCategory, string> = { equity: "Stocks", cash: "Cash", deposit: "Deposits", repo: "Repo", bond: "Bonds", option: "Options", derivative: "Other derivatives", other: "Other assets" };
 
 const DAY_MS = 86_400_000;
-const STALE_DAYS = 7;
+const STALE_DAYS = 60; // Monthly publishers (e.g. Vanguard) are normally 1-2 months behind.
 const SEC_STALE_DAYS = 120;
 const ageDays = (date?: string) => date ? Math.max(0, Math.floor((Date.now() - Date.parse(`${date}T00:00:00Z`)) / DAY_MS)) : null;
 const ageLabel = (age: number | null) => age === null ? "unknown age" : age === 0 ? "today" : `${age} day${age === 1 ? "" : "s"} old`;
@@ -29,7 +29,7 @@ export default function PortfolioSources({ portfolios, errors }: { portfolios: R
         These portfolios have different report dates (spread: {spreadDays} day{spreadDays === 1 ? "" : "s"}). Comparisons reflect each issuer's latest available report, not a single common date.
       </p> : null}
       {stale.length ? <p role="status" className="rounded-lg border border-amber-500/40 bg-amber-500/10 p-3 text-xs">
-        Older reports: {stale.map(report => `${report.etf} (${report.sourceAsOf || "undated"}, ${ageLabel(ageDays(report.sourceAsOf))})`).join(", ")}. Some issuers, such as Vanguard, only publish monthly, and SEC filings are quarterly.
+        Older reports: {stale.map(report => `${report.etf} (${report.sourceAsOf || "undated"}, ${ageLabel(ageDays(report.sourceAsOf))})`).join(", ")}. Reports up to 2 months old are normal; these are older and may indicate a stale source.
       </p> : null}
       <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
         {reports.map(report => (
