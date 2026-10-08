@@ -10,12 +10,7 @@ const toNumber = (value: string | undefined, defaultValue: number): number => {
 };
 
 export const config = {
-  holdingsV2Enabled: toBool(process.env.ETF_HOLDINGS_V2_ENABLED, false),
-  providerAlphaEnabled: toBool(process.env.ETF_PROVIDER_ALPHA_ENABLED, false),
-  providerIssuerEnabled: toBool(process.env.ETF_PROVIDER_ISSUER_ENABLED, false),
-  providerSecEnabled: toBool(process.env.ETF_PROVIDER_SEC_ENABLED, false),
   adminAuthEnabled: toBool(process.env.ETF_ADMIN_AUTH_ENABLED, false),
-  alphaVantageApiKey: process.env.ALPHA_VANTAGE_API_KEY || "",
   adminApiKey: process.env.ADMIN_API_KEY || "",
   holdingsTtlHours: toNumber(process.env.HOLDINGS_TTL_HOURS, 168),
 };

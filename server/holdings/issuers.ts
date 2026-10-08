@@ -2,9 +2,10 @@ import axios from "axios";
 import { load } from "cheerio";
 import { read as readWorkbook, utils as workbookUtils } from "@e965/xlsx";
 import type { AssetCategory, EtfData, HoldingRow } from "@shared/schema";
+import { fetchSecPortfolio } from "./sec";
 import { classify, numericWeight, parseCsv, parseXlsx, portfolioDate, validatePortfolio } from "./parsers";
 
-type Issuer = { name: string; format: "ssga" | "neos" | "invesco" | "vanguard" | "ishares" | "schwab" | "jpmorgan" | "fidelity"; url: string };
+type Issuer = { name: string; format: "ssga" | "neos" | "invesco" | "vanguard" | "ishares" | "schwab" | "jpmorgan" | "fidelity"; url: string; altUrl?: string };
 const sources: Record<string, Issuer> = {};
 for (const ticker of ["SPY", "XLK", "XLF", "XLE", "XLY", "XLP", "XLV", "XLI", "XLB", "XLU", "XLRE", "XLC", "DIA", "MDY"]) {
   sources[ticker] = { name: "State Street", format: "ssga", url: `https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-${ticker.toLowerCase()}.xlsx` };
@@ -17,7 +18,9 @@ for (const [ticker, id] of Object.entries({ VOO: "0968", VTI: "0970", VUG: "0967
   sources[ticker] = { name: "Vanguard", format: "vanguard", url: `https://advisors.vanguard.com/investments/products/api/funds/${id}/holdings/latest` };
 }
 for (const [ticker, path] of Object.entries({ IVV: "239726/ishares-core-sp-500-etf", AGG: "239458/ishares-core-total-us-bond-market-etf", IWM: "239710/ishares-russell-2000-etf", TLT: "239454/ishares-20-year-treasury-bond-etf" })) {
-  sources[ticker] = { name: "iShares", format: "ishares", url: `https://www.ishares.com/us/products/${path}/latest-holdings.csv` };
+  sources[ticker] = { name: "iShares", format: "ishares", url: `https://www.ishares.com/us/products/${path}/latest-holdings.csv`,
+    // The static CSV can be served from a stale CDN copy; the ajax export is generated on request.
+    altUrl: `https://www.ishares.com/us/products/${path}/1467271812596.ajax?fileType=csv&fileName=${ticker}_holdings&dataType=fund` };
 }
 for (const ticker of ["SCHD", "SCHG", "SCHB", "SCHX"]) {
   sources[ticker] = { name: "Schwab", format: "schwab", url: `https://www.schwabassetmanagement.com/allholdings/${ticker.toLowerCase()}?page=0` };
@@ -75,15 +78,16 @@ function tableHoldings(rows: string[][], format: "ssga" | "neos" | "ishares"): {
   return { holdings, date: portfolioDate(rawDate), note };
 }
 
-async function fetchPrimaryPortfolio(ticker: string): Promise<EtfData> {
+async function fetchPrimaryPortfolio(ticker: string, useAlt = false): Promise<EtfData> {
   const upper = ticker.toUpperCase().trim();
   const source = sources[upper];
   if (upper === "GLDW") throw new Error("GLDW was liquidated in September 2019; no current portfolio exists.");
   if (!source) throw new Error(`No verified free automatic full-portfolio source for ${upper}.`);
-  const response = await axios.get(source.url, {
+  const sourceUrl = useAlt && source.altUrl ? source.altUrl : source.url;
+  const response = await axios.get(sourceUrl, {
     responseType: source.format === "ssga" || source.format === "jpmorgan" ? "arraybuffer" : "text", timeout: 20000,
     maxContentLength: 20_000_000,
-    headers: { "User-Agent": "ETF-Overlap/1.0 (public ETF holdings reader)", Accept: "*/*" },
+    headers: { "User-Agent": "ETF-Overlap/1.0 (public ETF holdings reader)", Accept: "*/*", "Cache-Control": "no-cache" },
   });
   let holdings: HoldingRow[], date: string;
   let precisionNote = "Weights use the issuer's published precision.";
@@ -203,7 +207,7 @@ async function fetchPrimaryPortfolio(ticker: string): Promise<EtfData> {
   }
   return validatePortfolio({ etf: upper, holdings, sourceAsOf: date, fetchedAt: new Date().toISOString(), source: "issuer",
     weightMethod,
-    sourceName: source.name, sourceUrl: source.url, isFallback: false,
+    sourceName: source.name, sourceUrl, isFallback: false,
     coverageNote: `Complete issuer holdings file. ${precisionNote} Derivatives are published weights, not economic exposure.` });
 }
 
@@ -254,9 +258,24 @@ async function fetchSchwabResearch(ticker: string, primaryError: string): Promis
     sourceWarning: `Direct issuer source failed (${primaryError}). Using Schwab's free dated research feed.`,
     coverageNote: "All pages of Schwab's public research holdings table, verified against its total position count. The date is the research feed's reported portfolio date; weights use its published precision. Derivatives are weights, not economic exposure." });
 }
-export async function fetchIssuerPortfolio(ticker: string): Promise<EtfData> {
+/**
+ * Downloads the latest issuer portfolio. `notBefore` is the date of the portfolio already held:
+ * if the issuer's primary file is older (stale CDN copy), the issuer's alternate export is tried.
+ */
+export async function fetchIssuerPortfolio(ticker: string, notBefore?: string): Promise<EtfData> {
   const upper = ticker.trim().toUpperCase();
-  try { return await fetchPrimaryPortfolio(upper); }
+  if (!sources[upper] && upper !== "GLDW") {
+    try { return await fetchSecPortfolio(upper); }
+    catch (error) { throw new Error(`No free daily issuer source is mapped for ${upper}, and the SEC N-PORT fallback failed: ${error instanceof Error ? error.message : error}`); }
+  }
+  try {
+    const primary = await fetchPrimaryPortfolio(upper);
+    if (!notBefore || primary.sourceAsOf! >= notBefore || !sources[upper]?.altUrl) return primary;
+    try {
+      const alternate = await fetchPrimaryPortfolio(upper, true);
+      return alternate.sourceAsOf! > primary.sourceAsOf! ? alternate : primary;
+    } catch { return primary; }
+  }
   catch (error) {
     if (sources[upper]?.format !== "schwab") throw error;
     return fetchSchwabResearch(upper, error instanceof Error ? error.message : String(error));
