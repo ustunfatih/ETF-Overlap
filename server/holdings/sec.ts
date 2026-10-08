@@ -11,7 +11,7 @@ export const secTickers = ["ARKK", "ARKG", "ARKX", "XBI", "IBB", "SMH", "SOXX", 
 
 let seriesIndex: Promise<Map<string, { cik: number; seriesId: string }>> | undefined;
 async function loadSeriesIndex() {
-  const { data } = await axios.get("https://www.sec.gov/files/company_tickers_mf.json", { headers, timeout: 30000, maxContentLength: 20_000_000 });
+  const data: any = await secGet("https://www.sec.gov/files/company_tickers_mf.json", { maxContentLength: 20_000_000 });
   const fields: string[] = data?.fields || [];
   const [cik, seriesId, symbol] = ["cik", "seriesId", "symbol"].map(field => fields.indexOf(field));
   if (!Array.isArray(data?.data) || [cik, seriesId, symbol].some(index => index < 0)) throw new Error("SEC fund ticker list format changed");
@@ -51,13 +51,17 @@ export function parseNportXml(xml: string, etf: string, expectedSeriesId?: strin
   return portfolio;
 }
 
+async function secGet(url: string, config: Record<string, unknown> = {}): Promise<unknown> {
+  try { return (await axios.get(url, { headers, timeout: 30000, ...config })).data; }
+  catch (error: any) { throw new Error(`${error.response?.status ?? error.code ?? "request failed"} from ${new URL(url).host}${new URL(url).pathname}${error.response?.status === 403 ? " (the SEC rejects requests without a User-Agent that includes contact details; set SEC_USER_AGENT)" : ""}`); }
+}
+
 export async function fetchSecPortfolio(ticker: string): Promise<EtfData> {
   const upper = ticker.trim().toUpperCase();
   seriesIndex ??= loadSeriesIndex().catch(error => { seriesIndex = undefined; throw error; });
   const fund = (await seriesIndex).get(upper);
   if (!fund) throw new Error(`${upper} is not a registered fund in the SEC ticker list (commodity trusts and foreign funds do not file Form N-PORT).`);
-  const feed = String((await axios.get("https://www.sec.gov/cgi-bin/browse-edgar", { headers, timeout: 30000, maxContentLength: 5_000_000,
-    params: { action: "getcompany", CIK: fund.seriesId, type: "NPORT-P", dateb: "", owner: "include", count: 10, output: "atom" } })).data);
+  const feed = String(await secGet(`https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=${fund.seriesId}&type=NPORT-P&dateb=&owner=include&count=10&output=atom`, { maxContentLength: 5_000_000 }));
   const feedDocument = load(feed, { xmlMode: true });
   let filingUrl = "";
   feedDocument("entry").each((_, entry) => {
@@ -68,7 +72,7 @@ export async function fetchSecPortfolio(ticker: string): Promise<EtfData> {
   if (!filingUrl) throw new Error(`No public SEC N-PORT filing found for ${upper}`);
   const folder = filingUrl.replace(/\/[^/]*$/, "");
   if (new URL(folder).hostname !== "www.sec.gov") throw new Error("Unexpected SEC filing location");
-  const xml = String((await axios.get(`${folder}/primary_doc.xml`, { headers, timeout: 30000, maxContentLength: 50_000_000 })).data);
+  const xml = String(await secGet(`${folder}/primary_doc.xml`, { maxContentLength: 50_000_000 }));
   const portfolio = parseNportXml(xml, upper, fund.seriesId);
   return { ...portfolio, sourceUrl: `${folder}/primary_doc.xml` };
 }

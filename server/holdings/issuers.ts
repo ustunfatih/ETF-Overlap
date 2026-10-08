@@ -257,7 +257,9 @@ async function fetchSchwabResearch(ticker: string, primaryError: string): Promis
       holdings.push({ ticker, name, weight: numericWeight(cells[2].a?.tsraw), category: classify(name, "", ticker) });
     }
   }
-  if (holdings.length !== total || new Set(holdings.map(row => `${row.ticker}|${row.name}`)).size !== total) throw new Error("Schwab research portfolio is incomplete or duplicated");
+  // A handful of repeated lines (cash, futures) is legitimate; a repeated page would add 100+ and also break the weight total.
+  const duplicates = holdings.length - new Set(holdings.map(row => `${row.ticker}|${row.name}`)).size;
+  if (holdings.length !== total || duplicates > 5) throw new Error(`Schwab research portfolio is incomplete or duplicated (${holdings.length} of ${total} positions, ${duplicates} repeated)`);
   return validatePortfolio({ etf: ticker, holdings, fetchedAt: new Date().toISOString(), sourceAsOf: date, source: "research", sourceName: "Schwab Research", sourceUrl: url, isFallback: false, weightMethod: "published",
     sourceWarning: `Direct issuer source failed (${primaryError}). Using Schwab's free dated research feed.`,
     coverageNote: "All pages of Schwab's public research holdings table, verified against its total position count. The date is the research feed's reported portfolio date; weights use its published precision. Derivatives are weights, not economic exposure." });
