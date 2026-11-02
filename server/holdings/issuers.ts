@@ -17,7 +17,7 @@ sources.QQQ = { name: "Invesco", format: "invesco", url: "https://dng-api.invesc
 for (const [ticker, id] of Object.entries({ VOO: "0968", VTI: "0970", VUG: "0967", VYMI: "4430", VEA: "0936", VWO: "0964", VTV: "0966", BND: "0928", VXUS: "3369", VIG: "0920", VYM: "0923" })) {
   sources[ticker] = { name: "Vanguard", format: "vanguard", url: `https://advisors.vanguard.com/investments/products/api/funds/${id}/holdings/latest` };
 }
-for (const [ticker, path] of Object.entries({ IVV: "239726/ishares-core-sp-500-etf", AGG: "239458/ishares-core-total-us-bond-market-etf", IWM: "239710/ishares-russell-2000-etf", TLT: "239454/ishares-20-year-treasury-bond-etf" })) {
+for (const [ticker, path] of Object.entries({ IVV: "239726/ishares-core-sp-500-etf", AGG: "239458/ishares-core-total-us-bond-market-etf", IWM: "239710/ishares-russell-2000-etf", TLT: "239454/ishares-20-year-treasury-bond-etf", EIS: "239663/ishares-msci-israel-etf" })) {
   sources[ticker] = { name: "iShares", format: "ishares", url: `https://www.ishares.com/us/products/${path}/latest-holdings.csv`,
     // The static CSV can be served from a stale CDN copy; the ajax export is generated on request.
     altUrl: `https://www.ishares.com/us/products/${path}/1467271812596.ajax?fileType=csv&fileName=${ticker}_holdings&dataType=fund` };
@@ -37,13 +37,23 @@ export function issuerStatus() {
   return { freeSourcesOnly: true, supportedTickers, providers: [...new Set(Object.values(sources).map(s => s.name))] };
 }
 
-function tableHoldings(rows: string[][], format: "ssga" | "neos" | "ishares"): { holdings: HoldingRow[]; date: string; note?: string } {
-  const headerIndex = rows.findIndex(row => row.includes(format === "neos" ? "Weightings" : format === "ssga" ? "Weight" : "Weight (%)"));
+function weightColumn(row: string[], format: "ssga" | "neos" | "ishares"): string | undefined {
+  const preferred = format === "neos" ? "Weightings" : format === "ssga" ? "Weight" : "Weight (%)";
+  if (row.includes(preferred)) return preferred;
+  // IVV's equity file (Nov 2026) renamed "Weight (%)" to "Market Weight".
+  // "Notional Weight" is economic exposure and is not the published portfolio weight.
+  if (format === "ishares" && row.includes("Market Weight")) return "Market Weight";
+  return undefined;
+}
+
+export function tableHoldings(rows: string[][], format: "ssga" | "neos" | "ishares"): { holdings: HoldingRow[]; date: string; note?: string } {
+  const headerIndex = rows.findIndex(row => weightColumn(row, format));
   if (headerIndex < 0) throw new Error("Issuer holdings columns are missing");
   const header = rows[headerIndex];
+  const weightName = weightColumn(header, format)!;
   const symbolIndex = header.indexOf(format === "neos" ? "StockTicker" : "Ticker");
   const nameIndex = header.indexOf(format === "neos" ? "SecurityName" : "Name");
-  const weightIndex = header.indexOf(format === "neos" ? "Weightings" : format === "ssga" ? "Weight" : "Weight (%)");
+  const weightIndex = header.indexOf(weightName);
   if (nameIndex < 0 || (symbolIndex < 0 && !header.includes("ISIN"))) throw new Error("Issuer security columns are missing");
   const holdings: HoldingRow[] = [];
   const dates = new Set<string>();
@@ -53,15 +63,19 @@ function tableHoldings(rows: string[][], format: "ssga" | "neos" | "ishares"): {
       if (format === "ishares") break; // Footer follows the complete holdings table.
       continue;
     }
-    if (!row[weightIndex]?.trim()) {
+    const weightText = row[weightIndex]?.trim() ?? "";
+    if (!weightText) {
       if (format === "ssga") break; // Legal text below the worksheet table.
       throw new Error("Position weight is missing");
     }
+    // iShares writes "-" for a weight below 0.01%, and for a derivative whose market value is zero.
+    // The previous IVV file stored those lines at 0 (ESZ6's notional weight is not the portfolio weight).
+    const weight = weightText === "-" && format === "ishares" ? 0 : numericWeight(weightText);
     const name = row[nameIndex].trim(), ticker = (row[symbolIndex] || row[header.indexOf("ISIN")] || "").trim();
     let type = format === "ishares" ? row[header.indexOf("Asset Class")] || "" : "";
     if (format === "neos" && row[header.indexOf("MoneyMarketFlag")] === "Y") type = "Cash";
-    const category = (ticker === "-" || !ticker) && numericWeight(row[weightIndex]) === 0 ? "other" : classify(name, type, ticker);
-    holdings.push({ ticker: ticker === "-" ? "" : ticker, name, weight: numericWeight(row[weightIndex]), category,
+    const category = (ticker === "-" || !ticker) && weight === 0 ? "other" : classify(name, type, ticker);
+    holdings.push({ ticker: ticker === "-" ? "" : ticker, name, weight, category,
       securityId: row[header.indexOf("ISIN")] || row[header.indexOf("CUSIP")] || row[header.indexOf(format === "neos" ? "Cusip" : "Identifier")] || undefined });
     if (format === "ishares") marketValues.push(numericWeight(row[header.indexOf("Market Value")]));
     if (format === "neos") dates.add(portfolioDate(row[header.indexOf("Date")]));

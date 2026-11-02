@@ -63,7 +63,7 @@ export function parseXlsx(buffer: Buffer): string[][] {
   });
 }
 
-export function portfolioDate(value: unknown): string {
+export function portfolioDate(value: unknown, now = new Date()): string {
   const raw = String(value ?? "").replace(/^As of\s*/i, "").trim();
   const us = raw.match(/^(\d{1,2})\/(\d{1,2})\/(\d{2}|\d{4})$/);
   const normalized = us ? `${us[3].length === 2 ? "20" : ""}${us[3]}-${us[1].padStart(2, "0")}-${us[2].padStart(2, "0")}` : raw;
@@ -71,7 +71,12 @@ export function portfolioDate(value: unknown): string {
   if (!raw || !Number.isFinite(time)) throw new Error("Portfolio date is missing or invalid");
   const date = new Date(time).toISOString().slice(0, 10);
   if (/^\d{4}-\d{2}-\d{2}$/.test(normalized) && date !== normalized) throw new Error("Invalid portfolio calendar date");
-  if (date > new Date().toISOString().slice(0, 10)) throw new Error("Portfolio date is in the future");
+  // NEOS stamps the weekend holdings file with the next session date. The Sunday
+  // 17:30 UTC job then sees Monday. One calendar day ahead is still current;
+  // a later date is rejected so a misread cannot pass as fresh.
+  const today = now.toISOString().slice(0, 10);
+  const newest = new Date(Date.parse(`${today}T00:00:00Z`) + 86_400_000).toISOString().slice(0, 10);
+  if (date > newest) throw new Error("Portfolio date is in the future");
   return date;
 }
 
