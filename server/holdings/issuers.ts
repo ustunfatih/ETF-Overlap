@@ -5,9 +5,9 @@ import type { AssetCategory, EtfData, HoldingRow } from "@shared/schema";
 import { fetchSecPortfolio } from "./sec";
 import { classify, numericWeight, parseCsv, parseXlsx, portfolioDate, validatePortfolio } from "./parsers";
 
-type Issuer = { name: string; format: "ssga" | "neos" | "invesco" | "vanguard" | "ishares" | "schwab" | "jpmorgan" | "fidelity"; url: string; altUrl?: string };
+type Issuer = { name: string; format: "ssga" | "neos" | "invesco" | "vanguard" | "ishares" | "schwab" | "jpmorgan" | "fidelity" | "vaneck" | "kraneshares"; url: string; altUrl?: string };
 const sources: Record<string, Issuer> = {};
-for (const ticker of ["SPY", "XLK", "XLF", "XLE", "XLY", "XLP", "XLV", "XLI", "XLB", "XLU", "XLRE", "XLC", "DIA", "MDY"]) {
+for (const ticker of ["SPY", "XLK", "XLF", "XLE", "XLY", "XLP", "XLV", "XLI", "XLB", "XLU", "XLRE", "XLC", "DIA", "MDY", "XBI"]) {
   sources[ticker] = { name: "State Street", format: "ssga", url: `https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-${ticker.toLowerCase()}.xlsx` };
 }
 for (const ticker of ["SPYI", "QQQI", "CSHI", "BNDI", "IWMI"]) {
@@ -17,7 +17,7 @@ sources.QQQ = { name: "Invesco", format: "invesco", url: "https://dng-api.invesc
 for (const [ticker, id] of Object.entries({ VOO: "0968", VTI: "0970", VUG: "0967", VYMI: "4430", VEA: "0936", VWO: "0964", VTV: "0966", BND: "0928", VXUS: "3369", VIG: "0920", VYM: "0923" })) {
   sources[ticker] = { name: "Vanguard", format: "vanguard", url: `https://advisors.vanguard.com/investments/products/api/funds/${id}/holdings/latest` };
 }
-for (const [ticker, path] of Object.entries({ IVV: "239726/ishares-core-sp-500-etf", AGG: "239458/ishares-core-total-us-bond-market-etf", IWM: "239710/ishares-russell-2000-etf", TLT: "239454/ishares-20-year-treasury-bond-etf", EIS: "239663/ishares-msci-israel-etf" })) {
+for (const [ticker, path] of Object.entries({ IVV: "239726/ishares-core-sp-500-etf", AGG: "239458/ishares-core-total-us-bond-market-etf", IWM: "239710/ishares-russell-2000-etf", TLT: "239454/ishares-20-year-treasury-bond-etf", EIS: "239663/ishares-msci-israel-etf", SOXX: "239705/ishares-semiconductor-etf", IBB: "239699/ishares-biotechnology-etf" })) {
   sources[ticker] = { name: "iShares", format: "ishares", url: `https://www.ishares.com/us/products/${path}/latest-holdings.csv`,
     // The static CSV can be served from a stale CDN copy; the ajax export is generated on request.
     altUrl: `https://www.ishares.com/us/products/${path}/1467271812596.ajax?fileType=csv&fileName=${ticker}_holdings&dataType=fund` };
@@ -31,6 +31,8 @@ for (const [ticker, cusip] of Object.entries({ JEPI: "46641Q332", JEPQ: "46654Q2
 }
 
 sources.FDVV = { name: "Fidelity", format: "fidelity", url: "https://fundresearch.fidelity.com/prospectus/eproredirect?clientId=Fidelity&applicationId=ETF&securityIdType=CUSIP&critical=N&securityId=316092840" };
+sources.SMH = { name: "VanEck", format: "vaneck", url: "https://www.vaneck.com/us/en/investments/semiconductor-etf-smh/downloads/holdings/" };
+sources.KWEB = { name: "KraneShares", format: "kraneshares", url: "https://kraneshares.com/etf/kweb/" };
 
 export const supportedTickers = Object.keys(sources);
 export function issuerStatus() {
@@ -74,7 +76,9 @@ export function tableHoldings(rows: string[][], format: "ssga" | "neos" | "ishar
     const name = row[nameIndex].trim(), ticker = (row[symbolIndex] || row[header.indexOf("ISIN")] || "").trim();
     let type = format === "ishares" ? row[header.indexOf("Asset Class")] || "" : "";
     if (format === "neos" && row[header.indexOf("MoneyMarketFlag")] === "Y") type = "Cash";
-    const category = (ticker === "-" || !ticker) && weight === 0 ? "other" : classify(name, type, ticker);
+    // SSGA lists contingent-value rights as "CONTRA ..." with an identifier and no ticker.
+    let category = (ticker === "-" || !ticker) && weight === 0 ? "other" : classify(name, type, ticker);
+    if ((ticker === "-" || !ticker) && /^CONTRA\b/.test(name.toUpperCase())) category = "other";
     holdings.push({ ticker: ticker === "-" ? "" : ticker, name, weight, category,
       securityId: row[header.indexOf("ISIN")] || row[header.indexOf("CUSIP")] || row[header.indexOf(format === "neos" ? "Cusip" : "Identifier")] || undefined });
     if (format === "ishares") marketValues.push(numericWeight(row[header.indexOf("Market Value")]));
@@ -93,17 +97,111 @@ export function tableHoldings(rows: string[][], format: "ssga" | "neos" | "ishar
   return { holdings, date: portfolioDate(rawDate), note };
 }
 
+function blankSymbol(value: string): boolean {
+  return /^[-–—\s]*$/.test(value);
+}
+
+/** VanEck daily workbook. The cash line has a ticker and no name; the footer is legal text. */
+export function vaneckHoldings(rows: string[][]): { holdings: HoldingRow[]; date: string } {
+  const headerIndex = rows.findIndex(row => row.includes("% of Net Assets") && row.includes("Holding Name") && row.includes("Ticker"));
+  if (headerIndex < 0) throw new Error("VanEck holdings columns are missing");
+  const header = rows[headerIndex];
+  const dated = rows.slice(0, headerIndex).flat().join(" ");
+  const date = portfolioDate(dated.match(/\d{1,2}\/\d{1,2}\/\d{4}/)?.[0]);
+  const nameIndex = header.indexOf("Holding Name");
+  const tickerIndex = header.indexOf("Ticker");
+  const weightIndex = header.indexOf("% of Net Assets");
+  const classIndex = header.indexOf("Asset Class");
+  const idIndex = header.indexOf("Identifier (FIGI)");
+  const holdings: HoldingRow[] = [];
+  for (const row of rows.slice(headerIndex + 1)) {
+    if (/not recommendations|securities and holdings may vary/i.test(row[0] || "")) break;
+    const weightText = row[weightIndex]?.trim() ?? "";
+    if (!weightText || blankSymbol(weightText)) continue;
+    const rawTicker = (row[tickerIndex] || "").trim();
+    const rawName = (row[nameIndex] || "").trim();
+    if (!rawName && !rawTicker) continue;
+    const cash = /cash/i.test(row[classIndex] || "") || /^-USD CASH-$/i.test(rawTicker);
+    const ticker = blankSymbol(rawTicker) || /^-USD CASH-$/i.test(rawTicker) ? "" : rawTicker;
+    const name = rawName || "USD CASH";
+    const id = (row[idIndex] || "").trim();
+    holdings.push({ ticker, name, weight: numericWeight(weightText), category: cash ? "cash" : classify(name, row[classIndex] || "", ticker),
+      securityId: blankSymbol(id) ? undefined : id });
+  }
+  if (!holdings.length) throw new Error("VanEck portfolio is empty");
+  return { holdings, date };
+}
+
+/** The fund page links the current full file; the filename date changes every session. */
+export function kranesharesFile(html: string, ticker: string): string {
+  const matches = [...html.matchAll(new RegExp(`https://kraneshares\\.com/csv/(\\d{2})_(\\d{2})_(\\d{4})_${ticker.toLowerCase()}_holdings\\.csv`, "g"))];
+  if (!matches.length) throw new Error("KraneShares holdings file link is missing");
+  matches.sort((a, b) => `${a[3]}${a[1]}${a[2]}`.localeCompare(`${b[3]}${b[1]}${b[2]}`));
+  return matches[matches.length - 1][0];
+}
+
+export function kranesharesHoldings(text: string): { holdings: HoldingRow[]; date: string } {
+  const rows = parseCsv(text.replace(/^\uFEFF/, ""));
+  const asOf = rows.flat().find(cell => /^as of\s+\d{4}-\d{2}-\d{2}$/i.test(cell.trim()));
+  const date = portfolioDate(asOf);
+  const headerIndex = rows.findIndex(row => row.includes("% of Net Assets") && row.includes("Company Name") && row.includes("Ticker"));
+  if (headerIndex < 0) throw new Error("KraneShares holdings columns are missing");
+  const header = rows[headerIndex];
+  const nameIndex = header.indexOf("Company Name");
+  const weightIndex = header.indexOf("% of Net Assets");
+  const tickerIndex = header.indexOf("Ticker");
+  const idIndex = header.indexOf("Identifier");
+  const holdings: HoldingRow[] = [];
+  for (const row of rows.slice(headerIndex + 1)) {
+    const name = row[nameIndex]?.trim() || "";
+    const weightText = row[weightIndex]?.trim() || "";
+    if (!name || !weightText) continue;
+    const rawTicker = (row[tickerIndex] || "").trim();
+    const ticker = blankSymbol(rawTicker) ? "" : rawTicker;
+    const id = (row[idIndex] || "").trim().toUpperCase();
+    const securityId = /^[A-Z]{2}[A-Z0-9]{9}\d$/.test(id) ? id : undefined;
+    holdings.push({ ticker: ticker || securityId || "", name, weight: numericWeight(weightText), category: classify(name, "", ticker), securityId });
+  }
+  if (!holdings.length) throw new Error("KraneShares portfolio is empty");
+  return { holdings, date };
+}
+
+const issuerHeaders = { "User-Agent": "ETF-Overlap/1.0 (public ETF holdings reader)", Accept: "*/*", "Cache-Control": "no-cache" };
+
+// VanEck 302s until the country cookie from the first response is sent back. Axios does not keep cookies across redirects.
+async function issuerGet(url: string, responseType: "arraybuffer" | "text", keepCookies = false) {
+  if (!keepCookies) return axios.get(url, { responseType, timeout: 20000, maxContentLength: 20_000_000, headers: issuerHeaders });
+  const jar = new Map<string, string>();
+  let current = url;
+  const host = new URL(url).hostname;
+  for (let hop = 0; hop < 6; hop++) {
+    const response = await axios.get(current, {
+      responseType, timeout: 20000, maxContentLength: 20_000_000, maxRedirects: 0,
+      validateStatus: status => status >= 200 && status < 400,
+      headers: { ...issuerHeaders, ...(jar.size ? { Cookie: [...jar].map(([name, value]) => `${name}=${value}`).join("; ") } : {}) },
+    });
+    for (const cookie of response.headers["set-cookie"] || []) {
+      const pair = String(cookie).split(";")[0];
+      const eq = pair.indexOf("=");
+      if (eq > 0) jar.set(pair.slice(0, eq).trim(), pair.slice(eq + 1).trim());
+    }
+    if (response.status < 300) return response;
+    const location = response.headers.location;
+    if (!location) throw new Error("Issuer redirect is missing");
+    const next = new URL(location, current);
+    if (next.hostname !== host) throw new Error("Issuer redirected to an unexpected host");
+    current = next.href;
+  }
+  throw new Error("Issuer download redirected too many times");
+}
+
 async function fetchPrimaryPortfolio(ticker: string, useAlt = false): Promise<EtfData> {
   const upper = ticker.toUpperCase().trim();
   const source = sources[upper];
   if (upper === "GLDW") throw new Error("GLDW was liquidated in September 2019; no current portfolio exists.");
   if (!source) throw new Error(`No verified free automatic full-portfolio source for ${upper}.`);
-  const sourceUrl = useAlt && source.altUrl ? source.altUrl : source.url;
-  const response = await axios.get(sourceUrl, {
-    responseType: source.format === "ssga" || source.format === "jpmorgan" ? "arraybuffer" : "text", timeout: 20000,
-    maxContentLength: 20_000_000,
-    headers: { "User-Agent": "ETF-Overlap/1.0 (public ETF holdings reader)", Accept: "*/*", "Cache-Control": "no-cache" },
-  });
+  let sourceUrl = useAlt && source.altUrl ? source.altUrl : source.url;
+  const response = await issuerGet(sourceUrl, source.format === "ssga" || source.format === "jpmorgan" || source.format === "vaneck" ? "arraybuffer" : "text", source.format === "vaneck");
   let holdings: HoldingRow[], date: string;
   let precisionNote = "Weights use the issuer's published precision.";
   let weightMethod: EtfData["weightMethod"] = "published";
@@ -147,6 +245,14 @@ async function fetchPrimaryPortfolio(ticker: string, useAlt = false): Promise<Et
     ({ holdings, date } = parsed);
     if (parsed.note) { precisionNote = parsed.note; weightMethod = "market-value"; }
     if (source.format === "ssga" && rows.find(row => row[0] === "Ticker Symbol:")?.[1] !== upper) throw new Error("Issuer returned a different ETF");
+  } else if (source.format === "vaneck") {
+    ({ holdings, date } = vaneckHoldings(parseXlsx(Buffer.from(response.data))));
+  } else if (source.format === "kraneshares") {
+    const fileUrl = kranesharesFile(String(response.data), upper);
+    if (new URL(fileUrl).hostname !== "kraneshares.com") throw new Error("Unexpected KraneShares file location");
+    const csv = String((await issuerGet(fileUrl, "text")).data);
+    ({ holdings, date } = kranesharesHoldings(csv));
+    sourceUrl = fileUrl;
   } else if (source.format === "jpmorgan") {
     const rows = parseXlsx(Buffer.from(response.data));
     const index = rows.findIndex(row => row.includes("% of Net Assets"));
