@@ -7,7 +7,7 @@ import { classify, numericWeight, portfolioDate, validatePortfolio } from "./par
 const headers = { "User-Agent": process.env.SEC_USER_AGENT || "ETF-Overlap/1.0 (https://github.com/ustunfatih/etf-overlap)", "Accept-Encoding": "gzip, deflate" };
 
 // ETFs without a free issuer file that still file Form N-PORT (1940 Act funds). Commodity trusts such as GLD/SLV/IAU do not.
-export const secTickers = ["ARKK", "ARKG", "ARKX", "XBI", "IBB", "SMH", "SOXX", "KWEB"];
+export const secTickers = ["ARKK", "ARKG", "ARKX"];
 
 let seriesIndex: Promise<Map<string, { cik: number; seriesId: string }>> | undefined;
 async function loadSeriesIndex() {

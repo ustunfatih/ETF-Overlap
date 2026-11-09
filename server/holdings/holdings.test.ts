@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { tableHoldings } from "./issuers";
+import { kranesharesFile, kranesharesHoldings, tableHoldings, vaneckHoldings } from "./issuers";
 import { parseCsv, portfolioDate } from "./parsers";
 
 const utcDay = (iso: string) => new Date(`${iso}T00:00:00Z`);
@@ -56,4 +56,54 @@ test("iShares files that still publish Weight (%) keep that column", () => {
 
 test("a holdings file with no weight column is still rejected", () => {
   assert.throws(() => tableHoldings(parseCsv("Ticker,Name\nAAPL,APPLE\n"), "ishares"), /Issuer holdings columns are missing/);
+});
+
+test("SSGA contingent lines without a ticker stay out of the equity book", () => {
+  const parsed = tableHoldings([
+    ["Holdings:", "As of 05-Nov-2026"],
+    ["Name", "Ticker", "Identifier", "Weight"],
+    ["MODERNA INC", "MRNA", "60770K107", "99.9"],
+    ["CONTRA METSERA INC", "", "592CVR013", "0.1"],
+  ], "ssga");
+  assert.equal(parsed.date, "2026-11-05");
+  assert.equal(parsed.holdings.find(row => row.ticker === "MRNA")?.category, "equity");
+  assert.equal(parsed.holdings.find(row => row.name.startsWith("CONTRA"))?.category, "other");
+});
+
+test("VanEck daily workbook keeps published weights, including cash lines", () => {
+  const parsed = vaneckHoldings([
+    ["Daily Holdings (%)  11/05/2026"],
+    ["Number", "Ticker", "Holding Name", "Identifier (FIGI)", "Shares", "Asset Class", "Market Value (US$)", "Notional Value", "% of Net Assets"],
+    ["1", "NVDA", "Nvidia Corp", "BBG000BBJQV0", "67", "Stock", "100", " -- ", "21.00%"],
+    ["26", "-USD CASH-", "", " ", "1", "Cash Bal", "1", " -- ", "0.05%"],
+    ["27", " -- ", "Other/Cash", " -- ", " -- ", "Cash", "1", " -- ", "0.03%"],
+    ["These are not recommendations to buy or to sell any security. Securities and holdings may vary."],
+  ]);
+  assert.equal(parsed.date, "2026-11-05");
+  assert.equal(parsed.holdings.find(row => row.ticker === "NVDA")?.weight, 21);
+  assert.equal(parsed.holdings.find(row => row.ticker === "NVDA")?.securityId, "BBG000BBJQV0");
+  assert.deepEqual(parsed.holdings.filter(row => row.category === "cash").map(row => [row.ticker, row.weight]), [["", 0.05], ["", 0.03]]);
+});
+
+test("KraneShares page points at the latest dated holdings file", () => {
+  const html = '<a href="https://kraneshares.com/csv/11_05_2026_kweb_holdings.csv"></a><a href="https://kraneshares.com/csv/11_06_2026_kweb_holdings.csv"></a>';
+  assert.equal(kranesharesFile(html, "KWEB"), "https://kraneshares.com/csv/11_06_2026_kweb_holdings.csv");
+  assert.throws(() => kranesharesFile("<html></html>", "KWEB"), /KraneShares holdings file link is missing/);
+});
+
+test("KraneShares holdings use the published net-asset weight and ISIN", () => {
+  const csv = [
+    '"KWEB Holdings","As of 2026-11-06","Holdings Are Subject To Change"',
+    'Rank,"Company Name","% of Net Assets",Ticker,Identifier,"Shares Held","Market Value($)"',
+    '1,"TENCENT HOLDINGS LTD",10.01,700,KYG875721634,"9,240,275","494,709,600"',
+    '2,"PDD HOLDINGS INC",8.46,PDD,US7223041028,"5,035,171","418,070,248"',
+    '41,Cash,0.18,,–,"9,009,143","9,009,143"',
+  ].join("\n");
+  const parsed = kranesharesHoldings(csv);
+  assert.equal(parsed.date, "2026-11-06");
+  assert.equal(parsed.holdings.find(row => row.name.startsWith("TENCENT"))?.ticker, "700");
+  assert.equal(parsed.holdings.find(row => row.name.startsWith("TENCENT"))?.securityId, "KYG875721634");
+  assert.equal(parsed.holdings.find(row => row.ticker === "PDD")?.weight, 8.46);
+  assert.equal(parsed.holdings.find(row => row.name === "Cash")?.category, "cash");
+  assert.equal(parsed.holdings.find(row => row.name === "Cash")?.ticker, "");
 });

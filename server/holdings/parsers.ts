@@ -45,9 +45,11 @@ export function parseXlsx(buffer: Buffer): string[][] {
     }
     offset += 46 + nameLength + buffer.readUInt16LE(offset + 30) + buffer.readUInt16LE(offset + 32);
   }
-  const strings = load(entries.get("xl/sharedStrings.xml") || "<sst/>", { xmlMode: true });
+  // Some issuers (VanEck) prefix every tag; SSGA does not. Drop the prefix so both read the same.
+  const xmlText = (name: string) => (entries.get(name) || "").replace(/<(\/?)[A-Za-z0-9_-]+:/g, "<$1");
+  const strings = load(xmlText("xl/sharedStrings.xml") || "<sst/>", { xmlMode: true });
   const shared = strings("si").map((_, element) => strings(element).text()).get();
-  const xml = entries.get("xl/worksheets/sheet1.xml");
+  const xml = xmlText("xl/worksheets/sheet1.xml");
   if (!xml) throw new Error("XLSX worksheet is missing");
   const sheet = load(xml, { xmlMode: true });
   return sheet("row").toArray().map(element => {
