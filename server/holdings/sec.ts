@@ -6,8 +6,9 @@ import { classify, numericWeight, portfolioDate, validatePortfolio } from "./par
 // SEC requires a descriptive User-Agent with contact details: https://www.sec.gov/os/webmaster-faq#developers
 const headers = { "User-Agent": process.env.SEC_USER_AGENT || "ETF-Overlap/1.0 (https://github.com/ustunfatih/etf-overlap)", "Accept-Encoding": "gzip, deflate" };
 
-// ETFs without a free issuer file that still file Form N-PORT (1940 Act funds). Commodity trusts such as GLD/SLV/IAU do not.
-export const secTickers = ["ARKK", "ARKG", "ARKX"];
+// Funds with no free daily file that still file Form N-PORT. The weekly list is empty: ARKK, ARKG, and ARKX publish daily CSVs.
+// An unmapped ticker can still fall back to N-PORT. Commodity trusts such as GLD/SLV/IAU do not file it.
+export const secTickers: string[] = [];
 
 let seriesIndex: Promise<Map<string, { cik: number; seriesId: string }>> | undefined;
 async function loadSeriesIndex() {

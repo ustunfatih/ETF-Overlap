@@ -5,7 +5,7 @@ import type { AssetCategory, EtfData, HoldingRow } from "@shared/schema";
 import { fetchSecPortfolio } from "./sec";
 import { classify, numericWeight, parseCsv, parseXlsx, portfolioDate, validatePortfolio } from "./parsers";
 
-type Issuer = { name: string; format: "ssga" | "neos" | "invesco" | "vanguard" | "ishares" | "schwab" | "jpmorgan" | "fidelity" | "vaneck" | "kraneshares"; url: string; altUrl?: string };
+type Issuer = { name: string; format: "ssga" | "neos" | "invesco" | "vanguard" | "ishares" | "schwab" | "jpmorgan" | "fidelity" | "vaneck" | "kraneshares" | "ark"; url: string; altUrl?: string };
 const sources: Record<string, Issuer> = {};
 for (const ticker of ["SPY", "XLK", "XLF", "XLE", "XLY", "XLP", "XLV", "XLI", "XLB", "XLU", "XLRE", "XLC", "DIA", "MDY", "XBI"]) {
   sources[ticker] = { name: "State Street", format: "ssga", url: `https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-${ticker.toLowerCase()}.xlsx` };
@@ -33,8 +33,19 @@ for (const [ticker, cusip] of Object.entries({ JEPI: "46641Q332", JEPQ: "46654Q2
 sources.FDVV = { name: "Fidelity", format: "fidelity", url: "https://fundresearch.fidelity.com/prospectus/eproredirect?clientId=Fidelity&applicationId=ETF&securityIdType=CUSIP&critical=N&securityId=316092840" };
 sources.SMH = { name: "VanEck", format: "vaneck", url: "https://www.vaneck.com/us/en/investments/semiconductor-etf-smh/downloads/holdings/" };
 sources.KWEB = { name: "KraneShares", format: "kraneshares", url: "https://kraneshares.com/etf/kweb/" };
+// The old ARKX file (ARK_SPACE_EXPLORATION_...) froze on 2026-01-02. The live file uses the renamed fund.
+for (const [ticker, file] of Object.entries({
+  ARKK: "ARK_INNOVATION_ETF_ARKK_HOLDINGS.csv",
+  ARKG: "ARK_GENOMIC_REVOLUTION_ETF_ARKG_HOLDINGS.csv",
+  ARKX: "ARK_SPACE_%26_DEFENSE_INNOVATION_ETF_ARKX_HOLDINGS.csv",
+})) {
+  sources[ticker] = { name: "ARK Invest", format: "ark", url: `https://assets.ark-funds.com/fund-documents/funds-etf-csv/${file}` };
+}
 
 export const supportedTickers = Object.keys(sources);
+export function issuerSourceUrl(ticker: string): string | undefined {
+  return sources[ticker.trim().toUpperCase()]?.url;
+}
 export function issuerStatus() {
   return { freeSourcesOnly: true, supportedTickers, providers: [...new Set(Object.values(sources).map(s => s.name))] };
 }
@@ -166,6 +177,47 @@ export function kranesharesHoldings(text: string): { holdings: HoldingRow[]; dat
   return { holdings, date };
 }
 
+/** ARK's daily CSV. Listed names carry a venue suffix ("ARCT UQ"); private lines have a placeholder id and no ticker. */
+export function arkHoldings(text: string, etf: string): { holdings: HoldingRow[]; date: string } {
+  const rows = parseCsv(text.replace(/^\uFEFF/, ""));
+  const headerIndex = rows.findIndex(row => {
+    const cells = row.map(cell => cell.trim().toLowerCase());
+    return cells.includes("weight (%)") && cells.includes("company") && cells.includes("ticker");
+  });
+  if (headerIndex < 0) throw new Error("ARK holdings columns are missing");
+  const header = rows[headerIndex].map(cell => cell.trim().toLowerCase());
+  const dateIndex = header.indexOf("date");
+  const fundIndex = header.indexOf("fund");
+  const nameIndex = header.indexOf("company");
+  const tickerIndex = header.indexOf("ticker");
+  const idIndex = header.indexOf("cusip");
+  const weightIndex = header.indexOf("weight (%)");
+  if ([dateIndex, fundIndex, nameIndex, tickerIndex, weightIndex].some(index => index < 0)) throw new Error("ARK holdings columns are missing");
+  const holdings: HoldingRow[] = [];
+  const dates = new Set<string>();
+  for (const row of rows.slice(headerIndex + 1)) {
+    const rawDate = row[dateIndex]?.trim() || "";
+    if (!/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(rawDate)) continue;
+    if ((row[fundIndex] || "").trim().toUpperCase() !== etf) throw new Error("ARK returned a different ETF");
+    dates.add(portfolioDate(rawDate));
+    const name = row[nameIndex]?.trim() || "";
+    if (!name) throw new Error("ARK position name is missing");
+    const rawTicker = (row[tickerIndex] || "").trim().toUpperCase();
+    const ticker = rawTicker.replace(/ [A-Z]{2}$/, "");
+    const id = (row[idIndex] || "").trim().toUpperCase();
+    const cash = /TRSY OBLIG|TREASURY OBLIGATION|MONEY MARKET|\bCASH\b/.test(name.toUpperCase()) || id.startsWith("X9USD");
+    const warrant = /\bWTS\b|WARRANT/.test(name.toUpperCase());
+    const securityId = id && !cash ? id : undefined;
+    const symbol = cash ? "" : ticker || securityId || "";
+    let category = cash ? "cash" : warrant ? "other" : classify(name, "", symbol);
+    if (category === "equity" && !symbol) category = "other";
+    holdings.push({ ticker: symbol, name, weight: numericWeight(row[weightIndex]), category, securityId });
+  }
+  if (dates.size !== 1) throw new Error("ARK portfolio positions have inconsistent dates");
+  if (!holdings.length) throw new Error("ARK portfolio is empty");
+  return { holdings, date: [...dates][0] };
+}
+
 const issuerHeaders = { "User-Agent": "ETF-Overlap/1.0 (public ETF holdings reader)", Accept: "*/*", "Cache-Control": "no-cache" };
 
 // VanEck 302s until the country cookie from the first response is sent back. Axios does not keep cookies across redirects.
@@ -253,6 +305,9 @@ async function fetchPrimaryPortfolio(ticker: string, useAlt = false): Promise<Et
     const csv = String((await issuerGet(fileUrl, "text")).data);
     ({ holdings, date } = kranesharesHoldings(csv));
     sourceUrl = fileUrl;
+  } else if (source.format === "ark") {
+    ({ holdings, date } = arkHoldings(String(response.data), upper));
+    precisionNote = "Official daily holdings file. Private companies use ARK's placeholder identifier. Listed tickers drop the venue suffix. The treasury money-market line is cash.";
   } else if (source.format === "jpmorgan") {
     const rows = parseXlsx(Buffer.from(response.data));
     const index = rows.findIndex(row => row.includes("% of Net Assets"));
