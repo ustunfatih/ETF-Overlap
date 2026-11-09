@@ -1,7 +1,9 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { kranesharesFile, kranesharesHoldings, tableHoldings, vaneckHoldings } from "./issuers";
-import { parseCsv, portfolioDate } from "./parsers";
+import { freshnessReport, sourceFailureIsFatal } from "./freshness";
+import { arkHoldings, issuerSourceUrl, kranesharesFile, kranesharesHoldings, tableHoldings, vaneckHoldings } from "./issuers";
+import { parseCsv, portfolioDate, validatePortfolio } from "./parsers";
+import { secTickers } from "./sec";
 
 const utcDay = (iso: string) => new Date(`${iso}T00:00:00Z`);
 const shiftIso = (iso: string, days: number) => new Date(utcDay(iso).getTime() + days * 86_400_000).toISOString().slice(0, 10);
@@ -106,4 +108,60 @@ test("KraneShares holdings use the published net-asset weight and ISIN", () => {
   assert.equal(parsed.holdings.find(row => row.ticker === "PDD")?.weight, 8.46);
   assert.equal(parsed.holdings.find(row => row.name === "Cash")?.category, "cash");
   assert.equal(parsed.holdings.find(row => row.name === "Cash")?.ticker, "");
+});
+
+const arkCsv = [
+  "date,fund,company,ticker,cusip,shares,market value ($),weight (%)",
+  '11/06/2026,ARKK,TESLA INC,TSLA,88160R101,"1","$1",89.25%',
+  '11/06/2026,ARKK,ARCTURUS THERAPEUTICS HOLDIN,ARCT UQ,03969T109,"1","$1",5.00%',
+  '11/06/2026,ARKK,OPENAI GROUP PBC SERIES C,,PPOPENAIC,"1","$1",4.30%',
+  '11/06/2026,ARKK,GOLDMAN FS TRSY OBLIG INST 468,,X9USDGSFT,"1","$1",1.44%',
+  '11/06/2026,ARKK,BRERA HOLDINGS PLC WTS,,BREADUMMY,"1","$1",0.01%',
+  '"Investors should carefully consider the investment objectives and risks."',
+].join("\n");
+
+test("ARK daily file keeps private holdings, cash, and warrants, and drops the venue suffix", () => {
+  const parsed = arkHoldings(arkCsv, "ARKK");
+  assert.equal(parsed.date, "2026-11-06");
+  assert.equal(parsed.holdings.find(row => row.name === "TESLA INC")?.weight, 89.25);
+  assert.equal(parsed.holdings.find(row => row.name.startsWith("ARCTURUS"))?.ticker, "ARCT");
+  assert.equal(parsed.holdings.find(row => row.name.startsWith("OPENAI"))?.ticker, "PPOPENAIC");
+  assert.equal(parsed.holdings.find(row => row.name.startsWith("OPENAI"))?.category, "equity");
+  assert.equal(parsed.holdings.find(row => row.name.startsWith("GOLDMAN"))?.category, "cash");
+  assert.equal(parsed.holdings.find(row => row.name.startsWith("GOLDMAN"))?.ticker, "");
+  assert.equal(parsed.holdings.find(row => row.name.startsWith("BRERA"))?.category, "other");
+  const portfolio = validatePortfolio({ etf: "ARKK", holdings: parsed.holdings, sourceAsOf: parsed.date, fetchedAt: "2026-11-09T00:00:00.000Z", source: "issuer", weightMethod: "published", sourceName: "ARK Invest" });
+  assert.equal(portfolio.complete, true);
+  assert.ok(portfolio.coverageWeight! >= 97 && portfolio.coverageWeight! <= 103);
+});
+
+test("ARK file for a different fund is rejected", () => {
+  assert.throws(() => arkHoldings(arkCsv, "ARKG"), /ARK returned a different ETF/);
+});
+
+test("ARK funds use the current daily CSV, not the stale Space Exploration filename", () => {
+  assert.match(issuerSourceUrl("ARKK") || "", /ARK_INNOVATION_ETF_ARKK_HOLDINGS\.csv$/);
+  assert.match(issuerSourceUrl("ARKG") || "", /ARK_GENOMIC_REVOLUTION_ETF_ARKG_HOLDINGS\.csv$/);
+  assert.match(issuerSourceUrl("ARKX") || "", /ARK_SPACE_%26_DEFENSE_INNOVATION_ETF_ARKX_HOLDINGS\.csv$/);
+  assert.doesNotMatch(issuerSourceUrl("ARKX") || "", /SPACE_EXPLORATION/);
+  for (const ticker of ["ARKK", "ARKG", "ARKX"]) assert.equal(secTickers.includes(ticker), false);
+});
+
+test("the June 30 N-PORT copy is still too old on the November 8 run", () => {
+  const failedRun = new Date("2026-11-08T21:18:44.000Z");
+  const report = freshnessReport({ SMH: { sourceAsOf: "2026-06-30", sourceName: "SEC Form N-PORT" } }, failedRun);
+  assert.deepEqual(report.warnings, []);
+  assert.match(report.problems[0], /SMH: 2026-06-30 is 131 days old \(limit 130, SEC Form N-PORT\)/);
+  assert.equal(sourceFailureIsFatal({ sourceAsOf: "2026-06-30", sourceName: "SEC Form N-PORT", complete: true }, false, failedRun), true);
+});
+
+test("a failed refresh of a still-current portfolio does not fail the job", () => {
+  const now = new Date("2026-11-09T12:00:00.000Z");
+  const kept = { sourceAsOf: "2026-07-31", sourceName: "SEC Form N-PORT", complete: true };
+  assert.equal(sourceFailureIsFatal(kept, false, now), false);
+  assert.equal(sourceFailureIsFatal(undefined, false, now), true);
+  assert.equal(sourceFailureIsFatal(undefined, true, now), false);
+  const report = freshnessReport({ ARKK: { ...kept, sourceError: "403 from www.sec.gov" } }, now);
+  assert.deepEqual(report.problems, []);
+  assert.match(report.warnings[0], /ARKK: last refresh failed: 403 from www.sec.gov/);
 });
